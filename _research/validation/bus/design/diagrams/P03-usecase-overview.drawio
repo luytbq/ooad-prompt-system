@@ -1,0 +1,235 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="P03-usecase-overview" name="Tổng quát">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" page="1" pageWidth="1400" pageHeight="1520" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="SYS" value="Hệ thống bán vé xe khách SaoViet Bus" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=none;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="40" width="1000" height="1430" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-01" value="Hành khách" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="220" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-02" value="Nhân viên bán vé" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="510" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-03" value="Nhân viên điều hành" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="710" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-10" value="Bộ định thời" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="920" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-05" value="Phụ xe" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1100" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-04" value="Quản lý nhà xe" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1310" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-07" value="«system»&lt;br&gt;Cổng SMS" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="300" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-08" value="«device»&lt;br&gt;Máy in vé" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="530" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-06" value="«system»&lt;br&gt;Cổng thanh toán" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="640" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-09" value="«device»&lt;br&gt;Đầu quét mã vạch" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="1100" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-001" value="Tra cứu chuyến xe" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="100" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-002" value="Đặt vé trực tuyến" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="160" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-009" value="Đăng ký tài khoản" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="210" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-010" value="Đăng nhập" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="270" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-011" value="Xem lịch sử vé" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="320" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-004" value="Nhận đặt chỗ qua điện thoại" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="470" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-005" value="Bán vé tại quầy" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="530" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-012" value="Xếp chuyến vào lịch chạy tuần" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="680" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-013" value="Huỷ chuyến" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="740" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-006" value="Huỷ đặt chỗ qua điện thoại quá hạn" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="890" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-014" value="Chuẩn bị danh sách hành khách của chuyến" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="950" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-015" value="Soát vé lên xe" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="1100" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-016" value="Đặt giá vé" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="1250" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-017" value="Đặt mức tăng giá lễ Tết" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="1310" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-018" value="Xem báo cáo kinh doanh" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="1360" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-008" value="Trả vé" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="470" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-003" value="Thanh toán vé trực tuyến" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="600" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-007" value="Đổi vé&lt;hr&gt;extension points&lt;br&gt;Thu chênh lệch giá vé" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="300" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-01" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-001">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-02" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-002">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-03" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-07" target="UC-002">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1180" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-04" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-06" target="UC-003">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-05" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-02" target="UC-004">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-06" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-02" target="UC-005">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-07" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-08" target="UC-005">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-08" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-10" target="UC-006">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-09" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-007">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220" y="410" />
+              <mxPoint x="800" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-10" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-02" target="UC-007">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220" y="440" />
+              <mxPoint x="840" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-11" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-008">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220" y="420" />
+              <mxPoint x="780" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-12" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-02" target="UC-008">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220" y="450" />
+              <mxPoint x="820" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-13" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-06" target="UC-008">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1180" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-14" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-009">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-15" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-010">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-16" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-011">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-17" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-03" target="UC-012">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-18" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-03" target="UC-013">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="770" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-19" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-06" target="UC-013">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1170" y="770" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-20" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-07" target="UC-013">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1190" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-21" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-10" target="UC-014">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="980" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-22" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-05" target="UC-015">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-23" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-09" target="UC-015">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-24" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-04" target="UC-016">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-25" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-04" target="UC-017">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="1340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RL-26" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-04" target="UC-018">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

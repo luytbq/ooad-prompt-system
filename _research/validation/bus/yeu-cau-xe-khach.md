@@ -1,0 +1,14 @@
+# Mô tả yêu cầu: Hệ thống bán vé xe khách liên tỉnh SaoViet Bus
+
+Nhà xe SaoViet khai thác 12 tuyến xe khách liên tỉnh xuất phát từ 3 bến xe, mỗi ngày khoảng 80 chuyến. Đội xe gồm khoảng 50 xe giường nằm 40 chỗ và 20 xe ghế ngồi 29 chỗ. Hiện vé được bán qua điện thoại và quầy tại bến, ghi sổ tay, thường xuyên bị trùng chỗ. Nhà xe cần phần mềm bán vé và quản lý chuyến.
+
+1. Hành khách đặt vé qua website. Hành khách tìm chuyến theo điểm đi, điểm đến và ngày đi, xem sơ đồ chỗ của chuyến với các chỗ còn trống, rồi chọn tối đa 5 chỗ trong một lần đặt. Việc tìm chuyến và xem chỗ trống không cần tài khoản.
+2. Khi đặt vé, hành khách nhập họ tên và số điện thoại của người đi. Hành khách có thể đăng ký tài khoản bằng số điện thoại để xem lại lịch sử vé; đặt vé không bắt buộc có tài khoản.
+3. Các chỗ đã chọn được giữ trong 10 phút để hành khách thanh toán qua cổng thanh toán trực tuyến của đối tác. Hết 10 phút chưa thanh toán thành công thì chỗ được trả lại cho người khác. Thanh toán thành công thì hệ thống phát hành vé: mỗi chỗ một mã vé, gửi qua SMS tới số điện thoại người đi.
+4. Nhân viên bán vé tại quầy bán vé cho khách mua trực tiếp, thu tiền mặt và in vé giấy có mã vạch. Nhân viên bán vé cũng nhận đặt chỗ qua điện thoại; vé đặt qua điện thoại phải được thanh toán tại quầy chậm nhất 60 phút trước giờ xuất bến, nếu không sẽ tự động bị huỷ.
+5. Hành khách được đổi hoặc trả vé. Trả vé trước giờ xuất bến từ 24 giờ trở lên được hoàn 90% giá vé; từ 4 giờ đến dưới 24 giờ hoàn 50%; dưới 4 giờ không được trả. Vé mua trực tuyến được hoàn qua cổng thanh toán; vé mua tại quầy được hoàn tiền mặt tại quầy. Mỗi vé chỉ được đổi sang chuyến khác cùng tuyến một lần, chậm nhất 4 giờ trước giờ xuất bến, và trả thêm phần chênh lệch nếu vé mới đắt hơn.
+6. Nhân viên điều hành lập lịch chạy theo tuần: với mỗi chuyến, chọn tuyến, giờ xuất bến, xe và tài xế. Một xe hoặc một tài xế không được xếp vào hai chuyến có thời gian chạy chồng nhau. Tài xế không được lái quá 10 giờ trong một ngày. Khi phải huỷ chuyến (xe hỏng, thời tiết), nhân viên điều hành huỷ chuyến, hệ thống gửi SMS cho mọi hành khách đã có vé và hoàn 100% giá vé.
+7. Giá vé do quản lý nhà xe đặt theo tuyến và loại xe. Ngày lễ, Tết, quản lý có thể đặt mức tăng giá theo phần trăm cho một khoảng ngày, tối đa 30%.
+8. Phụ xe mỗi chuyến dùng máy soát vé cầm tay quét mã vé khi hành khách lên xe. Máy báo hợp lệ hay không hợp lệ (sai chuyến, vé đã huỷ, vé đã soát). Máy cần soát được cả khi xe ở vùng mất sóng và gửi lại kết quả khi có sóng. 15 phút trước giờ xuất bến, hệ thống gửi danh sách hành khách của chuyến về máy soát vé.
+9. Quản lý xem báo cáo doanh thu theo ngày, theo tuyến, và tỉ lệ lấp đầy chỗ của từng chuyến.
+10. Hệ thống phải chịu được khoảng 2.000 người truy cập cùng lúc vào dịp Tết. Không được để hai vé cùng một chỗ trên một chuyến. Hệ thống không lưu thông tin thẻ của hành khách.
