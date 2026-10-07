@@ -1,0 +1,80 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="P03-usecase-rental" name="Nhóm Thuê trả xe">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" page="1" pageWidth="1654" pageHeight="2339" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="SYS" value="Hệ thống cho thuê xe đạp công cộng CityBike" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=none;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="40" width="280" height="770" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-004" value="Xem bản đồ trạm" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="100" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-005" value="Thuê xe" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="220" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-006" value="Xin thêm thời gian miễn phí" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="340" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-007" value="Trả xe" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="460" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-008" value="Báo xe hỏng" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="580" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-009" value="Ghi nhận xe thất lạc" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="700" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-01" value="Người thuê xe" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="340" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-09" value="Bộ định thời" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="700" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-07" value="«system»&lt;br&gt;Cổng thanh toán" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="140" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-08" value="«device»&lt;br&gt;Ụ khoá" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="400" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-10" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-004">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-11" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-005">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-12" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-07" target="UC-005">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-13" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-08" target="UC-005">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-14" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-006">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-15" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-007">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-16" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-08" target="UC-007">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-17" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-07" target="UC-007">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-18" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-008">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-19" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-09" target="UC-009">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-20" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-07" target="UC-009">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="740" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

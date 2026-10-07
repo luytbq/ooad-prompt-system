@@ -1,0 +1,2493 @@
+1
+
+
+2
+
+No Single Model Is Sufficient
+• No single model is sufficient. Every non-trivial system
+
+is best approached through a small set of nearly
+independent models.
+
+ITSS SOFTWARE DEVELOPMENT/SOFTWARE DESIGN AND CONSTRUCTION
+
+• Create models that can be built and studied separately, but are
+
+2. REQUIREMENT MODELING WITH UC
+
+still interrelated.
+
+Logical View
+
+Implementation View
+
+Analysts/Designers
+
+Structure
+
+Programmers
+Software management
+
+Use-Case View
+End-user
+Functionality
+
+Process View
+System integrators
+
+Performance, scalability, throughput
+
+Some slides extracted from IBM coursewares
+
+1
+
+Deployment View
+System engineering
+
+System topology, delivery,
+installation, communication
+
+2
+4
+
+Content
+1.
+2.
+3.
+4.
+5.
+
+Review: Software Requirements Analysis process
+• Purpose: “to establish the requirements of the software
+
+Requirements
+Use case diagram
+Use case specification/scenario
+Glossary
+Supplementary Specification
+
+elements of the system”
+• Main items written on the brief requirement description
+• System environmental conditions under which the software is to
+perform.
+• The functional requirements and the interface requirements.
+• Data definition and database requirements.
+• Some non-functional requirement items such as reliability,
+usability, time efficiency
+• Qualification requirements: The requirements are used as criteria
+or conditions to qualify a software product as complying with its
+specifications.
+
+3
+
+3
+
+4
+
+1
+
+5
+
+6
+
+Relevant Requirements Artifacts
+SRS – Software Requirement Specification
+
+Purpose of Requirement
+• Establish and maintain agreement with the customers and
+
+Use-Case Model
+
+other stakeholders on what the system should do.
+• Give system developers a better understanding of the
+requirements of the system.
+• Delimit the system.
+• Provide a basis for planning the technical contents of the
+iterations.
+• Provide a basis for estimating cost and time to develop
+the system.
+• Define a user interface of the system.
+
+Glossary
+Actors
+Use Cases
+
+...
+
+Supplementary
+Specification
+
+Use-Case Specifications
+
+5
+
+6
+8
+
+Content
+1.
+2.
+3.
+4.
+5.
+
+2.1. Overview of Use-Case Diagram
+• A diagram modeling the dynamic aspects of
+
+Requirements
+Use case diagram
+Use case specification/scenario
+Glossary
+Supplementary Specification
+
+systems that describes a software’s functional
+requirements in terms of use cases.
+• A model of the software’s intended functions
+(use cases) and its environment (actors)
+View Report Card
+
+Register for Courses
+Student
+Login
+
+7
+
+7
+
+8
+
+2
+
+9
+
+10
+
+Benefits of a Use-Case Model
+
+Major Concepts in Use-Case Modeling
+
+• Communication
+
+• An actor represents anything that
+
+• Verification
+Communication
+
+Identification
+
+Use Case
+
+• Identification
+
+interacts with the software.
+Verification
+
+• A use case describes a sequence
+
+of events, performed by the
+software, that yields an observable
+result of value to a particular actor.
+End User
+
+Domain Expert
+
+Actor
+
+Use Case
+
+Users
+
+9
+
+10
+11
+
+Actors and the system boundary
+
+2.2. Actors
+
+• Determine what the system boundary is
+
+• Actors represent roles a user of the system
+
+• Everything beyond the boundary that interacts with the
+
+can play
+
+system is an instance of an actor
+
+• They can represent a human, a machine, or
+
+another system
+• They can be a peripheral device or even
+database
+
+System boundary?
+
+• They can actively interchange information
+
+Is the Auto Caller
+System an actor
+or part of the
+system?
+
+with the system
+• They can be a giver of information
+• They can be a passive recipient of information
+
+Actor
+
+Caller
+Call Center
+System
+
+• Actors are not part of the system
+• Actors are EXTERNAL
+
+11
+
+?
+Auto Caller
+System
+
+?
+Receiver
+
+12
+
+3
+
+14
+
+Actors and Roles
+
+Some guideline to extract actors
+• Pay attention to a noun in the problem
+
+Charlie: Is employed as a math professor
+and is an economics undergraduate.
+
+description, and then extract a subject of action
+as a Actor.
+• Ensure that there are no any excesses and
+deficiencies between the problem description and
+Actors extracted.
+• Actor names
+
+Jodie: Is a science
+undergraduate.
+
+Register for
+courses
+
+Charlie and Jodie both act as
+a Student.
+
+• should clearly convey the actor’s role
+
+Student
+Charlie also acts as a
+Professor.
+
+• good actor names describe their responsibilities
+
+Submit grades
+Professor
+
+13
+
+14
+15
+
+Put some questions to find actors
+• Who or what uses the system?
+• Who or what gets information from this system?
+• Who or what provides information to the system?
+• Where in the company is the system used?
+• Who or what supports and maintains the system?
+• What other systems use this system?
+
+15
+
+
+• The internet banking software, allowing
+
+interbank network, communicates with bank
+customers via a web application. To perform
+transactions, customers have to log in the
+software. Customers may change password
+or view personal information.
+• Customers can select any of transaction
+types: transfer (internal and in interbank
+network), balance inquiries, transaction
+history inquiries, electric receipt payment
+(via EVN software), online saving.
+• In the transfer transaction, after receiving
+enough information from the customer, the
+software asks the bank consortium to
+process the request. The bank consortium
+forwards the request to the appropriate
+bank. The bank then processes and
+responses to the bank consortium which in
+turn notifies the result to the software.
+• The bank officers may create new account
+for a customer, reset password, view
+transaction history of a customer.
+
+16
+
+Internet banking
+software of VCB
+
+16
+
+4
+
+19
+
+20
+
+2.3. Use Cases
+
+Find actors in the Internet banking system
+
+• Define a set of use-case instances, where each
+
+Internet Banking System
+
+instance is a sequence of actions a system
+performs that yields an observable result of
+value to a particular actor.
+• A use case models a dialogue between one or more
+
+actors and the system
+• A use case describes the actions the system takes to
+
+deliver something of value to the actor
+
+Use Case
+
+19
+
+20
+21
+
+22
+
+Some guidelines to extract use cases
+
+Use case name
+
+• Pay attention to a verb in the problem description,
+
+• Be unique, intuitive, and self-explanatory
+
+and then extract a series of Actions as a UC.
+• Ensure that there are no any excesses and
+deficiencies between the problem description and
+Use cases extracted.
+• Check the consistency between Use Cases and
+related Actors.
+• Conduct a survey to learn whether customers,
+business representatives, analysts, and
+developers all understand the names and
+descriptions of the use cases
+21
+
+• Define clearly and unambiguously the observable
+
+result of value gained from the use case
+• Be from the perspective of the actor that triggers
+the use case
+• Describe the behavior that the use case supports
+• Start with a verb and use a simple verb-noun
+combination
+
+22
+
+5
+
+23
+
+24
+
+Find use cases in the Internet Banking
+system
+
+Put some questions to find use cases
+• What are the goals of each actor?
+
+Internet Banking System
+
+• Why does the actor want to use the system?
+• Will the actor create, store, change, remove, or
+
+read data in the system? If so, why?
+• Will the actor need to inform the system about
+external events or changes?
+• Will the actor need to be informed about certain
+occurrences in the system?
+
+23
+
+24
+
+1. Customer chooses the
+destination bank
+
+2. Customer enter the
+destination account
+4. Software displays destination
+account name
+
+Customer
+
+5. Customer enters amount to transfer
+
+6. Software sends OTP
+7. Customer enters OTP and confirms
+to transfer
+
+25
+
+Each
+communicates-association
+is a whole dialog
+
+What is NOT a use case
+• Functional decomposition
+• System design specifications
+
+Transfer to
+interbank
+account
+
+• User interface specifications
+Bank
+Consortium
+
+3. Software requests the account
+information
+8. Software requests to transfer
+money to destination account
+
+26
+
+6
+
+Functional Decomposition: An Example
+
+Functional Decomposition
+
+Insert Card
+
+• Functional Decomposition is breaking down a
+
+Process Transaction
+Bank
+Consortium
+
+problem into small, isolated parts
+• The parts work together to provide the functionality of
+
+Enter PIN
+
+the system
+
+Select “To” Account
+
+• Often do not make sense in isolation
+
+• Use cases:
+• Are NOT functional decomposition
+• Keep the functionality together to describe a complete
+use of the system
+• Provide context.
+
+Select Transfer Funds
+
+Customer
+
+Enter Amount
+
+Select “From” Account
+Select Withdraw Cash
+Select Account Balance
+
+27
+
+28
+
+Avoid Functional Decomposition
+Symptoms
+• Very small use cases
+
+• Search for larger context
+
+• Too many use cases
+
+“Why are you building this
+system?”
+• Put yourself in user’s role
+“What does the user want to
+achieve?”
+“Whose goal does this use
+case satisfy?”
+“What value does this use
+case add?”
+“What is the story behind this
+use case?”
+
+• Uses cases with no result of
+
+value
+• Names with low-level
+
+operations
+• “Operation” + “object”
+• “Function” + “data”
+• Example: “Insert Card”
+
+• Difficulty understanding the
+
+overall model
+
+CRUD Use Cases
+
+Corrective Actions
+
+• A CRUD use case is a Create, Read, Update, or Delete use
+
+case
+• Remove CRUD use cases if they are data-management
+data-management use
+
+cases that do not provide results that are of value to actors
+Create a course
+
+View a course
+
+Update a course
+
+CRUD
+courses
+
+• Do not confuse use
+cases with functions
+• Focus on value
+
+Delete a course
+
+29
+
+30
+
+7
+
+
+
+31
+
+Checkpoints for use case diagram
+
+2.4.3. Between use cases
+
+✓The brief description of each use case gives a
+
+• Generalization
+
+true picture of the use case
+✓No use cases have very similar behaviors or
+flows of events
+✓ The use-case model contains no superfluous
+behavior; all use cases can be justified by
+tracing them back to a functional requirement.
+✓ All CRUD use cases have been removed.
+
+• parent use case
+
+• <<include>>
+
+<<extend>>
+
+Place rush order
+
+Place order
+<<include>>
+
+• <<extend>>
+Pay order
+Validate user
+by password
+Validate user
+
+• Create, Retrieve, Update, Delete
+
+Validate user by
+retinal scan
+32
+
+31
+
+32
+34
+
+35
+
+Origin “Place order”
+
+“Place order” (base use case)
+
+• Basic flow
+• Customer views cart
+• Customer requests to place order
+• Software checks availability of the items
+• Customer confirms cart
+• …enter shipping info…
+• …pay order…
+• … create order …
+• … update product availability …
+• … confirm order to customer
+
+• Basic flow
+• Confirm cart
+• …enter shipping info…
+• call “Pay order” use case
+• … create order …
+• … update product availability …
+• … confirm order to customer
+• Alternative flow
+• Exception: invalid shipping info…
+• Optional case: place rush order: …
+
+• Alternative flow
+• Exception: invalid shipping info, invalid credit card info, not enough
+balance…
+• Optional case: place rush order: …
+
+34
+
+35
+
+8
+
+
+
+36
+
+Communicates-Association
+
+Association between actor and use case
+• Establish the actors that interact with related use cases
+
+• A channel of communication
+
+between an actor and a use case
+
+• Associations clarify the communication between the actor and
+Actor 1
+
+use case.
+• Association indicate that the actor and the use case instance of
+the software communicate with one another, each one able to
+send and receive messages.
+
+• A line is used to represent a
+
+communicates-association
+Use Case
+
+• The arrow head is optional but it’s commonly used to
+
+• An arrowhead indicates who initiates
+
+each interaction
+
+denote the initiator.
+
+• No arrowhead indicates either end can
+
+initiate each interaction
+Association
+
+Use Case
+
+Actor 2
+
+Actor 3
+
+Actor
+
+36
+
+37
+
+
+38
+
+
+Outline each use case
+
+Flows of events (basic and alternative)
+
+▪ An outline captures use case steps in short
+sentences, organized sequentially
+
+• A flow is a sequential set of steps
+• One basic flow
+
+Use Case Name
+Number
+and name
+the steps
+
+38
+
+Brief Description
+Basic/Success Flow
+1. First step
+2. Second step
+3. Third step
+Alternative Flows
+1. Alternative flow 1
+2. Alternative flow 2
+3. Alternative flow 3
+
+39
+
+• Successful scenario from start to finish
+
+• Many alternative flows
+
+Structure
+the basic
+flow into
+steps
+
+• Regular variants
+• Odd cases
+• Exceptional (error) flows
+
+Identify
+alternative
+flows
+39
+
+9
+
+
+
+40
+
+
+Why outline use cases?
+DRAFT
+
+Outline the flows of events
+• Basic flow
+• What event starts the use case?
+• How does the use case end?
+• How does the use case repeat some behavior?
+
+Use-Case Size
+Too Big?
+
+Too Small?
+
+• Alternative flows
+• Are there optional situations in the use case?
+• What odd cases might happen?
+• What variants might happen?
+• What may go wrong?
+• What may not happen?
+• What kinds of resources can be blocked?
+
+Is it more than
+one use case?
+?
+
+?
+
+41
+
+Outlining helps find
+alternative flows
+
+Use Case
+?
+
+40
+
+41
+42
+
+43
+
+View cart
+• Success/Basic flow
+• Customer asks to view cart
+• Software gets all items and its availability
+• Software displays in the cart including item info. and its availability
+
+• Use case: Only extend/include
+• The use case is very big → Extract for team working or ease of
+management
+• The duplication of a part of flow of events in several use cases →
+Extract for reuse or ease of maintenance
+
+• Item name, quantity, price, amount <availability info>
+
+• Alternative flow
+• error of unavailable items
+
+• -> Screen transition: Not captured in the use case
+
+diagram
+• Interface design
+• UI design: Screen transition diagram
+
+42
+
+43
+
+10
+
+
+
+44
+
+
+Step-by-step outline: Transfer to interbank account
+
+What is a use-case scenario?
+
+Basic Flow / Success Flow
+
+▪ An instance of a use case
+
+1. Customer chooses to the destination bank
+2. Customer enters destination account
+3. Software asks bank consortium to get destination name
+4. Bank consortium returns destination name
+5. Software displays destination name
+6. Customer enters and submits an amount to transfer
+7. Software checks the condition to transfer and send OTP
+8. Customer enters an OTP and confirms to transfer
+9. Software requests bank consortium to transfer
+10. …
+What are other
+Alternative Flows
+alternatives?
+A1. Invalid destination account.
+A2. The source account cannot transfer
+A3. Invalid amount to transfer
+
+45
+
+▪ An ordered set of flows from the start of a use
+case to one of its end points
+
+Flow
+Scenario
+Note: This diagram illustrates only some of the
+possible scenarios based on the flows.
+
+44
+
+45
+
+
+46
+
+
+47
+
+a. What Is an Include Relationship?
+
+Execution of an Include Relationship
+
+• A relationship from a base use case to an inclusion use
+
+• Fully executed when the inclusion point is reached
+
+case.
+
+Base
+Use Case
+
+• The behavior defined in the inclusion use case is
+
+explicitly included into the base use case.
+Use-Case
+Instance
+Inclusion
+
+«include»
+Included
+Use Case
+
+Base
+
+46
+
+47
+
+11
+
+
+
+48
+
+49
+
+Example: include use case
+
+Between use cases - Include
+Customer
+
+• The base use case explicitly
+
+incorporates the behavior of
+another use case at a
+location specified in the
+base.
+• The included use case never
+stands alone, but is only
+instantiated as part of some
+larger base that includes it
+
+Place order
+<<include>>
+
+Pay order
+
+Customer
+
+48
+
+49
+
+
+
+50
+
+Include Relationship: RU e-st Example
+Place order
+
+Why Use an Include Relationship?
+
+«include»
+
+Inclusion
+
+«include»
+
+Pay order
+Trading
+Customer
+
+• Factor out behavior common to two
+
+or more use cases
+• Avoid describing same behavior multiple
+
+times.
+• Assure common behavior remains
+
+Other Use Case
+
+“Place order” Use Case
+1. Requests to place order
+2. Displays order detail
+3. Confirm to place order
+4. Call “Pay order” to ask
+customer pay for the order
+5. ...
+
+50
+
+51
+
+Base
+
+«include»
+
+consistent.
+
+• Factor out and encapsulate
+
+behavior from a base use case
+
+“Pay order” Use Case
+1. Choose payment method
+2. Enter payment information
+3. Enter OTP
+4. ...
+
+• Simplify complex flow of events.
+• Factor out behavior not part of primary
+
+purpose.
+
+51
+
+12
+
+
+
+52
+
+
+53
+
+b. What Is an Extend Relationship?
+
+Execution of an Extend
+
+• Connects from an extension use case to a base
+
+• Executed when the extension point is reached and the
+
+extending condition is true
+
+use case.
+• Insert extension use case’s behavior into base use case
+
+Use-Case
+Instance
+
+• Insert only if the extending condition is true
+• Insert into base use case at named extension point
+
+Base
+Use Case
+
+Base
+Extension
+Point
+
+«extend»
+Extension
+
+Extension
+Use Case
+
+52
+
+53
+
+54
+
+Between use cases - Extend
+
+55
+
+Extend Relationship: RU e-st Example
+
+• The base use case implicitly incorporates the
+
+behavior of another use case at a location
+specified indirectly by the extending use case.
+• The base use case may stand alone, but under
+certain conditions its behavior may be extended
+by the behavior of another use case.
+<<extend>>
+
+Place order
+
+54
+
+Trading Customer
+
+Get Quote
+
+«extend»
+Get News
+
+Place rush order
+
+«extend»
+Get Expert
+Predictions
+
+55
+
+13
+
+
+
+Extend Relationship: RU e-st Example (cont.)
+“Get Quote” Use Case
+Basic Flow:
+1. Display options
+2. Customer selects “Get
+Quote”
+3. Customer gets quote
+4. Customer gets other quotes
+5. Customer logs off.
+A1. Quote System unavailable
+A2. Optional Services:
+- If Customer selects “Get
+News”, Use case “Get
+News” is inserted
+- If Customer selects “Get
+Expert Predictions”, Use
+case “Get Expert
+Predictions” is inserted
+
+
+56
+
+57
+
+Why Use an Extend Relationship?
+
+“Get News” Use Case
+Basic Flow:
+1. If Customer selects “Get News,” the
+system asks customer for time
+period and number of news items.
+2. Customer enters time period and
+number of items.
+3. The system sends stock trading
+symbol to News System, receives
+reply, and displays the news to
+the customer.
+4. The Get Quote Use Case continues.
+
+• Factor out optional or
+
+Base
+
+exceptional behavior
+
+«extend»
+Extension
+
+• Executed only under certain
+
+conditions
+• Factoring out simplifies flow of
+
+events in base use case
+• Example: Triggering an alarm
+
+• Add extending behavior
+• Behavior developed separately,
+possibly in later version.
+
+A1. News System Unavailable
+A2. No News About This Stock
+…
+This use case extends the Get Quote
+Use Case, at extension point
+“Optional Services.”
+
+56
+
+57
+
+
+58
+
+59
+
+Concrete Versus Abstract Use Cases
+A use case is
+either concrete or
+abstract.
+
+c. Between use cases - Generalization
+
+Abstract use cases (A & D):
+A
+
+• The child use case inherits the behavior and
+
+• Do not have to be complete.
+
+«include»
+
+• Exist only for other use cases.
+
+meaning of the parent use case;
+
+• Are never instantiated on their own.
+
+• the child may add to or override the behavior of its
+
+parent;
+B
+
+C
+«extend»
+
+Concrete use cases (B & C):
+• Have to be complete and
+meaningful.
+• Can be instantiated on
+their own.
+
+58
+
+D
+
+• the child may be substituted any place the parent
+
+Hint:
+Cover up all
+abstract use
+cases and you
+should still be
+able to
+understand the
+main purpose of
+the system.
+
+appears (both the parent and the child may have
+concrete instances)
+Log in
+by account
+
+Log in
+
+User
+
+Log in by
+retinal scan
+
+Desktop App
+User
+
+59
+
+14
+
+
+
+60
+
+61
+
+Why Wouldn’t You Structure The Model?
+Inclusion
+«include»
+
+2.5. Use case diagram
+
+▪ The solution is harder to see
+when the use case gets
+fragmented
+
+• The Use case diagram shows a set of use cases and
+
+actors and their relationships.
+• The Use case diagram serves as a contract between the
+
+Functionally decompose the
+requirement
+► Decrease understandability
+► Increase complexity
+► Increases effort for reviewers,
+implementers and testers
+► Not all stakeholders are
+comfortable with the format
+►
+
+Base
+«extend»
+Extension
+Child
+
+customer and the developers.
+• Because it is a very powerful planning instrument, the Use
+
+case diagram is generally used in all phases of the
+development cycle
+
+▪ The use-case model looks like
+a design.
+
+60
+
+61
+62
+
+Content
+
+Notes
+• Should not use two many relationships between
+
+1.
+2.
+3.
+4.
+5.
+
+use case in the Use case diagram
+• Tangle and make the diagram difficult to observe
+• Only use the relationship if necessary
+• In the Use case diagram, the sequence do use cases
+
+are not specified
+
+Requirements
+Use case diagram
+Use case specification/scenario
+Glossary
+Supplementary Specification
+
+63
+
+62
+
+63
+
+15
+
+64
+
+65
+
+Use-Case Specification
+
+Use-Case Specification
+
+The software
+
+Use-Case Model
+
+• Code
+
+Use case 1
+
+Use-Case-Model Survey
+- survey description
+- list of all actors
+- list of all use cases
+
+Actor 1
+
+• Name
+
+Actor 2
+
+Use case 2
+
+• Brief description
+• Flow of Events
+
+Actors
+
+• Relationships
+
+Use case 3
+
+Use Cases
+
+• Activity diagrams
+
+Actor 3
+
+• Use-Case diagrams
+• Special requirements
+Use-Case 1 Spec
+- brief description
+- flow of events
+
+Use-Case 2 Spec
+- brief description
+- flow of events
+
+...
+
+• Pre-conditions
+
+Use-Case 3 Spec
+- brief description
+- flow of events
+
+• Post-conditions
+
+Use-Case Specifications
+
+• Other diagrams
+
+64
+
+65
+66
+
+67
+
+Some guidelines to make UC specification
+
+Brief description of UC
+
+• UC Scenario description for each UC:
+• External Interface
+• Permanent data
+
+• Describe briefly the purpose of UC
+• Example: Use case “Log in” in the ATM software:
+
+• Excess and deficiency check between between
+“This use case describes the interaction between bank
+customers and the ATM machine when the customer
+wishes to log in to the software to perform transactions”
+
+the problem description and Requirements
+• Consistency in the Requirements
+• Feasibility of later phase
+
+66
+
+67
+
+16
+
+68
+
+69
+
+Use-Case Flow of Events
+
+What Is a Scenario?
+
+ Has one normal, basic flow
+ Several alternative flows
+
+• A scenario is an instance of a use case.
+
+▪ Regular variants
+▪ Odd cases
+▪ Exceptional flows for handling error situations
+
+68
+
+69
+70
+
+71
+
+Flow of events
+
+UC Login in the ATM software
+
+Success / Main flow of event
+
+• Main flows of events: The use case starts when software
+
+1
+
+Customer
+
+requests to log in
+
+prompts the Customer for a PIN Number. The Customer can
+now enter a PIN number. The Customer commits the entry. The
+software then checks this PIN number to see if it is valid. If
+valid, the software acknowledges the entry, thus ending the use
+case
+• Regular variants: The Customer cancel a transaction at any
+time, thus restart the UC. No changes are made to the
+Customer’s account.
+• Odd case: The Customer clear a PIN number anytime before
+committing it and re-enter a new PIN number
+• Exceptional flow of events: If the Customer enter an invalid PIN
+number, the UC restarts. If this happens 3 times in a row, the
+software cancel the entire transaction, and keep the ATM card.
+
+2
+
+Software
+
+prompts a Log in screen
+
+3
+
+Customer
+
+enters a PIN number
+
+4
+
+Customer
+
+submit to login
+
+5
+
+Software
+
+checks if the PIN number is valid
+
+6
+
+Software
+
+displays the main menu if the PIN number is valid
+
+#
+
+70
+
+Doer
+
+Action
+
+Alternative flow of event
+#
+
+Doer
+
+Action
+
+Customer
+
+cancels a transation at any time
+
+4a
+
+Customer
+
+clears PIN number before submitting to login
+
+6a
+
+software
+
+notifies Invalid PIN number, goes to Step 2 if the PIN
+number is not valid less than 3 times
+
+6b
+
+software
+
+notifies invalid PIN number 3 times, keep the ATM card if the
+PIN number is not valid 3 times
+
+71
+
+17
+
+
+
+
+72
+
+Detail of Alternative Flows
+Alternative Flows
+
+2.8 Unidentified Student.
+In the Log On step of the Basic Flow, if the system
+determines that the student identification information is
+not valid, an error message is displayed, and the use
+case ends.
+2.9 Quit and Save.
+At any time, the system will allow the Student to quit. The
+student chooses to quit and save a partial schedule
+before quitting. The system saves the schedule, and the
+use case ends.
+2.10 Waiting List
+In the Select Courses step of the Basic Flow, if a course
+the Student wants to take is full, the systems allows the
+student to be added to a waiting list for the course. The
+use case resumes at the Select Courses step in the Basic
+Flow.
+
+73
+
+RUP style summary
+Describe what
+happens
+
+• Basic flow
+• Steps are numbered
+and named
+• Steps do not reference
+alternative flows
+• Shows the main actor
+succeeding in that
+actor’s main goal
+
+Location
+
+Condition
+
+Actions
+
+• Alternative flows
+• Have names
+• May have steps
+
+Resume location
+
+72
+
+RUP Use-Case Specification
+Template
+
+73
+75
+
+Use case specification for “Search media”
+
+Input/output data specification
+
+• Basic flow
+• Customer enters and submits keywords to search
+• Software queries media including keywords
+• Software displays a list of media including keywords (see Table x)
+
+• Input data specification
+No
+
+Data fields
+
+1.
+
+Keyword
+
+Description
+
+Mandatory
+
+Valid condition
+
+Yes
+
+Not include
+characters
+
+Example
+special
+
+Mắt biếc
+
+• Alternative flows
+• Output data specification (Table x)
+No
+
+74
+
+Data fields
+
+1
+
+Title
+
+Description
+…
+
+2
+
+Author
+
+…
+
+3
+
+Price
+
+..
+
+4
+
+Published date
+
+…
+
+Display format
+
+Example
+
+Left Alignment
+
+Mắt biếc
+
+Left Alignment
+
+Nguyễn Nhật Ánh
+
+Right Alignment, long,
+with Vietnamese dong
+Left Alignment,
+dd/mm/yyyy format
+
+150.000 VNĐ
+30/12/1996
+
+75
+
+18
+
+
+
+76
+
+
+E.g. Include use case in specification
+
+How to do use case specification for:
+
+Base
+Use Case
+
+• Use case “Place order”
+
+• Included use cases
+• Explicitly call the included use case in a step
+(i.e. the inclusion point) in the basic flow of
+the base use case
+
+Basic flow
+1.
+2.
+3.
+4.
+5.
+6.
+
+• Extended use cases
+• Insert extension use case’s behavior into base
+use case at the extension point if the
+extending condition is true
+
+Use-Case
+
+Instance
+…
+…
+Passenger confirm to buy tickets
+Software calls the use case “Pay receipt”
+Software calls the use case “Print receipt”
+…
+
+Included
+Use Case
+
+• Use case “Pay receipt”
+
+Basic flow
+
+• Generalized use cases
+• Use placeholders in parent use cases
+
+1. Software asks passenger to insert a credit card
+2. Passenger inserts a credit card to the credit card slot
+3. …
+
+76
+
+77
+
+
+78
+
+
+E.g. Extend use case in specification
+Use-Case
+Instance
+
+Base
+Use Case
+
+• Parent use case
+• Defines common actors to all child use cases
+• Defines the steps that are common to all child use cases
+• May define default steps that apply to some but not all child
+use cases (*)
+• May define empty placeholders for steps that are to be
+defined by one or more of child use cases (**)
+• Child use cases
+• Defines actors that is not defined by the parent use case
+• May override default steps of the parent use case’s
+specification (*)
+• May fill in empty placeholders of the parent use case’s
+specification (**)
+• May add its own steps, which aren’t in any way anticipated in
+the parent use case’s specification (***).
+
+Extension
+Point
+…
+Customer enters and submits shipping info
+Software displays receipt
+…
+
+Basic flow
+1.
+2.
+3.
+4.
+
+Extension
+Use Case
+
+Alternative flow
+A1. In the step 2, if customer chooses to place a rush
+order, insert use case “Place rush order”, then resume at
+the step 3.
+…
+• Use case “Place rush order”
+1.
+2.
+3.
+
+79
+
+Parent and child use case specification
+
+• Use case “Place order”
+
+78
+
+77
+
+Software displays rush order form
+Customer
+…
+
+79
+
+19
+
+
+
+80
+
+
+81
+
+Example subflow
+
+E.g. Parent and child use case specification
+• Use case “Validate user”
+
+Basic flow
+Get user identity
+<>
+3. Match the input with user id
+4. Return valid user
+Alternative flow
+A1. In the step 3, if the input is not match with the
+user id, return invalid user
+1.
+2.
+
+• User “Check password”
+
+Basic flow
+1.
+2.
+3.
+4.
+
+Get user password (hashed)
+Hash the input (**)
+Compare the hashed input and user password
+Step 4->7 of the parent use case
+
+80
+
+81
+
+
+82
+
+
+Visualize behavior
+
+How do you deal with the user interface?
+
+• Visual modeling tools
+
+• Leave the user interface out of the use case
+• Use cases are independent of the user interface
+• Describe user interfaces with
+
+• Activity diagrams or flow charts
+• Business process models
+
+• Should you illustrate behavior?
+• Pro
+• Great tool to identify alternative flows, especially for
+visually oriented people
+• Succinctly conveys information about use case flows
+• Con
+• Costly to keep diagrams and use-case specifications
+synchronized
+
+• User-experience models or prototypes
+• User interface specifications
+
+Words to Avoid
+Click
+Open
+Button
+Pop-up
+Record
+
+82
+
+Drag
+Form
+Close
+Drop
+Field
+Drop-down
+Scroll
+Browse
+Window
+
+Words to Use
+Prompts
+Initiates
+Submits
+Starts
+Informs
+
+83
+
+Chooses
+Specifies
+Selects
+Displays
+
+83
+
+20
+
+85
+
+What Is an Activity Diagram?
+
+Example: Activity Diagram
+
+◆An activity diagram in the Use-Case Model can be used to
+
+capture the activities in a use case.
+◆It is essentially a flow chart, showing flow of control from
+one activity or action to another.
+
+[ delete course ]
+
+Delete Course
+
+Synchronization
+Bar (Fork)
+
+This use case starts when the Registrar requests that the
+system close registration.
+
+Guard
+Condition
+
+Activity2
+
+Check
+Schedule
+
+[ checks completed ]
+
+Activity1
+
+Check
+Pre-requisites
+
+[ checks failed ]
+
+Synchronization
+Bar (Join)
+
+Resolve
+Conflicts
+
+Transition
+
+Activity3
+
+2. For each course offering, the system checks if a
+professor has signed up to teach the course offering and
+at least three students have registered. If so, the system
+commits the course offering for each schedule that
+contains it.
+
+Assign to
+Course
+Update
+Schedule
+
+84
+
+85
+86
+
+87
+
+E.g. Activity diagram in Astah
+
+Partitions
+◆ Each partition should
+
+represent a responsibility
+for part of the overall
+workflow, carried by a part
+of the organization.
+◆ A partition may eventually
+be implemented by an
+organization unit or a set of
+classes in the business
+object model.
+
+86
+
+Activity/Action
+
+[ add course ]
+
+Flow of Events
+
+1. The system checks to see if registration is in progress.
+If it is, then a message is displayed to the Registrar and
+the use case terminates. The Close Registration
+processing cannot be performed if registration is in
+progress.
+
+Decision
+
+Select Course
+
+Concurrent
+Threads
+
+Sales
+
+Business Process
+
+Fulfillment
+
+Determine
+Need
+
+Take Order
+
+Fill Order
+Setup Payment
+
+Deliver Order
+
+87
+
+21
+
+
+
+88
+
+
+89
+
+Preconditions
+
+Postconditions
+
+• Describe the state that the system must be in before the use case can
+
+• Describe the state of the system at the end of the use
+
+start
+•
+•
+•
+
+case
+
+Simple statements that define the state of the system, expressed as
+conditions that must be true
+Should never refer to other use cases that need to be performed prior to
+this use case
+Should be stated clearly and should be easily verifiable
+
+•
+
+•
+
+• Optional: Use only if needed for clarification
+
+•
+
+• Example
+Register for Courses use case
+Precondition:
+•
+The list of course offerings for the semester
+has been created and is available to the
+Course Registration System
+•
+The registration is open for student
+•
+Student has logged into the Course Registration System
+
+Use when the system state is a precondition to another use case,
+or when the possible use case outcomes are not obvious to use
+case readers
+Should never refer to other, subsequent use cases
+Should be stated clearly and should be easily verifiable
+
+• Optional: Use only if needed for clarification
+• Example:
+Register for Courses use case
+Postcondition: At the end of this
+use case either the student has been
+enrolled in courses, or registering was
+unsuccessful and no changes have been made to the student
+schedules or course enrollments
+
+88
+
+89
+
+
+90
+
+
+Sequence use cases with pre- and
+postconditions
+Use case 1
+
+Use case 2
+
+91
+
+Other use case properties
+• Special requirements
+• Related to this use case, not covered in flow of events
+• Usually nonfunctional requirements, data, and business rules
+
+• Extension points
+• Name a set of places in the flow of events where extending behavior
+can be inserted
+• Additional information
+• Any additional information required to clarify the use case
+
+Use cases do not interact with each other.
+However, a postcondition for one use case
+can be the same as the precondition for another.
+
+90
+
+91
+
+22
+
+93
+
+Content
+1.
+2.
+3.
+4.
+5.
+
+4. Glossary
+• The Glossary defines important terms used in
+
+Requirements
+Use case diagram
+Use case specification/scenario
+Glossary
+Supplementary Specification
+
+the project for all models.
+• There is only one Glossary for the system.
+• This document is important to many developers,
+especially when they need to understand and use
+the terms that are specific to the project.
+• The Glossary is used to facilitate
+communications between domain experts and
+developers
+
+92
+
+92
+
+93
+94
+
+95
+
+4. Glossary (2)
+
+4. Glossary (3)
+Course Registration System Glossary
+
+• Introduction: Provides a brief description of the
+
+1.
+
+Glossary and its purpose.
+• Terms: Define the term in as much detail as
+necessary to completely and unambiguously
+characterize it.
+
+Introduction
+
+This document is used to define terminology specific to the problem domain,
+explaining terms, which may be unfamiliar to the reader of the use-case
+descriptions or other project documents. Often, this document can be used as
+an informal data dictionary, capturing data definitions so that use-case
+descriptions and other project documents can focus on what the system must do
+with the information.
+2.
+
+Definitions
+
+The glossary contains the working definitions for the key concepts in the
+Course Registration System.
+
+Glossary
+
+2.1
+
+Course: A class offered by the university.
+
+2.2
+Course Offering: A specific delivery of the course for a specific
+semester – you could run the same course in parallel sessions in the semester.
+Includes the days of the week and times it is offered.
+2.3
+Course Catalog: The unabridged catalog of all courses offered by the
+university.
+
+94
+
+95
+
+23
+
+96
+
+97
+
+Content
+
+Case Study: Glossary
+
+1.
+2.
+3.
+4.
+5.
+
+• Make the Glossary of the Course
+
+Registration System
+
+Glossary
+
+96
+
+Requirements
+Use case diagram
+Use case specification/scenario
+Glossary
+Supplementary Specification
+
+97
+98
+
+99
+
+5. Supplementary Specification
+
+5. Supplementary Specification (2)
+
+• Includes the nonfunctional requirements and
+
+• Functionality: List of the functional requirements that
+
+functional requirements not captured by the
+use cases
+• Contains those requirements that do not map
+to a specific use case: Functionality, Usability,
+Reliability, Performance, Supportability
+
+are general to many use cases.
+• Usability: Requirements that relate to, or affect, the
+usability of the system. Examples include ease-of-use
+requirements or training requirements that specify
+how readily the system can be used by its actors.
+Supplementary
+Specification
+
+98
+
+99
+
+24
+
+100
+
+101
+
+5. Supplementary Specification (3)
+
+Case study: Supplementary Specification
+
+• Reliability: Any requirements concerning the
+
+• Make the Supplementary
+
+Course
+Registration
+Requirements
+Document
+
+Specification for the Course
+Registration System
+
+reliability of the system. Quantitative measures such
+as mean time between failure or defects per thousand
+lines of code should be stated.
+• Performance: The performance characteristics of the
+system. Include specific response times. Reference
+related use cases by name.
+• Supportability: Any requirements that will enhance
+the supportability or maintainability of the system
+being built.
+
+Supplementary
+Specification
+
+100
+
+101
+
+Checkpoints: Actors
+
+Checkpoints: Use-Cases
+
+• Have all the actors been identified?
+
+• Is each actor involved with at least
+
+one use case?
+• Is each actor really a role? Should
+any be merged or split?
+• Do two actors play the same role in
+relation to a use case?
+• Do the actors have intuitive and
+descriptive names? Can both users
+and customers understand the
+names?
+
+102
+
+• Is each use case involved with at least
+
+one actor?
+
+• Is each use case independent of the
+
+others?
+• Do any use cases have very similar
+behaviors or flows of events?
+• Do the use cases have unique, intuitive,
+and explanatory names so that they
+cannot be mixed up at a later stage?
+• Do customers and users alike understand
+the names and descriptions of the use
+cases?
+103
+
+25
+
+Checkpoints: Use-Case Model
+
+Checkpoints: Use-Case Specifications
+
+• Is the Use-Case Model
+
+understandable?
+
+• Is it clear who wants to perform a use case?
+
+• By studying the Use-Case Model,
+
+can you form a clear idea of the
+system's functions and how they are
+related?
+• Have all functional requirements
+been met?
+• Does the Use-Case Model contain
+any superfluous behavior?
+• Is the division of the model into usecase packages appropriate?
+
+• Is the purpose of the use case also clear?
+...
+
+• Does the brief description give a true picture
+
+of the use case?
+• Is it clear how and when the use case's flow
+
+of events starts and ends?
+• Are the actor interactions and exchanged
+
+information clear?
+• Are any use cases overly complex?
+
+104
+
+105
+106
+
+107
+
+Review
+
+Checkpoints: Glossary
+
+• What are the main artifacts of Requirements?
+
+• Does each term have a clear and
+
+• What are the Requirements artifacts used for?
+
+concise definition?
+• Is each glossary term included
+somewhere in the use-case
+descriptions?
+• Are terms used consistently in
+the brief descriptions of actors
+and use cases?
+
+• What is a Use-Case Model?
+
+106
+
+• What is an actor?
+• What is a use case? List examples of use case properties.
+• What is the difference between a use case and a scenario?
+• What is a Supplementary Specification
+
+and what does it include?
+• What is a Glossary and what does
+
+it include?
+
+107
+
+26
+
+108
+
+Question?
+
+108
+
+27
+
+

@@ -1,0 +1,34 @@
+<mxfile host="app.diagrams.net">
+<diagram id="P03-usecase-overview" name="Tổng quát"><mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" page="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0"><root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="SYS" value="Hệ thống thương mại điện tử AIMS" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=none;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="200" y="40" width="600" height="1080" as="geometry"/></mxCell>
+<mxCell id="ACT-01" value="Khách hàng" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1"><mxGeometry x="60" y="410" width="30" height="60" as="geometry"/></mxCell>
+<mxCell id="ACT-02" value="Quản trị viên" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1"><mxGeometry x="60" y="950" width="30" height="60" as="geometry"/></mxCell>
+<mxCell id="ACT-03" value="«system»&lt;br&gt;Liên ngân hàng" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1"><mxGeometry x="880" y="620" width="30" height="60" as="geometry"/></mxCell>
+<mxCell id="UC-001" value="Tìm kiếm sản phẩm" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="260" y="80" width="160" height="70" as="geometry"/></mxCell>
+<mxCell id="UC-002" value="Thêm sản phẩm vào giỏ hàng" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="260" y="190" width="160" height="70" as="geometry"/></mxCell>
+<mxCell id="UC-003" value="Xem giỏ hàng" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="260" y="300" width="160" height="70" as="geometry"/></mxCell>
+<mxCell id="UC-004" value="Đặt hàng&lt;hr&gt;extension points&lt;br&gt;Chọn giao hàng nhanh" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="260" y="410" width="200" height="90" as="geometry"/></mxCell>
+<mxCell id="UC-005" value="Đặt hàng giao nhanh" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="300" y="540" width="160" height="70" as="geometry"/></mxCell>
+<mxCell id="UC-006" value="Thanh toán đơn hàng" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="560" y="420" width="160" height="70" as="geometry"/></mxCell>
+<mxCell id="UC-007" value="Huỷ đơn hàng" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="260" y="650" width="160" height="70" as="geometry"/></mxCell>
+<mxCell id="UC-008" value="Xem lịch sử mua hàng" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="260" y="760" width="160" height="70" as="geometry"/></mxCell>
+<mxCell id="UC-009" value="Quản lý sản phẩm" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="260" y="900" width="160" height="70" as="geometry"/></mxCell>
+<mxCell id="UC-010" value="Duyệt đơn hàng" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="260" y="1010" width="160" height="70" as="geometry"/></mxCell>
+<mxCell id="N-01" value="Condition: {khách hàng chọn giao hàng nhanh}&lt;br&gt;extension point: Chọn giao hàng nhanh" style="shape=note;whiteSpace=wrap;html=1;size=14;" vertex="1" parent="1"><mxGeometry x="540" y="540" width="200" height="60" as="geometry"/></mxCell>
+<mxCell id="RL-01" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-001"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="RL-02" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-002"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="RL-03" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-003"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="RL-04" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-004"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="RL-05" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-03" target="UC-006"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="RL-06" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-007"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="RL-07" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-03" target="UC-007"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="RL-08" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-008"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="RL-09" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-02" target="UC-009"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="RL-10" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-02" target="UC-010"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="RL-11" value="«include»" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1" source="UC-004" target="UC-006"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="RL-12" value="«extend»" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1" source="UC-005" target="UC-004"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="RL-12-N" value="" style="endArrow=none;dashed=1;html=1;" edge="1" parent="1" source="N-01" target="RL-12"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+</root></mxGraphModel></diagram>
+</mxfile>

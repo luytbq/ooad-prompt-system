@@ -1,0 +1,26 @@
+<mxfile host="app.diagrams.net">
+<diagram id="UC-007" name="UC-007"><mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" page="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0"><root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="P-ACT-01" value="Khách hàng" style="swimlane;html=1;startSize=40;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="300" height="640" as="geometry"/></mxCell>
+<mxCell id="P-SYS" value="Hệ thống" style="swimlane;html=1;startSize=40;" vertex="1" parent="1"><mxGeometry x="300" y="0" width="480" height="640" as="geometry"/></mxCell>
+<mxCell id="P-ACT-03" value="Liên ngân hàng" style="swimlane;html=1;startSize=40;" vertex="1" parent="1"><mxGeometry x="780" y="0" width="300" height="640" as="geometry"/></mxCell>
+<mxCell id="INIT" value="" style="ellipse;html=1;fillColor=#000000;" vertex="1" parent="P-ACT-01"><mxGeometry x="140" y="60" width="30" height="30" as="geometry"/></mxCell>
+<mxCell id="A-1" value="Yêu cầu huỷ đơn hàng đã thanh toán" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;" vertex="1" parent="P-ACT-01"><mxGeometry x="60" y="110" width="180" height="60" as="geometry"/></mxCell>
+<mxCell id="A-2" value="Yêu cầu Liên ngân hàng hoàn toàn bộ tiền vào thẻ" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;" vertex="1" parent="P-SYS"><mxGeometry x="60" y="200" width="180" height="60" as="geometry"/></mxCell>
+<mxCell id="A-3" value="Trả về kết quả hoàn tiền" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;" vertex="1" parent="P-ACT-03"><mxGeometry x="60" y="290" width="180" height="60" as="geometry"/></mxCell>
+<mxCell id="D-3" value="" style="rhombus;html=1;" vertex="1" parent="P-ACT-03"><mxGeometry x="130" y="380" width="40" height="40" as="geometry"/></mxCell>
+<mxCell id="A-3a" value="Giữ nguyên trạng thái đơn hàng" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;" vertex="1" parent="P-SYS"><mxGeometry x="260" y="370" width="180" height="60" as="geometry"/></mxCell>
+<mxCell id="FINAL-1" value="" style="ellipse;shape=endState;html=1;fillColor=#000000;" vertex="1" parent="P-SYS"><mxGeometry x="340" y="470" width="30" height="30" as="geometry"/></mxCell>
+<mxCell id="A-4" value="Ghi nhận đơn hàng đã bị huỷ" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;" vertex="1" parent="P-SYS"><mxGeometry x="30" y="460" width="180" height="60" as="geometry"/></mxCell>
+<mxCell id="FINAL-2" value="" style="ellipse;shape=endState;html=1;fillColor=#000000;" vertex="1" parent="P-SYS"><mxGeometry x="110" y="560" width="30" height="30" as="geometry"/></mxCell>
+<mxCell id="E-01" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;" edge="1" parent="1" source="INIT" target="A-1"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="E-02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;" edge="1" parent="1" source="A-1" target="A-2"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="E-03" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;" edge="1" parent="1" source="A-2" target="A-3"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="E-04" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;" edge="1" parent="1" source="A-3" target="D-3"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="E-05" value="[hoàn tiền thành công]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;" edge="1" parent="1" source="D-3" target="A-4"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="E-06" value="[hoàn tiền không thành công]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;" edge="1" parent="1" source="D-3" target="A-3a"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="E-07" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;" edge="1" parent="1" source="A-3a" target="FINAL-1"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="E-08" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;" edge="1" parent="1" source="A-4" target="FINAL-2"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+</root></mxGraphModel></diagram>
+</mxfile>

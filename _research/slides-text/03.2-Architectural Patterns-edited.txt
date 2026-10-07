@@ -1,0 +1,491 @@
+IT4490 – ITSS SOFTWARE DEVELOPMENT
+
+3.2 ARCHITECTURAL PATTERNS
+
+Content
+1.
+2.
+3.
+4.
+
+2
+
+Overview
+Principles Leading to Good Design
+Architectural Patterns
+Describing an Architecture Using UML
+
+3
+
+Architectural pattern
+• General, reusable solution to a commonly
+
+occurring problem in software architecture within
+a given context.
+• Performance
+
+• High availability
+
+• Some architectural patterns have been
+
+implemented within software frameworks
+• 3-layer/3-tier pattern: DotNetNuke
+• MVC pattern: Laravel, ASP.NET MVC
+• Microservices: Spring Boot, vert.x
+
+Content
+1.
+2.
+3.
+4.
+
+4
+
+Overview
+Principles Leading to Good Design
+Architectural Patterns
+Describing an Architecture Using UML
+
+5
+
+2. Principles Leading to Good Design
+• Overall goals of Good Design:
+• Increase profit by reducing cost and increasing revenue
+• Ensure design accommodates requirements
+• Speed up development for use / competing in
+marketplace
+• Increase qualities such as
+• Usability – learnability; ease of use; on-line help…
+• Efficiency
+
+• Reliability
+• Maintainability
+• Reusability to reduce cost and increase revenues
+
+6
+
+2. Principles Leading to Good Design (2)
+• 1: Divide and Conquer
+• 2: Increase (High) Cohesion where
+
+possible
+• 3: Reduce (Low) Coupling where possible
+• 4: Keep level of Abstraction as high as
+possible
+• 5: Increase Reusability where Possible
+
+7
+
+2. Principles Leading to Good Design (3)
+• 6: Reuse Existing Designs And Code
+
+Where Possible
+• 7: Design for Flexibility
+• 8: Anticipate Obsolescence
+• 9: Design for Portability
+• 10: Design for Testability
+• 11: Design Defensively
+
+8
+
+2. Principles Leading to Good Design (4)
+• Contents Of A Good Architectural Model
+• A system’s architecture is often expressed in a
+
+number of different views that are high level.
+• These ‘views’ often pander to those concerns of
+individual stakeholders, such as BAs, developers,
+networking gurus, database gurus, software
+architects, systems engineers, managers from several
+levels, more.
+• Each have (often) a unique perspective that a View
+of the overall Model must provide.
+
+9
+
+2. Principles Leading to Good Design (5)
+• Refine the architecture
+• Identify main ways components will interact and
+interfaces between them
+• Note these are ‘abstractions’ at this time and
+
+‘interfaces’ NOT implementations.
+• Decide how each piece of data and functionality will be
+
+distributed among the various components
+• Needed for traceability
+
+Content
+1.
+2.
+3.
+4.
+
+10
+
+Overview
+Principles Leading to Good Design
+Architectural Patterns
+Describing an Architecture Using UML
+
+11
+
+3.1 The Multi-Layer Architectural Pattern
+• Example
+Application programs
+Screen display
+facilities
+User account
+management
+
+User
+interface
+
+File
+system
+
+Application
+logic
+Operating system
+access
+
+Database
+access
+
+Network
+communication
+
+a) Typical layers in an
+application program
+
+Dealing with
+application protocols
+Dealing with
+connections
+Dealing with
+packets
+
+Kernel
+(handling processes
+and swapping)
+
+Transmitting
+and receiving
+
+b) Typical layers in an
+operating system
+
+c) Simplified view of layers
+in a communication system
+
+12
+
+3.1 The Multi-Layer Architectural Pattern (2)
+• Multi-Tier Layered Architecture
+• Separate presentation and application logic, and other areas of
+
+concern.
+• Consider: Different names (in some cases). Can see the main
+idea!
+UI Layer (or Presentation Layer)
+(Interface may/may not be graphical…)
+
+“Domain” or “Application Logic” Layer
+(May/may not need both…)
+
+Services Layer
+Persistence
+Subsystem
+
+Logging
+Subsystem
+
+Security
+Subsystem
+
+13
+
+3.1 The Multi-Layer Architectural Pattern (3)
+• Multi-Tier Layered Architecture
+• Example
+
+14
+
+3.2 The Client-server Architectural Pattern
+• Example
+Client1:
+<<communication>>
+exchange messages
+Client2:
+
+<<communication>>
+look up addresses
+
+<<communication>>
+exchange messages
+
+Server:
+
+<<communication>>
+look up addresses
+
+<<communication>>
+exchange messages
+Client3:
+
+15
+
+3.3 The Broker Architectural Pattern
+• Example
+
+16
+
+3.4 The Transaction-Processing Architectural
+Pattern
+• Example
+
+Transaction
+input
+
+transactions
+
+Transaction
+dispatcher
+
+Handler for
+Reservation
+transaction
+Handler for
+Flight cancellation
+transaction
+
+17
+
+3.5 The Pipe-and-Filter Architectural Pattern
+• Example
+One pipe starts here…
+microphones
+near
+sound
+source
+
+encoders for
+microphone
+input
+
+Note the concurrency…
+
+Pipelines join here
+cancel
+echo
+
+cancel
+noise
+
+remove
+non-voice
+frequencies
+
+equalize
+dynamic
+range
+
+compress
+
+transmit
+
+TCP/IP Transmission
+encoder for
+ambient
+distant
+microphone noise
+
+Another pipeline starts here…
+
+encode
+speaker
+output
+
+decompress
+
+receive
+
+18
+
+3.6 The MVC Architectural Pattern
+• Example: Classic MVC architecture (active)
+
+Problems?
+
+19
+
+3.6 The MVC Architectural Pattern (2)
+• Example: Passive MVC architecture
+
+20
+
+3.6 The MVC Architectural Pattern (3)
+• MVC vs 3-tier Architecture
+
+21
+
+3.6 The MVC Architectural Pattern (3)
+• MVC
+
+22
+
+3.7 Front-end and Back-end
+• Front-end and Back-end
+
+23
+
+3.7 Front-end and Back-end (2)
+• May have different architectural patterns
+
+24
+
+3.8 The MVVM Architectural Pattern
+• Example
+
+25
+
+3.9 The MVP Architectural Pattern
+• Example
+
+26
+
+3.9 The MVP Architectural Pattern (2)
+• Example: MVP in Android
+
+28
+
+3.10 Flux architecture (React)
+• Example
+
+29
+
+3.10 Flux architecture (React) (2)
+• Example
+
+30
+
+3.11 VIPER architecture (iOS)
+• Example
+
+31
+
+3.11 VIPER architecture (iOS) (2)
+• Example
+
+Content
+1.
+2.
+3.
+4.
+
+32
+
+Overview
+Principles Leading to Good Design
+Architectural Patterns
+Describing an Architecture Using UML
+
+33
+
+4. Describing an Architecture Using UML
+• Four UML diagrams are particularly suitable for
+
+architecture modeling:
+• Package diagrams
+• Subsystem diagrams
+
+• Component diagrams
+• Deployment diagrams
+
+34
+
+4. Describing an Architecture Using UML (2)
+• Package Diagrams
+• A Package is a group of model elements placed together because
+
+they are logically related.
+
+35
+
+4. Describing an Architecture Using UML (3)
+• Subsystem Diagrams
+Example
+
+of an
+interface
+
+requestToRegister(aStudent) : boolean
+dropCourse(aStudent)
+getSchedule( ) : Iterator
+Specification Elements
+Register in
+a course
+
+Realization Elements
+*
+
+Course Section
+*
+Registration
+*
+
+Student
+Actor
+
+Drop
+a course
+Display
+schedule
+
+Student
+
+Classes that
+encapsulate the
+required
+behaviors
+that are used to
+‘realize’ the
+‘contract’
+(interface)
+
+36
+
+4. Describing an Architecture Using UML (4)
+• Component Diagrams
+
+Client
+
+<<communication>>
+
+Server
+
+37
+
+4. Describing an Architecture Using UML (5)
+• Deployment diagrams
+
+GPS
+Satellite
+
+Wireless
+communication
+
+Machine1:
+Client1:
+Client2:
+
+TCP/IP
+
+Machine2:
+Server:
+
+38
+
+Question?
+
+

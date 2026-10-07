@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net">
+<diagram id="CD1-UC-004" name="Communication UC-004"><mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" page="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0"><root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="L-ACT-01" value="Khách hàng" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="200" width="30" height="60" as="geometry"/></mxCell>
+<mxCell id="L-FORM" value="«boundary»&lt;br&gt;:PlaceOrderForm" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="160" y="200" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="L-CTRL" value="«control»&lt;br&gt;:PlaceOrderController" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="480" y="200" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="L-RUSH" value="«control»&lt;br&gt;:PlaceRushOrderController" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="480" y="40" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="L-PAY" value="«control»&lt;br&gt;:PayOrderController" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="820" y="40" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="L-CART" value="«entity»&lt;br&gt;:Cart" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="160" y="440" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="L-MEDIA" value="«entity»&lt;br&gt;:Media" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="160" y="600" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="L-DINFO" value="«entity»&lt;br&gt;:DeliveryInfo" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="480" y="440" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="L-INV" value="«entity»&lt;br&gt;:Invoice" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="820" y="440" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="K-01" value="1: // requestToPlaceOrder (--&gt;)&lt;br&gt;2: // submitDeliveryInfo (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-ACT-01" target="L-FORM"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-02" value="1.1: // placeOrder (&lt;--)&lt;br&gt;1.1.2: // displayInsufficientStock (--&gt;)&lt;br&gt;1.1.4: // requestDeliveryInfo (--&gt;)&lt;br&gt;2.1: // submitDeliveryInfo (&lt;--)&lt;br&gt;2.1.2: // requestUpdateDeliveryInfo (--&gt;)&lt;br&gt;2.1.11: // displayInvoice (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-CTRL" target="L-FORM"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-03" value="1.1.1: // checkMediaAvailability (&lt;--)&lt;br&gt;2.1.6: // calculateSubtotal (&lt;--)&lt;br&gt;2.1.7: // getHeaviestMediaWeight (&lt;--)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-CART" target="L-CTRL"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-04" value="1.1.1.1: // checkAvailableQuantity (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-CART" target="L-MEDIA"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-05" value="1.1.3: // getDefaultDeliveryInfo (--&gt;)&lt;br&gt;2.1.1: // checkDeliveryInfoValidity (--&gt;)&lt;br&gt;2.1.3: // saveAsDefault (--&gt;)&lt;br&gt;2.1.8: // calculateShippingFee (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-CTRL" target="L-DINFO"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-06" value="2.1.4: // checkRushOrderSelected" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-CTRL" target="L-CTRL"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-07" value="2.1.5: // placeRushOrder (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-CTRL" target="L-RUSH"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-08" value="2.1.9: // createInvoice (--&gt;)&lt;br&gt;2.1.10: // saveInvoice (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-CTRL" target="L-INV"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-09" value="2.1.9.1: // calculateTotals" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-INV" target="L-INV"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-10" value="2.1.12: // payOrder (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-CTRL" target="L-PAY"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+</root></mxGraphModel></diagram>
+</mxfile>

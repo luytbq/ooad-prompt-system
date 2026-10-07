@@ -1,0 +1,916 @@
+Content
+1. Overview
+2. Analysis classes
+3. Distribute Use-Case Behavior to
+Classes
+4. Analysis class diagram
+
+IT4490 – ITSS SOFTWARE DEVELOPMENT
+
+3. ARCHITECTURAL DESIGN
+
+2
+
+Some slides extracted from IBM coursewares
+
+1
+
+2
+
+3
+
+Architectural Design Overview
+
+Review: Software Architectural Design process
+• Purpose: “to provide a design for the software
+
+that implements and can be verified against the
+requirements”
+• Software architecture is designed from the
+software requirements
+• Main items
+
+Glossary
+
+Supplementary
+Specifications
+
+• a top-level structure of the software and the software
+
+components which constructs the software
+• a top-level design for the interfaces external to the
+software and between the software components
+• a top-level design for the database
+
+3
+
+Project Specific
+Guidelines
+
+Use-Case Model
+
+Software
+Architecture
+Document
+
+Architectural
+Design
+
+Use-Case Realization
+
+Analysis Model
+
+Analysis Classes
+
+4
+
+1
+
+5
+
+6
+
+Content
+
+Supplement the Use-Case Specification
+
+• The system
+displays a list
+of courses.
+
+1. Overview
+2. Analysis classes
+3. Distribute Use-Case Behavior to
+Classes
+4. Analysis class diagram
+
+• The system retrieves
+and displays a list of
+current courses from
+the course catalog
+legacy database.
+
+5
+
+6
+
+7
+
+8
+
+Analysis Classes: A First Step Toward Executables
+
+Review: Class
+• An abstraction
+• Describes a group of objects with common:
+• Properties (attributes)
+• Behavior (operations)
+• Relationships
+Class Name
+Professor
+• Semantics
+Attributes
+Operations
+
+name
+ProfessorId : UniqueId
+create()
+save()
+delete()
+change()
+
+Use Cases
+
+Analysis
+Classes
+
+Design
+Elements
+
+Source
+Code
+
+Exec
+
+Use-Case Analysis
+
+7
+
+8
+
+2
+
+9
+
+10
+
+Types of Analysis Classes
+
+Find Classes from Use-Case Behavior
+
+<<entity>>
+
+<<boundary>>
+
+• The complete behavior of a use case has to be distributed
+
+to analysis classes
+
+System
+information
+
+System
+boundary
+<<control>>
+
+<<boundary>>
+System
+boundary
+
+Use-case
+behavior
+coordination
+
+<<entity>>
+
+System
+information
+
+9
+
+10
+
+11
+
+12
+
+2.1. Boundary Classes
+
+The Role of a Boundary Class
+
+• Intermediate between the interface and something outside
+
+the system
+• Several Types
+
+<<control>>
+<<boundary>>
+Actor 1
+
+<<boundary>>
+Actor 2
+
+• User interface classes
+• System interface classes
+• Device interface classes
+
+• One boundary class per actor/use-case pair
+<<entity>>
+
+<<entity>>
+
+Analysis class stereotype
+Model interaction between the system and its environment.
+
+Environment dependent.
+
+11
+
+12
+
+3
+
+13
+
+14
+
+Example in Course Registration CS: Finding
+Boundary Classes
+
+Guidelines: Boundary Classes
+
+• One boundary class per actor/use case pair
+
+Student
+
+• User Interface Classes
+• Concentrate on what information is presented to the
+user
+• Do NOT concentrate on the UI details
+
+Register for Courses
+
+• System and Device Interface Classes
+• Concentrate on what protocols must be defined
+• Do NOT concentrate on how the protocols will be
+implemented
+
+Concentrate on the responsibilities, not the details!
+
+13
+
+14
+
+15
+
+16
+
+2.2. Entity Classes
+
+The Role of Entity Classes
+
+• Key abstractions of the system
+<<control>>
+<<boundary>>
+Actor 1
+
+Analysis class
+stereotype
+
+Use Case
+
+<<boundary>>
+Actor 2
+
+Business-Domain
+Model
+<<entity>>
+
+Glossary
+
+<<entity>>
+
+Store and manage information in the system.
+
+Environment independent.
+
+15
+
+16
+
+4
+
+17
+
+18
+
+Guidelines: Entity Classes
+
+Example in Course Registration CS: Finding
+Entity Classes
+
+• Use use-case flow of events as input
+
+• For “Register For Course” use case, there are some
+
+• Key abstractions of the use case
+
+candidate entity classes:
+
+• Traditional, filtering nouns approach
+• Underline noun clauses in the use-case flow of events
+• Remove redundant candidates
+• Remove vague candidates
+• Remove actors (out of scope)
+• Remove implementation constructs
+• Remove attributes (save for later)
+• Remove operations
+
+17
+
+18
+
+19
+
+20
+
+3.3. Control Classes
+
+The Role of Control Classes
+
+◆Provide coordinating behavior in the system
+<<control>>
+
+◆model control behavior specific to one or more use
+
+<<boundary>>
+
+cases
+
+Actor 1
+
+Actor 2
+
+<<entity>>
+
+Use Case
+
+<<entity>>
+
+Analysis class
+stereotype
+
+Coordinate the use-case behavior.
+
+Use-case dependent. Environment independent.
+
+19
+
+<<boundary>>
+
+20
+
+5
+
+21
+
+22
+
+Guidelines: Control Classes
+
+Example in Course Registration CS: Finding
+Control Classes
+
+◆In general, identify one control class per use case.
+◆The system can perform some use cases without
+
+• For “Register for Course” use case:
+
+control classes by using just entity and boundary
+classes.
+• This is particularly true for use cases that involve only the
+
+simple manipulation of stored information.
+
+Student
+
+Register for Course
+
+◆More complex use cases generally require one or more
+
+control classes to coordinate the behavior of other
+objects in the system.
+• Examples of control classes include transaction managers,
+
+resource coordinators, and error handlers.
+
+21
+
+22
+
+23
+
+24
+
+Content
+
+Course Registration CS Summary:
+Analysis Classes
+Student
+
+1. Overview
+2. Analysis classes
+3. Distribute Use-Case Behavior to
+Classes
+4. Analysis class diagram
+
+Register for Courses
+
+Use-Case Model
+Analysis Model
+
+23
+
+24
+
+6
+
+25
+
+26
+
+3. Distribute Use-Case Behavior to Classes
+
+3.1. Allocating Responsibilities to Classes
+
+• For each use-case flow of events:
+• Identify analysis classes
+• Allocate use-case responsibilities to analysis classes
+• Model analysis class interactions in Interaction
+diagrams
+
+• Use analysis class stereotypes as a guide
+• Boundary Classes
+• Behavior that involves communication with an actor
+• Entity Classes
+• Behavior that involves the data encapsulated within
+the abstraction
+
+Use-Case Realization
+
+Sequence
+Diagrams
+
+Use Case
+
+• Control Classes
+• Behavior specific to a use case or part of a very
+important flow of events
+
+Communication
+Diagrams
+
+Class Diagrams
+
+25
+
+26
+
+27
+
+28
+
+3.1. Allocating Responsibilities to Classes (2)
+
+3.2. Interaction Diagrams
+
+• Who has the data needed to perform the
+
+• Generic term that applies to several diagrams
+
+responsibility?
+
+that emphasize object interactions
+
+• If one class has the data, put the responsibility with
+
+• Sequence Diagram
+
+the data
+• If multiple classes have the data:
+
+• Communication Diagram
+
+• Put the responsibility with one class and add a
+
+• Specialized Variants
+• Timing Diagram
+• Interaction Overview Diagram
+
+relationship to the other
+• Create a new class, put the responsibility in the
+
+new class, and add relationships to classes
+needed to perform the responsibility
+• Put the responsibility in the control class, and
+add relationships to classes needed to perform
+the responsibility
+
+27
+
+28
+
+7
+
+29
+
+30
+
+3.2. Interaction Diagrams (2)
+
+3.2. Interaction Diagrams (3)
+
+◆Sequence Diagram
+• Time oriented view of object
+interaction
+
+• Timing Diagram
+• Time constraint view of messages
+involved in an interaction
+Timing Diagrams
+Sequence Diagrams
+
+• Interaction Overview Diagram
+• High level view of interaction sets
+combined into logic sequence
+
+◆Communication Diagram
+• Structural view of messaging
+objects
+
+Interaction Overview
+Diagrams
+
+Communication
+Diagrams
+
+29
+
+30
+
+31
+
+32
+
+The Anatomy of Sequence Diagrams
+
+3.2.1. Sequence Diagram
+• A sequence diagram is an interaction diagram that
+
+Client Object
+
+emphasizes the time ordering of messages.
+• The diagram shows:
+• The objects participating in the interaction.
+
+:Client
+
+Supplier Object
+Message
+
+:Supplier
+
+Object Lifeline
+1: PerformResponsibility
+
+• The sequence of messages exchanged.
+Execution
+Occurrence
+
+Event Occurrence
+
+Reflexive Message
+
+1.1: PerformAnother
+Responsibility
+
+Hierarchical Message
+Numbering
+Sequence Diagram
+
+31
+
+ref
+
+Interaction Occurrence
+
+32
+
+8
+
+34
+
+33
+
+3.2.2. Communication Diagram
+
+Exercise: Course Registration CS
+
+• A communication diagram emphasizes the
+
+• Draw a sequence diagram for “Register for course” use
+
+organization of the objects that participate in an
+interaction.
+• The communication diagram shows:
+
+case
+
+• The objects participating in the interaction.
+
+• Links between the objects.
+• Messages passed between the objects.
+
+Communication Diagrams
+
+33
+
+34
+
+35
+
+36
+
+The Anatomy of Communication
+Diagrams
+
+Exercise: Course Registration CS
+• Draw a communication diagram for “Register for course”
+
+Client Object
+
+Link
+
+:Client
+
+use case
+
+Supplier Object
+
+:Supplier
+PerformResponsibility
+
+Message
+
+35
+
+36
+
+9
+
+37
+
+38
+
+One Interaction Diagram May Be Not
+Good Enough
+
+3.2.3. Sequence and Communication Diagram
+Comparison
+
+Basic Flow
+
+• Similarities
+• Semantically equivalent
+
+Alternate Flow 1
+
+Alternate Flow 2
+
+Alternate Flow 3
+
+• Can convert one diagram to the other without losing any
+AF3
+
+information
+AF1
+
+• Model the dynamic aspects of a system
+• Model a use-case scenario
+
+AF2
+Alternate Flow 4
+
+Alternate Flow 5
+
+Alternate Flow n
+
+37
+
+38
+
+39
+
+40
+
+Content
+
+3.2.3. Sequence and Communication Diagram
+Comparison (2)
+Sequence
+diagrams
+▪ Show the explicit
+sequence of messages
+▪ Show execution
+occurrence
+▪ Better for visualizing
+overall flow
+▪ Better for real-time
+specifications and for
+complex scenarios
+
+39
+
+1. Overview
+2. Analysis classes
+3. Distribute Use-Case Behavior to
+Classes
+4. Analysis class diagram
+
+Communication
+diagrams
+▪ Show relationships in
+addition to interactions
+▪ Better for visualizing
+patterns of communication
+▪ Better for visualizing all of
+the effects on a given object
+▪ Easier to use for
+brainstorming sessions
+
+40
+
+10
+
+41
+
+42
+
+Finding Relationships
+
+Describe Responsibilities
+
+Communication Diagram
+
+• What are responsibilities?
+• How do I find them?
+
+PerformResponsibility
+
+:Client
+
+:Supplier
+
+Interaction Diagram
+Link
+:Client
+
+:Supplier
+
+Client
+
+Supplier
+
+// PerformResponsibility
+
+Class Diagram
+Client
+
+0..*
+
+0..*
+
+Class Diagram
+
+Supplier
+PerformResponsibility()
+
+Supplier
+
+Association
+
+// PerformResponsibility
+
+Relationship for every link!
+
+41
+
+42
+
+43
+
+44
+
+Unify Analysis Classes
+Course
+Catalog
+System
+
+RegisterFor
+CoursesForm
+
+Reviewpoints: Analysis Classes
+RegisterFor
+CoursesForm
+
+• Are the classes reasonable?
+
+Registration
+Controller
+
+• Does the name of each class clearly reflect
+
+Registration
+Controller
+
+Register for
+Courses
+
+Course
+Offering
+
+Close
+Registration
+
+Billing
+System
+
+Course
+Offering
+
+43
+
+Course
+Offering
+
+Schedule
+
+CloseRegistration
+Form
+
+CloseRegistration
+Controller
+
+the role it plays?
+• Does the class represent a single welldefined abstraction?
+• Are all responsibilities functionally coupled?
+• Does the class offer the required behavior?
+• Are all specific requirements on the class
+addressed?
+
+Student
+
+Student
+
+Course
+Catalog
+System
+
+Student
+
+Schedule
+
+Course
+Catalog
+System
+
+Schedule
+CloseRegistration
+Controller
+
+CloseRegistration
+Form
+
+Billing
+System
+
+44
+
+11
+
+45
+
+46
+
+Review points: Message Design
+
+Question?
+
+• Have all the main and/or sub-flows been
+
+handled, including exceptional cases?
+• Have all the required objects been found?
+• Have all behaviors been unambiguously
+distributed to the participating objects?
+• Have behaviors been distributed to the right
+objects?
+• Where there are several Interaction diagrams,
+are their relationships clear and consistent?
+
+45
+
+46
+
+12
+
+

@@ -1,0 +1,1946 @@
+2
+
+For Your Amusement
+• “Any fool can write code that a computer can understand.
+
+Good programmers write code that humans can understand”
+-- Martin Fowler
+• “Good code is its own best documentation. As you’re about
+to add a comment, ask yourself, ‘How can I improve the
+code so that this comment isn’t needed?’” -- Steve McConnell
+• “Programs must be written for people to read, and only
+incidentally for machines to execute.” -- Abelson / Sussman
+• “Everything should be built top-down, except the first time.”
+-- Alan Perlis
+
+ITSS SOFTWARE DEVELOPMENT
+
+9. Programming
+
+2
+
+1
+
+2
+
+3
+
+4
+
+Ways to get your code right
+
+Outline
+
+• Verification/quality assurance
+• Purpose is to uncover problems and increase confidence
+• Combination of reasoning and test
+
+1. Programming style
+2. Code tuning / optimization
+3. Code refactoring
+4. Debugging
+
+• Debugging
+• Finding out why a program is not functioning as intended
+• Defensive programming
+• Programming with validation and debugging in mind
+• Testing ≠ debugging
+• test: reveals existence of problem; test suite can also
+increase overall confidence
+• debug: pinpoint location + cause of problem
+
+3
+
+4
+
+1
+
+6
+
+5
+
+Programming style
+
+Proper programming styles
+
+• Coding
+
+• Use constants for all constant values (e.g. tax
+
+convention/standard
+
+rate).
+• Use variables whenever possible
+• Always declare constants before variables at
+the beginning of a procedure
+• Always comment code (especially ambiguous or
+misleading code), but do not over comment.
+• Use appropriate descriptive names (with/without
+prefixes) for identifiers/objects (e.g. btnDone).
+
+5
+
+6
+
+7
+
+8
+
+Proper programming styles (2)
+
+Proper programming styles (3)
+
+• Use brackets for mathematical
+
+• Include a header at the top of your code:
+• Programmer’s name
+
+expressions even if not required so that it
+is clear what was intended.
+
+• Date
+
+• Name of saved project
+
+• E.g. (3*2) + (4*2)
+
+• Teacher’s name
+
+• Always write code as efficiently as
+
+• Class name
+
+possible
+• Make user friendly input and output forms
+
+7
+
+• Names of anyone who helped you
+• Brief description of what the program does
+
+8
+
+2
+
+9
+
+10
+
+Check style tool
+
+Outline
+
+• Demo video
+
+1. Programming style
+2. Code tuning / optimization
+3. Code refactoring
+4. Debugging
+
+9
+
+10
+
+11
+
+12
+
+Code tuning
+
+Code Tuning Myths
+
+• Modifying correct code to make it run more
+
+• Reducing the lines of code in a high-level language
+
+improves the speed or size of the resulting machine
+code – false!
+
+efficiently
+• Not the most effective/cheapest way to
+improve performance
+• 20% of a program’s methods consume
+80% of its execution time.
+
+11
+
+for i = 1 to 10
+a[ i ] = i
+end for
+
+vs
+
+a[ 1 ] = 1
+a[ 2 ] = 2
+a[ 3 ] = 3
+a[ 4 ] = 4
+a[ 5 ] = 5
+a[ 6 ] = 6
+a[ 7 ] = 7
+a[ 8 ] = 8
+a[ 9 ] = 9
+a[ 10 ] = 10
+
+12
+
+3
+
+13
+
+14
+
+Code Tuning Myths (2)
+
+Code Tuning Myths (3)
+
+• A fast program is just as important as a correct
+
+• Certain operations are probably faster or
+
+one – false!
+
+smaller than others – false!
+• Always measure performance!
+
+13
+
+14
+
+15
+
+16
+
+Code Tuning Myths (4)
+
+When to tune
+
+• You should optimize as you go – false!
+
+• Use a high-quality design
+
+• It is hard to identify bottlenecks before a program is
+
+• Make the program right.
+
+completely working
+• Focus on optimization detracts from other program
+objectives
+
+• Make it modular and easily modifiable
+
+• When it’s complete and correct, check the
+
+performance.
+• Consider compiler optimizations
+• Measure
+• Write clean code that’s easy to understand and
+
+modify.
+
+15
+
+16
+
+4
+
+17
+
+18
+
+Measurement
+
+Optimize in iterations
+
+• Measure to find bottlenecks
+
+• Measure improvement after each optimization
+
+• Measurements need to be precise
+
+• If optimization does not improve performance –
+
+• Measurements need to be repeatable
+
+revert it
+
+17
+
+18
+
+19
+
+20
+
+Code Tuning Techniques
+
+Code Tuning Techniques
+
+• Stop Testing When You Know the Answer
+
+• Order Tests by Frequency
+Select char
+Case "+", "="
+ProcessMathSymbol(char)
+Case "0" To "9"
+ProcessDigit(char)
+Case ",", ".", "!", "?"
+ProcessPunctuation(char)
+Case " "
+ProcessSpace(char)
+Case "A" To "Z", "a" To "z“
+ProcessAlpha(char)
+Case Else
+ProcessError(char)
+End Select
+
+if ( 5 < x ) and ( y < 10 ) then ...
+?
+
+negativeInputFound = False;
+for ( i = 0; i < iCount; i++ ) {
+if ( input[ i ] < 0 ) {
+negativeInputFound = True;
+}
+}
+
+19
+
+?
+
+Select char
+Case "A" To "Z", "a" To "z“
+ProcessAlpha(char)
+Case " "
+ProcessSpace(char)
+Case ",", ".", "!", "?"
+ProcessPunctuation(char)
+Case "0" To "9"
+ProcessDigit(char)
+Case "+", "="
+ProcessMathSymbol(char)
+Case Else
+ProcessError(char)
+End Select
+
+20
+
+5
+
+21
+
+22
+
+Code Tuning Techniques
+
+Code Tuning Techniques
+
+• Unswitching loops
+
+• Minimizing the work inside loops
+
+for ( i = 0; i < count; i++ ) {
+if ( sumType == SUMTYPE_NET ) {
+netSum = netSum + amount[ i ];
+}
+else { grossSum = grossSum + amount[ i ]; }
+}
+
+for (i = 0; i < rateCount; i++) {
+netRate[i] = baseRate[i] * rates->discounts->factors->net;
+}
+?
+for (i = 0; i < rateCount; i++) {
+netRate[i] = baseRate[i] * ?
+}
+
+?
+
+21
+
+22
+
+23
+
+24
+
+Code Tuning Techniques
+
+Code Tuning Techniques
+
+• Initialize at Compile Time
+
+• Use Lazy Evaluation
+
+public int getSize() {
+if(size == null) {
+size = the_series.size();
+}
+return size;
+}
+
+const double Log2 = 0.69314718055994529;
+
+23
+
+24
+
+6
+
+25
+
+26
+
+When iterating through data, keep
+memory references sequential
+
+Code Tuning Techniques
+var myClass = function() {
+this.array_one = [1,2,3,4,5];
+this.array_two = [1,2,3,4,5];
+this.total = 0;
+}
+
+var myClass = function() {
+this.array_one = [1,2,3,4,5];
+this.array_two = [1,2,3,4,5];
+this.total = 0;
+}
+
+var my_instance = new myClass();
+
+var my_instance = new myClass();
+for (var i=0; i < 4; i++) {
+my_instance.total +=
+(my_instance.array_one[i] +
+my_instance.array_two[i]);
+}
+
+?
+
+25
+
+26
+
+27
+
+Outline
+
+What is Refactoring?
+
+1. Programming style
+2. Code tuning / optimization
+3. Code refactoring
+4. Debugging
+
+Refactoring means "to
+improve the design and
+quality of existing
+source code without
+changing its external
+behavior".
+Martin Fowler
+• A step by step process that turns the bad code into good code
+• Based on "refactoring patterns" → well-known recipes for improving the
+code
+2
+8
+
+27
+
+28
+
+7
+
+Code Refactoring
+
+When to Refactor?
+
+• What is refactoring of the source code?
+
+• Bad smells in the code indicate need of refactoring
+• Refactor:
+• To make adding a new function easier
+• As part of the process of fixing bugs
+• When reviewing someone else's code
+• Have technical debt (or any problematic code)
+• When doing test-driven development
+
+• Improving the design and quality of existing source
+
+code without changing its behavior
+• Step by step process that turns the bad code into
+
+good code (if possible)
+• Why we need refactoring?
+• Code constantly changes and its quality constantly
+
+• Unit tests guarantee that refactoring does not change
+
+degrades (unless refactored)
+• Requirements often change and code needs to be
+changed to follow them
+
+the behavior
+• If there are no unit tests, write them
+
+2
+9
+
+29
+
+3
+0
+
+30
+
+Refactoring: Main Principles
+
+Refactoring: The Typical Process
+
+• Keep it simple (KISS principle)
+
+1. Save the code you start with
+•
+
+• Avoid duplication (DRY principle)
+
+2. Prepare tests to assure the behavior after the code is
+
+• Make it expressive (self-documenting, comments, etc.)
+
+refactored
+
+• Reduce overall code (KISS principle)
+
+• Unit tests / characterization tests
+
+• Separate concerns (decoupling)
+
+3. Do refactoring one at a time
+
+• Appropriate level of abstraction (work through
+
+• Keep refactoring small
+
+abstractions)
+• Boy scout rule
+
+• Don't underestimate small changes
+
+4. Run the tests and they should pass / else revert
+
+• Leave your code better than you found it
+
+5. Check-in (into the source control system)
+3
+1
+
+31
+
+Check-in or backup the current code
+
+3
+2
+
+32
+
+8
+
+Refactoring Tips
+• Keep refactoring small
+• One at a time
+• Make a checklist
+• Make a "later" / TODO list
+
+• Check-in / commit frequently
+• Add tests cases
+
+CODE
+REFACTORING
+
+• Review the results
+• Pair programming
+• Use tools (Visual Studio + add-ins / Eclipse + plugins /
+
+others)
+
+Live Demo
+3
+3
+
+33
+
+34
+
+Code Smells
+
+Code Smells: The Bloaters
+
+• Code smells == certain structures in the code
+
+• Long method
+• Small methods are always better (easy naming, understanding,
+
+that suggest the possibility of refactoring
+
+less duplicate code)
+
+• Types of code smells:
+
+• Large class
+
+• The bloaters
+
+• Too many instance variables or methods
+
+• The obfuscators
+
+• Violating "Single Responsibility" principle
+
+• Primitive obsession (overused primitives)
+
+• Object-oriented abusers
+
+• Over-use of primitive values, instead of better abstraction
+
+• Change preventers
+
+• Can be extracted in separate class with encapsulated validation
+
+• Dispensables
+• The couplers
+3
+5
+
+35
+
+36
+
+36
+
+9
+
+Code Smells: The Bloaters (2)
+
+Code Smells: The Bloaters (3)
+
+• Long parameter list (in / out / ref parameters)
+
+• Oddball solution
+
+• May indicate procedural rather than OO style
+
+• A different way of solving a common problem
+
+• May be the method is doing too much things
+
+• Not using consistency
+
+• Data clumps
+• A set of data are always used together, but not organized together
+• E.g. credit card fields in the Order class
+
+• Solution: Substitute algorithm or use an Adapter
+
+• Class doesn't do much
+• Solution: Merge with another class or remove
+
+• Combinatorial explosion
+• Ex. ListCars(), ListByRegion(), ListByManufacturer(),
+ListByManufacturerAndRegion(), etc.
+• Solution may be the Interpreter pattern (LINQ)
+
+• Required setup / teardown code
+• Requires several lines of code before its use
+• Solution: use parameter object, factory method, IDisposable
+
+3
+8
+
+37
+
+37
+
+38
+
+Code Smells: The Obfuscators
+
+Code Smells: The Obfuscators (2)
+
+• Regions
+
+• Poor / improper names
+
+• The intent of the code is unclear and needs commenting (smell)
+
+• Should be proper, descriptive and consistent
+
+• The code is too long to understand (smell)
+
+• Vertical separation
+
+• Solution: partial class, a new class, organize code
+
+• You should define variables just before first use to avoid scrolling
+
+• Comments
+
+• In JS variables are defined at the function start → use small
+
+• Should be used to tell WHY, not WHAT or HOW
+
+functions
+
+• Good comments: provide additional information, link to issues,
+
+• Inconsistency
+
+explain an algorithm, explain reasons, give context
+• Link: Funny comments
+
+• Follow the POLA (Principle of Least Astonishment)
+• Inconsistency is confusing and distracting
+
+• Obscured intent
+• Code should be as expressive as possible
+3
+9
+
+39
+
+4
+0
+
+40
+
+10
+
+41
+
+Code Smells: OO Abusers
+
+Code Smells: Change Preventers
+
+• Switch statement
+• Can be replaced with polymorphism
+
+• Divergent change
+• A class is commonly changed in different ways / different reasons
+• Violates SRP (single responsibility principle)
+• Solution: extract class
+
+• Temporary field
+• When passing data between methods
+
+• Shotgun surgery
+• One change requires changes in many classes
+
+• Class depends on subclass
+• The classes cannot be separated (circular dependency)
+• May break the Liskov substitution principle
+
+• Hard to find them, easy to miss some
+
+•
+
+• Inappropriate static field
+• Strong coupling between static and callers
+• Static things cannot be replaced or reused
+
+Solution: move methods, move fields, reorganize the code
+
+4
+2
+
+41
+
+42
+
+Code Smells: Change Preventers (2)
+
+Code Smells: Dispensables
+
+• Conditional complexity
+• Cyclomatic complexity (number of unique paths that the code can
+be evaluated)
+• Symptoms: deep nesting (arrow code) and buggy if-s
+• Solutions: extract method, "Strategy" pattern, "State" pattern,
+"Decorator"
+
+• Lazy class
+• Classes that don't do enough to justify their existence should be
+removed
+• Every class costs something to be understood and maintained
+
+• Data class
+• Some classes with only fields and properties
+• Missing validation? Class logic split into other classes?
+• Solution: move related logic into the class
+
+• Poorly written tests
+• Badly written tests can prevent change
+• Tight coupling
+
+4
+3
+
+43
+
+4
+4
+
+44
+
+11
+
+Code Smells: Dispensables (2)
+
+Code Smells: The Couplers
+
+• Duplicated code
+
+• Feature envy
+• Method that seems more interested in a class other than the one it
+actually is in
+• Keep together things that change together
+
+• Violates the DRY principle
+• Result of copy-pasted code
+• Solutions: extract method, extract class, pull-up method,
+
+• Inappropriate intimacy
+• Classes that know too much about one another
+• Smells: inheritance, bidirectional relationships
+• Solutions: move method / field, extract class, change bidirectional
+to unidirectional association, replace inheritance with delegation
+
+Template Method pattern
+• Dead code (code that is never used)
+• Usually detected by static analysis tools
+
+• Speculative generality
+• "Some day we might need this …"
+• The "YAGNI" principle
+
+4
+5
+
+45
+
+4
+6
+
+46
+
+Code Smells: The Couplers (2)
+
+Code Smells: The Couplers (3)
+
+• The Law of Demeter (LoD)
+• A given object should assume as little as possible about the
+structure or properties of anything else
+• Bad e.g.: customer.Wallet.RemoveMoney()
+
+• Message chains
+• Something.Another.SomeOther.Other.YetAnother
+• Tight coupling between client and
+the structure of the navigation
+
+• Indecent exposure
+• Some classes or members are public but shouldn't be
+• Violates encapsulation
+• Can lead to inappropriate intimacy
+
+• Middle man
+• Sometimes delegation goes too far
+• Sometimes we can remove it or inline it
+
+• Tramp data
+• Pass data only because something else needs it
+• Solutions: Remove middle-man data, extract class
+
+4
+7
+
+47
+
+4
+8
+
+48
+
+12
+
+49
+
+Code Smells: The Couplers (4)
+• Artificial coupling
+• Things that don't depend upon each other should not be artificially
+coupled
+• Hidden temporal coupling
+• Consecutively performed operations should not be guessed
+• E.g. pizza class should not know the steps of making pizza ->
+Template Method pattern
+
+REFACTORING
+PATTERNS
+
+• Hidden dependencies
+• Classes should declare their dependencies in their constructor
+• new is glue / Dependency Inversion principle
+
+Well-Known Recipes
+for Improving the Code Quality
+
+49
+
+50
+
+Rafactoring Patterns
+
+Refactoring Patterns (2)
+
+• When should we perform refactoring of the code?
+
+• Class or method has weak cohesion → split into
+
+several classes / methods
+• Single change carry out changes in several classes
+→ classes have tight coupling → consider redesign
+• Related data are always used together but are not
+part of a single class → group them in a class
+• A method has too many parameters → create a
+class to groups parameters together
+• A method calls more methods from another class
+than from its own class → move it
+
+• Bad smells in the code indicate need of refactoring
+
+• Unit tests guarantee that refactoring preserves the
+
+behavior
+• Rafactoring patterns
+• Large repeating code fragments → extract duplicated code in
+
+separate method
+• Large methods → split them logically
+• Large loop body or deep nesting → extract method
+
+5
+1
+
+51
+
+5
+2
+
+52
+
+13
+
+Rafactoring Patterns (3)
+
+Rafactoring Patterns (4)
+
+• Two classes are tightly coupled → merge them or redesign
+
+• Complex expression → split it into few simple parts
+
+them to separate their responsibilities
+• Public non-constant fields → make them private and define
+accessing properties
+• Magic numbers in the code → consider extracting
+constants
+• Bad named class / method / variable → rename it
+• Complex boolean condition → split it to several
+expressions or method calls
+
+• A set of constants is used as enumeration → convert it to
+
+enumeration
+• Too complex method logic → extract several more simple
+
+methods or even create a new class
+• Unused classes, methods, parameters, variables →
+
+remove them
+• Large data is passed by value without a good reason →
+
+pass it by reference
+
+5
+3
+
+53
+
+5
+4
+
+54
+
+55
+
+56
+
+Rafactoring Patterns (5)
+
+Refactoring Levels
+
+• Few classes share repeating functionality →
+
+extract base class and reuse the common code
+• Different classes need to be instantiated depending
+on configuration setting → use factory
+• Code is not well formatted → reformat it
+• Too many classes in a single namespace → split
+classes logically into more namespaces
+• Unused using definitions → remove them
+• Non-descriptive error messages → improve them
+• Absence of defensive programming → add it
+55
+
+56
+
+14
+
+Data-Level Refactoring
+
+Data-Level Refactoring (2)
+
+• Replace a magic number with a named constant
+
+• Create a local variable for local purposes rather than a
+
+• Rename a variable with more informative name
+
+parameter
+• Convert a data primitive to a class
+
+• Replace an expression with a method
+
+• Additional behavior / validation logic (money)
+
+• To simplify it or avoid code duplication
+
+• Move an expression inline
+
+• Convert a set of type codes (constants) to enum
+
+• Introduce an intermediate variable
+
+• Convert a set of type codes to a class with subclasses with
+
+different behavior
+
+• Introduce explaining variable
+
+• Change an array to an object
+
+• Convert a multi-use variable to a multiple single-use
+
+• When you use an array with different types in it
+
+variables
+• Create separate variable for each usage
+
+• Encapsulate a collection
+
+5
+7
+
+57
+
+5
+8
+
+58
+
+59
+
+60
+
+Statement-Level Refactoring
+
+Method-Level Refactoring
+
+• Decompose a boolean expression
+
+• Extract method / inline method
+
+• Move a complex boolean expression into a well-
+
+• Rename a method
+
+named boolean function
+• Use break or return instead of a loop control
+variable
+• Return as soon as you know the answer instead of
+assigning a return value
+• Consolidate duplicated code in conditionals
+• Replace conditionals with polymorphism
+• Use null-object design pattern instead of checking
+for null
+59
+
+• Convert a long routine to a class
+• Add / remove parameter
+• Combine similar methods by parameterizing
+
+them
+• Substitute a complex algorithm with simpler
+• Separate methods whose behavior depends on
+parameters passed in (create new ones)
+• Pass a whole object rather than specific fields
+• Encapsulate downcast / return interface types
+60
+
+15
+
+Class-Level Refactoring
+
+Class Interface Refactorings
+
+• Change a structure to class and vice versa
+
+• Extract interface(s) / keep interface segregation
+
+• Pull members up / push members down the hierarchy
+
+• Move a method to another class
+
+• Extract specialized code into a subclass
+
+• Split a class / merge classes / delete a class
+
+• Combine similar code into a superclass
+
+• Hide a delegating class
+
+• Collapse hierarchy
+
+• A calls B and C when A should call B and B call C
+
+• Replace inheritance with delegation
+
+• Remove the man in the middle
+
+• Replace delegation with inheritance
+
+• Introduce (use) an extension class
+• When you have no access to the original class
+• Alternatively use the Decorator pattern
+
+6
+1
+
+61
+
+62
+
+Class Interface Refactoring (2)
+
+System-Level Refactoring
+
+• Encapsulate an exposed member variable
+• Always use properties
+• Define proper access to getters and setters
+
+• Move class (set of classes) to another
+
+namespace / assembly
+• Provide a factory method instead of a simple
+constructor / use fluent API
+• Replace error codes with exceptions
+• Extract strings to resource files
+• Use dependency injection
+• Apply architecture patterns
+
+• Remove setters to read-only data
+
+• Hide data and routines that are not intended to be used
+
+outside of the class / hierarchy
+• private -> protected -> internal -> public
+
+• Use strategy to avoid big class hierarchies
+• Apply other design patterns to solve common class and
+
+class hierarchy problems (Façade, Adapter, etc.)
+
+6
+3
+
+63
+
+6
+2
+
+6
+4
+
+64
+
+16
+
+65
+
+66
+
+Outline
+
+4.1. Overview
+
+1. Programming style
+2. Code tuning / optimization
+3. Code refactoring
+4. Debugging
+
+• Error
+• Bug
+• Fault
+
+• Defect
+• Failure
+
+65
+
+66
+
+67
+
+68
+
+Whence “bug”
+
+4.2. Defense in depth
+
+• Alan Perlis 
+
+• Make errors impossible
+• Java makes memory overwrite errors impossible
+• Don’t introduce defects
+• Correctness: get things right the first time
+• Make errors immediately visible
+• Local visibility of errors: best to fail immediately
+• Example: assertions
+• Last resort is debugging
+• Needed when failure (effect) is distant from cause (defect)
+• Scientific method: Design experiments to gain information about the
+defect
+
+Grace Hopper
+
+
+• Fairly easy in a program with good modularity, representation hiding, specs,
+
+unit tests etc.
+
+• Much harder and more painstaking with a poor design, e.g., with rampant rep
+
+exposure
+
+67
+
+68
+
+17
+
+69
+
+70
+
+4.2.1. First defense: Impossible by design
+
+4.2.2. Second defense: Correctness
+
+• In the language
+• Java makes memory overwrite errors impossible
+
+• Get things right the first time
+• Think before you code. Don’t code before you think!
+• If you're making lots of easy-to-find defects, you're also making hard-tofind defects – don't use the compiler as crutch
+• Especially true, when debugging is going to be hard
+• Concurrency, real-time environment, no access to customer environment, etc.
+• Simplicity is key
+• Modularity
+
+• In the protocols/libraries/modules
+• TCP/IP guarantees that data is not reordered
+• BigInteger guarantees that there is no overflow
+• In self-imposed conventions
+• Banning recursion prevents infinite recursion/insufficient stack –
+although it may push the problem elsewhere
+• Immutable data structure guarantees behavioral equality
+• Caution: You must maintain the discipline
+
+69
+
+• Divide program into chunks that are easy to understand
+• Use abstract data types with well-defined interfaces
+• Use defensive programming; avoid rep exposure
+
+• Specification
+• Write specs for all modules, so that an explicit, well-defined contract exists between
+each module and its clients
+
+70
+
+71
+
+72
+
+Strive for simplicity
+
+4.2.3. Third defense: Immediate visibility
+
+“There are two ways of constructing a software
+design:
+•One way is to make it so simple that there are
+obviously no deficiencies, and
+•the other way is to make it so complicated that
+there are no obvious deficiencies.
+The first method is far more difficult.”
+
+ If we can't prevent errors, we can try to localize them to a
+
+small part of the program
+ Assertions: catch errors early, before they contaminate and are
+
+Sir Anthony Hoare
+
+
+perhaps masked by further computation
+ Unit testing: when you test a module in isolation, you can be
+
+confident that any error you find is due to a defect in that unit
+(unless it's in the test driver)
+ Regression testing: run tests as often as possible when changing
+code. If there is a failure, chances are there's a mistake in the
+code you just changed
+
+“Debugging is twice as hard as writing the code
+in the first place. Therefore, if you write the code
+as cleverly as possible, you are, by definition,
+not smart enough to debug it.”
+
+ When localized to a single method or small module,
+
+defects can usually be found simply by studying the
+program text
+
+Brian Kernighan
+
+
+71
+
+72
+
+18
+
+73
+
+74
+
+Benefits of immediate visibility
+
+Don't hide errors
+
+• The key difficulty of debugging is to find the defect: the
+
+// k is guaranteed to be present in a
+int i = 0;
+while (true) {
+if (a[i]==k) break;
+i++;
+}
+
+code fragment responsible for an observed problem
+• A method may return an erroneous result, but be itself error-
+
+free, if there is prior corruption of representation
+• The earlier a problem is observed, the easier it is to fix
+• Frequently checking the rep invariant helps
+
+•This code fragment searches an array a for a value k.
+• Value is guaranteed to be in the array
+• What if that guarantee is broken (by a defect)?
+
+• General approach: fail-fast
+• Check invariants, don't just assume them
+• Don't (usually) try to recover from errors – it may just mask them
+
+•Temptation: make code more “robust” by not failing
+
+73
+
+74
+
+75
+
+76
+
+Don't hide errors
+
+Don't hide errors
+// k is guaranteed to be present in a
+int i = 0;
+while (i<a.length) {
+if (a[i]==k) break;
+i++;
+}
+assert (i=a.length) : "key not found";
+
+// k is guaranteed to be present in a
+int i = 0;
+while (i<a.length) {
+if (a[i]==k) break;
+i++;
+
+}
+
+•Assertions let us document and check invariants
+
+ Now at least the loop will always terminate
+ But it is no longer guaranteed that a[i]==k
+
+• Abort/debug program as soon as problem is detected: turn an error into a failure
+
+•But the assertion is not checked until we use the data, which might be a long
+
+time after the original error
+• “why isn’t the key in the array?”
+
+ If other code relies on this, then problems arise later
+ This makes it harder to see the link between the defect and
+
+the failure
+
+75
+
+76
+
+19
+
+77
+
+78
+
+Checks In Production Code
+
+4.2.3. Debugging: Last resort
+
+• Should you include assertions and checks in production
+
+• Defects happen – people are imperfect
+• Industry average: 10 defects per 1000 lines of code (“kloc”)
+• Defects that are not immediately localizable happen
+• Found during integration testing
+• Or reported by user
+• The cost of finding and fixing an error usually goes up by an
+
+code?
+• Yes: stop program if check fails - don’t want to take chance
+
+program will do something wrong
+• No: may need program to keep going, maybe defect does not
+
+have such bad consequences (the failure is acceptable)
+
+order of magnitude for each lifecycle phase it passes through
+
+• Correct answer depends on context!
+
+• step 1 – Clarify symptom (simplify input), create test
+• step 2 – Find and understand cause, create better test
+• step 3 – Fix
+• step 4 – Rerun all tests
+
+Ariane 5 – program halted because of
+overflow in unused value, exception thrown but
+not handled until top level, rocket crashes…
+[although the full story is more complicated]
+
+77
+
+78
+
+79
+
+80
+
+4.3. Debugging
+
+Debugging and the scientific method
+
+• Step 1 – find a small, repeatable test case that produces the
+
+• Debugging should be systematic
+• Carefully decide what to do – flailing can be an instance of an epic fail
+• Keep a record of everything that you do
+• Don’t get sucked into fruitless avenues
+
+failure (may take effort, but helps clarify the defect, and also
+gives you something for regression)
+• Don't move on to next step until you have a repeatable test
+• Step 2 – narrow down location and proximate cause
+• Study the data / hypothesize / experiment / repeat
+• May change the code to get more information
+• Don't move on to next step until you understand the cause
+• Step 3 – fix the defect
+• Is it a simple typo, or design flaw? Does it occur elsewhere?
+• Step 4 – add test case to regression suite
+• Is this failure fixed? Are any other new failures introduced?
+
+79
+
+• Formulate a hypothesis
+• Design an experiment
+• Perform the experiment
+• Adjust your hypothesis and continue
+
+80
+
+20
+
+82
+
+81
+
+Reducing input size example
+
+Reducing absolute input size
+
+// returns true iff sub is a substring of full
+// (i.e. iff there exists A,B s.t.full=A+sub+B)
+boolean contains(String full, String sub);
+•User bug report
+• It can't find the string "very happy" within:
+
+• Find a simple test case by divide-and-conquer
+• Pare test down – can't find "very happy" within
+• "Fáilte, you are very welcome! Hi Seán! I am very
+
+very happy to see you all."
+
+"Fáilte, you are very welcome! Hi Seán! I am very very
+happy to see you all."
+
+• "I am very very happy to see you all."
+
+•Less than ideal responses
+• See accented characters,
+
+about not having thought about
+unicode, and go diving for your Java texts to see how that is
+handled
+• Try to trace the execution of this example
+•Better response: simplify/clarify the symptom
+
+81
+
+• "very very happy"
+
+• Can find "very happy" within
+• "very happy"
+
+• Can't find "ab" within "aab"
+
+82
+
+83
+
+84
+
+Reducing relative input size
+
+General strategy: simplify
+
+• Sometimes it is helpful to find two almost
+
+• In general: find simplest input that will provoke failure
+• Usually not the input that revealed existence of the defect
+
+identical test cases where one gives the correct
+answer and the other does not
+
+• Start with data that revealed defect
+• Keep paring it down (binary search “by you” can help)
+• Often leads directly to an understanding of the cause
+
+• Can't find "very happy" within
+
+• "I am very very happy to see you all."
+
+• When not dealing with simple method calls
+• The “test input” is the set of steps that reliably trigger the
+failure
+• Same basic idea
+
+• Can find "very happy" within
+
+• "I am very happy to see you all."
+
+83
+
+84
+
+21
+
+85
+
+86
+
+binary search on buggy code
+
+Localizing a defect
+
+public class MotionDetector {
+private boolean first = true;
+private Matrix prev = new Matrix();
+
+ Take advantage of modularity
+ Start with everything, take away pieces until failure goes
+ Start with nothing, add pieces back in until failure appears
+
+public Point apply(Matrix current) {
+if (first) {
+prev = current;
+}
+Matrix motion = new Matrix();
+getDifference(prev,current,motion);
+applyThreshold(motion,motion,10);
+labelImage(motion,motion);
+Hist hist = getHistogram(motion);
+int top = hist.getMostFrequent();
+applyThreshold(motion,motion,top,top);
+Point result = getCentroid(motion);
+prev.copy(current);
+return result;
+}
+
+ Take advantage of modular reasoning
+ Trace through program, viewing intermediate results
+ Binary search speeds up the process
+ Error happens somewhere between first and last statement
+ Do binary search on that ordered set of statements
+
+no problem yet
+
+Check
+intermediate
+result
+at half-way point
+
+problem exists
+
+}
+
+85
+
+86
+
+88
+
+87
+
+binary search on buggy code
+
+Detecting Bugs in the Real World
+
+public class MotionDetector {
+private boolean first = true;
+private Matrix prev = new Matrix();
+
+• Real Systems
+• Large and complex (duh!)
+• Collection of modules, written by multiple people
+• Complex input
+• Many external interactions
+• Non-deterministic
+
+no problem yet
+public Point apply(Matrix current) {
+if (first) {
+prev = current;
+}
+Matrix motion = new Matrix();
+getDifference(prev,current,motion);
+applyThreshold(motion,motion,10);
+labelImage(motion,motion);
+Hist hist = getHistogram(motion);
+int top = hist.getMostFrequent();
+applyThreshold(motion,motion,top,top);
+Point result = getCentroid(motion);
+prev.copy(current);
+return result;
+}
+
+Check
+intermediate
+result
+at half-way point
+
+• Replication can be an issue
+• Infrequent failure
+• Instrumentation eliminates the failure
+
+problem exists
+Quickly home in
+on defect in O(log n) time
+by repeated subdivision
+
+• Defects cross abstraction barriers
+• Large time lag from corruption (defect) to detection
+
+(failure)
+
+}
+
+87
+
+88
+
+22
+
+89
+
+90
+
+Heisenbugs
+
+Logging Events
+
+• Sequential, deterministic program – failure is
+
+• Build an event log (circular buffer) and log
+
+repeatable
+• But the real world is not that nice…
+
+events during execution of program as it runs at
+speed
+• When detect error, stop program and examine
+logs to help you reconstruct the past
+• The log may be all you know about a
+customer’s environment – helps you to
+reproduce the failure
+
+• Continuous input/environment changes
+
+• Timing dependencies
+• Concurrency and parallelism
+
+• Failure occurs randomly
+• Hard to reproduce
+• Use of debugger or assertions → failure goes away
+• Only happens when under heavy load
+• Only happens once in a while
+
+89
+
+90
+
+91
+
+92
+
+Tricks for Hard Bugs
+
+Where is the bug?
+
+• Rebuild system from scratch, or restart/reboot
+• Find the bug in your build system or persistent data structures
+
+ If the bugis not where you think it is, ask yourself
+
+where it cannot be; explain why
+ Look for stupid mistakes first, e.g.,
+
+• Explain the problem to a friend
+
+• Make sure it is a bug – program may be working
+
+ Reversed order of arguments: Collections.copy(src,
+dest)
+
+correctly and you don’t realize it!
+
+ Spelling of identifiers: int hashcode()
+
+• Minimize input required to exercise bug (exhibit failure)
+
+◼ @Override can help catch method name typos
+
+• Add checks to the program
+• Minimize distance between error and detection/failure
+• Use binary search to narrow down possible locations
+
+ Same object vs. equal: a == b versus a.equals(b)
+ Failure to reinitialize a variable
+ Deep vs. shallow copy
+
+• Use logs to record events in history
+
+91
+
+ Make sure that you have correct source code
+ Recompile everything
+
+92
+
+23
+
+93
+
+94
+
+When the going gets tough
+
+Key Concepts in Review
+
+• Reconsider assumptions
+• E.g., has the OS changed? Is there room on the hard drive?
+• Debug the code, not the comments – ensure the comments and
+specs describe the code
+
+• Testing and debugging are different
+
+• Start documenting your system
+• Gives a fresh angle, and highlights area of confusion
+
+• Goal is to get program right
+
+• Testing reveals existence of failures
+• Debugging pinpoints location of defects
+
+• Debugging should be a systematic process
+
+• Get help
+• We all develop blind spots
+• Explaining the problem often helps
+
+• Use the scientific method
+
+• Understand the source of defects
+
+• Walk away
+• Trade latency for efficiency – sleep!
+• One good reason to start early
+
+• To find similar ones and prevent them in the future
+
+93
+
+94
+
+95
+
+96
+
+Supporting Tools: Eclipse plug-in
+
+Findbugs features
+
+• Checkstyle: Help programmers write Java
+
+• Not concerned by formatting or coding standards
+
+code that adheres to a coding standard
+• FindBugs: Uses static analysis to look for
+bugs in Java code
+
+• Detecting potential bugs and performance issues
+• Can detect many types of common, hard-to-find bugs
+
+• Use “bug patterns”
+
+• Standalone Swing application
+
+NullPointerException
+
+• Eclipse plug-in
+• Integrated into the build process (Ant or
+
+Maven)
+
+95
+
+Uninitialized field
+
+Address address = client.getAddress();
+if ((address != null) || (address.getPostCode() != null)) {
+...
+}
+public class ShoppingCart {
+private List items;
+public addItem(Item item) {
+items.add(item);
+}
+}
+
+96
+
+24
+
+97
+
+98
+
+How Findbug works?
+
+What Finbugs can do?
+• FindBugs comes with over 200 rules divided
+
+INPUT
+
+PROCESSING
+
+• Set of “.class”
+files containing
+byte-code
+
+into different categories:
+
+OUTPUT
+
+• Correctness
+
+• Bug Pattern Code
+
+• E.g. infinite recursive loop, reads a field that is
+
+never written
+
+• Source Line
+Number
+
+• Bad practice
+
+• Configurations
+
+• E.g. code that drops exceptions or fails to close file
+
+• Descriptive
+Message
+
+• Performance
+
+• Multithreaded correctness
+
+Detectors
+
+• Dodgy
+
+• E.g. unused local variables or unchecked casts
+
+97
+
+98
+
+99
+
+99
+
+25
+
+

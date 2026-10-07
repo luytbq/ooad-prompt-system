@@ -1,0 +1,20 @@
+<mxfile host="app.diagrams.net">
+<diagram id="CD1-UC-007" name="Communication UC-007"><mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" page="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0"><root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="L-ACT-01" value="Khách hàng" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="200" width="30" height="60" as="geometry"/></mxCell>
+<mxCell id="L-FORM" value="«boundary»&lt;br&gt;:CancelOrderForm" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="160" y="200" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="L-CTRL" value="«control»&lt;br&gt;:CancelOrderController" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="480" y="200" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="L-IB" value="«boundary»&lt;br&gt;:InterbankBoundary" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="800" y="200" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="L-ACT-03" value="Liên ngân hàng" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1"><mxGeometry x="1080" y="200" width="30" height="60" as="geometry"/></mxCell>
+<mxCell id="L-ORDER" value="«entity»&lt;br&gt;:Order" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="480" y="400" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="L-CARD" value="«entity»&lt;br&gt;:Card" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="800" y="400" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="K-01" value="1: // requestToCancelOrder (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-ACT-01" target="L-FORM"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-02" value="1.1: // cancelOrder (&lt;--)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-CTRL" target="L-FORM"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-03" value="1.1.1: // getRefundInfo (--&gt;)&lt;br&gt;1.1.3: // markCancelled (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-CTRL" target="L-ORDER"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-04" value="1.1.1.1: // getCardInfo (&lt;--)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-CARD" target="L-ORDER"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-05" value="1.1.2: // refund (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-CTRL" target="L-IB"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-06" value="1.1.2.1: // requestAddFunds (&lt;--)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-ACT-03" target="L-IB"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="K-07" value="1.1.4: // abortCancellation" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="L-CTRL" target="L-CTRL"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+</root></mxGraphModel></diagram>
+</mxfile>

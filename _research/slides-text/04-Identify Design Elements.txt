@@ -1,0 +1,430 @@
+Mastering OOAD - Instructor Notes
+
+1
+
+Objectives: Identify Design Elements
+• Define the purpose of Identify Design Elements
+
+and demonstrate where in the lifecycle it is
+performed
+• Analyze interactions of analysis classes and
+identify Design Model elements => Design
+classes
+
+ITSS SOFTWARE DEVELOPMENT
+
+4. IDENTIFY DESIGN ELEMENTS
+
+Some slides extracted from IBM coursewares
+
+1
+
+2
+
+Identify Design Elements in Context
+[Early
+Elaboration
+Iteration]
+
+Identify Design Elements Overview
+
+[Inception
+Iteration (Optional)]
+
+Perform
+Architectural
+Synthesis
+
+Define a Candidate
+Architecture
+
+Supplementary
+Specifications
+
+Analyze Behavior
+Identify Design
+Elements
+Architect
+
+Software
+Architecture
+Document
+
+Project Specific
+Guidelines
+
+(Optional)
+
+Refine the
+Architecture
+
+Design
+Components
+
+Identify
+Design
+Elements
+
+Design the
+Database
+
+Design Model
+
+Analysis Model
+
+3
+
+4
+
+Page 1
+Module 7 - Identify Design Elements
+
+1
+
+Mastering OOAD - Instructor Notes
+
+From Analysis Classes to Design Elements
+Analysis Classes
+
+Identifying Design Classes
+
+Design Elements
+
+• An analysis class maps directly
+
+<<boundary>>
+
+to a design class if:
+• It is a simple class
+
+<<control>>
+
+<<subsystem>>
+
+• It represents a single logical abstraction
+
+Subsystem
+
+• More complex analysis classes may
+• Split into multiple classes
+• Become a package
+• Become a subsystem (discussed later)
+• Any combination …
+
+<<entity>>
+
+<<boundary>>
+<<subsystem>>
+
+Subsystem
+
+Many-to-Many Mapping
+
+5
+
+6
+
+Review: Class and Package
+
+Group Design Classes in Packages
+
+• What is a class?
+• A description of a set of objects that share the same
+responsibilities, relationships, operations, attributes, and
+semantics
+Class Name
+
+• You can base your packaging criteria on a
+
+number of different factors, including:
+• Configuration units
+• Allocation of resources among development teams
+• Reflect the user types
+
+• What is a package?
+• A general purpose mechanism for organizing elements
+into groups
+• A model element which can contain other model
+elements
+
+• Represent the existing products
+
+Package C
+
+and services the system uses
+
+Package B
+
+Package A
+
+Package
+Name
+
+7
+
+8
+
+Page 2
+Module 7 - Identify Design Elements
+
+2
+
+Mastering OOAD - Instructor Notes
+
+Packaging Tips: Boundary Classes
+If it is likely the system interface
+will undergo considerable
+changes
+
+Packaging Tips:
+
+Functionally Related Classes
+
+If it is unlikely the system
+interface will undergo
+considerable changes
+
+• Criteria for determining if classes are functionally
+
+related:
+• Changes in one class' behavior and/or structure
+
+necessitate changes in another class
+• Removal of one class impacts the other class
+• Two objects interact with a large number of messages
+
+or have a complex intercommunication
+• A boundary class can be functionally related to a
+
+Boundary classes placed in
+separate packages
+
+particular entity class if the function of the boundary
+class is to present the entity class
+• Two classes interact with, or are affected by changes in
+the same actor
+
+Boundary classes packaged
+with functionally related classes
+
+9
+
+10
+
+Packaging Tips:
+Functionally Related Classes (continued)
+
+Package Dependencies: Package Element Visibility
+PackageA
+
+• Criteria for determining if classes are functionally
+
+A
++ Class A1
+
+related (continued):
+
++ Class A2
+
+• Two classes have relationships between each other
+
++ Class A3
+
+• One class creates instances of another class
+
+• Criteria for determining when two classes should
+
+B
+
+NOT be placed in the same package:
+
+Only public classes
+can be referenced
+outside of the
+owning package
+
+PackageB
+
+• Two classes that are related to different actors should
+
+Public visibility
+
+not be placed in the same package
+• An optional and a mandatory class should not be placed
+in the same package
+
++ Class B1
+- Class B2
+
+Private visibility
+
+OO Principle: Encapsulation
+
+11
+
+12
+
+Page 3
+Module 7 - Identify Design Elements
+
+3
+
+Mastering OOAD - Instructor Notes
+
+Package Coupling: Tips
+
+Example: Registration Package
+
+• Packages should not be
+
+A
+
+cross-coupled
+
+X
+
+B
+
+MainStudentForm
+
+MainRegistrarForm
+
+1
+
+1
+
+A
+
+• Packages in lower layers
+
+should not be dependent
+upon packages in upper
+layers
+
+Upper
+Layer
+
+0..1
+
+X
+Lower
+Layer
+
+B
+
+X
+
+• In general, dependencies
+
+should not skip layers
+
+0..1
+
+<<boundary>>
+RegisterForCoursesForm
+
+<<boundary>>
+CloseRegistrationForm
+
+1
+1
+<<control>>
+RegistrationController
+
+1
+<<control>>
+CloseRegistrationController
+
+C
+
+X = Coupling violation
+
+13
+
+14
+
+Example: University Artifacts Package:
+Associations
+
+Example: University Artifacts Package:
+Generalization
+
+<<entity>>
+Student
+<<entity>>
+Student
+
+<<entity>>
+Schedule
+1
+
+0..*
+0..*
+
+<<entity>>
+ScheduleOfferingInfo
+
+0..*
+
+primaryCourses
+<<entity>>
+FulltimeStudent
+
+<<entity>>
+ParttimeStudent
+
+alternateCourses
+0..2
+
+0..4
+
+<<entity>>
+PrimaryScheduleOfferingInfo
+
+<<entity>> instructor
+<<entity>>
+Professor
+CourseOffering
+0..1
+0..*
+0..*
+0..*
+
+<<entity>>
+Course
+1
+
+0..*
+0..*
+Prerequisites
+
+1
+CourseOfferingList
+
+15
+
+16
+
+Page 4
+Module 7 - Identify Design Elements
+
+4
+
+Mastering OOAD - Instructor Notes
+
+Example: External System Interfaces
+Package
+<<Interface>>
+IBillingSystem
+
+<<Interface>>
+ICourseCatalogSystem
+
+17
+
+Page 5
+Module 7 - Identify Design Elements
+
+5
+
+

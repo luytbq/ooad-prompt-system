@@ -1,0 +1,1195 @@
+1
+
+2
+
+References
+[1] ISO/IEC FDIS 12207, Systems and software
+engineering — Software life cycle processes.
+ITSS SOFTWARE DEVELOPMENT
+
+1. SOFTWARE DEVELOPMENT PROCESS
+
+1
+
+2
+
+3
+
+3
+
+4
+
+Content
+
+Content
+
+1. Software Life Cycle Process
+2. Software Implementation Process
+3. Object-Oriented Analysis and Design
+4. Software Development Models
+
+1. Software Life Cycle Process
+2. Software Implementation Process
+3. Object-Oriented Analysis and Design
+4. Software Development Models
+
+4
+
+1
+
+5
+
+6
+
+1. Software Life Cycle Process
+
+What are International Standards?
+
+• “ISO/IEC 12207:2008, Systems and software engineering — Software
+
+◆In ISO, all industry standards, including Information
+
+life cycle processes”
+
+Technology, are developed.
+
+• The latest and International Standard Software Development Process
+
+◆In the field of Information Technology, in ISO/IEC JTC1,
+
+• “The life cycle begins with an idea or a need that can be satisfied
+
+international standards are developed.
+
+wholly or partly by software and ends with the retirement of the
+software.”
+PROCESS
+• Standard implementation works
+• hierarchically as processes
+ACTIVITY 1
+
+…
+
+◆ISO/IEC JTC1 has 32 principal member bodies which
+
+develop the international standards, and 44 observer
+member bodies.
+◆Some abbreviation
+
+ACTIVITY N
+
+• ISO: International Organization for Standard
+
+TASK 1.1
+
+…
+
+• IEC: International Electrotechnical Commission
+
+TASK N.1
+
+TASK 1.N
+
+• JTC1: Joint Technical Committee
+
+TASK N.N
+
+5
+
+6
+
+7
+
+8
+
+Software Life Cycle Process
+
+Why International Standards?
+
+• “This International Standard groups the activities that may
+
+◆Standards are important, especially in ICT
+• Basis of common understanding such as frameworks,
+and terminology / definitions
+• TBT Agreement of WTO recommends the use of ISO
+Standards for governmental purchase in affiliate
+countries
+• Based on some standards, the certifications can be got,
+and they make some appeal points in international
+transaction
+
+be performed during the life cycle of a software system into
+seven process groups”[1]*:
+1.
+2.
+3.
+
+4.
+5.
+
+Agreement Processes: 2 processes
+Organizational Project-Enabling Processes: 5 processes
+Project Processes: 7 processes
+Technical Processes: 11 processes
+Software Implementation Processes: 6 processes
+•
+
+6.
+7.
+
+Purpose: “to produce a specified system element implemented
+as a software product or service” [1]**.
+
+Software Support Processes: 8 processes
+Software Reuse Processes: 3 processes
+
+WTO: World Trade Organization
+TBT Agreement: Agreement on Technical Barriers to Trade
+
+[1]*: clause 5.2.1; pp. 13, [1]**: clause 7.1.1.1; pp. 57,
+
+7
+
+8
+
+2
+
+9
+
+10
+
+2. Software Implementation Process
+
+Content
+
+System Requirements Analysis Process and System
+Architectural Design Process are achieved just before
+Software Implementation Process .
+
+1. Software Life Cycle Process
+2. Software Implementation Process
+3. Object-Oriented Analysis and Design
+4. Software Development Models
+
+Software Implementation Process includes the following
+lower-level processes:
+1. Software Requirements Analysis Process
+2. Software Architecture Design Process
+3. Software Detailed Design Process
+4. Software Construction Process
+5. Software Integration Process
+6. Software Qualification Testing Process
+
+9
+
+10
+
+11
+
+12
+
+2.1. Software Requirements Analysis process
+
+2.2. Software Architectural Design process
+
+• Purpose: “to establish the requirements of the software
+
+• Purpose: “to provide a design for the software that
+
+elements of the system” [1]
+• Main items written on the brief requirement description
+
+implements and can be verified against the requirements”
+[1]
+• Software architecture is designed from the software
+requirements
+• Main items
+
+• System environmental conditions under which the software is to
+
+perform.
+• The functional requirements and the interface requirements.
+• Data definition and database requirements.
+
+• a top-level structure of the software and the software components
+
+• Some non-functional requirement items such as reliability,
+
+which constructs the software
+
+usability, time efficiency
+• Qualification requirements: The requirements are used as criteria
+or conditions to qualify a software product as complying with its
+specifications.
+
+• a top-level design for the interfaces external to the software and
+
+between the software components
+• a top-level design for the database
+
+[1]: Session 7.1.2.1; pp. 59
+
+11
+
+[1]: Session 7.1.3.1; pp. 61
+
+12
+
+3
+
+13
+
+14
+
+2.3. Software Detailed Design process
+
+2.4. Software Construction process
+
+• Purpose: “to provide a design for the software that
+
+• Purpose: “to produce executable software units that
+
+implements and can be verified against the requirements
+and the software architecture and is sufficiently detailed to
+permit coding and testing” [1]
+• A detailed design for each software components are
+developed. In the detailed design, the following items are
+developed:
+
+• Main items to be developed:
+• Each software unit and database
+• Test procedure and test data for software unit and database
+• Unit tests and database test
+
+properly reflect the software design” [1]
+
+• The implementer shall evaluate software code and test
+
+• each component is refined into software units that can be coded,
+
+results considering internal external consistency, test
+coverage of units and, traceability to the requirements and
+design of the software.
+
+compiled, and tested
+• the interfaces external to the software item, between the
+software components, and between the software units
+
+[1]: Session 7.1.4.1; pp. 62
+
+[1]: Session 7.1.5.1; pp. 63
+
+13
+
+14
+
+15
+
+16
+
+2.5. Software Integration process
+
+2.6. Software Qualification Testing Process
+
+• Purpose: “to combine the software units and software
+
+• Purpose: “to confirm that the integrated software product
+
+components, producing integrated software items,
+consistent with the software design, that demonstrate that
+the functional and non-functional software requirements
+are satisfied on an equivalent or complete operational
+platform” [1]
+• Main tasks
+
+meets its defined requirements” [1].
+• Qualification testing in accordance with the qualification
+
+requirements for the software item is conducted
+• Tests, test cases, and test procedures
+• The implementer supports audit(s) to conform the
+software meets to the qualification requirements
+
+• An integration plan, including test requirements, test procedure,
+
+• If it is successful completion of the audits, the implementer prepare
+
+and test cases/data.
+• Integration of software units/components
+• Program/software/integration test
+
+the deliverable software product for System Construction process
+
+[1]: Session 7.1.6.1; pp. 64
+
+15
+
+[1]: Session 7.1.7.1; pp. 66
+
+16
+
+4
+
+17
+
+18
+
+Summary
+
+Learning points
+
+• “Software Life Cycle Process – SLCP” is the
+
+“The customer’s business success depends on the system
+development success.”
+
+international standard processes focused on the
+development and support of Application Software.
+• SLCP can be used as a common language among the
+stakeholders such as acquirers and suppliers. They can
+communicate or order the software development using
+SLCP. For example, we can say “To order the software
+detailed design process or later software
+implementation processes of new library system”.
+
+17
+
+BA Software is one of the major components of the BA
+System.
+What are the main factors for the system development success?
+1. The Software to be developed meets to functional
+requirements → ?
+2. To keep appointed date of delivery → ?
+3. Meets the required quality such as Reliability, Usability,
+Performance, Maintainability → ?
+4. Necessary to provide maintenance activity during the system
+operation period → ?
+
+18
+
+19
+
+19
+
+Content
+
+2.1. Modeling
+
+1. Software Life Cycle Process
+2. Software Implementation Process
+3. Object-Oriented Analysis and Design
+4. Software Development Models
+
+• A model is a simplification of reality.
+
+20
+
+5
+
+Why Model?
+
+The Importance of Modeling
+Less Important
+
+• Modeling achieves four aims [1]:
+• Helps you to “visualize a system as you want it to be”.
+• Permits you to “specify the structure or behavior of a system”.
+• Gives you “a template that guides you in constructing a system”.
+• “Documents the decisions you have made”.
+
+More Important
+
+• You build models of complex systems because you
+
+cannot comprehend such a system in its entirety.
+• You build models to better understand the system you are
+
+developing.
+Paper Airplane
+
+Fighter Jet
+
+[1]: Chapter 1, Section 1.1
+
+21
+
+22
+
+2.2. Unified Modeling Language (UML)
+
+The UML Is a Language for Visualizing
+
+• “The UML is a language for
+
+• Communicating conceptual models
+
+• Visualizing
+• Specifying
+• Constructing
+• Documenting
+
+to others is prone to error unless
+everyone involved speaks the same
+language.
+• There are things about a software
+system you can’t understand unless
+you build models.
+• An explicit model facilitates
+communication.
+
+the artifacts of a software-intensive system” [1].
+
+[1]: Chapter 2, Section 2.1
+
+23
+
+24
+
+6
+
+The UML Is a Language for Specifying
+
+The UML Is a Language for Constructing
+• UML models can be directly connected to a variety of
+
+• The UML builds models that are precise, unambiguous,
+
+programming languages.
+
+and complete.
+
+• Maps to Java, C++, Visual Basic, and so on
+• Tables in a RDBMS or persistent store in an OODBMS
+• Permits forward engineering
+
+• Permits reverse engineering
+
+25
+
+26
+
+History of the UML
+
+The UML Is a Language for Documenting
+
+UML 2.0
+
+• The UML addresses documentation of system
+
+(2004)
+
+architecture, requirements, tests, project
+planning, and release management
+
+UML 1.5
+(March, ‘03)
+
+UML 1.1
+
+UML
+Partners’
+Expertise
+
+Deployment Diagram
+
+Use Case Diagram
+
+ºÐ» ê È¯ °æÀÇ ÇÏµå¿þ ¾î¹× ³×Æ ®¿÷À¸·ÎÀÇ Á¤ º¸ ½Ã½ºÅÛ ¿¬ °á ¸ð µ¨
+- À©µµ¿ì 9 5 : Å¬ ¶ó ÀÌ¾ð Æ ®
+- À©µµ¿ì NT: ÀÀ¿ë¼¹ö
+- À¯ ´ Ð½º ¸Ó½Å: ÀÀ¿ë ¼¹ö ¹× µ¥ ÀÌÅ¸ ¼¹ö , Åë½Å ¼¹ö
+- IBM ¸Þ ÀÎÇÁ·¹ÀÓ: µ¥ ÀÌÅ¸ ¼¹ö , Åë½Å ¼¹ö
+
+(Sept. ‘97)
+
+UML 1.0
+
+Win d o ws9 5
+
+Win d o w9 5
+
+(Jan. ‘97)
+
+Win d o ws9 5
+
+Use Case 1
+¹®¼°ü ¸®
+Å¬ ¶ó ÀÌ¾ð Æ ®.EXE
+¹®¼°ü ¸® ¾ÖÇÃ¸´
+
+Win d o ws
+NT
+
+Actor B
+
+Actor A
+
+S o laris
+
+UML 0.9 and UML 0.91
+
+Use Case 2
+¹®¼°ü ¸® ¿£ Áø .EXE
+
+Alp h a
+UNIX
+
+(June ‘96)
+
+ÀÀ¿ë¼¹ö .EXE
+
+Win d o ws
+NT
+
+(Oct. ‘96)
+
+IBM
+M ain frame
+
+Use Case 3
+µ¥ ÀÌÅ¸º£ ÀÌ½º¼¹ö
+
+Unified Method 0.8
+(OOPSLA ’95)
+
+Do cu men tList
+
+mainWnd
+
+fileMgr :
+
+document :
+
+FileMgr
+
+Document
+
+gFile
+
+repository
+Do cu men t
+F ileM g r
+
+user
+
+ad d ( )
+n ame : in t
+d elete( )
+
+fetch Do c( )
+
+d o cid : in t
+so rtBy Name( )
+n u mF ield : in t
+
+Æ ¯ Á¤ ¹®¼¿¡ ´ ëÇÑ º¸±â¸¦
+
+g et( )
+
+1 : Do c v iew req u est ( )
+
+» ç¿ëÀÚ°¡ ¿äÃ» ÇÑ´ Ù.
+
+read () fill th e
+
+o p en ( )
+co d e..
+clo se( )
+2 : fetch Do c( )
+
+Booch ’93
+
+read ( )
+
+F ileList
+
+so rtF ileList( )
+fList
+create( )
+3 : create ( )
+fillDo cu men t( )
+ad d ( )
+
+Sequence Diagram
+
+OMT - 2
+
+d elete( )
+1
+
+4 : create ( )
+
+5 : read Do c ( )
+
+ÈÀÏ°ü ¸®ÀÚ´ Â ÀÐ¾î¿Â
+
+Class Diagram
+
+6 : fillDo cu men t ( )
+
+¹®¼ÀÇ Á¤ º¸¸¦ ÇØ´ ç ¹®¼
+°´ Ã¼¿¡ ¼³Á¤ À» ¿äÃ» ÇÑ´ Ù.
+rep
+
+7 : read F ile ( )
+F ile
+Rep o sito ry
+
+8 : fillF ile ( )
+(fro m P ersisten ce)
+read ( )
+
+È¸é °´ Ã¼´ Â ÀÐ¾îµéÀÎ
+
+9 : so rtBy Name ( )
+
+Grp F ile
+
+n ame : ch ar * = 0
+
+°´ Ã¼µé¿¡ ´ ëÇØ ÀÌ¸§º°·Î
+Á¤ ·ÄÀ» ½ÃÄÑ È¸é¿¡
+º¸¿©ÁØ´ Ù.
+
+read ( )
+read Do c( )
+
+OOSE
+
+o p en ( )
+read F ile( )
+create( )
+fillF ile( )
+
+27
+
+Other
+Methods
+
+Booch ‘91
+
+OMT - 1
+
+Booch91 (Grady Booch):
+Conception, Architecture
+OOSE (Ivar Jacobson): Use cases
+OMT (Jim Rumbaugh): Analysis
+
+28
+
+7
+
+30
+
+Inputs to the UML
+Rumbaugh
+
+UML Views
+
+Booch
+
+Jacobson
+
+Meyer
+
+• “A view is simply a subset of UML modeling constructs
+
+that represents one aspect of a system” [2]
+
+Fusion
+
+Before and after
+conditions
+
+• Four areas
+• structural classification,
+• dynamic behavior
+• physical layout,
+• and model management.
+
+Operation descriptions,
+message numbering
+
+Harel
+
+Embley
+Singleton classes,
+High-level view
+
+State charts
+
+Gamma, et.al
+
+Wirfs-Brock
+
+Frameworks, patterns,
+notes
+
+Responsibilities
+
+Shlaer- Mellor
+
+Selic, Gullekson, Ward
+
+Odell
+
+Object lifecycles
+
+ROOM (Real-Time
+Object-Oriented Modeling)
+
+Classification
+
+[2]: Part 2, Chapter 3, Section 3.1
+
+29
+
+30
+
+32
+
+31
+
+UML Views [2]
+Major area
+
+View
+
+Static view
+
+Class diagram
+
+Design view
+
+Internal structure,
+Collaboration diagram
+Component diagram
+
+Use case view
+
+Use case diagram
+
+State machine view
+
+State machine diagram
+
+Activity view
+
+Activity diagram
+
+Interaction View
+
+Sequence Diagram
+Communication Diagram
+
+Deployment View
+
+Deployment Diagram
+
+Model Management
+View
+
+Package diagram
+
+Profile
+
+Package Diagram
+
+Structural
+
+Dynamic
+
+Physical
+Model
+Management
+
+Static View
+
+vs Dynamic View
+
+Diagram
+
+Role of component parts and
+how they are related to one
+another
+
+How the components interact
+with one another and/or change
+state internally over time
+
+[2]: Part 2, Chapter 3, Section 3.1, Table 3.1 (extracted)
+
+31
+
+32
+
+8
+
+33
+
+34
+
+2.3. Analysis and Design
+
+Object-Oriented Analysis and Design
+
+The purposes of Analysis and Design are to:
+•
+
+Transform the requirements into a
+design of the system-to-be.
+
+•
+
+Evolve a robust architecture for the
+system.
+
+•
+
+Adapt the design to match the
+implementation environment, designing
+it for performance.
+
+Design Model
+
+Use-Case Model
+
+Analysis and
+Design
+
+Architecture
+Document
+
+Glossary
+Supplementary
+Specification
+Data Model
+
+33
+
+34
+
+35
+
+36
+
+Analysis and Design Steps
+
+Analysis and Design Are Not Top-Down or Bottom-Up
+Analysis and Design
+
+Activity
+
+Top
+Down
+
+1. Architectural Analysis
+
+2. Use case Analysis
+
+• Per Use case
+
+3. Identify Design
+Elements
+
+• Coupling and cohesion
+• Reusability
+
+4. Identify Design
+Mechanisms
+
+• Design patterns
+
+5. Describe Run-time
+Architecture
+
+• Skip if not multi-threading
+
+6. Describe Distribution
+
+• Physical Architecture
+
+7. Use case Design
+
+• Per Use case
+
+• Once at early Elaboration
+• Skip if architectural risk is low
+
+Doer
+Architect
+
+Designer
+
+Subsystems
+
+Use Cases
+
+Analysis Classes
+
+(Define a
+middle level)
+
+Design
+components
+
+Design Classes
+
+8. Subsystem Design
+9. Class Design
+
+Design DB
+
+35
+
+Description
+
+Analyze behavior
+
+Refine the
+architecture
+
+Bottom
+Up
+
+Step
+
+Define a candidate
+architecture
+
+Architect
+
+• Process View
+
+Designer
+
+10. Database Design
+
+36
+
+9
+
+37
+
+38
+
+Content
+
+Homework
+
+1. Software Life Cycle Process
+2. Software Implementation Process
+3. Object-Oriented Analysis and Design
+4. Software Development Models
+
+• Compare some common software development
+
+models
+• Waterfall model
+• Iterative model
+
+• Prototype model
+• Spiral model
+• Ration Unified Process (RUP)
+• Agile methodology
+
+➔ Submit report individually
+
+37
+
+38
+
+39
+
+40
+
+The Waterfall/Linear Model
+Requirement
+Analysis and
+Definition
+
+Iterative Waterfall/Linear Model
+Requirement
+Analysis and
+Definition
+
+Linear, No feedback
+
+System and
+software design
+
+System and
+software design
+
+Implementation
+and unit testing
+
+Implementation
+and unit testing
+
+Integration and
+system testing
+
+Integration and
+system testing
+
+Installation
+
+Installation
+
+Operation and
+maintenance
+
+39
+
+Operation and
+maintenance
+
+40
+
+10
+
+41
+
+42
+
+Iterative Model
+
+Prototype model
+
+• Each iteration produces an executable
+
+3. Requirements
+
+1. Initial
+Planning
+
+4. Analysis & Design
+
+2. Planning
+Management
+Environment
+(on-going)
+
+5. Implementation
+6. Test
+
+8. Evaluation
+7. Deployment
+Each iteration
+results in an
+executable release
+
+41
+
+42
+
+43
+
+44
+
+Spiral model
+
+Agile methodology
+• “Agility is the ability to both create and respond to change
+
+in order to profit in a turbulent buisness environment.”
+• [Jim Highsmith, Agile Software Development Ecosystems, Preface XXIII]
+
+=> Goal: Outline values and principles to allow software
+teams to:
+• develop quickly and
+• respond to change.
+
+43
+
+44
+
+11
+
+45
+
+46
+
+The Agile manifesto
+
+The Agile principles (1)
+
+• Individuals and interactions over processes
+
+• 1. Our highest priority is to satisfy the
+
+and tools
+• Working software over comprehensive
+documentation
+• Customer collaboration over contract
+negotiation
+• Responding to change over following a
+plan
+
+customer through early and continuous
+delivery of valuable software.
+• 2. Welcome changing requirements, even
+late in the development. Agile processes
+harness change for the customer’s
+competitive advantage.
+• 3. Deliver working software frequently, from
+a couple of weeks to a couple of months,
+with a preference to a shorter time scale.
+
+45
+
+46
+
+47
+
+47
+
+48
+
+The Agile principles (2)
+
+The Agile principles (3)
+
+• 4. Business people and developers must work
+
+• 7. Working software is the primary measure of
+
+together daily throughout the project.
+• 5. Build projects around motivated individuals.
+Give them the environment and support their
+need, and trust them to get the job done.
+• 6. The most efficient and effective method of
+conveying information to and within a
+development team is face-to-face conversation.
+
+progress.
+• 8. Agile processes promote sustainable
+development.
+• 9. The sponsors, developers, and users should
+be able to maintain a constant pace indefinitely.
+• 10. Continuous attention to technical excellence
+and good design enhances agility.
+
+48
+
+12
+
+49
+
+The Agile principles (4)
+• 11. Simplicity – the art of maximizing the
+
+amount of work not done – is essential.
+• 12. The best architectures, requirements,
+and designs emerge from self-organising
+teams.
+• 13. At regular intervals, the team reflects on
+how to become more effective, then tunes
+and adjusts its behaviour accordingly.
+
+49
+
+13
+
+

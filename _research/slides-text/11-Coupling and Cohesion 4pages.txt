@@ -1,0 +1,1612 @@
+Design Principles and Patterns
+
+9/16/2025
+
+2
+
+1
+
+Review: Design Concepts
+• Cohesion
+ITSS SOFTWARE DEVELOPMENT/SOFTWARE DESIGN AND CONSTRUCTION
+
+• Degree to which the elements of a module belong
+
+11. COUPLING AND COHESION
+
+• Why are sub-modules placed in the same module? How
+
+together
+strongly-related or focused the responsibilities of a
+single module are?
+
+• Coupling
+• Degree to which each program module relies on each
+one of the other modules
+• How elements are independent?
+
+1
+
+2
+3
+
+4
+
+Cohesion within modules and
+coupling across modules
+
+Good design
+• Easy for Developing, Testing,
+• Easy for Reading, Understanding
+• Easy for Communication
+• Easy for Extending (add new features)
+• Easy for Maintenance
+
+➔ “Loose coupling and tight cohesion”
+
+3
+
+
+4
+
+1
+
+Design Principles and Patterns
+
+9/16/2025
+
+5
+
+6
+
+Content
+
+How to measure Cohesion and Coupling?
+• Design issues
+
+1. Coupling Levels
+2. Cohesion Levels
+
+• Each element can do lots of things
+
+• Interact with a large number of other elements
+
+• Measure the interconnectivity or “doing too much”
+• Cohesion: a measure of how much elements do
+• Cohesive military unit: one goal, strong team
+
+• Coupling: a measure of how elements are connected
+• E.g. Train cars are coupled nicely if they aren’t too lose and
+aren’t too tight
+
+➔ Measured by Cohesion and Coupling Levels
+5
+
+6
+7
+
+8
+
+Coupling
+
+Coupling Levels/Types
+
+• Degree to which components are related
+
+• Content
+
+Tight/High
+
+• On a continuum from tightly (worse) to loosely
+
+(better) coupled
+
+Less flexible
+(worse)
+
+• Common
+
+• Tight coupling drawbacks
+• Spaghetti code
+
+• Control
+
+• Assembling components takes longer
+• Components less reusable
+
+• Stamp
+
+• Increased likelihood that a change to one
+
+component forces a change to another
+
+7
+
+
+• Data
+
+Loose/Low
+
+More flexible
+(better)
+
+8
+
+2
+
+Design Principles and Patterns
+
+9/16/2025
+
+9
+
+10
+
+Content
+Common
+Control
+Stamp
+Data
+
+2.1. Content coupling
+
+Breaking Encapsulation
+
+• Using content (data, control) encapsulated within the
+
+boundary of another module
+
+// a well-behaved class:
+
+• Directly modifies another’s data
+
+class Student {
+private String firstName = "Sampath";
+}
+But is there a way
+
+• Refers to local data of another component in terms of
+
+numerical displacement
+• Modifies another’s code, e.g., jumps into the middle of a
+routine (goto statement)
+• Worse coupling
+public class Database {
+public SomeType
+theData;
+...
+}
+
+…
+
+to make this
+legal?
+
+Student stu = new Student();
+System.out.println(stu.firstName); // ERROR!
+
+public class DatabaseCleaner {
+public void cleanupDB(Database db){
+...
+db.theData = x;
+...
+}
+}
+
+9
+
+10
+11
+
+# output
+
+12
+
+Exercise of Content Coupling
+
+import java.lang.reflect.Field; Value of firstName: Sampath
+
+Value of firstName after changing: Trisha
+
+class Student {
+private String firstName = "Sampath";
+}
+
+Part of program handles lookup for customer.
+When customer not found, component adds
+customer by directly modifying the contents of
+the data structure containing customer data
+
+public class TestReflection {
+public static void main(String args[]) throws Exception {
+Student someStudent = new Student();
+
+Makes field accessible by both get, set
+
+Field fs = someStudent.getClass().getDeclaredField("firstName");
+fs.setAccessible(true);
+System.out.println("Value of " + fs.getName() + ": " +
+fs.get(someStudent));
+
+=> How to improve?
+
+fs.set(someStudent, "Trisha");
+System.out.println("Value of " + fs.getName()
++ " after changing: " + fs.get(someStudent));
+}
+}
+
+• Consequences?
+So why have this?
+• Applications: serialization, processing fxml in JavaFX
+
+11
+
+
+12
+
+3
+
+Design Principles and Patterns
+
+9/16/2025
+
+13
+
+14
+
+Exercise of Content Coupling
+
+Content Coupling: Issues and Solutions
+
+Part of program handles lookup for customer.
+When customer not found, component adds
+customer by directly modifying the contents of
+the data structure containing customer data.
+
+• Issues
+• Violating the encapsulation/information hiding
+• Nothing is safe
+• Unexpected/Uncontroled processing/results
+
+• Solutions
+
+Improvement:
+When customer not found, component calls the
+addCustomer() method that is responsible for
+maintaining customer data.
+
+13
+
+• Never modify the control of other modules
+• Access other modules’ data through calling
+
+functions/sending messages
+
+14
+15
+
+16
+
+Quiz
+
+2.2. Common coupling
+
+• Is it content coupling if we provide getter
+
+• Modules share
+
+and setter methods for all private
+attributes?
+
+the same
+global data
+area or data
+structure
+• Closely related
+to content
+coupling
+• Poor design
+
+• Getters: Only return attributes’ values
+• Setters: Set the values of attributes
+
+15
+
+
+Content
+Common
+Control
+Stamp
+Data
+
+public class GlobalData{
+public static SomeType theData;
+}
+public class DataUserOne{
+public void useTheData(){
+...
+GlobalData.theData = x;
+...
+}
+}
+public class DataUserTwo{
+public void useTheData(){
+...
+GlobalData.theData = y;
+...
+}
+}
+
+16
+
+4
+
+Design Principles and Patterns
+
+9/16/2025
+
+17
+
+18
+
+Exercise of Common Coupling
+
+Exercise of Common Coupling
+
+• Process control component maintains
+
+• Process control component maintains current
+
+data about state of operation. Gets data from
+multiple sources. Supplies data to multiple sinks.
+• Each source process writes directly to global data
+store. Each sink process reads directly from
+global data store.
+=> Improvement:
+• Data manager component is responsible for data
+in data store. Processes send data to and request
+data from data manager.
+
+current data about state of operation. Gets
+data from multiple sources. Supplies data
+to multiple sinks.
+• Each source process writes directly to
+global data store. Each sink process reads
+directly from global data store.
+=> How to improve?
+
+17
+
+18
+19
+
+20
+
+Common Coupling: Issues and Solutions
+
+2.3. Control coupling
+
+• Issues
+
+• Control what another module does by passing
+
+• Error can spread throughout the system
+
+arguments (i.e. control parameters)
+
+• Reduces readability: Lack of clear responsibility for data
+
+• A method
+does
+different
+things
+depending
+on the value
+of a “flag”
+parameter
+
+• Reduces maintainability: Difficult to determine all the
+
+components that affect a data element
+• Bad resuse: Difficult to reuse components
+• Not consistent: Reduces ability to control data accesses
+
+• Solutions
+• Procedural programing: Interact to functions responsible
+
+for manage the common data
+that module
+
+
+public class MyMain{
+public static void myFunc(int mode){
+if (mode == 0) {
+... do something ...
+}
+else if (mode == 1){
+... do something else ...
+}
+}
+
+• Bad coupling
+
+• OOP: Let the data belong to a module, and managed by
+
+19
+
+Content
+Common
+Control
+Stamp
+Data
+
+public static void main(String[] args){
+myFunc(1);
+}
+}
+
+20
+
+5
+
+Design Principles and Patterns
+
+9/16/2025
+
+21
+
+22
+
+Control coupling: More examples
+
+Control coupling: More examples
+
+public class Shape {
+void draw() { assert false; } // stub for draw method
+void draw(int shape, int x1, int y1, int x2, int y2
+int x3, int y3, int x4, int y4) {
+switch (shape) {
+case 1: ...draw line using (x1, y1), (x2, y2)...
+case 2: ...draw triangle with (x3, y3) as well...
+case 3: ...draw rectangle using all 4...
+case 4: ...draw circle within enclosing rectangle...
+}
+Passing control information
+}
+}
+public class EquilateralTriangle extends Shape {
+private int top_x, top_y, height;
+public void draw() {
+super.draw(2, top_x, top_y, top_x – height/2,
+top_y – height,
+top_x + hieght/2, top_y – height,
+0, 0);
+}
+}
+
+Note not used
+
+21
+
+• Frequent
+form:
+handle all
+errors
+• Seems
+consistent
+• Difficult to
+use
+• Impossible
+to reuse
+• Any
+change to
+control:
+revisit all
+calls
+
+void handleErrors(int errorNumber) {
+String[] messages = {"file not found",
+"folder not found", "file already open",
+"disk error"};
+System.out.print(messages[errorNumber]);
+if (errorNumber == 1 || errorNumber == 2)
+System.exit(3);
+else if (errorNumber == 3)
+closeAllFiles();
+else {
+System.out.println("Cannot recover.");
+System.exit(1);
+}
+}
+
+22
+23
+
+24
+
+Exercise – Control Coupling
+
+Control Coupling: Issues and Solutions
+
+• In your video store, you might eventually
+
+• Issues
+
+create a method like this:
+
+• Difficult to understand and maintain
+• The logic is hard to follow
+
+• updateCustomer(int action, Customer
+
+• Method becomes very complicated to maintain
+
+customer) where action takes on the values
+ADD, EDIT or DELETE
+
+• Gradually extent of param list when new logics
+
+defined
+
+➔ Solution?
+
+• Little encapsulation: Caller must know how the
+
+branching works (logic flow)
+• Bad names: No names to tell you what’s happening;
+
+just need to know extra meanings
+• Bad reuse: Cannot reuse components by themselves
+
+23
+
+
+24
+
+6
+
+Design Principles and Patterns
+
+9/16/2025
+
+25
+
+26
+
+Control Coupling: Issues and Solutions (2)
+
+2.4. Stamp coupling
+
+• Solutions
+
+• Passing
+
+complex data
+structure
+
+• Break into different methods for different cases
+• Think of applying inheritance and polymorphism
+
+for different types if application
+• Use design patterns for some special purposes
+
+• Containing
+
+fields which
+may or may not
+be used
+• May be necessary
+due to efficiency
+• Avoid by Insightful
+
+designers, not lazy
+programmers
+
+25
+
+Content
+Common
+Control
+Stamp
+Data
+
+public class Employee{
+private String name;
+private double salary;
+...
+}
+public class SalaryProcessor{
+public void processSalary(Employee e){
+...do stuff with only e.getSalary()...
+}
+}
+public class NameProcessor {
+public void processName(Employee e){
+...do stuff with only e.getName()...
+
+}
+}
+
+26
+27
+
+28
+
+Stamp Coupling: More examples
+
+Stamp Coupling: Broader View
+
+• swap(int[] numbers, int pos1, int pos2);
+
+• One module passes non-global data
+
+structure to another module
+• A change in data structure will affect all
+modules that use it
+
+• Attributes of Class:
+public class Image { … }
+public class Buffer { Image a, b; ... }
+
+• The two module must have some knowledge of
+
+...
+
+the internal workings of other modules that use
+the same data structure
+• Two modules are stamp coupled if they
+communicate via a composite data item
+
+void drawPartB(Buffer full) { ... use just full.b ...}
+
+• E.g. record in PASCAL, structure in C, object in Java
+
+27
+
+
+28
+
+7
+
+Design Principles and Patterns
+
+9/16/2025
+
+29
+
+30
+
+Example of Stamp Coupling
+
+Example of Stamp Coupling
+
+Customer billing system
+
+Customer Billing System
+
+The print routine of the customer billing
+accepts a customer data structure as an
+argument, parses it, and prints the name,
+address, and billing information.
+
+The print routine of the customer billing accepts a
+customer data structure as an argument, parses it,
+and prints the name, address, and billing
+information.
+=> Improvement
+The print routine takes the customer name,
+address, and billing information as an argument.
+
+=> Inprovement?
+
+29
+
+30
+31
+
+32
+
+Stamp Coupling: Issues and Solutions
+
+2.5. Data coupling
+
+• Issues
+
+• Each datum of
+
+parameter is an
+elementary
+piece, and
+only data shared
+• Every argument
+is simple
+argument
+• Best coupling
+(loose)
+
+• Requires second component to know how to
+
+manipulate the data structure (e.g., needs to
+know about implementation)
+• Piece not as reusable as it could be
+• Piece could have undesired side-effects; could
+even result in security breaches
+• Solutions
+• Only pass elementary required params
+
+31
+
+
+Content
+Common
+Control
+Stamp
+Data
+
+public class Employee{
+private String name;
+private double salary;
+...
+}
+public class SalaryProcessor{
+public void processSalary(double salary){
+...do stuff with a copy of e.salary...
+}
+}
+public class NameProcessor {
+public void processName(String name){
+...do stuff with a copy of e.name ...
+}
+}
+
+32
+
+8
+
+Design Principles and Patterns
+
+9/16/2025
+
+33
+
+34
+
+Law of Demeter
+
+Data Coupling: More information
+
+Karl Lieberherr  and colleagues
+• Law of Demeter: An object should know as little as possible
+
+• Modules are independent of each other
+
+about the internal structure of other objects with which it
+interacts – a question of coupling
+• Or… “only talk to your immediate friends”
+• Closely related to representation exposure and
+(im)mutability
+• Bad example – too-tight chain of coupling between classes
+
+• Two modules has no need to know what goes on
+
+inside each module
+• Higher level module needs only to know what data to
+
+pass its subordinates
+• Subordinate module only need to know what data it
+
+requires and what data is return
+
+general.getColonel().getMajor(m).getCaptain(cap)
+.getSergeant(ser).getPrivate(name).digFoxHole();
+
+• Only communicate through passing parameters
+• Non-global variables
+
+• Better example
+general.superviseFoxHole(m, cap, ser, name);
+
+• An elementary data item or a data structure in which all
+
+elements are used
+
+33
+
+34
+35
+
+36
+
+Data Coupling: Advantages
+
+An object should only send messages to …
+(More Demeter)
+• itself (this)
+• its instance variables
+• its method's parameters
+
+• Easy to write contracts for this and modify
+
+Guidelines: not strict rules!
+But thinking about them
+will generally help you
+produce better designs
+
+module independently
+• Simple, easy-to-understand argument lists
+• Simple communication path
+
+• any object it creates
+
+• any object returned by a call to one of this's methods
+• any objects in a collection of the above
+• notably absent: objects returned by messages sent to
+
+other objects
+
+• Goal: green zone
+• None: no dependency
+
+Don’t talk to strangers!
+35
+
+
+36
+
+9
+
+Design Principles and Patterns
+
+9/16/2025
+
+37
+
+38
+
+Coupling: Degree of dependence among
+components
+
+No dependencies
+
+Highly coupled-many dependencies
+
+Quiz: Is it loose or tight coupling?
+
+Loosely coupled-some dependencies
+
+High coupling makes modifying
+parts of the system difficult, e.g.,
+modifying a component affects all
+the components to which the
+component is connected.
+
+37
+
+38
+39
+
+40
+
+Loose coupling is the path to the dark side
+
+Practice: Coupling Levels
+
+• Coupling leads to complexity
+
+• Checking the coupling levels of the existing
+
+• Complexity leads to confusion
+
+codebase with explanations
+
+• Confusion leads to suffering
+• Once you start down the dark
+
+path, forever will it dominate
+your destiny, consume you it will
+
+39
+
+
+40
+
+10
+
+Design Principles and Patterns
+
+9/16/2025
+
+41
+
+42
+
+Content
+
+God classes
+• God class: a class that hoards too much of the
+
+1. Coupling Levels
+2. Cohesion Levels
+
+data or functionality of a system
+• Poor cohesion – little thought about why all of the
+
+elements are placed together
+• Only reduces coupling by collapsing multiple modules
+
+into one (and thus reducing the dependences between
+the modules to dependences within a module)
+• A god class is an example of an anti-pattern – it is
+
+a known bad way of doing things
+
+41
+
+42
+43
+
+44
+
+2. Cohesion
+
+Measure cohesion levels on
+
+• Definition: The degree to which all elements of a
+
+• Procedural Programming
+
+module are directed towards a single task and
+all elements directed towards that task are
+contained in a single module.
+• Internal glue with which module is constructed
+• All elements of component are directed toward
+and essential for performing the same task
+• High is good
+
+43
+
+
+• Procedure, Function
+
+• Object-Oriented Programming: Any portion
+
+of the system
+• Method: Statements, Block of code
+• Class: Attributes, Methods
+• Subsystem: Class, Interface
+
+44
+
+11
+
+Design Principles and Patterns
+
+9/16/2025
+
+45
+
+46
+
+Cohesion Levels/Types
+
+2.1. Coincidental Cohesion
+
+Functional
+Communicational
+Procedural
+Temporal
+Logical
+
+Coincidental
+
+• Functional
+
+High
+(Tight)
+
+More cohesive
+(better)
+
+• Elements of the component are totally unrelated
+• Only related by their location in source code
+(accidental)
+• One of which is selected by calling module
+
+• Communicational
+
+• Worst cohesion
+
+• Procedural
+• Temporal
+
+public class MyMain {
+
+public static void main(String[] args) {
+... logic for arg processing ...
+... logic for opening input streams and reading data ...
+... logic for processing data ...
+... logic for closing streams and cleanup ...
+}
+
+• Logical
+• Coincidental
+
+Low
+(High)
+
+Less cohesive
+(worse)
+
+45
+
+}
+
+46
+47
+
+48
+
+Coincidental cohesion: More Examples
+
+Coincidental cohesion: Issues and Solutions
+
+• Just do some random things in a method
+• Print next line
+• Reverse string of characters in second argument
+• Add 7 to 5th argument
+• Convert 4th argument to float
+
+• Design issues
+• Elements needed to achieve some functionality
+are scattered throughout the system
+• Hard to maintain, to reuse
+
+• Putting all of your GUI code in a single form class
+• This was easy to do in Java Swing
+• The bee simulator sample code
+
+• Solutions
+• Move unrelated parts to corresponsibly
+responsible modules
+• Break unrelated parts into separate modules,
+each performing one task
+• Use design patterns for some special purposes
+
+• StudentFinancialsWithCoursesAndResidence
+• How about “StudentData”?
+• All of the clauses, especially “and” show this has too many
+responsibilities
+
+47
+
+
+48
+
+12
+
+Design Principles and Patterns
+
+9/16/2025
+
+49
+
+50
+
+Functional
+Communicational
+Procedural
+Temporal
+
+2.2. Logical cohesion
+
+Logical Cohesion: More Examples
+
+Logical
+Coincidental
+
+• Parts grouped because they fit into a logical
+
+• Handle/generate all regardless of type
+
+category (e.g. they do the same type of thing),
+but not a functional one
+
+• handleAllErrors(int errno, const char *msg)
+
+• sendOutput(int dest, int type, String msg, int inum, float
+
+• They perform similar, but independent computations
+
+fnum);
+
+• One of which is selected by the client component
+
+• dest: 0 means stdout, 1 means tape, 2 means printer
+
+• Bad cohesion
+
+• type: 0 means print msg and inum, 1 means print msg and fnum,
+
+public class InputHandler{
+public void handleDiskInput(){...}
+public void handleKeyboardInput(){...}
+public void handleControllerInput(){...}
+public void handleMouseInput(){...}
+}
+
+2 means msg only, 3 means inum only, 4 means fnum only
+
+• Note
+
+• Tempting to engineers: “handle all of the
+
+logicalled related stuffs in one place,” etc.
+
+public class EventLogger {
+public void logDatabaseError() {...}
+public void logFileReadingError() { ... }
+public void logUserInputError() { ... }
+}
+
+• Lead to control coupling
+
+49
+
+50
+51
+
+52
+
+Example of Logical Cohesion
+
+Example of Logical Cohesion
+• A component reads inputs from tape, disk, and
+
+• A component reads inputs from tape,
+
+network. All the code for these functions are in
+the same component. Operations are related,
+but the functions are significantly different.
+
+disk, and network. All the code for
+these functions are in the same
+component.
+• Operations are related, but the
+functions are significantly different.
+
+=> Improvement and charging
+• A device component has a read operation that is
+overridden by sub-class components. The tape
+sub-class reads from tape. The disk sub-class
+reads from disk. The network sub-class reads
+from the network.
+
+• => How to improve?
+
+51
+
+
+52
+
+13
+
+Design Principles and Patterns
+
+9/16/2025
+
+53
+
+54
+
+Logical cohesion: Issues and Solutions
+
+2.3. Temporal cohesion
+
+• Design issues
+• Interface hard to understand
+• Code for more than one actions may be intertwined
+• Intricate code due to module activing differently based
+on different parameters
+• Hard/impossible to maintain/reuse one piece
+
+• Parts grouped because of when they’re
+
+Temporal
+Logical
+Coincidental
+
+executed/used (related by timing)
+• Not good cohesion
+public class Startup {
+public void processArgs() {...}
+public void readConfig() {...}
+public void initialize() {...}
+public void openFiles() {...}
+public void displayGreeting() {...}
+}
+
+• Solutions
+• Break parts into separate modules, each performing
+one task
+• Use Inheritance, Polymorphism
+• Use Design patterns
+
+53
+
+Functional
+Communicational
+Procedural
+
+public class Shutdown {
+public void saveConfig() {...}
+public void closeFiles() {...}
+public void cleanup() {...}
+}
+
+54
+55
+
+56
+
+Temporal Cohesion: More examples
+
+Example of Temporal Cohesion
+
+• Classic example: initializing all data structures/state
+
+• A system initialization routine: this routine
+
+variables
+
+contains all of the code for initializing all
+of the parts of the system. Lots of
+different activities occur, all at init time.
+
+• public class Setup
+• Issue: separating initialization from use, so must maintain two
+
+places
+
+• In methods: Document.new
+• Prompt user to save current, clear document, reinitialize state,
+update recent document list, update title bar
+• All this needs to be done, but with different (reusable) methods,
+probably in different classes
+• Note: issue is what's done directly vs. what's done in a method
+that's called by a more policy-oriented one
+
+55
+
+
+• => How to improve?
+
+56
+
+14
+
+Design Principles and Patterns
+
+9/16/2025
+
+57
+
+58
+
+Example of Temporal Cohesion
+
+Temporal Cohesion: Issues and Solutions
+• Issues
+
+• A system initialization routine: this routine
+
+contains all of the code for initializing all of the
+parts of the system. Lots of different activities
+occur, all at init time.
+
+• Actions weakly related to one another, but strongly
+
+related to actions in other modules
+• Hard to maintain and reuse, increases chances of
+
+regression fault
+• Code spread out
+• Have to look at numerous modules when a change in
+a data structure
+
+=> How to improvement?
+• A system initialization routine sends an
+initialization message to each component.
+• Each component initializes itself at component
+instantiation time.
+
+57
+
+• Solutions
+• Move parts to corresponding methods/modules
+• Use design patterns for some special purposes
+
+58
+59
+
+2.4. Procedural Cohesion
+
+60
+
+Functional
+Communicational
+Procedural
+
+Procedural Cohesion: More Examples
+
+Temporal
+Logical
+Coincidental
+
+• Parts grouped because they’re executed in
+
+...
+Read part number from
+database
+Update repair record on
+maintenance file.
+...
+
+sequence (their procedure/order of execution)
+• Not good cohesion
+• Examples
+• ReadPartNumberFromDatabaseAndUpdateRepairRecord
+
+• FilterChain
+public class FilterChain {
+public Object filter1(Object o) {...}
+public Object filter2(Object o) {...}
+public Object filter3(Object o) {...}
+public Object filter4(Object o) {...}
+}
+
+59
+
+
+• May be useful to
+
+abstract the intent of
+this sequence. Make
+the database and
+repair record
+components handle
+reading and updating.
+Make component that
+handles more abstract
+operation.
+
+60
+
+15
+
+Design Principles and Patterns
+
+9/16/2025
+
+61
+
+62
+Functional
+
+Communicational
+
+Procedural Cohesion: Issues and Solutions
+
+2.5. Communicational Cohesion
+
+• Issues
+
+• Parts grouped because they are related to
+
+Procedural
+Temporal
+Logical
+Coincidental
+
+each other by the data that they use
+• Acts on the same input data or is
+concerned with the same output data
+• Still low reusability → Break it up
+
+• Actions are still weakly related to one another
+• Doing the operations directly in the method;
+
+having a method which calls others to do the
+real work is far less of a problem
+• Often: no data being passed
+
+• Low reusability
+
+public class CoordinateManager {
+calculate new coordinates
+send them to window
+}
+
+• Solutions
+• Move parts to corresponding methods/modules
+• Use design patterns for some special purposes
+
+61
+
+62
+63
+
+64
+Functional
+Communicational
+Procedural
+Temporal
+Logical
+Coincidental
+
+Communicational Cohesion: More Example
+
+2.6. Functional Cohesion
+
+• Update record in
+
+• database.update
+
+• Parts grouped because they work together to
+
+database and send it
+to the printer.
+
+(record).
+• record.print().
+
+perform a well-defined responsibility
+• Every essential element to a single computation is
+
+contained in the module
+• The name of module will indicate its responsibility
+
+public class RecordManager {
+update record in db
+write it to audit trail
+}
+
+63
+
+
+• Best Cohesion (Highest) → Ideal situation
+public class Stack {
+private Object[] theStack;
+public void push(Object o) {...}
+public Object top() {...}
+public void pop() {...}
+}
+
+64
+
+16
+
+Design Principles and Patterns
+
+9/16/2025
+
+65
+
+66
+
+Advantages of Functional Cohesion
+
+Examples of Cohesion
+
+• More reusable
+• Corrective maintenance easier
+
+Function A
+Function Function
+B
+C
+Function Function
+D
+E
+
+• Fault isolation
+• Reduced regression faults
+
+• Easier to maintain
+• Easier to extend product
+
+Coincidental
+Parts unrelated
+
+logic
+
+Function A
+
+Time t0
+
+Function A’
+
+Time t0 + X
+
+Function A’’
+
+Logical
+Similar functions
+
+Time t0 + 2X
+
+Temporal
+Related by time
+
+Function A
+
+• E.g.
+• Furnace.getTemperature()
+Electron.computeOrbital()
+• SalesCommission.calculate()
+
+Function B
+Function C
+
+Procedural
+Related by order of functions
+
+65
+
+66
+67
+
+68
+
+Examples of Cohesion-2
+
+Which is better?
+
+Function A
+
+Function A
+
+Function B
+
+Function B
+
+Function C
+
+Function C
+
+Communicational
+Access same data
+
+Sequential
+Output of one is input to another
+Function A part 1
+Function A part 2
+Function A part 3
+
+Functional
+Sequential with complete, related functions
+
+67
+
+
+68
+
+17
+
+Design Principles and Patterns
+
+9/16/2025
+
+69
+
+Exercise: Cohesion Levels
+• Checking the cohesion levels of the
+
+existing codebase with explanations
+
+69
+
+
+18
+
+

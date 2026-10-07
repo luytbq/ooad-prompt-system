@@ -1,0 +1,439 @@
+9/16/2025
+
+2
+
+1
+
+Content
+1. Modular Design
+2. Good Modules
+3. Good Design: How?
+
+ITSS SOFTWARE DEVELOPMENT/SOFTWARE DESIGN AND CONSTRUCTION
+
+10. MODULAR DESIGN
+
+1
+
+2
+3
+
+4
+
+Modules
+
+Why modularity?
+
+• Module
+
+• Easier to understand and explain
+
+• A relatively general term for a function, a class
+
+• Easier to document
+
+or a type or any kind of design unit in software
+
+• Programming an individual module is
+
+• Modular design (Modularity)
+
+easier
+• Testing and debugging is easier
+• Bug tracking and fixing is easier & faster
+• Reusable
+
+• What modules are defined
+
+• What their specifications are
+• How they relate to each other
+• But not usually on the implementation of the
+
+modules themselves
+
+3
+
+4
+
+1
+
+9/16/2025
+
+5
+
+Which would you rather do?
+
+Time Break
+• Build group
+
+What are the challenges of each?
+Knowing what the parts DO!
+• Finding the parts to change
+• Knowing what happens when you change them
+How they connect?
+• Knowing how to put them back together again
+Hellion Twin Turbo - Complete Kit (15-17 GT)
+
+Github Project
+
+• Clone codebase from Github
+
+• Create group-repo on Github
+
+Change a diaper?
+File:Baby.jpg
+
+Change a fuel filter?
+
+5
+
+6
+7
+
+8
+
+Content
+1. Modular Design
+2. Good Modules
+3. Good Design: How?
+
+Good vs. Bad Modules
+• Modules in themselves are not “good”
+
+• Must design them to have good properties
+i) CPU using 3 chips (modules)
+
+ii) CPU using 3 chips (modules)
+Chip 1
+
+Chip 1
+
+Chip 2
+
+Chip 2
+
+AND gates
+
+OR gates
+
+Registers
+ALU
+ALU
+Chip 3
+
+Shifter
+SHIFTER
+Chip 3
+
+NOT gates
+
+What is the problem here?
+
+7
+
+8
+
+2
+
+9/16/2025
+
+9
+
+10
+
+Which design is better?
+
+Good Design
+• Easy for Developing, Testing,
+• Easy for Reading, Understanding
+• Easy for Communication
+• Easy for Extending (add new features)
+• Easy for Maintenance
+
+9
+
+10
+11
+
+12
+
+Content
+
+Ideals of modular software
+• Decomposable – can be broken down
+
+1. Modular Design
+2. Good Modules
+3. Good Design: How?
+
+into modules to reduce complexity and
+allow teamwork
+• Composable – “Having divided to
+conquer, we must reunite to rule [M.
+Jackson].”
+• Understandable – one module can be
+examined, reasoned about, developed,
+etc. in isolation
+• Continuity – a small change in the
+requirements should affect a small
+number of modules
+• Isolation – an error in one module should
+be as contained as possible
+
+11
+
+12
+
+3
+
+9/16/2025
+
+13
+
+
+Design Levels
+Architectures/Framework
+(Financial System, J2EE,…)
+
+OOD Patterns
+OOD Principles
+Specific Data Structures
+
+Basic SE Concepts
+
+OO Concepts
+
+• Modularity
+
+• Class/Interface
+
+• Cohesion
+
+• Inheritance
+
+• Coupling
+
+• Association
+
+• Abstraction
+
+• Polymorphism
+
+• Information Hiding
+
+• Encapsulation
+
+14
+
+Algorithmic Approaches
+
+Design Concepts
+
+General + OO Concepts
+
+13
+
+14
+
+•16
+
+15
+
+Design Levels (this course)
+
+Why these Topics?
+• General & OO Concepts
+
+Architectures/Framework
+(Financial System, J2EE,…)
+
+GoF Design Patterns
+
+OOD Patterns
+
+S.O.L.I.D Principles
+
+OOD Principles
+
+• Fundamental knowledge in software
+
+design and SE
+• Evaluate the quality of the design
+• Design Principles
+
+Specific Data Structures
+
+• Diagnose problems with designs
+
+Algorithmic Approaches
+
+Cohesion
+Coupling
+
+• Design Patterns
+
+General + OO Concepts
+
+• Address the problems
+15
+
+16
+
+4
+
+9/16/2025
+
+17
+
+18
+
+Cohesion within modules and coupling
+across modules
+
+3.1. Design Concepts
+• Cohesion
+• Degree to which the elements of a module
+belong together
+• Why are sub-modules placed in the same
+module? How strongly-related or focused the
+responsibilities of a single module are?
+• Coupling
+• Degree to which each program module relies on
+each one of the other modules
+• How elements are independent?
+
+17
+
+18
+19
+
+20
+
+Good design
+
+Why loose coupling and high cohesion?
+
+• Easy for Developing, Testing,
+
+• Within one module
+• Large numbers of responsibilities: Difficult to
+understand
+• Small number, closely related: Much easier to
+understand
+
+• Easy for Reading, Understanding
+• Easy for Communication
+• Easy for Extending (add new features)
+• Easy for Maintenance
+
+• Interconnection among modules
+• A change in one module changes in many
+others: Difficult to maintain / fix bugs
+• A change in one module hardly changes others:
+Much easier to maintain / fix bugs
+
+➔ “Loose coupling and high cohesion”
+
+19
+
+20
+
+5
+
+9/16/2025
+
+21
+
+22
+
+3.2. SOLID Design Principles
+
+S.O.L.I.D Principles
+
+• By Robert C. Martin in his 2000 paper, Design
+
+• SRP: The Single Responsibility Principle
+
+Principles and Design Patterns.
+
+• OCP: The Open Closed Principle
+
+• Practices that lend to developing OO
+
+software with considerations for maintaining
+and extending as the project grows
+
+• LSP: The Liskov Substitution Principle
+• ISP: The Interface Segregation Principle
+
+• Managing dependencies makes maintainability
+
+• DIP: The Dependency Inversion Principle
+
+easier
+• Create more maintainable, understandable, and
+flexible software
+• Various principles and techniques available
+
+for diagnose problems with designs
+
+21
+
+22
+23
+
+24
+
+3.3. Design Patterns
+
+GoF patterns: three categories
+
+• A standard solution to a common programming
+
+• Creational Patterns – these abstract the object-
+
+instantiation process
+
+problem
+
+• Factory Method, Abstract Factory, Singleton,
+
+• a design or implementation structure that achieves a
+
+Builder, Prototype
+
+particular purpose
+• a high-level programming idiom
+
+• Structural Patterns – these abstract how objects/classes
+
+can be combined
+
+• A technique for making code more flexible
+• reduce coupling among program components
+
+• Adapter, Bridge, Composite, Decorator,
+
+Façade, Flyweight, Proxy
+• Behavioral Patterns – these abstract communication
+
+• Short-hand for describing program design
+• a description of connections among program
+components (static structure)
+• the shape of a heap snapshot or object model (dynamic
+behaviour)
+
+23
+
+between objects
+
+• Command, Interpreter, Iterator, Mediator,
+
+Observer, State, Strategy, Chain of
+Responsibility, Visitor, Template Method
+
+24
+
+6
+
+

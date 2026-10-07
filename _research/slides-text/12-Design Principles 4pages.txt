@@ -1,0 +1,1149 @@
+Design Principles and Patterns
+
+9/16/2025
+
+2
+
+Review: Design Levels
+Architectures/Framework
+(Financial System, J2EE,…)
+
+ITSS SOFTWARE DEVELOPMENT/SOFTWARE DESIGN AND CONSTRUCTION
+
+12. OO DESIGN PRINCIPLES
+
+OOD Patterns
+
+OOD Principles
+Specific Data Structures
+Algorithmic Approaches
+
+General + OO Concepts
+
+1
+
+2
+
+•4
+
+3
+
+Content
+
+Review: Concepts, Principles and Patterns
+
+1. OO Design Principles
+
+• General & OO Concepts
+
+2. SOLID: Single Responsibility Principle
+3. SOLID: Open-Close Principle
+4. SOLID: Liskov Substitution Principle
+5. SOLID: Interface Segregation Principle
+6. SOLID: Dependency Inversion Principle
+
+• Fundamental knowledge in software
+
+design and SE
+• Evaluate the quality of the design
+• Design Principles
+• Diagnose problems with designs
+
+• Design Patterns
+• Address the problems
+3
+
+
+4
+
+1
+
+Design Principles and Patterns
+
+9/16/2025
+
+5
+
+6
+
+Basic OO Design Principles
+
+Review: Design Levels
+
+• S.O.L.I.D Principles (Robert C. Martin)
+• GRASP Principles (Craig Larman)
+
+Architectures/Framework
+(Financial System, J2EE,…)
+
+General Responsibility Assignment Software Principles
+• High Cohesion, Low Coupling (~in SE)
+• Polymorphism (~in OOP)
+• Information Expert (~Information Hiding)
+
+• Pure Fabrication (~Service in System Architecture)
+
+GoF Design Patterns
+
+OOD Patterns
+
+S.O.L.I.D Principles
+
+OOD Principles
+
+• Protected variations (~OCP)
+
+Specific Data Structures
+
+• Indirection, Creator, Controller
+
+Algorithmic Approaches
+
+Cohesion
+Coupling
+
+• Favor composition over inheritance
+
+• Program to an Interface, not to an Implementation
+
+5
+
+General + OO Concepts
+
+6
+8
+
+7
+
+S.O.L.I.D Principles
+
+SOLID Principles – Why necessary?
+
+• SRP: The Single Responsibility Principle
+
+• S.O.L.I.D. is useful as reference while
+
+• OCP: The Open Closed Principle
+
+designing applications
+• Managing dependencies makes
+maintainability easier
+• Various principles and techniques
+available for diagnose problems with
+designs
+
+• LSP: The Liskov Substitution Principle
+• ISP: The Interface Segregation Principle
+
+• DIP: The Dependency Inversion Principle
+
+7
+
+
+8
+
+2
+
+Design Principles and Patterns
+
+9/16/2025
+
+9
+
+10
+
+Content
+
+Review: Tight/High Cohesion
+
+1. OO Design Principles
+2. SOLID: Single Responsibility Principle
+3. SOLID: Open-Close Principle
+4. SOLID: Liskov Substitution Principle
+5. SOLID: Interface Segregation Principle
+6. SOLID: Dependency Inversion Principle
+
+• Cohesion
+• Measure of how strongly-related or focused
+the responsibilities of a single module are
+• The degree to which all elements of a module
+are directed towards a single task/
+responsibility
+• Highest cohesion (Cohesive)
+• Modules have a single and clear responsibility
+
+• Elements in a module are functionally related
+
+9
+
+10
+11
+
+12
+
+SRP: Single Responsibility Principle
+
+SRP: Single Responsibility Principle
+• Simplest principle, hardest to get right
+
+There should never be
+more than one reason
+for a class to change
+
+• Every module should do just one thing and
+
+do it well
+• Finding and separating responsibilities
+may be hard to do
+
+Or
+
+• How much is enough?
+
+A class should have
+one, and only one
+type of responsibility
+11
+
+
+• Measured by Cohesion (and Coupling)
+
+• When violated: Fragile design that breaks
+
+in unexpected ways when changed
+12
+
+3
+
+Design Principles and Patterns
+
+9/16/2025
+
+13
+
+14
+
+SRP: Single Responsibility Principle
+
+SRP: Single Responsibility Principle
+
+• How much is enough for “one” responsibility?
+
+• What is a Responsibility?
+• A reason for change
+
+SystemManagerService
+
+SystemManagerService
++ SelectNetworkSettings()
++ UpdateNetworkSettings(...)
++ CurrentDateTime { get; set; }
++ AllTimeZones()
++ SelectTimeZone()
++ UpdateTimeZone(...)
++ SelectNetworkTimeData()
++ UpdateNetworkTimeData(...)
++ ControlServices()
++ CreateUserAndAssignGroup(...)
++ ChangeUserCredentials(...)
++ DeleteUser(...)
++ RetrieveUsers()
+
+NetworkManagement
++ SelectNetworkSettings()
++ UpdateNetworkSettings(...)
+
+• “Modem” sample
+• dial & hangup functions for managing connection
+• send & recv functions for data communication
+
+DateTimeManagement
++ CurrentDateTime { get; set; }
++ AllTimeZones()
++ SelectTimeZone()
++ UpdateTimeZone(...)
++ SelectNetworkTimeData()
++ UpdateNetworkTimeData(...)
+
+➔ Should separate into 2 modules!
+
+ServiceManagement
++ ControlServices()
+
+UserManagement
++ CreateUserAndAssignGroup(...)
++ ChangeUserCredentials(...)
++ DeleteUser(...)
++ RetrieveUsers()
+
+13
+
+14
+15
+
+16
+
+SRP: Example (2)
+
+SRP: Example
+• Often we need to sort students by their
+
+Student
+
+name, or ssn.
+➔Make Class Student implement the
+Java Comparable interface
+
+Register
+
+add(Course d, Student s);
+
+class Student implements Comparable{
+…
+int compareTo(Object o){ … }
+…
+};
+
+SSN
+Name
+getSSN()
+getName()
+major
+getMajor()
+int compareTo()
+
+When a new requirement needs to
+sort students in a different order,
+Student, Register, and AClient all
+need to be recompiled, even Register
+has nothing to do with the new
+ordering of Students.
+
+Comparable
+int compareTo()
+
+AClient
+
+op() {
+
+;}
+
+It invokes
+
+Collections.sort(aListofStudents);
+
+15
+
+
+16
+
+4
+
+Design Principles and Patterns
+
+9/16/2025
+
+17
+
+18
+
+Java Comparable
+
+The single-responsibility principle
+
+• Each time students are ordered differently, the
+
+Register
+
+compareTo() method needs to be changed and
+Students needs to be recompiled and also its
+clients
+
+int compare(Object o1, Object o2)
+
+Student
+SSN
+Name
+getSSN()
+getName()
+major
+getMajor()
+
+• Student is a business entity, it does not know in
+
+what order it should be sorted since the order of
+sorting is imposed by the client of Student.
+
+StudentByName
+
+ClientA
+
+int compare(Object o1, Object o2)
+
+op() {
+
+;}
+
+StudentBySSN
+
+int compare(Object o1, Object o2)
+
+• Cause of the problem: we bundled two separate
+
+The solution is to separate the
+two responsibilities into two
+separate classes and use another
+version of Collections.sort().
+
+responsibilities (i.e., a business entity and
+ordering) into one class – a violation of SRP
+17
+
+Comparator
+
+add(Course d, Student s);
+
+ClientB
+
+op() {
+
+;}
+
+It invokes
+Collections.sort(aListofStudents,
+StudentBySSN);
+
+18
+19
+
+20
+
+Content
+
+OCP: Open-Close Principle
+
+1. OO Design Principles
+2. SOLID: Single Responsibility Principle
+3. SOLID: Open-Close Principle
+4. SOLID: Liskov Substitution Principle
+5. SOLID: Interface Segregation Principle
+6. SOLID: Dependency Inversion Principle
+
+Open chest surgery is not needed when putting on a coat
+
+19
+
+
+20
+
+5
+
+Design Principles and Patterns
+
+9/16/2025
+
+21
+
+22
+
+OCP: Open Closed Principle
+
+OCP: Open Closed Principle
+
+“Software entities (classes, modules, functions,
+etc.) should be open for extension, but closed
+for modification”
+
+• Open for Extension
+• The behavior of the module/class can be extended
+
+• The module behaves in new and different ways as the
+
+requirements changes, or to meet the needs of new
+applications
+
+Bertrand Meyer, 1988
+
+Or
+“You should be able to extend a classes
+behavior, without modifying code”
+
+→ Reusability and maintainability
+• Closed for Modification
+• The source code of an existing module is inviolate
+• No one is allowed to make source code changes to it
+
+➔ Extend behavior instead of changing old
+code that already works
+21
+
+→ When violated: Cascading changes to dependent
+modules during changes
+22
+
+23
+
+24
+
+OCP: Abstraction is the KEY
+
+OCP: Abstraction is the KEY (2)
+
+• Client & Supplier classes are concrete
+
+Abstract
+Supplier
+
+• If the Supplier implementation/class is changed,
+
+Client also needs change.
+➔ How to resolve this problem?
+
+• The Concrete Supplier class implements the
+
+Abstract Supplier class / Supplier Interface
+• The Supplier implementation is changed,
+
+Supplier
+
+• the Client is likely not to require any change.
+
+Supplier
+
+➔ The Abstract Supplier class here is closed for
+modification and the Concrete class implementations here
+are Open for extension
+21
+
+23
+
+
+24
+
+6
+
+Design Principles and Patterns
+
+9/16/2025
+
+25
+
+26
+
+Violation of the OCP
+
+OCP – Dynamic Polymorphism
+Employee
+
+Employee
+
++ printInfo()
+
++int EmpType
+
+Faculty
+
++getOffice()
+
+Staff
+
++getDept()
+
+Secretary
+
++getTypeSpeed()
+
+Faculty
+
+Engineer
+
++printInfo ()
+
+Staff
+
++printInfo()
+
+Secretary
+
++printInfo()
+
+Engineer
+
++printInfo()
+
++getEngTYpe()
+
+void printEmpRoster(Employee[] emps) {
+for (int i; i<emps.size(); i++) {
+if (emps[i].empType == FACULTY)
+printfFaculty((Faculty)emps[i]);
+else if (emps[i].empType ==STAFF)
+printStaff((Staff)emps[i]);
+else if (emps[i].empType == SECRETARY)
+printSecretary((Secretary)emps[i]);
+}
+}
+
+void printEmpRoster(Employee[] emps) {
+for (int i; i<emps.size(); i++) {
+emps[i].printInfo();
+}
+}
+
+What if we
+need to add
+Engineer??
+
+When Engineer is added, printEmpRoster() does not even
+need to recompile.
+➔ printEmpRoster() is open to extension, closed for
+modification.
+
+25
+
+26
+27
+
+28
+
+OCP – Dynamic Polymorphism
+
+OCP – Static Polymorphism
+
+• Three versions of SORT
+• sort(List list)
+
+• Generics in Java: The container can take
+
+objects of any type
+
+• Elements of list must implement Comparable interface
+
+public class LinkedList<E> {
+boolean add(E e);
+boolean add(int index, E e);
+boolean addFirst(E e);
+boolean addLast(E e);
+void clear();
+E get(int index);
+...
+}
+
+• sort(List list, StringComparator sc)
+• Elements of list are not required to implement Comparable
+• StringComparator orders objects of String only
+• sort(List list, Comparator comp)
+• Elements of list are not required to implement Comparable
+• Comparator may compare objects of any type.
+• Open to extension since it can sort objects of any type at
+any order specified in the second parameter.
+
+27
+
+
+28
+
+7
+
+Design Principles and Patterns
+
+9/16/2025
+
+29
+
+30
+
+Practice: Checking S & O in codebase
+
+Content
+
+• Checking if all classes donot follow the
+
+1. OO Design Principles
+2. SOLID: Single Responsibility Principle
+3. SOLID: Open-Close Principle
+4. SOLID: Liskov Substitution Principle
+5. SOLID: Interface Segregation Principle
+6. SOLID: Dependency Inversion Principle
+
+SRP & OCP in code base
+
+29
+
+30
+31
+
+32
+
+LSP: Liskov Substitution Principle
+
+LSP: Liskov Substitution Principle (2)
+
+• “Functions that use pointers or references to base classes must
+
+• Demand no more: The subclass would accept any
+
+arguments that the superclass would accept.
+
+be able to use objects of derived classes without knowing it.”
+
+• Promise no less: Any assumption that is valid
+
+• Or
+
+when the superclass is used must be valid when
+the subclass is used.
+
+“Subclasses should be substitutable for their
+base classes.”
+
+• Interface Inheritance: LSP should be conformed to
+• Implementation (or Class) Inheritance:
+• Multi-layer inheritance hierarchy: Provide more
+abstraction levels for subclasses
+• Use composition instead of inheritance (in Java) or use
+private base classes (in C++)
+
+• Every implementation of an interface needs to fully
+comply with the requirements of this interface
+• Any algorithm that works on the interface, should
+continue to work for any substitute implementation
+22
+
+31
+
+
+32
+
+8
+
+Design Principles and Patterns
+
+9/16/2025
+
+33
+
+34
+
+LSP: Liskov Substitution Principle (3)
+
+LSP: An Example
+
+• Why LSP is so important? If violates LSP:
+
+• Ostrich is a Bird (definitely!!!)
+
+• Class hierarchy would be a mess and if subclass
+
+Bird
+
+• Can it fly? No! => Violates the LSP
+
+instance was passed as parameter to methods method,
+strange behavior might occur.
+• Unit tests for the Base classes would never succeed for
+the subclass.
+
+➔Even if in real world this seems
++ fly()
+
+natural, in the class design, Ostrich
+should not inherit the Bird class
+
+➔ LSP is just an extension of Open-Close
+Principle!!!
+
+➔There should be a separate class
+
+for birds that can’t really fly and
+Ostrich inherits that
+KingFisher
+
+33
+
+Ostrich
+
+34
+35
+
+36
+
+LSP: More example
+class Square extends Rectangle {
+public void setWidth(int width) {
+super.setWidth(width);
+super.setHeight(width);
+}
+public void setHeight(int height) {
+super.setHeight(height);
+super.setWidth(height);
+}
+}
+void clientOfRectangle(Rectangle r) {
+r.setWidth(10);
+r.setHeight(20);
+print(r.area());
+}
+Rectangle r = new Square(…);
+clientOfRectangle(r); // what would be printed?
+
+LSP: Implementation Inheritance
+• Implementation inheritance
+• When you use List to implement Queue (in Java),
+use composition, not inheritance.
+• The intention is that you use only List’s
+implementation
+
+Rectangle
+
+-int width;
+-int height
++getWidth()
++setWidth()
++getHeight()
++setHeight()
++area();
+
+List
+
+is-a
+
++insert()
++delete()
++find()
+
+Square
+
++getWidth()
++setWidth()
++getHeight()
++setHeight()
+
+35
+
+
+Queue
+
++enqueue()
++dequeue()
++isEmpty()
+
+<foundation>
+List
+
++insert()
++delete()
++find()
+
+Queue
+
++enqueue()
++dequeue()
++isEmpty()
+
+List
+
++insert()
++delete()
++find()
+
+MyList
+
+Queue
+
++enqueue()
++dequeue()
++isEmpty()
+
+36
+
+9
+
+Design Principles and Patterns
+
+9/16/2025
+
+37
+
+38
+
+Exercise: LSP Violation
+
+Content
+1. OO Design Principles
+2. SOLID: Single Responsibility Principle
+3. SOLID: Open-Close Principle
+4. SOLID: Liskov Substitution Principle
+5. SOLID: Interface Segregation Principle
+6. SOLID: Dependency Inversion Principle
+
+37
+
+38
+39
+
+40
+
+ISP: Interface Segregation Principle
+
+ISP: Interface Segregation Principle (2)
+
+• “Client should not be forced to depend upon
+
+{Applying ISP}
+
+interface that they do not use.”
+Or
+• “Many client specific interfaces are better than
+one general purpose interface.”
+
+39
+
+
+40
+
+10
+
+Design Principles and Patterns
+
+9/16/2025
+
+41
+
+42
+
+ISP – A Good Design
+
+ISP – A Bad Design
+Fat Service with integrated interface
+Client A
+
+Service
+Methods
+For ClientA
+
+Client B
+
+Methods
+For ClientB
+
+Client C
+
+Methods
+For ClientC
+
+ServiceA
+Methods
+For ClientA
+
+Client B
+
+ServiceB
+Methods
+For ClientB
+
+Client C
+
+ServiceC
+Methods
+For ClientC
+
+ServiceImpl
+Methods
+For ClientA
+
+Methods
+For ClientB
+Methods
+For ClientC
+
+• Changes introduced by one client (e.g., Client A) may require
+its designated interface (ServiceA) and the service
+implementation to change.
+• However, other clients (Client A & Client C) and their Interfaces
+(ServiceB & ServiceC) are not required to change or recompile.
+
+The problem is that any change in Service introduced by one client
+(e.g., Client A) causes Service and the other clients (Client A and
+Client C) to be recompiled.
+
+41
+
+Client A
+
+Segregated Interfaces
+
+42
+43
+
+44
+
+An example of ISP violation
+
+ISP: Interface Segregation Principle (3)
+• Interfaces with too many methods (fat interfaces)
+
+are less re-usable
+• Unnecessary complexity and reduces
+maintainability or robustness in the system
+• Unnecessary coupling among the clients due to
+additional useless methods
+• When one client causes the interface to change, all
+
+other clients are forced to recompile
+
+➔ Interfaces have their own responsibility and
+thus they are re-usable.
+43
+
+
+44
+
+11
+
+Design Principles and Patterns
+
+9/16/2025
+
+45
+
+46
+
+Content
+
+DIP: Dependency Inversion Principle
+
+1. OO Design Principles
+2. SOLID: Single Responsibility Principle
+3. SOLID: Open-Close Principle
+4. SOLID: Liskov Substitution Principle
+5. SOLID: Interface Segregation Principle
+6. SOLID: Dependency Inversion Principle
+
+“High level modules should not depend upon
+low level modules. Both should depend upon
+abstractions”
+Or
+“Abstractions should not depend upon details.
+Details should depend upon abstraction.”
+Or
+“Depend upon Abstractions. Do not depend
+upon concretions.”
+
+45
+
+46
+47
+
+48
+
+DIP: An Example
+
+DIP: Dependency Inversion Principle
+• Low-level modules are more likely to change
+• High-level modules (business policies) are more
+
+likely to remain stable (i.e. purpose of the system)
+→ They should:
+• Depend upon abstraction of low level modules
+• Force low level modules to change
+
+• When violated: Lower level module changes can
+
+force high level modules to change
+Would you solder a lamp directly to the electrical wiring in a wall?
+
+47
+
+
+48
+
+12
+
+Design Principles and Patterns
+
+9/16/2025
+
+49
+
+50
+
+DIP: Dependency Inversion Principle
+
+DIP: Dependency Inversion Principle
+
+High-level modules make calls
+to low-level modules
+
+Policy Layer
+
+Policy
+
+Policy
+Layer
+
+Mechanism
+Layer
+The upper-level layer is dependent
+upon lower-level layers
+
+<<interface>>
+Policy
+Service
+
+Utility Layer
+
+Dependency Inversion: Lower-level layers
+is dependent upon upper-level layers.
+Mechanism
+
+Mechanism
+Layer
+Utility
+
+<<interface>>
+Mechanism
+Service
+
+➔ Depending upon interfaces or abstract functions and
+
+Ownership Inversion: The client (upper-level layer)
+owns the interface, not the lower-level layers
+
+classes, rather than upon concrete functions and classes
+
+49
+
+Utility
+Layer
+
+50
+51
+
+52
+
+DIP and OCP
+
+Practice: Checking L ,I & D in codebase
+
+• High-level concepts are more stable than
+
+• Checking if all classes donot follow the
+
+low-level implementation
+• Concrete things change often and abstract
+things change less often.
+• Abstractions are “hinge points”, places
+when the design can provide different
+implementations
+
+LSP, ISP & DIP in codebase
+
+51
+
+
+52
+
+13
+
+
