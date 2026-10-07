@@ -24,3 +24,14 @@
 | BR-20 | Khi soát vé lên xe, vé không thuộc chuyến đang soát là vé không hợp lệ với lý do sai chuyến. | Suy luận | UC-015 | REQ-58 | P04 UC-015 | Hiệu lực |
 | BR-21 | Khi soát vé lên xe, vé đã bị huỷ là vé không hợp lệ với lý do vé đã huỷ. | Suy luận | UC-015 | REQ-58 | P04 UC-015 | Hiệu lực |
 | BR-22 | Khi soát vé lên xe, vé đã được soát trước đó là vé không hợp lệ với lý do vé đã soát. | Suy luận | UC-015 | REQ-58 | P04 UC-015 | Hiệu lực |
+| BR-23 | Vé bán tại quầy cho khách mua trực tiếp được thanh toán bằng tiền mặt. | Sự kiện | UC-005 | REQ-22 | P06 | Hiệu lực |
+| BR-24 | Đặt chỗ qua điện thoại phải được thanh toán tại quầy chậm nhất 60 phút trước giờ xuất bến của chuyến. | Ràng buộc | UC-004, UC-005, UC-006 | REQ-27 | P06 | Hiệu lực |
+| BR-25 | Vé chỉ được đổi sang chuyến khác cùng tuyến. | Ràng buộc | UC-007 | REQ-37 | P06 | Hiệu lực |
+| BR-26 | Mỗi vé chỉ được đổi một lần. | Ràng buộc | UC-007 | REQ-38 | P06 | Hiệu lực |
+| BR-27 | Vé chỉ được đổi chậm nhất 4 giờ trước giờ xuất bến. | Ràng buộc | UC-007 | REQ-39 | P06 | Hiệu lực |
+| BR-28 | Khi vé mới đắt hơn vé cũ, hành khách trả thêm phần chênh lệch giữa giá vé mới và giá vé cũ. | Tính toán | UC-007, UC-003 | REQ-40 | P06 | Hiệu lực |
+| BR-29 | Một xe không được xếp vào hai chuyến có thời gian chạy chồng nhau. | Ràng buộc | UC-012 | REQ-43 | P06 | Hiệu lực |
+| BR-30 | Một tài xế không được xếp vào hai chuyến có thời gian chạy chồng nhau. | Ràng buộc | UC-012 | REQ-44 | P06 | Hiệu lực |
+| BR-31 | Tài xế không được lái quá 10 giờ trong một ngày. | Ràng buộc | UC-012 | REQ-45 | P06 | Hiệu lực |
+| BR-32 | Mức tăng giá lễ Tết theo phần trăm tối đa là 30%. | Ràng buộc | UC-017 | REQ-54 | P06 | Hiệu lực |
+| BR-33 | Danh sách hành khách của chuyến được gửi về máy soát vé cầm tay vào thời điểm 15 phút trước giờ xuất bến của chuyến. | Kích hoạt hành động | UC-014 | REQ-62 | P06 | Hiệu lực |
