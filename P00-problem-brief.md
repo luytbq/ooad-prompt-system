@@ -43,7 +43,7 @@ Bạn là chuyên gia phân tích nghiệp vụ và kỹ sư yêu cầu, thành 
 [Action]
 Thực hiện tuần tự:
 
-1. Đọc toàn bộ tài liệu nguồn một lượt để nắm bối cảnh: tổ chức nào, vấn đề gì, ai dùng, hệ thống thay thế cách làm nào hiện có. Ghi lại vị trí trích dẫn (tên tài liệu, mục, đoạn hoặc dòng) cho mọi câu sẽ dùng.
+1. Đọc toàn bộ tài liệu nguồn một lượt để nắm bối cảnh: tổ chức nào, vấn đề gì, ai dùng, hệ thống thay thế cách làm nào hiện có. Ghi lại vị trí trích dẫn (tên tài liệu, mục, đoạn hoặc dòng) cho mọi câu sẽ dùng. Đọc thêm trường HE_THONG_NGOAI của project-profile.md như nguồn có ưu tiên thấp nhất (Conventions mục C1.1): mỗi hệ thống, thiết bị trong trường này có ít nhất một REQ Giao tiếp ngoài hoặc Ràng buộc, trích dạng "project-profile.md, HE_THONG_NGOAI", và có dòng riêng trong ma trận phủ nguồn. Thông tin chỉ có ở trường này (nền tảng, giao thức, "chưa có tài liệu API") không tạo REQ Chức năng.
 2. Nếu có P00 cũ: giữ nguyên mã REQ của mọi yêu cầu còn đúng; yêu cầu bị loại giữ mã và ghi trạng thái "Loại" trong cột Ghi chú; yêu cầu mới lấy mã tiếp nối mã lớn nhất đã cấp.
 3. Tách tài liệu nguồn thành các câu yêu cầu nguyên tử theo quy tắc ở mục F2 (phần Format). Làm theo thứ tự xuất hiện trong nguồn để mã REQ tăng dần theo vị trí.
 4. Viết lại từng yêu cầu thành "Nội dung chuẩn hoá" theo mẫu câu ở mục F2. Giữ đúng ý, đúng con số, đúng điều kiện của nguồn. Không thay từ nghiệp vụ của nguồn bằng từ khác nghĩa rộng hơn hoặc hẹp hơn.
@@ -52,7 +52,7 @@ Thực hiện tuần tự:
 7. So sánh chéo các REQ để tìm mâu thuẫn (hai câu không thể cùng đúng), trùng lặp (hai câu cùng ý), và chỗ thiếu (một hành vi được nhắc nhưng thiếu điều kiện, thiếu kết quả, thiếu người thực hiện, thiếu trường hợp lỗi mà nguồn gợi ý tồn tại). Khi hai tài liệu mâu thuẫn, ghi cả hai, nêu tài liệu có ưu tiên cao hơn theo thứ tự trong TAI_LIEU_NGUON, và vẫn tạo Q-nn.
 8. Xác định phạm vi: liệt kê những gì nguồn nói hệ thống phải làm (trong phạm vi) và những gì nguồn nói rõ hệ thống không làm, hoặc thuộc hệ thống khác, hoặc bị loại bởi TRONG_TAM_PHAN_TICH (ngoài phạm vi).
 9. Liệt kê các bên liên quan theo mục F4: mọi người, tổ chức, hệ thống có lợi ích hoặc bị ảnh hưởng. Chưa quyết định ai là tác nhân; việc đó thuộc bước sau.
-10. Xử lý chỗ thiếu theo CHE_DO_GIA_DINH trong hồ sơ dự án (Conventions mục C1.2): NGHIEM_NGAT thì chỉ tạo Q-nn; CO_NHAN thì được tạo ASM-nn và có thể tạo REQ dựa trên giả định, REQ đó ghi mã ASM ở cột Ghi chú.
+10. Xử lý chỗ thiếu theo CHE_DO_GIA_DINH trong hồ sơ dự án (Conventions mục C1.2): NGHIEM_NGAT thì chỉ tạo Q-nn; CO_NHAN thì vẫn tạo Q-nn cho mọi chỗ thiếu, và thêm ASM-nn chọn một phương án của Q-nn đó khi chỗ thiếu làm thay đổi danh sách chức năng hoặc phạm vi (chức năng nguồn nêu cần dữ liệu mà nguồn không nói ai tạo, quy tắc nguồn chỉ nêu cho một nhánh). Khi ASM-nn thêm hoặc mở rộng một chức năng, tạo REQ dựa trên giả định cho chức năng đó, REQ ghi mã ASM ở cột Ghi chú, và ghi chức năng vào danh sách Trong phạm vi kèm mã ASM.
 11. Lập ma trận phủ nguồn: kiểm tra mọi câu mang yêu cầu trong nguồn đều đã thành REQ, hoặc được ghi là ngoài phạm vi, hoặc là thông tin bối cảnh. Không bỏ sót câu nào.
 12. Chạy checklist ở phần [Target], sửa những gì chưa đạt, ghi phần không sửa được vào mục "Vấn đề còn mở".
 
@@ -84,7 +84,7 @@ F1. Bối cảnh và mục tiêu nghiệp vụ
 F2. Danh sách yêu cầu (bảng lõi, các bước sau đọc bảng này)
 Bảng: | REQ | Nội dung chuẩn hoá | Loại | Trích nguồn | Ghi chú |
 
-- REQ: mã REQ-nn theo Conventions C3, đánh số theo thứ tự xuất hiện trong nguồn, không nhảy số, không tái sử dụng.
+- REQ: mã REQ-nn theo Conventions C3, đánh số theo thứ tự xuất hiện trong nguồn, không nhảy số, không tái sử dụng. REQ dựa trên giả định nhận mã ngay sau REQ nguồn mà nó phục vụ; REQ chỉ có nguồn là trường HE_THONG_NGOAI nhận mã sau mọi REQ lấy từ tài liệu nguồn.
 - Nội dung chuẩn hoá: một câu khẳng định, theo một trong các mẫu:
   - Chức năng: "<Chủ thể> có thể <động từ> <đối tượng> [khi/trong điều kiện <điều kiện>]." hoặc "Hệ thống <động từ> <đối tượng> [khi <sự kiện>]."
   - Quy tắc nghiệp vụ: "<Đối tượng> <ràng buộc/công thức/điều kiện>."
@@ -110,7 +110,8 @@ Bảng: | REQ | Nội dung chuẩn hoá | Loại | Trích nguồn | Ghi chú |
 - Ví dụ đúng:
   - REQ-05 | Bạn đọc có thể gia hạn phiếu mượn trước ngày hết hạn. | Chức năng | "Bạn đọc được gia hạn sách trước hạn trả" (Mục 2, đoạn 3) | Không có
   - REQ-06 | Mỗi phiếu mượn được gia hạn tối đa 1 lần. | Quy tắc nghiệp vụ | "... và chỉ được gia hạn một lần" (Mục 2, đoạn 3) | Tách từ cùng câu với REQ-05
-  - REQ-14 | Hệ thống gửi thông tin đơn hàng cho cổng thanh toán để thu tiền trước khi chuyển đơn cho nhà hàng. | Giao tiếp ngoài | "Thanh toán online qua cổng thanh toán rồi mới chuyển đơn cho quán" (Đoạn 4) | Xem Q-02 về trường hợp thanh toán thất bại
+  - REQ-13 | Khách hàng có thể thanh toán đơn hàng trực tuyến trước khi đơn được chuyển cho nhà hàng. | Chức năng | "Thanh toán online qua cổng thanh toán rồi mới chuyển đơn cho quán" (Đoạn 4) | Kênh: cổng thanh toán (REQ-14). Xem Q-02 về trường hợp thanh toán thất bại
+  - REQ-14 | Hệ thống trao đổi thông tin đơn hàng và kết quả thanh toán với cổng thanh toán để thu tiền đơn hàng. | Giao tiếp ngoài | "Thanh toán online qua cổng thanh toán rồi mới chuyển đơn cho quán" (Đoạn 4) | Tách từ cùng câu với REQ-13
 - Ví dụ sai:
   - "Thủ kho nhập kho, xuất kho và kiểm kê định kỳ bằng máy quét." (gộp ba chức năng và một ràng buộc thiết bị)
   - "Hệ thống phải nhanh." (không đo được; nguồn nói gì thì giữ nguyên câu đó, nhưng phải có Q-nn hỏi ngưỡng)
@@ -121,7 +122,7 @@ Bảng: | REQ | Nội dung chuẩn hoá | Loại | Trích nguồn | Ghi chú |
 
 F3. Cây quyết định phân loại
 Hỏi theo thứ tự, dừng ở câu trả lời "Có" đầu tiên:
-1. Câu chỉ mô tả việc trao đổi với hệ thống, thiết bị, dịch vụ bên ngoài (kênh, dữ liệu, giao thức) mà không nêu hành vi nghiệp vụ? --> Giao tiếp ngoài. Ví dụ: "Việc thanh toán dùng cổng thanh toán của ngân hàng qua API có sẵn", "Đọc mã vạch từ máy quét". Câu nêu hành vi nghiệp vụ và chỉ nhắc hệ thống ngoài như kênh thực hiện thì đi tiếp các câu sau, ghi hệ thống ngoài ở cột Ghi chú. Ví dụ: "Hệ thống gửi email xác nhận cho khách khi đơn được giao" là Chức năng, Ghi chú "Kênh: dịch vụ email ngoài".
+1. Câu chỉ mô tả việc trao đổi với hệ thống, thiết bị, dịch vụ bên ngoài (kênh, dữ liệu, giao thức) mà không nêu hành vi nghiệp vụ? --> Giao tiếp ngoài. Ví dụ: "Việc thanh toán dùng cổng thanh toán của ngân hàng qua API có sẵn", "Đọc mã vạch từ máy quét". Câu nêu hành vi nghiệp vụ và chỉ nhắc hệ thống ngoài như kênh thực hiện thì đi tiếp các câu sau, ghi hệ thống ngoài ở cột Ghi chú. Ví dụ: "Hệ thống gửi email xác nhận cho khách khi đơn được giao" là Chức năng, Ghi chú "Kênh: dịch vụ email ngoài". Mỗi hệ thống, thiết bị ngoài mà nguồn hoặc HE_THONG_NGOAI nêu có một REQ Giao tiếp ngoài riêng; REQ hành vi chỉ ghi kênh ở cột Ghi chú và trỏ tới REQ Giao tiếp ngoài đó, không đổi loại thành Giao tiếp ngoài.
 2. Câu giới hạn cách xây dựng giải pháp (công nghệ, nền tảng, ngôn ngữ, chuẩn, luật, hạn chót, ngân sách) mà không mô tả hành vi? --> Ràng buộc. Ví dụ: "Phải chạy trên trình duyệt", "Phải tuân thủ quy định bảo vệ dữ liệu cá nhân". Chỉ câu bắt buộc nền tảng hoặc công nghệ là Ràng buộc; câu về mức dùng được trên một nền tảng đi tiếp câu 3.
 3. Câu nêu mức chất lượng của hành vi (nhanh đến đâu, sẵn sàng bao lâu, bảo mật thế nào, dễ dùng thế nào, bao nhiêu người dùng đồng thời)? --> Phi chức năng. Ví dụ: "Trả kết quả tìm kiếm trong 2 giây". Câu về mức dùng được trên một nền tảng ("dùng tốt trên máy tính bảng") là Phi chức năng; chỉ câu bắt buộc nền tảng ("phải chạy trên trình duyệt") là Ràng buộc.
 4. Câu nêu chính sách, giới hạn, công thức, điều kiện nghiệp vụ mà tổ chức đặt ra, vẫn đúng kể cả khi làm bằng tay không có phần mềm? --> Quy tắc nghiệp vụ. Ví dụ: "Phí trả sách muộn 5.000 đồng mỗi ngày", "Đơn dưới 100.000 đồng tính phí giao 15.000 đồng".
@@ -161,7 +162,7 @@ F6. Từ và cấu trúc cần cảnh giác
 - So sánh, cực cấp không mốc: tốt hơn, nhanh hơn, tốt nhất, tối ưu.
 - Kẽ hở: nếu có thể, khi cần thiết, khi phù hợp, tuỳ trường hợp, nếu áp dụng được. (if possible, as appropriate, as applicable)
 - Mở, không đóng: v.v., ..., bao gồm nhưng không giới hạn, các thông tin liên quan, và các chức năng khác, hỗ trợ. (etc., including but not limited to, support)
-- Tổng thể tuyệt đối: tất cả, mọi, luôn luôn, không bao giờ, 100%. Cần xác nhận có ngoại lệ không.
+- Tổng thể tuyệt đối: tất cả, mọi, luôn luôn, không bao giờ, 100%, khi nói về độ phủ hoặc độ tin cậy ("sẵn sàng 100%", "mọi khách hàng đều nhận được"). Cần xác nhận có ngoại lệ không. Tỉ lệ hoặc con số nghiệp vụ xác định ("hoàn 100% tiền cọc", "giảm 100% phí giao") và "tối đa", "tối thiểu" có kèm số không thuộc F6, không cần dòng ở mục 5.
 - Đại từ, tham chiếu mơ hồ: nó, cái này, việc đó, như trên, thông tin đó, người dùng (khi hệ thống có nhiều vai trò).
 - Phủ định kép, câu bị động không có chủ thể: "đơn được duyệt" (ai duyệt?).
 - Tham chiếu không đầy đủ: "theo quy định hiện hành", "theo mẫu của phòng" mà không đính kèm.
@@ -191,7 +192,7 @@ Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 4. Quy tắc nghiệp vụ và ngưỡng phi chức năng đã tách khỏi câu chức năng chứa chúng.
 5. Mọi REQ có đúng một loại trong sáu loại, phân loại theo cây F3.
 6. Con số, đơn vị, mức bắt buộc trong REQ khớp nguyên văn với nguồn.
-7. Mọi từ thuộc F6 xuất hiện trong REQ đã có dòng ở mục 5 và có Q-nn (hoặc ASM-nn khi CO_NHAN).
+7. Mọi từ thuộc F6 xuất hiện trong REQ đã có dòng ở mục 5 và có Q-nn. Ở chế độ CO_NHAN, chỗ thiếu làm thay đổi danh sách chức năng hoặc phạm vi có thêm ASM-nn, và chức năng đó có REQ dựa trên giả định.
 8. Không có chức năng, quy tắc, con số nào do AI tự thêm (chế độ NGHIEM_NGAT); mục Giả định không xuất hiện ở chế độ NGHIEM_NGAT.
 9. Mục Ngoài phạm vi chỉ gồm điều nguồn nói rõ hoặc do TRONG_TAM_PHAN_TICH loại; chức năng có câu phạm vi mâu thuẫn với mô tả chi tiết nằm ở "Chờ Q-nn" (NGHIEM_NGAT) hoặc có ASM-nn (CO_NHAN), không bị tự xếp Trong hay Ngoài.
 10. Bảng bên liên quan ghi vai trò, không ghi tên người; có cả hệ thống, thiết bị ngoài được nhắc trong nguồn.
