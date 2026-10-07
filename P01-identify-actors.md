@@ -50,7 +50,8 @@ Bước 1. Xác định ranh giới hệ thống (subject).
   - Trong: dự án xây dựng, cấu hình hoặc chịu trách nhiệm về hành vi của nó. Thành phần bên trong không bao giờ là tác nhân.
   - Ngoài: đã tồn tại độc lập, do bên khác sở hữu hoặc vận hành, hệ thống chỉ giao tiếp qua giao diện (API, giao thức, tệp trao đổi, tín hiệu thiết bị).
   - Nếu QUYET_DINH_RANH_GIOI đã chốt thì dùng đúng quyết định đó.
-  - Thành phần có trong trường HE_THONG_NGOAI của hồ sơ dự án là Ngoài, trừ khi tài liệu nguồn nói khác; cột Căn cứ ghi "Hồ sơ dự án: HE_THONG_NGOAI".
+  - Thành phần có trong trường HE_THONG_NGOAI của hồ sơ dự án là Ngoài, trừ khi tài liệu nguồn nói khác; cột Căn cứ ghi "Hồ sơ dự án: HE_THONG_NGOAI". Giả định ASM-nn về ranh giới đã ghi ở P00 có giá trị như tài liệu nguồn nói khác.
+  - Thiết bị trong HE_THONG_NGOAI mà dự án cài phần mềm của hệ thống lên (máy cầm tay, kiosk, máy bán hàng tại quầy) khi nguồn giao cho nó hành vi nghiệp vụ (kiểm tra, tính toán, lưu dữ liệu, gửi kết quả): phần mềm chạy trên thiết bị là Trong, không phải tác nhân. Phần cứng là nền tảng, ghi Ngoài với Hệ quả "Ngoài, không phải tác nhân (nền tảng chạy thành phần nội bộ)". Bộ phận nhập liệu gắn liền của thiết bị đó (màn hình cảm ứng, bàn phím, đầu quét tích hợp, camera) là kênh nhập như bàn phím, không phải tác nhân, không ghi dòng riêng. Chỉ thiết bị rời có giao tiếp riêng với phần mềm (máy in nối qua mạng, barrier nhận lệnh) mới là tác nhân Thiết bị. Ví dụ (quản lý kho): "máy cầm tay của thủ kho, do công ty trang bị, chạy ứng dụng kiểm kê và tự đối chiếu số lượng" --> Ứng dụng kiểm kê: Trong; máy cầm tay: Ngoài, nền tảng; đầu quét tích hợp trên máy: kênh nhập; Thủ kho là tác nhân chính.
   - Nếu nguồn không đủ để quyết định: ở chế độ NGHIEM_NGAT ghi câu hỏi Q-nn; ở chế độ CO_NHAN ghi giả định ASM-nn. Không im lặng chọn.
 1.3. Kho dữ liệu của chính hệ thống (cơ sở dữ liệu, tệp lưu trữ, bộ nhớ đệm, bộ nhớ thiết bị của ứng dụng) luôn ở Trong. Một cơ sở dữ liệu thuộc sở hữu của hệ thống khác, mà hệ thống chỉ đọc hoặc ghi qua giao diện và không quản lý nội dung, thì ở Ngoài và được xét như một hệ thống ngoài.
 
@@ -106,7 +107,7 @@ Một câu nêu hệ thống cần xây dựng. Sau đó là bảng:
 | Thành phần | Trong / Ngoài / Chờ Q-nn | Căn cứ (REQ hoặc trích nguồn, Q, ASM) | Hệ quả |
 - Thành phần: mọi phần mềm, thiết bị, hệ thống, kho dữ liệu được nguồn nhắc tới.
 - Trong / Ngoài / Chờ Q-nn: "Chờ Q-nn" chỉ dùng ở chế độ NGHIEM_NGAT khi Bước 1.2 chưa quyết định được, kèm Hệ quả "Chờ trả lời Q-nn"; ở chế độ CO_NHAN ghi Trong hoặc Ngoài và nêu ASM-nn ở cột Căn cứ.
-- Hệ quả: "Là tác nhân ACT-nn", "Là thành phần nội bộ, không phải tác nhân", hoặc "Chờ trả lời Q-nn".
+- Hệ quả: "Là tác nhân ACT-nn", "Là thành phần nội bộ, không phải tác nhân", "Ngoài, không phải tác nhân (<đường truyền / nền tảng chạy thành phần nội bộ / cách làm cũ được thay thế>)" kèm dòng tương ứng ở Mục 4, hoặc "Chờ trả lời Q-nn".
 - Lỗi thường gặp: coi cơ sở dữ liệu, máy chủ, mô-đun, ứng dụng di động của chính hệ thống là tác nhân; bỏ sót thành phần mà nguồn chỉ nhắc thoáng qua (ví dụ "gửi tin nhắn cho khách" ngụ ý một cổng tin nhắn ngoài; ở chế độ NGHIEM_NGAT chỉ ghi nhận khi nguồn nêu rõ đó là hệ thống bên ngoài, ngược lại thành câu hỏi mở).
 - Ví dụ đúng: "Cổng thanh toán của ngân hàng | Ngoài | REQ-12 | Là tác nhân ACT-05". "Cơ sở dữ liệu đơn hàng | Trong | REQ-03 | Là thành phần nội bộ, không phải tác nhân".
 - Ví dụ sai: "Hệ quản trị CSDL | Ngoài | ... | Là tác nhân" (sai vì CSDL của chính hệ thống là thành phần nội bộ, dù phần mềm quản trị CSDL do hãng khác làm ra).
@@ -127,7 +128,7 @@ Cột Tên (VI), Tên (EN):
 Cột Loại:
 - Người: vai trò do con người đảm nhận, tương tác qua giao diện người dùng.
 - Hệ thống ngoài: phần mềm độc lập bên ngoài ranh giới, trao đổi qua giao diện máy (API, tệp, hàng đợi thông điệp). Hệ thống ngoài có thể là tác nhân chính (tự gửi yêu cầu tới hệ thống) hoặc phụ.
-- Thiết bị: phần cứng bên ngoài có hành vi riêng và giao thức riêng mà hệ thống phải giao tiếp (máy quét mã vạch gửi mã, cảm biến gửi tín hiệu, barrier nhận lệnh mở, máy in hoá đơn nhận lệnh in). Bàn phím, chuột, màn hình cảm ứng mà con người dùng để thao tác không phải tác nhân: người thao tác mới là tác nhân.
+- Thiết bị: phần cứng bên ngoài có hành vi riêng và giao thức riêng mà hệ thống phải giao tiếp (máy quét mã vạch gửi mã, cảm biến gửi tín hiệu, barrier nhận lệnh mở, máy in hoá đơn nhận lệnh in). Bàn phím, chuột, màn hình cảm ứng mà con người dùng để thao tác không phải tác nhân: người thao tác mới là tác nhân. Bộ phận nhập liệu gắn liền một thiết bị chạy phần mềm của hệ thống (đầu quét tích hợp trên máy cầm tay) cũng vậy (Bước 1.2).
 - Thời gian: tác nhân đại diện cho sự kiện theo lịch, khởi xướng các chức năng chạy định kỳ hoặc tại một thời điểm mà nguồn nêu rõ, không có người hay hệ thống nào ra lệnh. Chỉ tạo khi nguồn có hành vi như vậy. Tác vụ kỹ thuật (sao lưu, dọn nhật ký) không tạo tác nhân thời gian nếu nguồn chỉ nêu như yêu cầu phi chức năng.
 
 Cột Tính chất:
@@ -164,7 +165,7 @@ Nếu không có, ghi "Không có".
 
 Mục 4. Ứng viên tác nhân bị loại
 | Ứng viên | Lý do loại | REQ |
-- Lý do loại phải nêu phép thử không đạt (A-T1 đến A-T6) và giải thích một câu, hoặc nêu "Gộp vào ACT-nn" khi là tên đồng nghĩa.
+- Lý do loại phải nêu phép thử không đạt (A-T1 đến A-T6) và giải thích một câu, hoặc nêu "Gộp vào ACT-nn" khi là tên đồng nghĩa, hoặc nêu "Bước 2.3: hết giờ chờ trong phiên, là luồng thay thế của use case" khi ứng viên tác nhân thời gian bị loại theo Bước 2.3.
 - Mỗi danh từ chủ thể trong nguồn mà không thành tác nhân phải xuất hiện ở bảng này hoặc ở Mục 3, để người đọc thấy nó đã được xét.
 - Ví dụ đúng: "Cơ sở dữ liệu | A-T1: thành phần nội bộ của hệ thống | REQ-03". "Khách vãng lai | Gộp vào ACT-01 Khách hàng: cùng mục tiêu và cùng quyền | REQ-01". "Máy chủ | A-T1: hạ tầng của chính hệ thống | -". "Kế toán trưởng | A-T2: chỉ nhận báo cáo in từ Kế toán kho, không thao tác trên hệ thống | REQ-15 (xếp vào Mục 3)".
 
@@ -198,7 +199,7 @@ Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 7. Mọi quan hệ tổng quát hoá thoả phép thử "là một" và có ít nhất hai con.
 8. Mọi REQ loại Chức năng và Giao tiếp ngoài liên quan tới ít nhất một tác nhân, hoặc có lý do trong "Vấn đề còn mở".
 9. Mọi danh từ chủ thể trong nguồn đã được xét: là tác nhân, là bên liên quan ở Mục 3, hoặc là ứng viên bị loại ở Mục 4.
-10. Không có tác nhân hoặc mục tiêu nào dựa trên hiểu biết chung ngoài nguồn; chỗ thiếu đã thành Q-nn (NGHIEM_NGAT) hoặc ASM-nn (CO_NHAN).
+10. Không có tác nhân hoặc mục tiêu nào dựa trên hiểu biết chung ngoài nguồn; chỗ thiếu đã thành Q-nn (NGHIEM_NGAT) hoặc ASM-nn (CO_NHAN). Ở chế độ CO_NHAN, mỗi REQ dựa trên giả định của P00 và mỗi chỗ thiếu làm đổi danh sách tác nhân hoặc mục tiêu (Conventions mục C1.2) có tác nhân và mục tiêu tương ứng kèm mã ASM.
 11. Artifact có đủ các mục kiểm soát theo C5, mục trống ghi "Không có".
 
 [Yêu cầu bổ sung]
