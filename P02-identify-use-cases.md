@@ -37,6 +37,7 @@ Kết quả là đầu vào của P03 (sơ đồ use case và quan hệ), P04 (�
 ````text
 [Context]
 Đọc theo thứ tự: 00-Conventions.md (luật chung, bắt buộc tuân thủ), project-profile.md, P00-problem-brief.md (bảng REQ, phạm vi), P01-actors.md (tác nhân đã chốt), rồi tài liệu nguồn.
+Nếu có P02-usecases.md cũ và P02R-review.md đi kèm thì đây là lần chạy lại sau review: giữ mọi mã UC, CAND, EV, Q, ASM; chỉ áp dụng các UCR ghi trong Yêu cầu bổ sung, cùng các sửa hệ quả để artifact nhất quán; chép các Q-nn do P02R cấp vào mục Câu hỏi mở (giữ mã, cột Nguồn gây mơ hồ ghi "P02R"); tăng phiên bản; ghi các phần tử đã đổi theo từng UCR vào mục "Thay đổi so với phiên bản trước" (Mục 7). UCR không áp dụng ghi mã và lý do vào mục Vấn đề còn mở.
 Nếu không có P00-problem-brief.md, dùng trực tiếp tài liệu nguồn và thay mã REQ bằng trích dẫn ngắn trong ngoặc kép kèm vị trí. Nếu không có P01-actors.md, dừng lại và yêu cầu chạy P01 trước, trừ khi yêu cầu bổ sung cho phép tự xác định tác nhân (khi đó áp dụng tóm tắt: tác nhân là vai trò bên ngoài ranh giới, tương tác trực tiếp, có mục tiêu hoặc cung cấp dịch vụ, có căn cứ trong nguồn).
 
 Phạm vi lần chạy:
@@ -123,7 +124,7 @@ Bước 7. Gộp, tách, loại lần cuối trên các ứng viên "Giữ".
 Bước 8. Đặt tên theo quy tắc U-N1 đến U-N8 ở [Format]. Kiểm tra từng tên với danh sách từ cấm.
 
 Bước 9. Hoàn thiện bảng use case.
-9.1. Cấp mã UC-nnn theo thứ tự: nhóm chức năng, trong nhóm theo trình tự thời gian nghiệp vụ (việc xảy ra trước đánh số trước). Nhóm chứa use case khởi đầu quy trình nghiệp vụ chính được đánh số trước; các nhóm còn lại theo thứ tự xuất hiện trong nguồn. Quy trình nghiệp vụ chính là quy trình tạo ra giá trị cốt lõi cho tác nhân chính quan trọng nhất (tác nhân đặt trên cùng theo P03 L-02). Nhóm chứa điều kiện tiên quyết của quy trình đó (đăng ký tài khoản, đăng ký thành viên) đánh số trước nhóm quy trình.
+9.1. Cấp mã UC-nnn theo thứ tự: nhóm chức năng, trong nhóm theo trình tự thời gian nghiệp vụ (việc xảy ra trước đánh số trước). Nhóm chứa use case khởi đầu quy trình nghiệp vụ chính được đánh số trước; các nhóm còn lại theo thứ tự xuất hiện trong nguồn. Quy trình nghiệp vụ chính là quy trình tạo ra giá trị cốt lõi cho tác nhân chính quan trọng nhất (tác nhân người có nhiều UC User-goal nhất; nếu hoà thì chọn tác nhân gắn với mục tiêu nghiệp vụ đầu tiên ở P00 mục 1). Nhóm chứa điều kiện tiên quyết của quy trình đó (đăng ký tài khoản, đăng ký thành viên) đánh số trước nhóm quy trình. Chỉ tính UC mà chính tác nhân chính đó phải làm trước; dữ liệu do tác nhân khác chuẩn bị (lịch làm việc của bác sĩ, thực đơn của nhà hàng) không làm nhóm chứa nó được đánh số trước.
 9.2. Điền đủ các cột theo [Format]; xác định tác nhân phụ bằng cách hỏi "trong use case này hệ thống cần gọi tới ai hoặc cái gì bên ngoài?".
 9.3. Chia nhóm chức năng theo [Format] cột Nhóm chức năng.
 
@@ -175,7 +176,7 @@ U-R01 Đăng nhập.
 - Quy tắc: khi nguồn yêu cầu xác thực, tạo một UC "Đăng nhập" (Log In), tác nhân chính là mọi tác nhân người phải xác thực (hoặc tác nhân cha của họ nếu P01 đã có tổng quát hoá). Đăng nhập được mô hình hoá như một use case riêng vì nó là một cuộc đối thoại hoàn chỉnh với hệ thống, có luồng thay thế và ngoại lệ riêng (sai mật khẩu, khoá tài khoản).
 - Không nối Đăng nhập vào mọi UC bằng include; việc đã đăng nhập được ghi là tiền điều kiện của các UC khác ở P04.
 - Cột Mức ghi "Subfunction" và Mô tả ngắn nêu rõ đây là điều kiện để dùng các UC khác. Lý do: tự nó không qua được Boss test, nhưng việc tách riêng giúp mọi UC khác không lặp lại phần xác thực.
-- Nguồn không nói thẳng yêu cầu xác thực nhưng ngụ ý (nhắc "đăng nhập", "tài khoản", "mật khẩu" của một vai trò, hoặc nêu một chức năng "không cần đăng nhập"): vẫn tạo UC Đăng nhập, chỉ nối các tác nhân mà nguồn nhắc tài khoản hoặc đăng nhập của họ; tác nhân người còn lại ghi Q-nn (NGHIEM_NGAT) hoặc ASM-nn (CO_NHAN) về việc có phải đăng nhập không, chưa nối.
+- Nguồn không nói thẳng yêu cầu xác thực nhưng ngụ ý (nhắc "đăng nhập", "tài khoản", "mật khẩu" của một vai trò, hoặc nêu một chức năng "không cần đăng nhập"): vẫn tạo UC Đăng nhập, chỉ nối các tác nhân mà nguồn nhắc tài khoản hoặc đăng nhập của họ; với tác nhân người còn lại: ở NGHIEM_NGAT ghi Q-nn về việc có phải đăng nhập không, và chưa nối; ở CO_NHAN ghi ASM-nn nêu những tác nhân phải đăng nhập, nối các tác nhân đó với UC Đăng nhập (cột Tác nhân chính), và ghi mã ASM ở cột Lý do của ứng viên Đăng nhập.
 - Nếu nguồn không nêu và không ngụ ý xác thực, không tạo (U-T10).
 
 U-R02 Đăng xuất.
@@ -213,6 +214,7 @@ U-R06 Thông báo và nhắc nhở.
 U-R07 Tác vụ theo lịch.
 - Là UC với tác nhân chính là tác nhân thời gian khi đồng thời: nguồn nêu rõ thời điểm hoặc chu kỳ; không có người hay hệ thống ngoài ra lệnh; kết quả có giá trị nghiệp vụ cho một bên liên quan (tự huỷ lịch hẹn mà bệnh nhân chưa xác nhận qua tin nhắn trong 24 giờ sau khi đặt, để giải phóng khung giờ; tính phí phạt quá hạn cuối ngày; lập báo cáo tồn kho cuối ngày gửi kế toán); và mốc thời gian rơi vào lúc không còn phiên nào của tác nhân đang mở.
 - Hết giờ chờ trong phiên: khi tác nhân chính vẫn đang ở phiên của một UC và hệ thống chờ một sự kiện có hạn giờ (chờ tác nhân thao tác tiếp, chờ thiết bị hoặc hệ thống ngoài phản hồi, chờ thanh toán), việc hết hạn là luồng thay thế hoặc ngoại lệ của chính UC đó. Không tạo UC riêng, không tạo tác nhân thời gian; ứng viên kết luận "Là bước của UC-nnn" và ghi "U-R07 hết giờ trong phiên" ở cột Lý do. Ví dụ (ATM): khách không rút tiền trong 30 giây sau khi máy đẩy tiền ra thì máy thu hồi tiền là luồng thay thế của "Rút tiền"; ví dụ (khách sạn): khách không hoàn tất thanh toán trong 10 phút thì phòng giữ tạm được nhả là luồng thay thế của "Đặt phòng".
+- Tác vụ có mốc thời gian nguồn nêu rõ, chỉ chuyển dữ liệu giữa hai thành phần Trong ranh giới để phục vụ một tác nhân người ở UC khác (gửi danh sách giao hàng xuống ứng dụng của tài xế 30 phút trước ca), vẫn là UC của tác nhân thời gian; ghi tác nhân hưởng lợi ở cột Mục tiêu. Q1 không áp dụng cho trường hợp này vì đã có sự kiện thời gian kích hoạt.
 - Tên đặt theo kết quả nghiệp vụ ("Huỷ lịch hẹn quá hạn xác nhận", "Nhắc lịch khám"), không đặt "Chạy tác vụ đêm".
 - Nếu P01 không có tác nhân thời gian mà nguồn có hành vi này: ghi vào "Đề xuất sửa artifact trước" (bước P01) và vẫn lập ứng viên.
 - Tác vụ kỹ thuật (sao lưu, dọn dữ liệu tạm) theo U-AP16.
@@ -233,12 +235,12 @@ U-R10 Nhập liệu thay mặt người khác (người đại diện).
      - Luồng của người đại diện có một đoạn tương tác riêng từ 2 bước trở lên mà luồng của người được đại diện không có, ví dụ tạo hồ sơ cho người được phục vụ, xác minh danh tính người được phục vụ.
      - Kết quả khác nhau: đối tượng được tạo hoặc thay đổi kết thúc ở trạng thái khác (phòng do nhân viên quầy đặt được giữ ngay, phòng do khách tự đặt chờ đặt cọc).
      Tên phân biệt theo góc nhìn tác nhân ("Đặt phòng" và "Đặt phòng cho khách"), phần chung là ứng viên include ở P03.
-  b) Không thoả a: một UC, nối với cả hai tác nhân chính, khác biệt thành luồng thay thế ở P04. Trường hợp này gồm: chỉ khác một bước tìm hoặc chọn người, đối tượng được phục vụ (một bước, không tính là đoạn tương tác riêng); chỉ khác điều kiện hoặc ngưỡng của cùng một quy tắc (mốc thời gian, giới hạn số lượng khác nhau theo vai trò), ghi thành BR có điều kiện theo vai trò ở P04. Nếu hai tác nhân dùng chung nhiều UC như vậy, đề xuất tác nhân cha ở P01.
+  b) Không thoả a: một UC, nối với cả hai tác nhân chính, khác biệt thành luồng thay thế ở P04. Trường hợp này gồm: chỉ khác một bước tìm hoặc chọn người, đối tượng được phục vụ (một bước, không tính là đoạn tương tác riêng); chỉ khác điều kiện hoặc ngưỡng của cùng một quy tắc (mốc thời gian, giới hạn số lượng khác nhau theo vai trò), ghi thành BR có điều kiện theo vai trò ở P04. Nếu hai tác nhân dùng chung nhiều UC như vậy, xét đề xuất tác nhân cha theo U-R11.
 - Ghi vào cột Lý do: "U-R10 a" kèm điều kiện thoả, hoặc "U-R10 b".
 
 U-R11 Nhiều tác nhân cùng một UC.
 - Một UC có thể có nhiều tác nhân được phép khởi xướng; mỗi lần thực hiện chỉ có một người khởi xướng. Ghi tất cả vào cột Tác nhân chính.
-- Khi từ hai tác nhân trở lên cùng khởi xướng từ hai UC trở lên giống nhau, đề xuất tổng quát hoá tác nhân (ghi vào "Đề xuất sửa artifact trước", bước P01) thay vì nối nhiều đường.
+- Khi từ hai tác nhân trở lên cùng khởi xướng từ hai UC trở lên giống nhau, chỉ đề xuất tổng quát hoá tác nhân (ghi vào "Đề xuất sửa artifact trước", bước P01) khi các tác nhân thoả điều kiện ở P01 Bước 5: phép thử "là một" và nguồn cho thấy họ làm các việc chung theo cùng một cách. Tác nhân khác bản chất (khách tự làm và nhân viên làm hộ theo U-R10 b) giữ nhiều association, không đề xuất.
 
 U-R12 Biến thể của cùng một mục tiêu.
 - Biến thể theo phương thức, kênh, loại dữ liệu (thanh toán tiền mặt hay thẻ, tìm theo tên hay theo mã, nhận phòng có đặt trước hay khách vãng lai) mặc định là luồng thay thế của một UC (U-AP15).
@@ -302,7 +304,8 @@ Mục 2. Danh sách sự kiện
 Mục 3. Bảng ứng viên use case
 | CAND | Ứng viên | Kết luận | Phép thử không đạt | Lý do | REQ | Nguồn phát hiện |
 - Kết luận: một trong "Giữ thành UC-nnn", "Gộp vào UC-nnn", "Là bước của UC-nnn", "Tách thành CAND-xx, CAND-yy", "Loại", "Chờ Q-nn".
-- "Chờ Q-nn": ứng viên có dấu hiệu trong nguồn nhưng chưa đủ căn cứ để giữ hoặc loại, và câu hỏi mở Q-nn quyết định số phận của nó. Cột Lý do nêu câu trả lời nào dẫn tới UC. Ứng viên này không vào Mục 4; P03 bỏ qua. Khi Q-nn được trả lời, chạy lại P02 để đổi kết luận. Không dùng "Chờ Q-nn" cho ứng viên không có căn cứ trong nguồn (kết luận "Loại" theo U-T10).
+- "Chờ Q-nn" chỉ dùng ở chế độ NGHIEM_NGAT. Ở chế độ CO_NHAN, ứng viên có dấu hiệu trong nguồn nhưng chưa đủ căn cứ thì được tạo ASM-nn chọn một phương án của Q-nn (hoặc dùng ASM-nn mà P00, P01 đã ghi), kết luận theo ASM đó và ghi mã ASM ở cột Lý do; Q-nn vẫn giữ để người dùng xác nhận (Conventions mục C1.2). Ví dụ (phòng khám): nguồn nêu lễ tân xếp lịch làm việc của bác sĩ nhưng không nói ai tạo hồ sơ bác sĩ --> CO_NHAN: ASM-nn "Quản trị viên tạo và sửa hồ sơ bác sĩ", ứng viên "Quản lý hồ sơ bác sĩ" kết luận Giữ thành UC-nnn; NGHIEM_NGAT: Chờ Q-nn. Tác nhân chính của UC theo ASM lấy trong P01; P01 không có vai trò phù hợp thì ghi "Đề xuất sửa artifact trước" (bước P01) và vẫn kết luận theo ASM với tác nhân được đề xuất.
+- "Chờ Q-nn" (NGHIEM_NGAT): ứng viên có dấu hiệu trong nguồn nhưng chưa đủ căn cứ để giữ hoặc loại, và câu hỏi mở Q-nn quyết định số phận của nó. Cột Lý do nêu câu trả lời nào dẫn tới UC. Ứng viên này không vào Mục 4; P03 bỏ qua. Khi Q-nn được trả lời, chạy lại P02 để đổi kết luận. Không dùng "Chờ Q-nn" cho ứng viên không có căn cứ trong nguồn (kết luận "Loại" theo U-T10).
 - Phép thử không đạt: mã U-T và mã U-AP liên quan, hoặc "-" khi Giữ.
 - Lý do: một câu, nêu mã U-R nếu đã áp dụng.
 - Nguồn phát hiện: Mục tiêu / Sự kiện / Động từ, kèm mã EV nếu có.
@@ -355,13 +358,13 @@ Cột CAND nguồn: các CAND đã giữ hoặc gộp vào UC này.
 
 Mục 5. Ma trận truy vết REQ --> UC
 | REQ | Nội dung tóm tắt | UC phủ | Ghi chú (lý do nếu không phủ) |
-- Liệt kê mọi REQ loại Chức năng và Giao tiếp ngoài. REQ loại Quy tắc nghiệp vụ, Dữ liệu, Phi chức năng liệt kê khi đã gắn với UC cụ thể; còn lại ghi "Chuyển P06".
+- Liệt kê mọi REQ của P00, mỗi REQ một dòng. REQ Chức năng và Giao tiếp ngoài phải có UC phủ hoặc có lý do. REQ Quy tắc nghiệp vụ, Dữ liệu, Phi chức năng, Ràng buộc ghi UC khi đã gắn với UC cụ thể; chưa gắn thì cột UC phủ ghi "-" và cột Ghi chú ghi "Chuyển P06".
 
 Mục 6. Thống kê và nhận xét ngưỡng
 | ACT | Số UC là tác nhân chính | Số UC là tác nhân phụ | Nhận xét |
 Cuối bảng ghi: tổng số UC, số UC mỗi nhóm, số UC mức Subfunction, và nhận xét khi lệch mức hợp lý.
 
-Mục 7. Các mục kiểm soát theo Conventions C5.
+Mục 7. Các mục kiểm soát theo Conventions C5. Khi chạy lại sau review, thêm mục "Thay đổi so với phiên bản trước" đặt trước mục Câu hỏi mở: | UCR | Phần tử đã đổi (UC, CAND, dòng REQ) | Thay đổi |. Sửa hệ quả không thuộc UCR nào ghi UCR là "Hệ quả của UCR-xx".
 
 === Phần E. Mức hợp lý (heuristic, không phải luật cứng) ===
 - Mỗi tác nhân chính người thường có khoảng 2-12 UC. Trên khoảng 15 là dấu hiệu phân rã chức năng hoặc tác nhân quá rộng; chỉ 1 UC là bình thường với tác nhân thời gian và hệ thống ngoài, nhưng với tác nhân người thì nên kiểm tra lại mục tiêu có bị gộp quá mức không.
@@ -374,7 +377,7 @@ Mục 7. Các mục kiểm soát theo Conventions C5.
 Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 1. Mọi tác nhân chính trong P01 có ít nhất một dòng ở danh sách mục tiêu và ít nhất một UC.
 2. Mọi sự kiện ở Mục 2 có ứng viên tương ứng, và ứng viên đó có kết luận cuối.
-3. Mọi ứng viên có đúng một kết luận thuộc sáu giá trị cho phép; mọi kết luận "Chờ Q-nn" trỏ tới câu hỏi có trong mục Câu hỏi mở; mọi tham chiếu UC-nnn, CAND-nn trỏ tới phần tử tồn tại.
+3. Mọi ứng viên có đúng một kết luận thuộc sáu giá trị cho phép; mọi kết luận "Chờ Q-nn" trỏ tới câu hỏi có trong mục Câu hỏi mở, và ở chế độ CO_NHAN không có kết luận "Chờ Q-nn" (ứng viên đó có ASM-nn); mọi tham chiếu UC-nnn, CAND-nn trỏ tới phần tử tồn tại.
 4. Mọi UC mức User-goal đạt U-T1 đến U-T12, trừ phép thử bị một quy tắc U-R hoặc QUY_UOC_DA_CHOT ghi đè (mã U-R hoặc quy ước đó được ghi ở cột Lý do); mọi UC mức Subfunction thoả Q4 hoặc U-R01.
 5. Không UC nào khớp một anti-pattern U-AP01 đến U-AP16.
 6. Mọi tên UC tuân thủ U-N1 đến U-N8; không có từ cấm.

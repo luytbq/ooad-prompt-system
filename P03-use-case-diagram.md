@@ -24,7 +24,7 @@ Sơ đồ use case là bản cam kết giữa khách hàng và đội phát tri�
 
 - Đính kèm: 00-Conventions.md, project-profile.md, P00-problem-brief.md, P01-actors.md, P02-usecases.md.
 - Chạy một lần cho toàn hệ thống. Chạy lại khi P01 hoặc P02 thay đổi; giữ nguyên mã quan hệ đã cấp.
-- Sau P02R mà không áp dụng UCR nào (P02 không chạy lại): ghi vào YEU_CAU_BO_SUNG "Đã review P02R <phiên bản>, không áp dụng UCR-xx, UCR-yy (lý do)"; P03 chép dòng này vào mục Vấn đề còn mở.
+- Sau P02R mà không áp dụng UCR nào (P02 không chạy lại): ghi vào YEU_CAU_BO_SUNG "Đã review P02R <phiên bản>, không áp dụng UCR-xx, UCR-yy (lý do)" và các Q-nn mới của P02R; P03 chép dòng này vào mục Vấn đề còn mở, chép các Q-nn vào mục Câu hỏi mở.
 - Khi chạy bằng chat (không có quyền ghi file), AI trả nội dung P03-usecase-model.md và nội dung từng file .drawio trong các code block riêng (Mục 6); người dùng lưu thành file theo tên đã ghi. Khi chạy bằng agent có quyền ghi file, XML chỉ nằm trong file .drawio, Mục 6 chỉ ghi đường dẫn.
 - Placeholder cần điền trong prompt:
 
@@ -39,7 +39,7 @@ Sơ đồ use case là bản cam kết giữa khách hàng và đội phát tri�
 ````text
 [Context]
 Đọc theo thứ tự: 00-Conventions.md (luật chung, đặc biệt mục C7), project-profile.md, P00-problem-brief.md, P01-actors.md, P02-usecases.md.
-Chỉ dùng tác nhân có trong P01 và use case có trong P02 Mục 4 (bảng 4a; bỏ qua ứng viên có kết luận khác "Giữ"). Nếu YEU_CAU_BO_SUNG ghi đã review P02R mà không áp dụng UCR nào, chép nguyên dòng đó vào mục Vấn đề còn mở. Không đổi tên, mã, tác nhân chính hoặc phụ của use case đã chốt; nếu thấy P02 hoặc P01 sai, ghi vào "Đề xuất sửa artifact trước".
+Chỉ dùng tác nhân có trong P01 và use case có trong P02 Mục 4 (bảng 4a; bỏ qua ứng viên có kết luận khác "Giữ"). Nếu YEU_CAU_BO_SUNG ghi đã review P02R mà không áp dụng UCR nào, chép nguyên dòng đó vào mục Vấn đề còn mở, và chép các Q-nn của P02R ghi kèm (giữ mã, cột Nguồn gây mơ hồ ghi "P02R") vào mục Câu hỏi mở. Không đổi tên, mã, tác nhân chính hoặc phụ của use case đã chốt; nếu thấy P02 hoặc P01 sai, ghi vào "Đề xuất sửa artifact trước".
 
 Kiểu đường association:
 {{PH:KIEU_DUONG_ASSOCIATION | Hướng dẫn: [TUỲ CHỌN] chọn một. KHONG_MUI_TEN (mặc định theo Conventions C7): đường liền, không đầu mũi tên. MUI_TEN_KHOI_XUONG: đường liền, đuôi ở bên khởi xướng, đầu mũi tên mở ở bên nhận (tác nhân chính --> use case; use case --> tác nhân phụ). Dùng mặc định thì thay cả khối bằng "Không có" | Ví dụ: "KHONG_MUI_TEN" ; "MUI_TEN_KHOI_XUONG"}}

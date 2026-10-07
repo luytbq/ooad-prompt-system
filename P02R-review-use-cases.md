@@ -76,7 +76,7 @@ Nhóm A - Tác nhân
 - A-T6 Có căn cứ trong nguồn.
 - A-N Tên: danh từ số ít, thuật ngữ nghiệp vụ, thể hiện trách nhiệm; nhất quán giữa danh sách và sơ đồ.
 - A-G Tổng quát hoá tác nhân: con "là một" cha, kế thừa mọi use case của cha; tam giác rỗng ở phía cha; không mô tả cấp bậc tổ chức.
-- A-C Tính chất: tác nhân chính là bên khởi xướng để đạt mục tiêu của mình; tác nhân phụ là bên hệ thống gọi tới để hoàn tất use case. Hệ thống ngoài tự gửi yêu cầu vào lúc nó quyết định thì là tác nhân chính của use case tương ứng. Tác vụ theo lịch có tác nhân chính là tác nhân thời gian; hết giờ chờ trong một phiên đang mở không có tác nhân thời gian (U-R07). Người tác động lên hệ thống qua một thiết bị (quét thẻ hoặc mã, đưa vật vào thiết bị, bấm nút trên máy) là tác nhân chính khi họ là người muốn kết quả; thiết bị là tác nhân phụ nếu nằm ngoài ranh giới và có giao tiếp riêng, chỉ là kênh nhập nếu thuộc ranh giới; thiết bị chỉ là tác nhân chính khi tự phát sự kiện không có người nào có mục tiêu đứng sau (cảm biến tự báo) (U-R18). Các loại lỗi cần bắt:
+- A-C Tính chất: tác nhân chính là bên khởi xướng để đạt mục tiêu của mình; tác nhân phụ là bên hệ thống gọi tới để hoàn tất use case. Hệ thống ngoài tự gửi yêu cầu vào lúc nó quyết định thì là tác nhân chính của use case tương ứng. Tác vụ theo lịch có tác nhân chính là tác nhân thời gian; hết giờ chờ trong một phiên đang mở không có tác nhân thời gian (U-R07). Người tác động lên hệ thống qua một thiết bị (quét thẻ hoặc mã, đưa vật vào thiết bị, bấm nút trên máy) là tác nhân chính khi họ là người muốn kết quả; thiết bị là tác nhân phụ nếu nằm ngoài ranh giới và có giao tiếp riêng, chỉ là kênh nhập nếu thuộc ranh giới; thiết bị chỉ là tác nhân chính khi tự phát sự kiện không có người nào có mục tiêu đứng sau (cảm biến tự báo) (U-R18). Thiết bị ngoài mà dự án cài phần mềm của hệ thống lên (máy cầm tay, kiosk) khi nguồn giao cho nó hành vi nghiệp vụ: phần mềm là thành phần Trong, phần cứng là nền tảng, bộ phận nhập liệu gắn liền (đầu quét tích hợp, camera, màn hình cảm ứng) là kênh nhập; không phần nào là tác nhân. Các loại lỗi cần bắt:
   - A-C1 Thiết bị làm tác nhân chính trong khi có người thao tác trên nó để đạt mục tiêu (ví dụ Máy quét mã vạch là tác nhân chính của "Lập phiếu nhập kho" thay vì Thủ kho).
   - A-C2 Cùng một cơ chế người thao tác qua thiết bị nhưng các use case chọn tác nhân chính khác nhau (use case này chọn người, use case kia chọn thiết bị).
   - A-C3 Tác nhân thời gian cho hết giờ chờ trong phiên của một use case đang chạy.
@@ -86,7 +86,7 @@ Nhóm U - Use case
 Mức mục tiêu:
 - Summary (quá lớn): gom nhiều mục tiêu, nhiều phiên, nhiều tác nhân chính ("Quản lý phòng khám", "Mượn và trả sách", "Xử lý đơn giao đồ ăn từ đặt tới giao").
 - User-goal (đúng mức): một mục tiêu, một tác nhân chính, một phiên, kết quả trọn vẹn ("Đặt lịch khám", "Gia hạn sách", "Lập phiếu nhập kho", "Nhận phòng", "Rút tiền").
-- Subfunction (quá nhỏ để đứng một mình): một bước hoặc đoạn ("Nhập mã PIN", "Chọn khung giờ", "Quét mã vạch", "Tính phí gửi xe"). Chỉ hợp lệ khi là phần dùng chung cho từ hai use case (dùng qua include), là hành vi tuỳ chọn đủ lớn (dùng qua extend), là phần rất lớn được tách ra, là mục tiêu con có kết quả riêng kiểm chứng được, được nguồn mô tả tách bạch (quy tắc, dữ liệu, tác nhân phụ hoặc luồng lỗi riêng) và thực hiện lại hoặc thất bại được mà không huỷ mục tiêu cha (dùng qua include, ví dụ "Thanh toán đơn" trong "Đặt món"; "Nhập địa chỉ giao hàng" thì không), hoặc là Đăng nhập theo U-R01. Use case Subfunction mà tác nhân chính của use case gốc vẫn tương tác trực tiếp thì ghi tác nhân đó kèm "(qua <use case gốc>)"; chỉ để trống tác nhân chính khi phần được tách không có tác nhân nào tương tác trực tiếp.
+- Subfunction (quá nhỏ để đứng một mình): một bước hoặc đoạn ("Nhập mã PIN", "Chọn khung giờ", "Quét mã vạch", "Tính phí gửi xe"). Chỉ hợp lệ khi thoả một trong các điều kiện (mã giống P02 để dẫn chéo): Q4a là phần dùng chung cho từ hai use case (dùng qua include); Q4b là hành vi tuỳ chọn đủ lớn (dùng qua extend); Q4c là phần rất lớn được tách ra; Q4d là mục tiêu con có kết quả riêng kiểm chứng được, được nguồn mô tả tách bạch (quy tắc, dữ liệu, tác nhân phụ hoặc luồng lỗi riêng) và thực hiện lại hoặc thất bại được mà không huỷ mục tiêu cha (dùng qua include, ví dụ "Thanh toán đơn" trong "Đặt món"; "Nhập địa chỉ giao hàng" thì không); hoặc là Đăng nhập theo U-R01. Use case Subfunction không thoả điều kiện nào vi phạm U-AP01. Use case Subfunction mà tác nhân chính của use case gốc vẫn tương tác trực tiếp thì ghi tác nhân đó kèm "(qua <use case gốc>)"; chỉ để trống tác nhân chính khi phần được tách không có tác nhân nào tương tác trực tiếp.
 Phép thử:
 - U-T1 Mức mục tiêu User-goal; phép thử nghỉ giải lao: xong việc, tác nhân có thể rời đi với kết quả có ý nghĩa.
 - U-T2 EBP: một người, một nơi, một lần, đáp ứng một sự kiện nghiệp vụ, tạo giá trị đo được, dữ liệu nhất quán.
@@ -118,10 +118,10 @@ Anti-pattern:
 - U-AP15 Biến thể thành use case riêng khi luồng chỉ khác vài bước ("Thanh toán tiền mặt", "Thanh toán thẻ").
 - U-AP16 Tác vụ kỹ thuật thành use case ("Sao lưu CSDL hằng đêm") khi nguồn chỉ nêu như ràng buộc.
 Quy tắc ca tranh cãi (tóm tắt, mặc định khi không có quy ước đã chốt):
-- U-R01 Đăng nhập: một use case riêng khi nguồn yêu cầu hoặc ngụ ý xác thực (nhắc đăng nhập, tài khoản của một vai trò), chỉ nối với các tác nhân mà nguồn nêu hoặc ngụ ý phải xác thực, tác nhân còn lại cần xác nhận với nguồn; không include vào mọi use case (dùng tiền điều kiện).
+- U-R01 Đăng nhập: một use case riêng khi nguồn yêu cầu hoặc ngụ ý xác thực (nhắc đăng nhập, tài khoản của một vai trò), chỉ nối với các tác nhân mà nguồn nêu hoặc ngụ ý phải xác thực, tác nhân còn lại cần xác nhận với nguồn, hoặc được nối theo ASM-nn khi CO_NHAN; không include vào mọi use case (dùng tiền điều kiện).
 - U-R02 Đăng xuất: không phải use case riêng.
 - U-R03 Đăng ký tài khoản là use case User-goal của người chưa có tài khoản; quên mật khẩu là use case riêng khi nguồn nêu; đổi mật khẩu và cập nhật hồ sơ gộp khi cùng tác nhân.
-- U-R04 CRUD dữ liệu danh mục cùng tác nhân gộp thành "Quản lý X"; tách khi khác tác nhân, là giao dịch nghiệp vụ, có luồng hoặc quy tắc riêng lớn, khác sự kiện hoặc quyền.
+- U-R04 CRUD dữ liệu danh mục cùng tác nhân gộp thành "Quản lý X"; tách khi thoả một trong: U-R04 a khác tác nhân; U-R04 b là giao dịch nghiệp vụ; U-R04 c có luồng hoặc quy tắc riêng lớn; U-R04 d khác sự kiện, thời điểm hoặc quyền.
 - U-R05 Xem, tra cứu, báo cáo là use case khi là mục tiêu thông tin độc lập; là bước khi chỉ phục vụ use case khác; tìm và xem chi tiết là một use case; sắp xếp, lọc, in, xuất tệp là tuỳ chọn; các báo cáo cùng tác nhân cùng cách thao tác gộp.
 - U-R06 Thông báo là bước của use case gây ra nó; nhắc nhở theo lịch là use case của tác nhân thời gian; người nhận tin qua kênh ngoài không phải tác nhân.
 - U-R07 Tác vụ theo lịch có giá trị nghiệp vụ, xảy ra khi không còn phiên nào đang mở, là use case với tác nhân thời gian; đặt tên theo kết quả nghiệp vụ. Hết giờ chờ trong phiên của một use case (chờ tác nhân thao tác, chờ thiết bị hoặc hệ thống ngoài phản hồi) là luồng thay thế của use case đó, không phải use case riêng.
@@ -173,6 +173,7 @@ Bố cục (Nhóm L, dùng cùng mã với P03 Phần D; chỉ ở mức Thấp 
 - Nghiêm trọng: làm sai phạm vi hoặc sai ngữ nghĩa mô hình, bước sau sẽ sai theo. Gồm: tác nhân là thành phần nội bộ (A-T1); use case là chức năng nội bộ, giao diện hoặc summary (U-AP02, U-AP03, U-AP04, U-AP05, U-AP06); thiếu yêu cầu hoặc thừa chức năng (U-AP13, U-AP14); không có tác nhân chính (U-AP11); quan hệ ngược chiều hoặc nhầm loại (D-AP02, D-AP03, D-AP04); include dùng để phân rã (D-AP01); association giữa tác nhân với tác nhân hoặc use case với use case (D-AP06, D-AP07).
 - Trung bình: mô hình đúng phạm vi nhưng khó hiểu, dư thừa hoặc không nhất quán. Gồm: CRUD vụn hoặc "Quản lý X" gom giao dịch (U-AP07, U-AP08); use case quá nhỏ (U-AP01); trùng lặp, biến thể (U-AP12, U-AP15); tên theo góc nhìn hệ thống hoặc mơ hồ (U-AP09, U-AP10); tác nhân sai tính chất, tên không phải vai trò (A-C, A-T3, A-N); extend thiếu điều kiện (D-AP12); nối thừa tác nhân (D-AP11); lồng include quá sâu (D-AP05); sơ đồ quá tải hoặc thiếu, thừa sơ đồ (D-AP15, D-AP16, D-AP17, D-AP20).
 - Thấp: trình bày và đặt tên chưa chuẩn nhưng không gây hiểu sai (U-N7, thuật ngữ chưa nhất quán nhẹ, D-AP18, lỗi bố cục L).
+- Mã không có trong ba danh sách trên: U-T và U-R mặc định Trung bình; U-N mặc định Thấp; A-T2, A-T4, A-T5, A-T6 mặc định Trung bình; Q4a đến Q4d theo U-AP01.
 Người review được nâng hoặc hạ một mức khi hệ quả thực tế khác mặc định, và phải nêu lý do trong cột Vấn đề.
 
 === Phần C. Nội dung đầu ra ===
@@ -185,7 +186,7 @@ Mục 1. Tóm tắt
 - Kết luận: "Đạt" khi không có phát hiện Nghiêm trọng và không quá 3 phát hiện Trung bình; "Đạt có điều kiện" khi không có phát hiện Nghiêm trọng nhưng có trên 3 phát hiện Trung bình; "Không đạt" khi có ít nhất một phát hiện Nghiêm trọng.
 - Tối đa 3 điểm làm tốt, mỗi điểm một câu, có dẫn phần tử cụ thể (giúp người viết biết điều nên giữ).
 
-Mục 2. Bảng kiểm kê (chỉ khi đối tượng chưa có mã): | Mã tạm | Loại | Tên như trong bản gốc |
+Mục 2. Bảng kiểm kê: | Mã tạm | Loại | Tên như trong bản gốc |. Đối tượng đã có mã thì ghi "Không có, dùng mã gốc".
 
 Mục 3. Bảng phát hiện
 | Mã | Phần tử | Vấn đề | Quy tắc vi phạm | Mức độ (Nghiêm trọng / Trung bình / Thấp) | Đề xuất sửa |
@@ -199,10 +200,14 @@ Mục 3. Bảng phát hiện
 
 Mục 4. Danh sách use case đề xuất sau sửa (khi phạm vi có DANH_SACH_UC hoặc SO_DO)
 | UC | Tên (VI) | Tên (EN) | Tác nhân chính | Tác nhân phụ | Mục tiêu (kết quả có giá trị) | Thay đổi | Mã phát hiện |
-- Thay đổi: Giữ / Đổi tên / Gộp từ <mã gốc> / Tách từ <mã gốc> / Mới / Loại (dòng Loại vẫn liệt kê để người viết đối chiếu).
+- Thay đổi: Giữ / Đổi tên / Sửa mục tiêu / Sửa tác nhân / Gộp từ <mã gốc> / Tách từ <mã gốc> / Mới / Loại (dòng Loại vẫn liệt kê để người viết đối chiếu). Một dòng được ghi nhiều giá trị, ngăn bằng dấu phẩy ("Đổi tên, Sửa tác nhân").
 - Mọi dòng khác "Giữ" phải có mã phát hiện.
 - Không thêm use case "Mới" nếu không có căn cứ trong tài liệu nguồn; khi không có nguồn, use case "Mới" chỉ xuất hiện khi là kết quả tách từ use case gốc.
 - Nếu đối tượng có mã UC-nnn theo Conventions thì giữ mã cũ cho use case còn giữ, use case mới dùng mã tiếp theo.
+
+Mục 4b. Danh sách tác nhân sau sửa (khi phạm vi có TAC_NHAN)
+| ACT | Tên | Loại | Tính chất | Thay đổi | Mã phát hiện |
+- Thay đổi: Giữ / Đổi tên / Sửa loại / Sửa tính chất / Gộp từ <mã gốc> / Tách từ <mã gốc> / Mới / Loại. Mọi dòng khác "Giữ" phải có mã phát hiện.
 
 Mục 5. Quan hệ đề xuất sau sửa (khi phạm vi có SO_DO)
 | Nguồn | Đích | Loại | Điều kiện / điểm mở rộng | Thay đổi | Mã phát hiện |
@@ -219,7 +224,7 @@ Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 5. Lỗi gốc và lỗi con đã được gom, không lặp một vấn đề ở nhiều dòng.
 6. Danh sách đề xuất sau sửa không còn vi phạm tiêu chí nào đã nêu trong bảng phát hiện, và mọi thay đổi trỏ về mã phát hiện.
 7. Kết luận tổng thể khớp với số phát hiện theo quy tắc ở Mục 1.
-8. Phần tử nào trong đối tượng review cũng đã được xét (có phát hiện hoặc được giữ nguyên trong Mục 4).
+8. Phần tử nào trong đối tượng review cũng đã được xét (có phát hiện, hoặc có dòng "Giữ" ở Mục 4 hoặc Mục 4b).
 
 [Yêu cầu bổ sung]
 {{PH:YEU_CAU_BO_SUNG | Hướng dẫn: [TUỲ CHỌN] yêu cầu đặc thù cho lần review; ưu tiên cao hơn tiêu chí mặc định. Không có thì thay cả khối bằng "Không có" | Ví dụ: "Chỉ liệt kê phát hiện Nghiêm trọng và Trung bình." ; "Viết đề xuất sửa kèm giải thích ngắn cho người mới học use case." ; "Bỏ qua các lỗi bố cục nhóm L."}}
@@ -228,7 +233,7 @@ Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 ## 5. Ghi chú cho người dùng
 
 - Review trong pipeline: sau P02, chạy P02R với phạm vi TAC_NHAN, DANH_SACH_UC; sau P03, chạy với SO_DO. Nếu kết luận "Không đạt", sửa bằng cách chạy lại bước tương ứng (đính kèm P02R-review.md) với YEU_CAU_BO_SUNG ghi các mã phát hiện cần xử lý, không sửa tay artifact.
-- Kết luận "Đạt" hoặc "Đạt có điều kiện" mà vẫn có phát hiện: người dùng chọn UCR cần áp dụng. Có ít nhất một UCR được áp dụng: chạy lại P02 kèm P02R-review.md trước khi chạy P03; UCR không áp dụng ghi mã và lý do vào mục Vấn đề còn mở của P02. Không áp dụng UCR nào: không chạy lại P02; khi chạy P03, ghi vào YEU_CAU_BO_SUNG "Đã review P02R <phiên bản>, không áp dụng UCR-xx, UCR-yy (lý do)", P03 chép dòng này vào mục Vấn đề còn mở của P03. P03 đọc P02, không đọc Mục 4 của P02R trực tiếp.
+- Kết luận "Đạt" hoặc "Đạt có điều kiện" mà vẫn có phát hiện: người dùng chọn UCR cần áp dụng. Có ít nhất một UCR được áp dụng: chạy lại P02 kèm P02R-review.md trước khi chạy P03; UCR không áp dụng ghi mã và lý do vào mục Vấn đề còn mở của P02. Không áp dụng UCR nào: không chạy lại P02; khi chạy P03, ghi vào YEU_CAU_BO_SUNG "Đã review P02R <phiên bản>, không áp dụng UCR-xx, UCR-yy (lý do)", P03 chép dòng này vào mục Vấn đề còn mở của P03. Chép cả các Q-nn mới của P02R (mã và câu hỏi) vào YEU_CAU_BO_SUNG của P03, để P03 ghi chúng vào mục Câu hỏi mở và bước sau còn thấy. P03 đọc P02, không đọc Mục 4 của P02R trực tiếp.
 - Review ngoài pipeline: chỉ cần prompt này và đối tượng review. Có tài liệu nguồn thì kết quả đáng tin hơn nhiều, vì mới kiểm được thừa và thiếu.
 - Sơ đồ dạng ảnh: nên dùng ảnh rõ nét, nhãn không bị che. Nếu có file .drawio thì đính kèm file, AI đọc được chính xác chiều mũi tên.
 - Người viết và người review bất đồng về ca tranh cãi (Đăng nhập, CRUD, báo cáo): ghi quy ước chung vào QUY_UOC_DA_CHOT rồi chạy lại, thay vì tranh luận từng phát hiện.
