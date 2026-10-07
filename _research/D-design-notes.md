@@ -176,7 +176,7 @@ P12, phát hiện và đã sửa:
 - (Sau tích hợp) P12 đã khớp nhánh C: đọc P09 mục F3, F5 (mẫu kiến trúc, quy tắc ánh xạ stereotype sang layer) và P10 mục F3 để gán PKG; coi DC do P11b cấp (bên trong subsystem) là lớp cần chi tiết hoá, nguồn ghi "P11b SS-nn"; chuyển "// tênTráchNhiệm" của P07/P08 thành chữ ký đầy đủ; giữ mã R-nn của P08; phân biệt control phân tích với controller MVC.
 - Cột Multiplicity viết "1 .. 0..*" gây nhầm với dấu ".." của multiplicity. Đổi thành "A 1 - B 0..*" và định nghĩa rõ đầu nào.
 - StockItem là association class giữa Warehouse và Product nhưng P12 chưa hướng dẫn. Thêm quy tắc chuyển association class thành lớp thường, ghi chú "từ association class" để P13 dùng khoá ghép.
-- Chạy theo package làm trùng mã RL-01, ST-01 giữa các file. Thêm quy tắc đánh số liên tục.
+- Chạy theo package làm trùng mã quan hệ lớp R-01 và mã ST-01 giữa các file. Thêm quy tắc đánh số liên tục.
 - Cạnh class diagram chưa nói Nguồn/Đích tương ứng Lớp A/Lớp B. Đã thêm.
 - Không phát hiện mơ hồ ở state machine (StockIssue: Draft, PendingApproval, Confirmed) và ở ánh xạ IF (IErpGateway --> lớp «interface» + adapter).
 
