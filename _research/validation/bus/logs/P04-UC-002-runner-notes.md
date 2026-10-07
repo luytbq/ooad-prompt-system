@@ -1,5 +1,7 @@
 # Nhật ký người chạy - P04 UC-002 Đặt vé trực tuyến
 
+Model: mặc định của phiên điều phối (Claude Opus 5.5, claude-opus-5-5).
+
 Đầu ra: design/P04-uc-specs/UC-002-book-ticket-online.md, design/P04-uc-specs/_BR-register.md, design/diagrams/P04-activity-UC-002.drawio (XML hợp lệ, kiểm bằng xml.dom.minidom).
 
 Số lượng: 13 bước luồng chính; 9 luồng thay thế (2a, 4a, 6a, 6b, 7a, 7b, 9a gồm 9a1-9a2, 10a); 21 REQ truy vết; 10 BR mới (BR-01 đến BR-10); 4 Q mới (Q-31 đến Q-34); 6 ASM mới (ASM-12 đến ASM-17); 1 đề xuất sửa P02; activity diagram 2 partition, 36 node (không kể partition), 42 cạnh.

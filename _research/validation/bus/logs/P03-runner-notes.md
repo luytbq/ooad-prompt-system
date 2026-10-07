@@ -1,5 +1,7 @@
 # P03 - Nhật ký người chạy
 
+Model: mặc định của phiên điều phối (Claude Opus 5.5, claude-opus-5-5).
+
 Bước: P03 (P03-use-case-diagram.md). Placeholder: KIEU_DUONG_ASSOCIATION = Không có (dùng KHONG_MUI_TEN); CACH_PHAN_RA_SO_DO = Không có (dùng THEO_NHOM); YEU_CAU_BO_SUNG = Không có. Đầu vào: P02-usecases.md 1.1 (đã áp dụng UCR-01 đến UCR-04).
 
 Đầu ra: design/P03-usecase-model.md; design/diagrams/P03-usecase-overview.drawio; design/diagrams/P03-usecase-ticket-sales.drawio. Hai file .drawio qua kiểm tra xml.dom.minidom. Bảng Node, Edge và file .drawio được sinh từ cùng một cấu trúc dữ liệu bằng script tạm, rồi đối chiếu lại tự động (ID, toạ độ, nhãn, nguồn, đích, điểm uốn). Bố cục được kiểm bằng phép cắt đoạn thẳng với hình chữ nhật bao (tâm nguồn --> điểm uốn --> tâm đích). Không có công cụ render draw.io trong môi trường nên chưa xem được ảnh thật.

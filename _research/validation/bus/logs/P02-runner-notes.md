@@ -1,5 +1,7 @@
 # P02 - Nhật ký người chạy - bus (SaoViet Bus)
 
+Model: mặc định của phiên điều phối (Claude Opus 5.5, claude-opus-5-5).
+
 Đầu vào: 00-Conventions.md, README.md, P02-identify-use-cases.md, bus/design/project-profile.md, P00-problem-brief.md, P01-actors.md, bus/yeu-cau-xe-khach.md. Placeholder: PHAM_VI_LAN_CHAY, QUY_UOC_DA_CHOT, YEU_CAU_BO_SUNG đều "Không có". Đầu ra: bus/design/P02-usecases.md (P02 không sinh .drawio).
 
 Kết quả: 22 EV, 49 CAND, 18 UC (16 User-goal, 2 Subfunction), 4 Q mới (Q-26 đến Q-29), 4 ASM mới (ASM-08 đến ASM-11), 4 CAND "Chờ Q-nn" (Q-03, Q-14), 2 đề xuất sửa P01.

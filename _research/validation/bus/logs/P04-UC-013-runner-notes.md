@@ -1,5 +1,7 @@
 # Nhật ký người chạy - P04 UC-013 Huỷ chuyến
 
+Model: mặc định của phiên điều phối (Claude Opus 5.5, claude-opus-5-5).
+
 Tham số: UC_ID = UC-013; TEN_HE_THONG_TRONG_LUONG = Không có (dùng "Hệ thống"); YEU_CAU_BO_SUNG = Không có. Chế độ CO_NHAN, MUC_CHI_TIET = DAY_DU.
 
 Đầu ra: design/P04-uc-specs/UC-013-cancel-trip.md; design/P04-uc-specs/_BR-register.md (thêm BR-17 đến BR-19, thêm UC-013 vào BR-10, BR-15, BR-16); design/diagrams/P04-activity-UC-013.drawio (XML hợp lệ, 32 node, 32 cạnh, không node chồng nhau, không cạnh cắt qua node theo kiểm tra tự động).

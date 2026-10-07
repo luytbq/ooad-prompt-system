@@ -1,5 +1,7 @@
 # Nhật ký người chạy P04 UC-008 Trả vé
 
+Model: mặc định của phiên điều phối (Claude Opus 5.5, claude-opus-5-5).
+
 Bước: P04, UC_ID = UC-008; TEN_HE_THONG_TRONG_LUONG = Không có (dùng "Hệ thống"); YEU_CAU_BO_SUNG = Không có. Chế độ CO_NHAN, MUC_CHI_TIET DAY_DU.
 
 Đầu ra: design/P04-uc-specs/UC-008-return-ticket.md, design/P04-uc-specs/_BR-register.md (thêm BR-11 đến BR-16, thêm UC-008 vào BR-03, BR-10), design/diagrams/P04-activity-UC-008.drawio (XML hợp lệ, 3 partition, 31 node, 32 cạnh). Mã mới: Q-35 đến Q-39, ASM-18 đến ASM-23, BR-11 đến BR-16.

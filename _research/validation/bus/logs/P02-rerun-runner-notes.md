@@ -1,5 +1,7 @@
 # Nhật ký người chạy - P02-rerun (chạy lại P02 sau review P02R)
 
+Model: mặc định của phiên điều phối (Claude Opus 5.5, claude-opus-5-5).
+
 Đầu vào: 00-Conventions.md, README.md, P02-identify-use-cases.md, project-profile.md, yeu-cau-xe-khach.md, P00-problem-brief.md 1.0, P01-actors.md 1.0, P02-usecases.md 1.0, P02R-review.md 1.0.
 Placeholder: PHAM_VI_LAN_CHAY = Không có; QUY_UOC_DA_CHOT = Không có; YEU_CAU_BO_SUNG = "Áp dụng UCR-01, UCR-02, UCR-03, UCR-04 của P02R-review.md phiên bản 1.0."
 Đầu ra: design/P02-usecases.md phiên bản 1.1 (18 UC, 49 CAND, 22 EV, ASM-08 đến ASM-11, Q-26 đến Q-30). Không có sơ đồ .drawio ở bước này.

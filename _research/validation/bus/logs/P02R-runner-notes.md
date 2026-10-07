@@ -1,5 +1,7 @@
 # Nhật ký người chạy - P02R
 
+Model: mặc định của phiên điều phối (Claude Opus 5.5, claude-opus-5-5).
+
 Đề: bus (yeu-cau-xe-khach.md). Đầu vào: project-profile.md, P00-problem-brief.md 1.0, P01-actors.md 1.0, P02-usecases.md 1.0. Đầu ra: design/P02R-review.md. Không có sơ đồ .drawio (P02R không sinh sơ đồ).
 
 Kết quả: 0 Nghiêm trọng, 1 Trung bình, 3 Thấp, kết luận "Đạt". 10 tác nhân và 18 use case đã xét; cấp mới Q-30, không cấp ASM.

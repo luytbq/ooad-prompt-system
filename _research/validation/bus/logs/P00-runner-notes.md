@@ -1,5 +1,7 @@
 # Nhật ký người chạy - P00
 
+Model: mặc định của phiên điều phối (Claude Opus 5.5, claude-opus-5-5).
+
 Đầu vào đã đọc: P00-problem-brief.md (prompt), 00-Conventions.md, README.md, bus/design/project-profile.md, bus/yeu-cau-xe-khach.md. Placeholder: TRONG_TAM_PHAN_TICH = Không có; YEU_CAU_BO_SUNG = Không có. CHE_DO_GIA_DINH = CO_NHAN.
 
 Đầu ra: bus/design/P00-problem-brief.md (68 REQ, 14 SH, 25 Q, 5 ASM, 28 dòng vấn đề chất lượng). Bước này không sinh sơ đồ .drawio.

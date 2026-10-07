@@ -1,5 +1,7 @@
 # Nhật ký người chạy - P04 UC-015 Soát vé lên xe
 
+Model: mặc định của phiên điều phối (Claude Opus 5.5, claude-opus-5-5).
+
 Tham số: UC_ID = UC-015; TEN_HE_THONG_TRONG_LUONG = Không có (dùng "Hệ thống"); YEU_CAU_BO_SUNG = Không có. Hồ sơ dự án: CO_NHAN, DAY_DU.
 
 Đầu ra: design/P04-uc-specs/UC-015-check-boarding-ticket.md; design/P04-uc-specs/_BR-register.md (thêm BR-20, BR-21, BR-22, thêm UC-015 vào BR-10); design/diagrams/P04-activity-UC-015.drawio (XML hợp lệ, kiểm tra bằng xml.dom.minidom).

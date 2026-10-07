@@ -1,5 +1,7 @@
 # P01 - Nhật ký người chạy - SaoViet Bus
 
+Model: mặc định của phiên điều phối (Claude Opus 5.5, claude-opus-5-5).
+
 Đầu ra: design/P01-actors.md (phiên bản 1.0). Bước này không có sơ đồ .drawio.
 Kết quả chính: 10 tác nhân (5 người, 2 hệ thống ngoài, 2 thiết bị, 1 thời gian), 5 bên liên quan không phải tác nhân, 16 ứng viên bị loại, 0 Q mới, 2 ASM mới (ASM-06, ASM-07), không có đề xuất sửa P00.
 
