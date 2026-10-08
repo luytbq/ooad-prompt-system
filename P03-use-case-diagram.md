@@ -15,6 +15,7 @@ Sơ đồ use case là bản cam kết giữa khách hàng và đội phát tri�
 | Đầu vào | P00-problem-brief.md | Có (khi chạy pipeline) | Truy vết REQ cho quan hệ |
 | Đầu vào | P01-actors.md | Có | Tác nhân, loại, tính chất, tổng quát hoá tác nhân |
 | Đầu vào | P02-usecases.md | Có | Use case, tác nhân chính và phụ, mức, nhóm chức năng |
+| Đầu vào | Tài liệu nguồn trong TAI_LIEU_NGUON | Có | Tra câu gốc làm căn cứ cho include, extend (Bước 3c, 4a) khi câu trích REQ ở P00 chưa đủ |
 | Đầu vào | P02R-review.md | Tuỳ chọn | Đối chiếu các UCR đã được P02 áp dụng hoặc ghi lý do không áp dụng; ghi nhận review khi không UCR nào được áp dụng; không lấy use case trực tiếp từ P02R |
 | Đầu ra | P03-usecase-model.md | - | Bảng quan hệ, điểm mở rộng, danh sách sơ đồ, bảng Node/Edge |
 | Đầu ra | diagrams/P03-usecase-overview.drawio | - | Sơ đồ tổng quát |
@@ -22,7 +23,7 @@ Sơ đồ use case là bản cam kết giữa khách hàng và đội phát tri�
 
 ## 3. Cách chạy
 
-- Đính kèm: 00-Conventions.md, project-profile.md, P00-problem-brief.md, P01-actors.md, P02-usecases.md.
+- Đính kèm: 00-Conventions.md, project-profile.md, P00-problem-brief.md, P01-actors.md, P02-usecases.md, tài liệu nguồn, P02R-review.md (nếu có).
 - Chạy một lần cho toàn hệ thống. Chạy lại khi P01 hoặc P02 thay đổi; giữ nguyên mã quan hệ đã cấp.
 - Sau P02R mà không áp dụng UCR nào (P02 không chạy lại): ghi vào YEU_CAU_BO_SUNG "Đã review P02R <phiên bản>, không áp dụng UCR-xx, UCR-yy (lý do)" và các Q-nn mới của P02R; P03 chép dòng này vào mục Vấn đề còn mở, chép các Q-nn vào mục Câu hỏi mở.
 - Khi chạy bằng chat (không có quyền ghi file), AI trả nội dung P03-usecase-model.md và nội dung từng file .drawio trong các code block riêng (Mục 6); người dùng lưu thành file theo tên đã ghi. Khi chạy bằng agent có quyền ghi file, XML chỉ nằm trong file .drawio, Mục 6 chỉ ghi đường dẫn.
@@ -38,7 +39,7 @@ Sơ đồ use case là bản cam kết giữa khách hàng và đội phát tri�
 
 ````text
 [Context]
-Đọc theo thứ tự: 00-Conventions.md (luật chung, đặc biệt mục C7), project-profile.md, P00-problem-brief.md, P01-actors.md, P02-usecases.md.
+Đọc theo thứ tự: 00-Conventions.md (luật chung, đặc biệt mục C7), project-profile.md, P00-problem-brief.md, P01-actors.md, P02-usecases.md, P02R-review.md nếu có (chỉ để đối chiếu UCR), tài liệu nguồn (chỉ tra câu gốc khi câu trích REQ chưa đủ làm căn cứ). Kết quả đối chiếu P02R ghi ở ô Đầu vào đã dùng: "P02R <phiên bản>: UCR-xx đã áp dụng ở P02 <phiên bản>; UCR-yy không áp dụng (lý do)".
 Chỉ dùng tác nhân có trong P01 và use case có trong P02 Mục 4 (bảng 4a; bỏ qua ứng viên có kết luận khác "Giữ"). Nếu YEU_CAU_BO_SUNG ghi đã review P02R mà không áp dụng UCR nào, chép nguyên dòng đó vào mục Vấn đề còn mở, và chép các Q-nn của P02R ghi kèm (giữ mã, cột Nguồn gây mơ hồ ghi "P02R") vào mục Câu hỏi mở. Không đổi tên, mã, tác nhân chính hoặc phụ của use case đã chốt; nếu thấy P02 hoặc P01 sai, ghi vào "Đề xuất sửa artifact trước".
 
 Kiểu đường association:
@@ -74,7 +75,7 @@ Không lồng include quá hai tầng (UC-A include UC-B include UC-C là tối 
 Bước 4. Xác định «extend».
 Ngữ nghĩa: UC mở rộng (extension) bổ sung hành vi vào UC gốc tại một điểm mở rộng (extension point) có tên trong UC gốc, chỉ khi điều kiện mở rộng đúng. UC gốc hoàn chỉnh và có ý nghĩa khi không có phần mở rộng; UC gốc không biết tới UC mở rộng. Mũi tên đi từ UC mở rộng tới UC gốc.
 Tạo «extend» từ UC-X (mở rộng) tới UC-Y (gốc) chỉ khi đồng thời:
-  a) UC-X được P02 giữ theo điều kiện Q4b (hành vi tuỳ chọn hoặc ngoại lệ, đủ lớn hoặc là dịch vụ bổ sung), hoặc là UC mà nguồn mô tả như một lựa chọn thêm trong khi thực hiện UC-Y.
+  a) UC-X được P02 giữ theo điều kiện Q4b (hành vi tuỳ chọn hoặc ngoại lệ, đủ lớn hoặc là dịch vụ bổ sung), hoặc là UC mà nguồn mô tả như một lựa chọn thêm trong khi thực hiện UC-Y, hoặc UC-X là UC Subfunction đã được include ở UC khác và UC-Y chỉ dùng nó khi một điều kiện kiểm chứng được đúng (P02 ghi Q4 b cho UC-Y ở Mô tả ngắn).
   b) UC-Y đạt được mục tiêu của nó trong kịch bản không có UC-X.
   c) Xác định được điều kiện mở rộng (một mệnh đề kiểm chứng được) và tên điểm mở rộng (một vị trí trong luồng của UC-Y, đặt tên theo bước nghiệp vụ, không theo số thứ tự bước).
 Không dùng extend cho: lỗi nhỏ, luồng thay thế ngắn (để trong đặc tả UC-Y ở P04); hành vi bắt buộc (dùng include); tuỳ chọn chỉ 1-2 bước.
@@ -92,9 +93,9 @@ Nếu phát hiện một hành vi dùng chung hoặc tuỳ chọn cần tách m�
 Bước 8. Lập kế hoạch sơ đồ.
 Đếm N là tổng số UC sẽ vẽ trên sơ đồ, kể cả UC mức Subfunction và UC Đăng nhập, và M là số tác nhân. Chọn phương án:
   - N không quá 20 và M không quá 8: một sơ đồ tổng quát đầy đủ mọi phần tử và quan hệ. Thêm sơ đồ phân rã chỉ cho nhóm có từ 3 quan hệ include hoặc extend trở lên làm sơ đồ tổng quát rối.
-  - N từ 21 đến 40, hoặc M trên 8: sơ đồ tổng quát gồm mọi tác nhân, mọi UC (kể cả Subfunction và Đăng nhập) và mọi association; không vẽ include, extend, generalization giữa UC trên sơ đồ này, UC được include hoặc UC mở rộng không có association ghi "(quan hệ ở sơ đồ <tên>)" ở cột Ghi chú của bảng Node. Sơ đồ phân rã chỉ tạo cho nhóm (hoặc tác nhân, theo CACH_PHAN_RA_SO_DO) có ít nhất một quan hệ include, extend hoặc generalization giữa UC, và vẽ đầy đủ quan hệ của nhóm đó. Nhóm không có quan hệ nào giữa UC không có sơ đồ phân rã, vì nội dung đã nằm đủ trên sơ đồ tổng quát.
+  - N từ 21 đến 40, hoặc M trên 8: sơ đồ tổng quát gồm mọi tác nhân, mọi UC (kể cả Subfunction và Đăng nhập) và mọi association; không vẽ include, extend, generalization giữa UC trên sơ đồ này, mọi UC có quan hệ include, extend hoặc generalization không vẽ trên sơ đồ này (cả UC gốc lẫn UC được include, UC mở rộng) ghi "(quan hệ ở sơ đồ <tên>)" ở cột Ghi chú của bảng Node. Sơ đồ phân rã chỉ tạo cho nhóm (hoặc tác nhân, theo CACH_PHAN_RA_SO_DO) có ít nhất một quan hệ include, extend hoặc generalization giữa UC, và vẽ đầy đủ quan hệ của nhóm đó. Nhóm không có quan hệ nào giữa UC không có sơ đồ phân rã, vì nội dung đã nằm đủ trên sơ đồ tổng quát.
   - N trên 40: sơ đồ tổng quát ở mức package: mỗi nhóm chức năng là một package (hình thư mục) bên trong boundary, ghi số UC trong nhãn, tác nhân đặt quanh boundary không có đường nối, kèm bảng "Tác nhân - Nhóm" trong artifact; mỗi nhóm một sơ đồ phân rã.
-  - UC Đăng nhập giữ theo U-R01 của P02 luôn vẽ trên sơ đồ tổng quát (khi sơ đồ tổng quát không ở mức package), nối mọi tác nhân phải xác thực, để người đọc thấy vai trò nào phải đăng nhập.
+  - UC Đăng nhập giữ theo U-R01 của P02 luôn vẽ trên sơ đồ tổng quát (khi sơ đồ tổng quát không ở mức package), nối mọi tác nhân mà P02 ghi ở cột Tác nhân chính của UC Đăng nhập, để người đọc thấy vai trò nào phải đăng nhập. Tác nhân được một ASM nêu là phải xác thực mà P02 chưa nối thì không nối, ghi "Đề xuất sửa artifact trước" cho P02.
   - Mỗi sơ đồ phân rã nên có không quá khoảng 15 UC; nhóm lớn hơn thì chia nhỏ tiếp.
 Các ngưỡng trên là heuristic về khả năng đọc; lệch được nếu có lý do, ghi vào "Vấn đề còn mở".
 Trong sơ đồ phân rã, tác nhân và UC thuộc nhóm khác chỉ xuất hiện khi có quan hệ trực tiếp với UC trong nhóm; UC của nhóm khác được ghi chú "(nhóm <tên>)" ở cột Ghi chú của bảng Node.
@@ -165,6 +166,7 @@ Mục 1. Bảng quan hệ
 - Loại: Association / Include / Extend / Generalization.
 - Điều kiện extend / điểm mở rộng: chỉ với Extend, dạng "{điều kiện} tại <tên điểm mở rộng>"; loại khác ghi "-".
 - Lý do: với Association ghi "Tác nhân chính" hoặc "Tác nhân phụ: <dịch vụ cung cấp>"; với Include, Extend, Generalization ghi điều kiện ở Bước 3, 4, 5 đã thoả (ví dụ "Dùng chung cho UC-003, UC-004 (Bước 3a)").
+- REQ: Association ghi các REQ nêu tác nhân đó tham gia UC; Include, Extend, Generalization ghi REQ là căn cứ của quan hệ.
 - Sơ đồ: tên các sơ đồ thể hiện quan hệ này.
 
 Mục 2. Điểm mở rộng
@@ -192,7 +194,7 @@ Bảng Node:
 Bảng Edge:
 | ID | Nguồn | Đích | Loại quan hệ | Nhãn / multiplicity | Ghi chú | Điểm uốn |
 - Điểm uốn: cột tuỳ chọn theo Conventions C7.1; điền khi đường thẳng sẽ cắt qua node (thường ở bố cục dải L-12: đường tới UC cột hai, đường tới UC ở cột giữa), ngược lại ghi "-".
-- ID trùng mã RL-nn ở Mục 1; đường nối note là RL-nn-N.
+- ID trùng mã RL-nn ở Mục 1; đường nối note là RL-nn-N, Loại quan hệ ghi "NoteLink".
 - Nhãn: «include», «extend» hoặc để trống.
 
 Mục 6. Nội dung file .drawio: chỉ có khi chạy bằng chat (không có quyền ghi file), mỗi file một code block, dòng đầu code block là tên file trong chú thích XML. Khi đã ghi được file .drawio, mục này chỉ liệt kê đường dẫn các file, không chép lại XML.
@@ -293,7 +295,7 @@ Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 9. Tác nhân ở ngoài boundary, use case ở trong; boundary có tên hệ thống.
 10. Tác nhân chính bên trái, tác nhân phụ bên phải; UC sắp theo trình tự thời gian từ trên xuống (trong từng dải khi dùng L-12); include bên phải, extend bên dưới UC gốc; sơ đồ trên 12 UC dùng bố cục dải theo L-12; không đường nào cắt qua elip.
 11. Số phần tử mỗi sơ đồ trong ngưỡng Bước 8, hoặc có lý do ghi ở "Vấn đề còn mở".
-12. Bảng Node, Edge và file .drawio khớp nhau từng phần tử (cùng ID, cùng nhãn, cùng số lượng).
+12. Bảng Node, Edge và file .drawio khớp nhau từng phần tử (cùng ID, cùng nhãn, cùng số lượng). Value của mxCell bằng Stereotype (nếu có), thẻ br, rồi Nhãn; ngăn extension points ghi thẻ br trong bảng và thẻ hr trong .drawio vẫn coi là khớp.
 13. File .drawio là XML hợp lệ, có cell 0 và 1, không nén, toạ độ bội số của 10, không có node chồng nhau, khoảng cách tối thiểu 40.
 14. Mọi quan hệ include, extend, generalization có lý do và truy vết REQ.
 15. Artifact có đủ các mục kiểm soát theo C5.

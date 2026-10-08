@@ -87,7 +87,7 @@ Q3. Mức mục tiêu là gì (theo định nghĩa ở [Format])?
   - Subfunction: sang Q4.
   - User-goal: sang Q5.
 Q4. Ứng viên Subfunction có đủ điều kiện đứng thành use case riêng không? Chỉ giữ khi thoả ít nhất một điều kiện sau, và mọi điều kiện đều có căn cứ trong nguồn:
-  a) Là một đoạn tương tác liền mạch (thường từ 3 bước trao đổi trở lên) được dùng lặp lại trong từ hai use case User-goal trở lên (ứng viên cho quan hệ include ở P03).
+  a) Là một đoạn tương tác liền mạch (thường từ 3 bước trao đổi trở lên) được dùng lặp lại trong từ hai use case User-goal trở lên (ứng viên cho quan hệ include ở P03). Đoạn đó phải bắt buộc trong mọi kịch bản thành công của từng UC gốc được đếm. UC gốc chỉ dùng đoạn đó khi một điều kiện đúng thì không được đếm cho Q4 a; xét Q4 b cho UC gốc đó và ghi cả hai ở Mô tả ngắn, ví dụ "Q4 a: UC-002, UC-005; Q4 b: UC-007" (P03 vẽ include cho UC gốc của Q4 a, extend cho UC gốc của Q4 b).
   b) Là hành vi tuỳ chọn hoặc ngoại lệ có điều kiện, đủ lớn (thường từ 3 bước trở lên) hoặc được nguồn mô tả như một dịch vụ riêng có thể bổ sung sau (ứng viên cho quan hệ extend ở P03).
   c) Là phần rất lớn của một use case User-goal khiến use case đó vượt ngưỡng kích thước (ứng viên tách ra để dễ quản lý).
   d) Là một mục tiêu con bên trong một use case User-goal, đồng thời thoả cả ba vế: có kết quả riêng kiểm chứng được; được nguồn mô tả tách bạch (có quy tắc, dữ liệu, tác nhân phụ hoặc luồng lỗi riêng); có thể thực hiện lại hoặc thất bại độc lập mà không huỷ toàn bộ mục tiêu cha (ứng viên cho quan hệ include ở P03, UC gốc là use case chứa nó). Điều kiện này không phụ thuộc số bước ước lượng.
@@ -252,6 +252,7 @@ U-R13 Quy trình có phê duyệt hoặc nhiều bên nối tiếp.
 
 U-R14 Thao tác lặp trong một phiên.
 - Thêm nhiều mặt hàng vào một phiếu, chọn nhiều món, quét nhiều mã là vòng lặp trong một UC, không phải nhiều UC.
+- Sự kiện kích hoạt của UC gộp theo quy tắc này là sự kiện mở phiên (thủ kho bắt đầu kiểm kê một khu, thủ thư bắt đầu nhận một lô sách trả), không phải sự kiện của từng lần lặp; sự kiện của từng lần lặp ghi trong Mô tả ngắn.
 - "Thêm món vào giỏ" không phải UC riêng nếu giỏ chỉ tồn tại để đặt món trong cùng phiên; là UC riêng chỉ khi nguồn cho giỏ tồn tại lâu dài, được quản lý độc lập qua nhiều phiên và tác nhân có mục tiêu riêng với nó.
 
 U-R15 Cấu hình và quản trị hệ thống.
