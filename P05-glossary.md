@@ -54,7 +54,7 @@ Thực hiện tuần tự:
 4. Gom từ đồng nghĩa: các cách gọi khác nhau chỉ cùng một khái niệm gom thành một thuật ngữ, chọn thuật ngữ chính thức theo F4. Một từ mang hai nghĩa khác nhau trong nguồn thì tách thành hai thuật ngữ có tên phân biệt và tạo Q-nn nếu không chắc.
 5. Viết định nghĩa cho từng thuật ngữ theo F3, chỉ dựa trên nguồn và các artifact đã có. Chỗ nguồn không đủ để định nghĩa thì ghi định nghĩa phần đã biết và tạo Q-nn (NGHIEM_NGAT) hoặc ASM-nn (CO_NHAN).
 6. Ghi thành phần dữ liệu, giá trị cho phép, trạng thái, đơn vị của thuật ngữ khi nguồn nêu (cột Ghi chú), để từ điển kiêm vai trò từ điển dữ liệu không chính thức.
-7. Kiểm tra dùng nhất quán: rà P01, P02, P04 để tìm chỗ dùng từ đồng nghĩa không chính thức hoặc dùng một thuật ngữ sai nghĩa. Mỗi chỗ ghi vào "Đề xuất sửa artifact trước" (bước, mã phần tử, từ đang dùng, thuật ngữ chính thức). Không tự sửa artifact trước.
+7. Kiểm tra dùng nhất quán: rà P01, P02, P04 để tìm chỗ dùng từ đồng nghĩa không chính thức hoặc dùng một thuật ngữ sai nghĩa. Mỗi chỗ ghi vào "Đề xuất sửa artifact trước" (bước, mã phần tử, từ đang dùng, thuật ngữ chính thức). Không tự sửa artifact trước. Dạng rút gọn được chấp nhận của thuật ngữ chính thức (F3 cột Từ đồng nghĩa không dùng) không cần đề xuất. Nội dung BR trái với định nghĩa: ghi đề xuất cho bước ở cột "Cấp lần đầu tại" của sổ BR, không ghi cho P06 (P06 chạy sau P05). Định nghĩa vẫn bám nội dung BR hiện hành, phần khác biệt ghi kèm mã Q, ASM ở Ghi chú.
 8. Sắp xếp thuật ngữ theo thứ tự chữ cái của cột Thuật ngữ, rồi cấp mã GL theo thứ tự đó ở lần chạy đầu. Các lần chạy sau thuật ngữ mới lấy mã tiếp nối, vẫn sắp theo chữ cái trong bảng.
 9. Chạy checklist ở phần [Target], sửa những gì chưa đạt, ghi phần không sửa được vào mục "Vấn đề còn mở".
 
@@ -102,10 +102,10 @@ Bảng: | GL | Thuật ngữ | Tiếng Anh | Định nghĩa | Từ đồng nghĩ
   3. Không định nghĩa bằng từ đồng nghĩa đơn thuần. Sai: "Lô hàng: một lô."
   4. Viết dạng khẳng định; chỉ dùng phủ định khi đặc điểm phân biệt chính là phủ định ("Khách vãng lai: khách hàng không có tài khoản").
   5. Nêu nghĩa trong hệ thống này, không nêu nghĩa từ điển chung chung.
-  6. Không mô tả giao diện, không mô tả cách lưu trữ, không nêu quy tắc thay đổi được (quy tắc thuộc BR, dẫn mã ở Ghi chú). Sai: "Sách quá hạn: sách mượn quá 14 ngày" nếu 14 ngày là quy tắc có thể đổi; đúng: "Sách quá hạn: cuốn sách đang mượn đã qua ngày hết hạn trả của phiếu mượn (thời hạn mượn theo BR-02)".
+  6. Không mô tả giao diện, không mô tả cách lưu trữ, không nêu quy tắc thay đổi được (quy tắc thuộc BR, dẫn mã ở Ghi chú). Sai: "Sách quá hạn: sách mượn quá 14 ngày" nếu 14 ngày là quy tắc có thể đổi; đúng: "Sách quá hạn: cuốn sách đang mượn đã qua ngày hết hạn trả của phiếu mượn (thời hạn mượn theo BR-02)". Quy tắc chưa có mã BR (REQ loại Quy tắc nghiệp vụ chưa được đặc tả P04 nào dùng) thì dẫn "REQ-nn (chưa có BR)" ở Ghi chú; P06 sẽ cấp BR và đề xuất thay mã.
   7. Độ dài: một câu chính, tối đa khoảng 40 từ; thêm câu thứ hai khi cần làm rõ phạm vi. Định nghĩa dài hơn ba câu thường chứa quy tắc hoặc quy trình, cần tách.
   8. Dùng các thuật ngữ khác trong từ điển thì dùng đúng tên chính thức của chúng.
-- Từ đồng nghĩa không dùng: các cách gọi khác đã gặp trong nguồn hoặc artifact, ngăn bằng dấu phẩy; không có thì "Không có". Chỉ ghi từ thực sự xuất hiện hoặc dễ gây nhầm trong bối cảnh dự án.
+- Từ đồng nghĩa không dùng: các cách gọi khác đã gặp trong nguồn hoặc artifact, ngăn bằng dấu phẩy; không có thì "Không có". Chỉ ghi từ thực sự xuất hiện hoặc dễ gây nhầm trong bối cảnh dự án. Dạng rút gọn của chính thuật ngữ chính thức (bỏ bổ ngữ mà nghĩa không đổi trong bối cảnh dự án, ví dụ "phiếu nhập" cho "Phiếu nhập kho" khi hệ thống không có phiếu nhập nào khác) không phải từ đồng nghĩa không dùng và không cần đề xuất sửa; ghi các dạng rút gọn được chấp nhận ở cột Ghi chú. Dạng rút gọn có thể chỉ khái niệm khác ("phiếu") thì ghi ở cột này.
 - Nguồn: các REQ, UC (và ACT, BR nếu có) nơi thuật ngữ xuất hiện; tối thiểu một mã.
 - Ghi chú: thành phần dữ liệu (theo REQ loại Dữ liệu), tập giá trị hoặc trạng thái, đơn vị đo, mã BR liên quan, quan hệ với thuật ngữ khác ("Một Phiếu mượn gồm một hoặc nhiều Dòng mượn"), Q-nn, trạng thái "Loại" khi chạy lại.
 - Ví dụ đúng:
@@ -123,6 +123,7 @@ Vai trò đã có tên tác nhân ở P01 thì tên tác nhân là thuật ngữ
   4. Cách gọi cụ thể hơn, ít nghĩa phụ hơn ("Phiếu nhập kho" tốt hơn "Phiếu").
   5. Cách gọi đã dùng trong tên use case đã chốt (tránh phải đổi artifact trước).
 Tên use case đã chốt là cụm động từ, không phải thuật ngữ, nên không tính là dùng từ đồng nghĩa: nguồn gọi "phiếu xuất" và P02 đã chốt "Lập phiếu xuất kho" thì thuật ngữ chính thức vẫn chọn theo thứ tự trên, tên use case giữ nguyên. Chỉ ghi đề xuất đổi tên use case (bước 7) khi danh từ trong tên use case chỉ một khái niệm khác với thuật ngữ chính thức; cách gọi cụ thể hơn hoặc thêm bổ ngữ của cùng khái niệm không phải lý do đề xuất đổi.
+Khi tách một từ đa nghĩa thành hai thuật ngữ (Action bước 4): nghĩa nào đã là danh từ trong tên use case đã chốt thì giữ cách gọi gốc; nghĩa còn lại thêm bổ ngữ phân biệt (ví dụ "Giá phòng" là bảng giá theo loại phòng trong use case "Đặt giá phòng", nghĩa giá của một lần đặt thành "Giá một lần đặt"). Chỉ áp dụng mục 1 đến 4 khi không nghĩa nào có trong tên use case.
 Ghi lý do chọn ở cột Ghi chú khi hai cách gọi ngang nhau. Nếu hai cách gọi có thể là hai khái niệm khác nhau (ví dụ "Khách hàng" và "Người nhận hàng" trong giao đồ ăn), không gộp; tạo hai thuật ngữ hoặc Q-nn.
 
 F5. Ứng viên không đưa vào
@@ -134,10 +135,10 @@ Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 1. Mọi thuật ngữ xuất hiện trong ít nhất một REQ, UC hoặc BR, và cột Nguồn có mã.
 2. Mọi khái niệm đặc thù, trạng thái, đại lượng, viết tắt dùng trong đặc tả P04 đều có trong bảng thuật ngữ hoặc bảng ứng viên không đưa vào.
 3. Không có từ phổ thông dùng đúng nghĩa thông thường, thuật ngữ kỹ thuật phần mềm, từ giao diện trong bảng thuật ngữ.
-4. Mọi định nghĩa có khái niệm bao quát và đặc điểm phân biệt; không vòng tròn; không chứa quy tắc thay đổi được (quy tắc dẫn mã BR ở Ghi chú); không mô tả giao diện, lưu trữ.
+4. Mọi định nghĩa có khái niệm bao quát và đặc điểm phân biệt; không vòng tròn; không chứa quy tắc thay đổi được (quy tắc dẫn mã BR, hoặc "REQ-nn (chưa có BR)", ở Ghi chú); không mô tả giao diện, lưu trữ.
 5. Không có hai thuật ngữ chính thức cùng nghĩa; không có một thuật ngữ mang hai nghĩa.
 6. Mỗi thuật ngữ có tên tiếng Anh dạng danh từ số ít, không trùng tên tiếng Anh của thuật ngữ khác.
-7. Mọi chỗ artifact trước dùng từ đồng nghĩa không chính thức đã được ghi ở "Đề xuất sửa artifact trước".
+7. Mọi chỗ artifact trước dùng từ đồng nghĩa không chính thức (không tính dạng rút gọn được chấp nhận) đã được ghi ở "Đề xuất sửa artifact trước".
 8. Không có định nghĩa, thành phần dữ liệu, giá trị nào do AI tự thêm ở chế độ NGHIEM_NGAT; chỗ thiếu có Q-nn.
 9. Khi chạy lại: mã GL cũ được giữ; thuật ngữ bỏ vẫn còn dòng với trạng thái "Loại".
 10. Định dạng theo Conventions C2, C5, C8; bảng sắp theo chữ cái của cột Thuật ngữ.

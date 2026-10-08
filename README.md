@@ -19,8 +19,10 @@ P03 Biểu đồ use case                                               |
    |                                                               |
 P04 Đặc tả use case + activity diagram  (lặp cho từng UC)          |
    |                                                               |
-P05 Glossary        P06 Supplementary specification (NFR, BR) <----+
-   |                    |
+P05 Glossary                                                       |
+   |                                                               |
+P06 Supplementary specification (NFR, BR)  <-----------------------+
+   |
 P07 Phân tích use case: lớp BCE, sequence, communication  (lặp cho từng UC)
    |
 P08 Hợp nhất mô hình phân tích
@@ -66,7 +68,7 @@ Khi chia sẻ bộ prompt, chỉ cần các file ở gốc repo.
 1. Tạo thư mục dự án, sao chép 00-ProjectProfile-Template.md vào đó, đổi tên thành project-profile.md và điền.
 2. Mở P00-problem-brief.md, sao chép khối prompt ở mục 4, điền placeholder (nếu có), gửi cho AI kèm 00-Conventions.md, project-profile.md và tài liệu yêu cầu.
 3. Đọc artifact AI trả về. Trả lời các câu hỏi mở (Q-nn) bằng cách bổ sung vào tài liệu nguồn hoặc vào placeholder YEU_CAU_BO_SUNG, rồi chạy lại bước đó nếu câu trả lời làm thay đổi kết quả.
-4. Lần lượt chạy các bước tiếp theo. Mỗi bước đính kèm 00-Conventions.md, project-profile.md và các artifact đầu vào ghi ở mục 2 của prompt. P05, P06 nên chạy trước P07; P07, P08 vẫn chạy được khi chưa có hai bước này, với hệ quả ghi ở mục 3 của hai prompt đó.
+4. Lần lượt chạy các bước tiếp theo. Mỗi bước đính kèm 00-Conventions.md, project-profile.md và các artifact đầu vào ghi ở mục 2 của prompt. Chạy P05 rồi P06, sau đó mới chạy P07. P06 đọc P05 để dùng đúng thuật ngữ và để cấp tiếp mã Q, ASM. Không chạy song song hai bước cùng cấp mã Q, ASM hoặc cùng ghi một file (P04-uc-specs/_BR-register.md), xem 00-Conventions.md mục C3. P07, P08 vẫn chạy được khi chưa có P05, P06, với hệ quả ghi ở mục 3 của hai prompt đó.
 5. Review danh sách use case (tuỳ chọn, nên làm): chạy P02R --> chọn các UCR cần áp dụng. Có ít nhất một UCR được áp dụng: chạy lại P02 kèm P02R-review.md, ghi mã UCR trong YEU_CAU_BO_SUNG (UCR không áp dụng ghi lý do vào Vấn đề còn mở của P02) --> chạy P03 từ P02 đã sửa. Không áp dụng UCR nào: không chạy lại P02, chạy P03 với YEU_CAU_BO_SUNG ghi "Đã review P02R <phiên bản>, không áp dụng UCR-xx (lý do)" kèm các Q-nn mới của P02R.
 6. Chốt công nghệ sau P09 (khi hồ sơ ghi NEN_TANG hoặc CONG_NGHE là "Chưa chốt"): đọc bảng so sánh phương án công nghệ ở P09 mục F2.2. Chấp nhận khuyến nghị, hoặc chạy lại P09 với placeholder PHUONG_AN_DA_CHON. Sau đó dán khối "Cập nhật hồ sơ dự án" (P09 mục F11) vào project-profile.md mục 3 rồi mới chạy P10, vì P10 trở đi đọc NEN_TANG, CONG_NGHE từ hồ sơ.
 
@@ -89,7 +91,7 @@ Khi sửa một artifact, các bước phụ thuộc vào nó cần chạy lại
 | P02R (review) | P02 chạy lại kèm P02R-review.md khi có UCR được áp dụng, rồi các bước phụ thuộc P02; không có UCR nào được áp dụng thì không chạy lại |
 | P03 | P04 và P07 của UC có quan hệ thay đổi, P09, P10 |
 | P04 (một UC) | P05, P06, P07 của UC đó, P08 trở đi |
-| P05, P06 | P07 của UC dùng thuật ngữ, BR, NFR đã đổi, P08 trở đi (P09 khi NFR đổi) |
+| P05, P06 | P07 của UC dùng thuật ngữ, BR, NFR đã đổi, P08 trở đi (P09 khi NFR đổi). P06 cấp BR mới thì rà lại Ghi chú của P05 (dẫn "REQ-nn (chưa có BR)") |
 | P07 (một UC) | P08 trở đi |
 | P08, P09, P10 | P11a, P11b, P12, P13 |
 | P11a, P11b | P12 |
