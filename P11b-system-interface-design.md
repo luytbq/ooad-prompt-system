@@ -21,8 +21,18 @@ Bước này thiết kế giao diện giữa phần mềm và các hệ thống 
 
 ## 3. Cách chạy
 
-- Đính kèm: 00-Conventions.md, project-profile.md, các file đầu vào và tài liệu API của hệ thống ngoài (nếu có).
-- Chạy một lần cho mọi subsystem giao tiếp ngoài trong P10. Hệ thống có nhiều subsystem phức tạp có thể chạy lặp, mỗi lần một subsystem (placeholder PHAM_VI_SUBSYSTEM), ghi nối vào cùng file đầu ra với phiên bản tăng.
+- Đính kèm: 00-Conventions.md, project-profile.md, các file đầu vào và tài liệu API của hệ thống ngoài (nếu có). Mỗi file chỉ cần phần sau (khi chạy bằng agent, chỉ đọc các phần này, tìm theo tiêu đề và theo mã):
+
+| Artifact | Phần cần dùng |
+|---|---|
+| P10-design-elements.md | F2 và bảng Interface gọi ngược, F4, F5 |
+| P08-analysis-model.md | Dòng boundary nguồn của subsystem ở F3, các entity được truyền qua interface |
+| P07-uc-analysis/*.md | Dòng bảng message có Từ hoặc Đến là boundary nguồn của subsystem; Câu hỏi mở, Giả định |
+| P04-uc-specs/ | Luồng thay thế, ngoại lệ có bước của hệ thống ngoài hoặc thiết bị |
+| P06-supplementary-spec.md | NFR nhóm Giao tiếp ngoài, Hiệu năng, Bảo mật, Sẵn sàng |
+| P09-architecture.md | F6, F7 |
+
+- Chạy một lần cho mọi subsystem trong bảng F2 của P10 (phạm vi "Tất cả"). Interface kho dữ liệu không thuộc P11b (P12 thiết kế). Subsystem không có boundary nguồn ở P08 lấy trách nhiệm từ cột Trách nhiệm của P10 F2 và message P07 tới package đó. Hệ thống có nhiều subsystem phức tạp có thể chạy lặp, mỗi lần một subsystem (placeholder PHAM_VI_SUBSYSTEM), ghi nối vào cùng file đầu ra với phiên bản tăng.
 - Khi chạy lặp: trước khi chạy P12 cho một package, chạy P11b cho mọi subsystem có interface được package đó dùng. Thiếu chữ ký interface, P12 chỉ đặt được chữ ký tạm.
 
 | Placeholder | Bắt buộc | Ý nghĩa |
@@ -54,6 +64,7 @@ Bạn là nhà thiết kế phần mềm chuyên tích hợp hệ thống, thàn
 A1. Xác nhận subsystem.
 - Với mỗi subsystem trong phạm vi, đọc dòng tương ứng ở bảng subsystem của P10 và trách nhiệm của boundary nguồn trong P08.
 - Liệt kê mọi use case có control gửi message tới boundary nguồn (từ P07), kèm message, dữ liệu truyền, luồng lỗi liên quan trong P04.
+- Interface hoặc operation chỉ phục vụ use case chưa có P04, P07: không định nghĩa chữ ký. F2 ghi trạng thái "Chờ P07 UC-nnn"; F3 ghi một dòng trách nhiệm "// ..." lấy từ P10 F2, các cột còn lại ghi "Chờ P07"; ghi Đề xuất sửa artifact trước: chạy P04, P07 cho use case đó rồi chạy lại P11b cho subsystem này.
 
 A2. Xác định interface.
 - Lập tập interface ứng viên cho mọi subsystem trong phạm vi từ trách nhiệm của chúng.
@@ -65,7 +76,7 @@ A2. Xác định interface.
 A3. Định nghĩa operation.
 - Mỗi trách nhiệm "// ..." của boundary nguồn trở thành một hoặc nhiều operation. Không thêm operation không phục vụ use case nào, trừ operation kỹ thuật cần cho chính sách lỗi (ví dụ tra cứu trạng thái giao dịch) và phải ghi lý do.
 - Tên operation phản ánh kết quả (ví dụ authorizePayment, sendAppointmentReminder, readBarcode). Tham số và kết quả dùng kiểu của mô hình (entity, kiểu giá trị) hoặc kiểu dữ liệu chuẩn; không để lộ kiểu của giao thức ngoài (chuỗi JSON, mã HTTP) ra interface.
-- Kiểu giá trị dùng trong chữ ký interface ở layer dưới (tiền, mã tham chiếu thẻ, định danh) phải nằm ở package cùng layer với interface hoặc thấp hơn. Kiểu đó đang ở layer trên (ví dụ layer Domain) thì dùng kiểu chuẩn hoặc kiểu riêng của interface, và ghi Đề xuất sửa P10 tạo package kiểu dữ liệu dùng chung ở layer thấp.
+- Kiểu giá trị dùng trong chữ ký interface ở layer dưới (tiền, mã tham chiếu thẻ, định danh) phải nằm ở package cùng layer với interface hoặc thấp hơn. Kiểu đó nằm ở package thuộc layer cao hơn layer của interface (theo thứ tự layer ở P09 F4) thì dùng kiểu chuẩn hoặc kiểu riêng của interface, và ghi Đề xuất sửa P10 chuyển kiểu đó xuống package kiểu dữ liệu dùng chung ở layer không cao hơn interface. Khi Domain là layer thấp nhất (P09 A4), entity và kiểu giá trị của Domain được dùng trực tiếp trong chữ ký.
 - Với mỗi operation: tham số vào (tên, kiểu, ràng buộc), kết quả (kiểu, ý nghĩa), ngoại lệ hoặc kết quả lỗi (phân loại ở A5), tiền điều kiện, hậu điều kiện, đồng bộ hay bất đồng bộ, idempotent hay không.
 - Thiết bị đẩy sự kiện vào hệ thống (máy quét, cảm biến): thiết kế thêm interface theo chiều ngược (listener) do phía hệ thống cung cấp, subsystem thiết bị gọi vào; ghi rõ ai cung cấp, ai dùng.
 
@@ -78,6 +89,7 @@ A4. Thiết kế bên trong subsystem.
 
 A5. Thiết kế xử lý lỗi.
 - Phân loại lỗi của mỗi operation: lỗi nghiệp vụ bị hệ thống ngoài từ chối (ví dụ thẻ không đủ số dư, số điện thoại không hợp lệ); lỗi kỹ thuật tạm thời (mất kết nối, quá tải); kết quả không rõ (timeout sau khi đã gửi yêu cầu); lỗi thiết bị (mất kết nối, dữ liệu đọc hỏng).
+- Trước khi cấp Q mới, tìm câu hỏi cùng nội dung trong mục Câu hỏi mở của artifact đầu vào (P09, P10, P11a nếu đã có); có rồi thì trích mã cũ.
 - Mỗi loại lỗi được ánh xạ tới luồng thay thế hoặc ngoại lệ trong P04. Nếu P04 không có luồng tương ứng, ghi Đề xuất sửa artifact trước (P04) và Q-nn, không tự tạo hành vi nghiệp vụ.
 - Timeout kết nối, số lần và khoảng cách thử lại là tham số kỹ thuật: lấy từ CHINH_SACH_LOI, NFR hoặc TAI_LIEU_GIAO_TIEP; không có thì chọn giá trị theo Conventions C1 mục 7 và ghi "Thiết kế: <lý do>" (ví dụ suy từ NFR thời gian phản hồi toàn luồng, mặc định khuyến nghị của nhà cung cấp), không cần Q hay ASM. Thời hạn mà người dùng cảm nhận được (khách chờ kết quả thanh toán bao lâu thì báo lỗi) là giá trị nghiệp vụ: nguồn không nêu thì ghi Q (NGHIEM_NGAT) hoặc ASM (CO_NHAN).
 - Thử lại: chỉ tự thử lại operation idempotent hoặc được làm idempotent (khoá idempotency do hệ thống sinh, hệ thống ngoài hỗ trợ theo TAI_LIEU_GIAO_TIEP). Operation có tác dụng phụ tài chính không idempotent thì không tự thử lại; với kết quả không rõ, thiết kế bước tra cứu trạng thái hoặc đối soát nếu hệ thống ngoài hỗ trợ, nếu không thì ghi Q.
@@ -97,7 +109,7 @@ F1. Bối cảnh sử dụng
 Bảng: | UC | Control gọi (AC hoặc DC) | Message trong P07 (STT, tên) | Dữ liệu truyền | Luồng lỗi trong P04 |
 
 F2. Interface
-Bảng: | IF | Tên | Vai trò (một câu) | Subsystem hiện thực | Client (DC, PKG) | Package chứa |
+Bảng: | IF | Tên | Vai trò (một câu) | Bên hiện thực (SS; DC khi là interface gọi ngược) | Client (DC, PKG) | Package chứa |
 - Tên bắt đầu bằng I, phản ánh vai trò, không tên nhà cung cấp.
 - Mức hợp lý: 1-7 operation mỗi interface. Trên khoảng 10 operation thì kiểm tra có thể tách theo nhóm client (nguyên tắc phân tách interface).
 - Lỗi thường gặp: một interface chung "IExternalService" cho mọi hệ thống ngoài (quá lớn); mỗi operation một interface (quá nhỏ); tên interface theo công nghệ ("IRestClient").
@@ -121,10 +133,11 @@ Trong file diagrams/P11b-subsystem-SS-nn.drawio, mỗi sơ đồ một trang:
 Bảng Node: | ID | Loại (Lifeline / Actor / Gate / Fragment) | Nhãn | Stereotype | Thuộc về | Ghi chú |
 Bảng message: | STT | Từ | Đến | Message | Loại (Đồng bộ / Bất đồng bộ / Trả về / Tự gọi) | Fragment | Operation hoặc UC bước |
 Quy tắc ngữ nghĩa UML: message ở mức thiết kế ghi chữ ký với đối số (khác mức phân tích); message bất đồng bộ đầu mũi tên mở, nét liền (style: endArrow=open;endFill=0;html=1;); gate là điểm trên khung sd, tên gate là tên message đi qua; client chỉ gọi interface, không gọi lớp bên trong subsystem; không có message từ subsystem tới lớp giao diện người dùng.
-Bố cục theo P07 F10 (phần Sequence) (lifeline cách 160, message cách 40, toạ độ bội số 10) và C7.3.
+Mỗi message đi qua khung sd (vào hoặc ra, kể cả trả về và lời gọi interface chiều ngược) có một gate riêng, ID "<ID khung>-G<STT>", style ellipse;html=1; kích thước 10 x 10, đặt trên cạnh khung. Lifeline interface ghi ":IF-nn Tên". Lifeline control ghi ":<tên DC của P10>", mã AC ghi ở Ghi chú. STT đánh số phẳng 1, 2, 3 theo trục thời gian trong mỗi trang.
+Bố cục: lifeline đặt ở y = 40, cách nhau 160 theo trục x, rộng 120; message đầu tiên ở y = 120, hai message cách nhau 40; toạ độ bội số 10; theo C7.3.
 
 F5. Phần tử của subsystem
-a) Bảng phần tử: | DC | Tên | Vai trò (Điều phối / Giao tiếp ngoài / Chuyển đổi dữ liệu / Kiểu dữ liệu / Ngoại lệ) | Trách nhiệm | Visibility (không public, trừ interface) | Hiện thực IF |
+a) Bảng phần tử: | DC | Tên | Vai trò (Điều phối / Giao tiếp ngoài / Chuyển đổi dữ liệu / Lưu trữ trong subsystem / Kiểu dữ liệu / Ngoại lệ) | Trách nhiệm | Visibility (public cho interface và cho kiểu dữ liệu, ngoại lệ xuất hiện trong chữ ký interface; package-private cho phần tử còn lại) | Hiện thực IF |
    Mã DC cấp theo C3, P12 sẽ thiết kế chi tiết thuộc tính, phương thức nếu cần.
 b) Class diagram phần tử: trang "Phần tử" trong file drawio. Bảng Node: | ID | Loại (Class / Interface / Subsystem) | Nhãn | Stereotype | Thuộc về (SS) | Ghi chú |; Bảng Edge: | ID | Nguồn | Đích | Loại quan hệ (Realization / Association / Dependency / Composition) | Nhãn / multiplicity | Ghi chú |.
    Quy tắc: subsystem hiện thực interface bằng realization (nét đứt, tam giác rỗng) theo dạng canonical, hoặc dạng elided (vòng tròn interface nối bằng đường liền) khi sơ đồ đông; lớp bên trong nằm trong khung subsystem.
@@ -137,21 +150,21 @@ F7. Thiết kế xử lý lỗi và điểm kiểm tra
 a) Bảng lỗi: | Operation | Tình huống lỗi | Loại | Phát hiện bằng | Xử lý trong subsystem (thử lại, tra cứu trạng thái, chuyển đổi ngoại lệ) | Kết quả trả cho client | Luồng P04 tương ứng | Q, ASM |
    Ví dụ đúng (giao đồ ăn): authorizePayment | Timeout sau khi gửi | Không rõ kết quả | Hết thời gian chờ | Không thử lại; gọi queryPaymentStatus bằng khoá idempotency tối đa 1 lần | PaymentPending nếu vẫn chưa rõ | UC-013 5b | Q-11 (P04 chưa có luồng "chờ xác nhận thanh toán").
    Ví dụ sai: authorizePayment | Timeout | tự thử lại 3 lần (sai: có thể trừ tiền nhiều lần khi operation không idempotent).
-b) Điểm kiểm tra (trả lời Đạt / Không đạt cho từng subsystem): mỗi interface subsystem cung cấp có quan hệ realization; mỗi interface subsystem dùng có quan hệ phụ thuộc; không phần tử bên trong subsystem nào public; mỗi operation có sơ đồ hộp trắng, hoặc được hiện thực bởi một lớp duy nhất theo ánh xạ 1-1 dễ thấy.
+b) Điểm kiểm tra (trả lời Đạt / Không đạt cho từng subsystem): mỗi interface subsystem cung cấp có quan hệ realization; mỗi interface subsystem dùng có quan hệ phụ thuộc; không phần tử bên trong subsystem nào public, trừ kiểu dữ liệu và ngoại lệ thuộc chữ ký interface; mỗi operation có sơ đồ hộp trắng, hoặc được hiện thực bởi một lớp duy nhất theo ánh xạ 1-1 dễ thấy.
 
 F8. Tổng hợp toàn hệ thống (cuối file)
 - Bảng: | SS | IF | Số operation | UC dùng | Rủi ro chính |.
 - Mục kiểm soát theo C5.
 
 [Target]
-1. Mọi subsystem trong phạm vi có ít nhất một interface; mọi interface có ít nhất một operation dùng bởi một UC.
+1. Mọi subsystem trong phạm vi có ít nhất một interface; mọi interface có ít nhất một operation dùng bởi một UC, trừ interface ở trạng thái "Chờ P07 UC-nnn" có dòng Đề xuất sửa artifact trước (A1).
 2. Mọi trách nhiệm của boundary nguồn (P08) được phủ bởi operation; không có operation không phục vụ UC, trừ operation kỹ thuật có lý do.
 3. Operation có đủ tham số, kiểu, kết quả, lỗi, tiền và hậu điều kiện, đồng bộ, idempotent, timeout (có nguồn hoặc "Thiết kế: <lý do>"; Q, ASM chỉ cho giá trị nghiệp vụ); kiểu giá trị trong chữ ký không kéo layer dưới phụ thuộc layer trên.
 4. Interface không để lộ kiểu và lỗi của giao thức ngoài.
 5. Mỗi loại lỗi được ánh xạ tới luồng P04, hoặc có đề xuất sửa P04 và câu hỏi mở.
 6. Không tự thử lại operation không idempotent có tác dụng phụ.
 7. Có sequence hộp đen cho mỗi UC dùng subsystem và hộp trắng cho mỗi operation (hoặc lý do ánh xạ 1-1).
-8. Client chỉ phụ thuộc interface; không phần tử bên trong subsystem nào public; phụ thuộc subsystem vào package có lý do.
+8. Client chỉ phụ thuộc interface; không phần tử bên trong subsystem nào public, trừ kiểu dữ liệu và ngoại lệ thuộc chữ ký interface; phụ thuộc subsystem vào package có lý do.
 9. Thiết bị đẩy sự kiện có interface chiều ngược, ghi rõ bên cung cấp và bên dùng.
 10. Bảng mô hình và file .drawio khớp nhau, đạt C7.3.
 11. Đạt Conventions C2, C5, C6.

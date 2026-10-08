@@ -14,7 +14,7 @@ Bước này thiết kế giao diện đồ hoạ cho các tác nhân người: 
 | Đầu vào | P04-uc-specs/ | Có | Luồng sự kiện, bảng dữ liệu vào ra, điều kiện hợp lệ, thông điệp lỗi |
 | Đầu vào | P06-supplementary-spec.md | Có | NFR về khả dụng, khả năng tiếp cận, hiệu năng hiển thị, ngôn ngữ; BR ràng buộc dữ liệu |
 | Đầu vào | P05-glossary.md | Có | Thuật ngữ hiển thị nhất quán |
-| Đầu vào | P09-architecture.md, P10-design-elements.md | Có | Mẫu giao diện (MVC, MVP, MVVM); danh sách boundary cần màn hình (P10 mục F3, dòng có phần tử thiết kế ở layer giao diện), lớp thiết kế giao diện (DC) tương ứng |
+| Đầu vào | P09-architecture.md, P10-design-elements.md | Có | Mẫu giao diện (MVC, MVP, MVVM); danh sách boundary cần màn hình (P10 mục F3, dòng có PKG thuộc layer giao diện theo cột Layer của P10 mục F4), lớp thiết kế giao diện (DC) tương ứng |
 | Đầu vào | P01-actors.md, P02-usecases.md | Có | Tác nhân người và use case của từng tác nhân (màn hình điều hướng) |
 | Đầu ra | P11a-gui/ui-standards.md | Có | Chuẩn hoá cấu hình màn hình, danh mục thông điệp |
 | Đầu ra | P11a-gui/screen-list.md | Có | Danh sách màn hình |
@@ -24,7 +24,18 @@ Bước này thiết kế giao diện đồ hoạ cho các tác nhân người: 
 
 ## 3. Cách chạy
 
-- Đính kèm: 00-Conventions.md, project-profile.md và các file đầu vào.
+- Đính kèm: 00-Conventions.md, project-profile.md và các file đầu vào. Mỗi file chỉ cần phần sau (khi chạy bằng agent, chỉ đọc các phần này, tìm theo tiêu đề và theo mã):
+
+| Artifact | Phần cần dùng |
+|---|---|
+| P05-glossary.md | Cột Thuật ngữ, Định nghĩa |
+| P07-uc-analysis/*.md | Dòng bảng message có Từ hoặc Đến là tác nhân người hoặc boundary giao diện người dùng; Câu hỏi mở, Giả định |
+| P04-uc-specs/ | Luồng sự kiện, bảng dữ liệu vào ra, thông điệp của use case có màn hình trong phạm vi lần chạy |
+| P08-analysis-model.md | Dòng boundary giao diện người dùng ở F3 |
+| P09-architecture.md | Mẫu cho phía giao diện (F3), F5 |
+| P10-design-elements.md | F3, F4 |
+| P06-supplementary-spec.md | NFR Usability, hiệu năng hiển thị, ngôn ngữ; BR về dữ liệu nhập |
+
 - Chạy theo hai giai đoạn, chọn bằng placeholder CHE_DO_CHAY:
   1. Giai đoạn 1 (một lần cho toàn hệ thống): ui-standards.md, screen-list.md, screen-transition.md.
   2. Giai đoạn 2 (lặp, mỗi lần một nhóm màn hình, ví dụ theo use case): SCR-nn-slug.md và mockup. Đính kèm thêm kết quả giai đoạn 1.
@@ -74,13 +85,14 @@ A1. Chuẩn hoá cấu hình màn hình.
 - Lập bộ quy định dùng chung cho mọi màn hình theo các hạng mục ở F1. Mỗi quy định là một quyết định cụ thể, kiểm tra được (có giá trị, vị trí, số đo), không phải lời khuyên chung.
 - Căn cứ theo thứ tự: NFR và ràng buộc trong P06, hồ sơ dự án --> YEU_CAU_BO_SUNG, NHAN_DIEN_THUONG_HIEU --> hướng dẫn nền tảng theo NEN_TANG --> chuẩn chung (Nielsen, Shneiderman, WCAG 2.2 AA, Baymard). Mỗi quy định ghi căn cứ.
 - Quy định trình bày không phải là giả định về yêu cầu: được phép quyết định ở cả hai chế độ NGHIEM_NGAT và CO_NHAN, nhưng phải ghi căn cứ. Quy định làm thay đổi chức năng (ví dụ thêm đăng nhập, thêm hoàn tác cho thao tác mà đặc tả không cho) thì không được tự đặt; ghi Q-nn hoặc ASM-nn.
+- Trước khi cấp Q mới, tìm câu hỏi cùng nội dung trong mục Câu hỏi mở của artifact đầu vào (P09, P10, P11b nếu đã có); có rồi thì trích mã cũ.
 - Lập danh mục thông điệp: mỗi thông điệp hệ thống nêu trong đặc tả (lỗi, xác nhận, thành công, đang xử lý) được chuẩn hoá thành một dòng, mã MSG-nn theo C3, không đổi khi chạy lại.
 
 A2. Xác định danh sách màn hình.
-- Lấy danh sách boundary cần màn hình từ P10 mục F3: các dòng boundary giao diện người dùng có phần tử thiết kế ở layer giao diện (Presentation hoặc layer tương đương theo P09). Boundary đã được P10 ánh xạ sang subsystem, và boundary loại Kênh thông báo (email, SMS, thông báo đẩy), không cần màn hình; liệt kê chúng kèm lý do ở bảng "Boundary không có màn hình" của screen-list.md. Chưa có P10 thì lấy boundary loại Giao diện người dùng từ P08.
+- Lấy danh sách boundary cần màn hình từ P10 mục F3: các dòng boundary giao diện người dùng có PKG thuộc layer giao diện (Presentation hoặc layer tương đương theo P09), tra cột Layer của PKG đó ở P10 mục F4. Boundary đã được P10 ánh xạ sang subsystem, và boundary loại Kênh thông báo (email, SMS, thông báo đẩy), không cần màn hình; liệt kê chúng kèm lý do ở bảng "Boundary không có màn hình" của screen-list.md. Chưa có P10 thì lấy boundary loại Giao diện người dùng từ P08.
 - Với mỗi boundary cần màn hình, đọc trách nhiệm ở P08, message giữa tác nhân và boundary trong các P07 liên quan và bảng dữ liệu vào ra trong P04. Nhóm các message thành màn hình theo nguyên tắc: một màn hình phục vụ một mục tiêu con của tác nhân (xem, nhập, xác nhận, kết quả); thông tin cần nhìn cùng lúc để quyết định thì cùng màn hình; bước cần xác nhận riêng (thao tác không hoàn tác được, dữ liệu tài chính, pháp lý) thì có màn hình xác nhận.
 - Một boundary có thể sinh nhiều màn hình; nhiều boundary không gộp vào một màn hình, trừ màn hình điều hướng.
-- Màn hình điều hướng (màn hình chính của một tác nhân, menu) được phép tạo khi tác nhân cần chọn giữa các use case; nó chỉ chứa lối vào các use case của tác nhân đó trong P02, không chứa chức năng khác.
+- Màn hình điều hướng (màn hình chính của một tác nhân, menu) được phép tạo khi tác nhân cần chọn giữa các use case; nó chỉ chứa lối vào các use case của tác nhân đó trong P02, không chứa chức năng khác. Màn hình điều hướng ghi cột Lớp thiết kế là "Chưa có (điều hướng)" và có một dòng Đề xuất sửa P10 thêm phần tử View điều hướng vào package giao diện của tác nhân. Lối vào use case chưa có màn hình đích ghi ở Ghi chú của node, không tính là lối ra.
 - Thông điệp ngắn (lỗi, xác nhận có hoặc không) dùng hộp thông điệp chuẩn đã định ở A1, không cần mã SCR riêng, trừ khi có nội dung, điều khiển riêng ngoài mẫu chuẩn.
 - Phân loại mỗi màn hình theo mẫu dịch chuyển dẫn tới nó (F2).
 
@@ -108,6 +120,7 @@ Mỗi file theo khung C5 (tiêu đề cấp 1, bảng thông tin, mục kiểm s
 
 F1. P11a-gui/ui-standards.md
 a) Bảng chuẩn hoá: | STT | Nhóm | Hạng mục | Quy định | Căn cứ (NFR, BR, nền tảng, Nielsen #, Shneiderman, WCAG SC, Baymard) |
+Cột STT là mã quy định, không đổi khi chạy lại; quy định mới nhận STT tiếp theo số lớn nhất, quy định bỏ đi giữ STT và ghi "Loại". Các file khác trích dạng "UI-STT nn".
 Các nhóm và hạng mục tối thiểu:
 - Display: kích thước và độ phân giải mục tiêu; số màu hoặc chế độ màu (sáng, tối); điểm ngắt bố cục (web responsive).
 - Screen (cửa sổ): bố cục vùng chuẩn; vị trí nút chuẩn (OK, Huỷ, Lưu, Tìm kiếm) và thứ tự nút chính, nút phụ; vị trí thông điệp; vị trí và cách hiển thị tiêu đề màn hình và menu; nhất quán cách viết chữ, số, ngày giờ, tiền tệ, đơn vị; cách diễn đạt câu và mục chi tiết (giọng văn, viết hoa, thuật ngữ theo glossary); phối màu (màu chủ đạo, màu trạng thái lỗi, cảnh báo, thành công, không dùng màu là tín hiệu duy nhất).
@@ -119,7 +132,7 @@ Các nhóm và hạng mục tối thiểu:
 - Help: vị trí trợ giúp, nhất quán thuật ngữ với glossary và tài liệu hướng dẫn; trợ giúp theo ngữ cảnh cho trường khó.
 - Khả năng tiếp cận: tương phản chữ, tương phản thành phần; nhãn cho mọi trường; văn bản thay thế cho hình; hỗ trợ bàn phím; phóng to chữ.
 - Xác nhận và hoàn tác: thao tác nào cần xác nhận (không hoàn tác được, tài chính, xoá dữ liệu); nút trong hộp xác nhận đặt tên theo hành động.
-Mức hợp lý: mỗi quy định có giá trị cụ thể. Ví dụ đúng: "Nút chính: nền màu chủ đạo, chữ trắng, cao 40 px, tối đa một nút chính mỗi màn hình, đặt bên phải vùng hành động". Ví dụ sai: "Nút phải đẹp và dễ dùng" (không kiểm tra được); "Tiêu đề màu #FFD700 trên nền trắng" (tương phản dưới 4.5:1, vi phạm WCAG 1.4.3).
+Mức hợp lý: mỗi quy định có giá trị cụ thể. Ví dụ đúng: "Nút chính: nền màu chủ đạo, chữ trắng, cao 40 px với giao diện chỉ dùng chuột (44 px khi THIET_BI_HIEN_THI có cảm ứng, 48 dp trên Android), tối đa một nút chính mỗi màn hình, đặt bên phải vùng hành động". Ví dụ sai: "Nút phải đẹp và dễ dùng" (không kiểm tra được); "Tiêu đề màu #FFD700 trên nền trắng" (tương phản dưới 4.5:1, vi phạm WCAG 1.4.3).
 Lỗi thường gặp: chép nguyên danh sách heuristic thay cho quy định; quy định mâu thuẫn nhau (nút chính khi bên trái, khi bên phải); đặt phím tắt trùng phím tắt hệ điều hành hoặc trình duyệt.
 b) Danh mục thông điệp: | MSG | Loại (Lỗi / Cảnh báo / Xác nhận / Thành công / Đang xử lý) | Nội dung hiển thị | Nút và hành động | Nguồn (UC bước, BR) |
 - Nội dung lỗi theo mẫu: điều gì sai --> vì sao (nếu người dùng cần biết) --> làm gì tiếp. Không đổ lỗi cho người dùng, không mã lỗi kỹ thuật.
@@ -140,8 +153,8 @@ Ví dụ đúng (khách sạn): SCR-03 | Tìm phòng trống (Search available r
 Ví dụ sai: SCR-09 | Đánh giá khách sạn | - | - | Khách | ... (sai: không có use case, chức năng ngoài đặc tả).
 
 F3. P11a-gui/screen-transition.md và diagrams/P11a-screen-transition.drawio
-a) Bảng Node: | ID (SCR) | Loại (Screen / Start) | Nhãn (tên màn hình) | Stereotype (Loại màn hình ở F2) | Thuộc về (tác nhân) | Ghi chú |
-   Mỗi tác nhân có một node Start (điểm khởi đầu, ví dụ sau đăng nhập hoặc khi mở ứng dụng), chỉ khi đặc tả có điểm khởi đầu đó.
+a) Bảng Node: | ID (SCR, START-ACT-nn, P-ACT-nn) | Loại (Screen / Start / Partition) | Nhãn (tên màn hình) | Stereotype (Loại màn hình ở F2) | Thuộc về (tác nhân) | Ghi chú |
+   Mỗi tác nhân người có một node Start (style ellipse;fillColor=#000000;, 40 x 40) và một partition (swimlane;horizontal=0;html=1;) chứa các màn hình của tác nhân đó. Đặc tả không nêu điểm khởi đầu thì Start là "mở ứng dụng" hoặc "sau khi có phiên làm việc", ghi Q-nn (NGHIEM_NGAT) hoặc ASM-nn (CO_NHAN). Cạnh từ Start dùng mẫu 1.
 b) Bảng Edge: | ID | Nguồn | Đích | Mẫu dịch chuyển | Sự kiện kích hoạt | Điều kiện | Dữ liệu truyền | UC bước |
 Bốn mẫu dịch chuyển và ký hiệu (bắt buộc dùng đúng):
 1. Dịch chuyển đơn giản: chuyển sang một màn hình độc lập, màn hình cũ không còn là ngữ cảnh làm việc. Ký hiệu: đường nét đứt, đầu mũi tên mở ở màn hình đích. Style: dashed=1;endArrow=open;endFill=0;html=1;
@@ -150,6 +163,7 @@ Bốn mẫu dịch chuyển và ký hiệu (bắt buộc dùng đúng):
 4. Dịch chuyển sang màn hình phụ thuộc có dữ liệu: mở màn hình mới hoạt động trên dữ liệu được chọn ở màn hình trước. Ký hiệu: đường liền, đầu mũi tên mở ở màn hình đích, nhãn là dữ liệu truyền (ví dụ "Lịch hẹn đã chọn"). Style: dashed=0;endArrow=open;endFill=0;html=1;
 Quy tắc:
 - Không vẽ cạnh đóng pop-up quay về màn hình cha; việc quay về là ngầm định của mẫu 2 và 3.
+- Pop-up (mẫu 2, 3) dẫn sang màn hình mới sau khi xác nhận: vẽ cạnh từ pop-up, dùng mẫu 4 khi màn hình mới hiển thị kết quả của thao tác, mẫu 1 khi không; pop-up đóng ngầm định, không vẽ cạnh về cha.
 - Cạnh quay lại màn hình trước (nút Quay lại) chỉ vẽ khi nó là một dịch chuyển có trong đặc tả hoặc chuẩn A1 quy định rõ; khi đó dùng mẫu 1.
 - Nhãn cạnh ngắn: "sự kiện [điều kiện]"; dữ liệu truyền ghi ở mẫu 4.
 - Mọi SCR đến được từ một node Start; mọi SCR có ít nhất một lối ra (cạnh đi, hoặc là pop-up đóng về cha, hoặc là màn hình kết thúc có ghi rõ).
@@ -195,9 +209,10 @@ F6. Mockup HTML (khi XUAT_HTML là "Có")
 - Dùng đúng quy định ở ui-standards.md (màu, cỡ chữ, vị trí nút, kích thước điều khiển); có nhãn cho mọi trường (thẻ label gắn với ô nhập); tương phản đạt WCAG AA; điều khiển dùng đúng phần tử ngữ nghĩa (button, input, select, table).
 - Dữ liệu mẫu tuân quy tắc đúng nghiệp vụ ở A4. Ảnh minh hoạ dùng khối placeholder có văn bản thay thế.
 
-F7. Đánh giá theo chuẩn (trong mỗi SCR và tổng hợp ở cuối screen-list.md)
+F7. Đánh giá theo chuẩn
 Bảng: | SCR | Tiêu chí | Kết quả (Đạt / Vi phạm đã sửa / Vi phạm còn mở / Không áp dụng) | Bằng chứng | Cách xử lý |
-Luôn ghi các dòng vi phạm. Dòng cho tiêu chí Đạt và Không áp dụng (chỉ khi DAY_DU): ghi thêm để bảng phủ mọi tiêu chí dưới đây.
+Bảng F7 ghi ở mục g của mỗi SCR-nn-slug.md (giai đoạn 2). Giai đoạn 1 đánh giá ui-standards.md theo từng tiêu chí, cột SCR ghi "Chuẩn hoá", đặt ở cuối ui-standards.md. Lần chạy giai đoạn 2 cuối cùng, hoặc chế độ Toàn bộ, lập bảng tổng hợp ở cuối screen-list.md từ mục g của các SCR.
+Luôn ghi các dòng vi phạm. Dòng Đạt và dòng Không áp dụng chỉ ghi khi MUC_CHI_TIET là DAY_DU, để bảng phủ mọi tiêu chí dưới đây.
 Tiêu chí:
 - Nielsen: 1 Hiển thị trạng thái hệ thống; 2 Khớp giữa hệ thống và thế giới thực; 3 Người dùng kiểm soát và tự do; 4 Nhất quán và theo chuẩn; 5 Ngăn lỗi; 6 Nhận biết thay vì nhớ lại; 7 Linh hoạt và hiệu quả; 8 Thẩm mỹ và tối giản; 9 Giúp nhận biết, chẩn đoán, khắc phục lỗi; 10 Trợ giúp và tài liệu.
 - Shneiderman (dùng khi rà soát tổng thể): nhất quán; khả dụng cho mọi người dùng; phản hồi đầy đủ; hội thoại có điểm kết thúc rõ; ngăn lỗi; hoàn tác dễ dàng; người dùng làm chủ; giảm tải trí nhớ ngắn hạn.
@@ -217,7 +232,7 @@ F8. Mục kiểm soát theo C5 trong mỗi file.
 6. Mỗi màn hình trong phạm vi có hình ảnh, bảng điều khiển, bảng thuộc tính trường, bảng kiểm tra dữ liệu nhập.
 7. Ràng buộc dữ liệu của trường khớp P04 và BR; không có độ dài, miền giá trị tự đặt không có mã Q hoặc ASM.
 8. Dữ liệu mẫu đúng nghiệp vụ: định dạng đúng, tổng hợp khớp, đơn vị nhất quán.
-9. Mọi màn hình đã được đánh giá theo F7; không còn vi phạm WCAG AA chưa có cách xử lý.
+9. Giai đoạn 1: mọi tiêu chí F7 được đánh giá trên ui-standards.md. Giai đoạn 2: mọi màn hình trong phạm vi được đánh giá theo F7; không còn vi phạm WCAG AA chưa có cách xử lý.
 10. Hình ảnh, sơ đồ dịch chuyển, đặc tả, danh sách màn hình nhất quán tên, mã và dịch chuyển.
 11. Bảng mô hình và file .drawio khớp nhau, đạt C7.3; mockup HTML (nếu có) theo đúng chuẩn.
 12. Đạt Conventions C2, C5, C6.

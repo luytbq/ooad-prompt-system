@@ -21,8 +21,17 @@ Bước này chuyển mô hình phân tích thành các phần tử của mô h�
 
 ## 3. Cách chạy
 
-- Đính kèm: 00-Conventions.md, project-profile.md và các file đầu vào.
-- Chạy một lần cho toàn hệ thống, sau P09 và sau khi đã dán khối "Cập nhật hồ sơ dự án" của P09 vào project-profile.md (khi hồ sơ từng ghi "Chưa chốt"). Chạy lại khi P08 hoặc P09 thay đổi.
+- Đính kèm: 00-Conventions.md, project-profile.md và các file đầu vào. Mỗi file chỉ cần phần sau (khi chạy bằng agent, chỉ đọc các mục này, tìm theo tiêu đề):
+
+| Artifact | Phần cần dùng |
+|---|---|
+| P08-analysis-model.md | F3 (bảng lớp hợp nhất), F4 (bảng quan hệ), Câu hỏi mở, Giả định |
+| P09-architecture.md | F4, F5, F6, F7, Câu hỏi mở, Giả định |
+| P01-actors.md, P02-usecases.md | Bảng tác nhân; Mục 4 (UC, nhóm chức năng) |
+| P06-supplementary-spec.md | NFR về khả năng thay thế, bảo mật, giao tiếp ngoài |
+| P03-usecase-model.md, P04-uc-specs/ | Quan hệ extend và use case tuỳ chọn (A3, lớp tuỳ chọn) |
+
+- Chạy một lần cho toàn hệ thống, sau P09 và sau khi đã thay hai dòng NEN_TANG, CONG_NGHE của project-profile.md bằng khối "Cập nhật hồ sơ dự án" của P09 (khi hồ sơ từng ghi "Chưa chốt"). Chạy lại khi P08 hoặc P09 thay đổi.
 
 | Placeholder | Bắt buộc | Ý nghĩa |
 |---|---|---|
@@ -53,6 +62,7 @@ A0. Kiểm tra đầu vào.
 
 A1. Xác định subsystem ứng viên.
 - Xét mọi lớp phân tích hoạt động trong P08. Một lớp (hoặc nhóm lớp) là ứng viên subsystem khi thoả ít nhất một tiêu chí: là boundary giao diện hệ thống ngoài; là boundary giao diện thiết bị; cung cấp dịch vụ phức tạp hoặc tiện ích dùng ở nhiều use case và che giấu được bên trong; có khả năng bị thay thế bằng biến thể khác (đổi nhà cung cấp, đổi thiết bị) theo NFR hoặc KHA_NANG_THAY_DOI_GIAO_DIEN; cần giới hạn truy cập vì lý do bảo mật; đại diện cho sản phẩm có sẵn được dùng lại (thư viện giao tiếp, hỗ trợ truy cập dữ liệu, tiện ích chung).
+- Package tích hợp, hạ tầng của P09 không có lớp phân tích nguồn (máy in nối qua phần mềm trung gian, bộ định thời, đồng bộ với máy trạm) cũng được xét: F1 ghi cột Lớp phân tích là "- (ACT-nn hoặc PKG-nn của P09)", F2 ghi AC nguồn "Cơ chế: <mục P09>". Phần hiện thực interface kho dữ liệu (Persistence) không thành subsystem: ghi ở bảng phần tử thiết kế mới do cơ chế kiến trúc (F3); operation của interface kho dữ liệu do P12 thiết kế.
 - Boundary loại Kênh thông báo (email, SMS, thông báo đẩy) ánh xạ theo dòng tương ứng ở P09 mục F5; thường thành subsystem gửi thông báo khi kênh đi qua dịch vụ ngoài, không thành lớp giao diện người dùng.
 - Lớp "siêu nhân" (một boundary có nhiều trách nhiệm phức tạp) là dấu hiệu nên thành subsystem: trách nhiệm của nó trở thành operation của interface, phần hiện thực chia cho các lớp bên trong.
 - Mỗi subsystem: đặt tên theo năng lực cung cấp; xác định interface nó hiện thực (tên bắt đầu bằng chữ I, phản ánh vai trò); liệt kê trách nhiệm (lấy từ trách nhiệm của lớp phân tích nguồn); liệt kê phần tử được che giấu. Chi tiết operation để P11b làm.
@@ -69,7 +79,8 @@ A2. Ánh xạ từng lớp phân tích.
 A3. Nhóm lớp thiết kế vào package.
 - Mỗi package nằm trong một layer của P09 (con của PKG layer hoặc PKG cấp cao ở P09). Cấp mã PKG tiếp theo số lớn nhất của P09.
 - Hai lớp gắn kết chức năng (nên cùng package) khi có ít nhất một dấu hiệu: thay đổi hành vi hoặc cấu trúc của lớp này buộc thay đổi lớp kia; bỏ lớp này ảnh hưởng lớp kia; hai đối tượng trao đổi nhiều message hoặc giao tiếp phức tạp (đối chiếu sequence P07); boundary có chức năng trình bày một entity cụ thể; hai lớp cùng tương tác với, hoặc cùng chịu ảnh hưởng khi thay đổi, một tác nhân; hai lớp có quan hệ với nhau; lớp này tạo đối tượng của lớp kia.
-- Hai lớp không được cùng package khi: chúng là boundary giao diện người dùng phục vụ hai tác nhân khác nhau (control, entity dùng chung bởi nhiều tác nhân không bị tách vì lý do này); một lớp là tuỳ chọn (thuộc tính năng tuỳ chọn, ví dụ use case extend được bán hoặc bật riêng) và lớp kia bắt buộc.
+- Hai lớp không được cùng package khi: chúng là boundary giao diện người dùng phục vụ hai tác nhân khác nhau (control, entity dùng chung bởi nhiều tác nhân không bị tách vì lý do này; quy tắc tác nhân chỉ áp dụng cho phần tử ở layer giao diện như View, Presenter, Store, ViewModel; phần tiếp nhận yêu cầu ở layer Application nhóm theo nhóm chức năng); một lớp là tuỳ chọn (thuộc tính năng tuỳ chọn, ví dụ use case extend được bán hoặc bật riêng) và lớp kia bắt buộc.
+- Package của P09 vi phạm quy tắc tác nhân ở trên thì giữ mã PKG đó làm package cha không chứa phần tử, cấp package con cho từng tác nhân và ghi Đề xuất sửa P09.
 - Boundary: nếu giao diện (người dùng hoặc hệ thống) có khả năng thay đổi đáng kể, đặt boundary vào package riêng, tách khỏi lớp nghiệp vụ; nếu giao diện ổn định, có thể đặt boundary cùng package với các lớp gắn kết chức năng với nó. Dùng KHA_NANG_THAY_DOI_GIAO_DIEN; không có thông tin thì coi là dễ thay đổi và tách.
 - Kiểu giá trị (tiền, định danh, mã tham chiếu) được interface ở layer dưới dùng trong chữ ký: đặt ở package cùng layer với interface hoặc thấp hơn (ví dụ một package kiểu dữ liệu dùng chung ở layer thấp nhất), để chữ ký interface không kéo layer dưới phụ thuộc layer trên.
 - Áp dụng thêm TIEU_CHI_NHOM_PACKAGE nếu có (đơn vị cấu hình, phân công nhóm phát triển, loại người dùng, sản phẩm và dịch vụ có sẵn).
@@ -94,11 +105,13 @@ Bảng: | Lớp phân tích (AC) | Tiêu chí thoả (Hệ thống ngoài / Thi�
 - Mức hợp lý: mọi boundary giao diện hệ thống ngoài và thiết bị đều thành subsystem, trừ khi có lý do ghi rõ (ví dụ chỉ gửi một thông điệp một chiều rất đơn giản và NFR không yêu cầu thay thế được). Lớp khác chỉ thành subsystem khi có tiêu chí rõ.
 - Lỗi thường gặp: biến mọi control thành subsystem (quá lớn, mất lợi ích che giấu); boundary tới cổng thanh toán giữ là lớp thường khiến control phụ thuộc trực tiếp vào chi tiết giao thức (quá nhỏ).
 - Ví dụ đúng (giao đồ ăn): AC-B-PaymentGateway --> Subsystem, tiêu chí Hệ thống ngoài, Có thể thay thế (đổi cổng thanh toán). Ví dụ đúng (quản lý kho): AC-B-BarcodeScanner --> Subsystem, tiêu chí Thiết bị.
+- Package của P09 chỉ phục vụ use case chưa có P07 (không có lớp hoạt động nào trong P08) thì giữ chỗ ở F4, chưa tạo subsystem, ghi ở Vấn đề còn mở.
 - Ví dụ sai: AC-C-BookAppointmentController --> Subsystem vì "có nhiều bước" (sai: độ dài điều phối không phải tiêu chí subsystem).
 
 F2. Bảng subsystem (bảng lõi, P11b đọc bảng này)
 | SS | Tên | Interface (IF) | Trách nhiệm | Che giấu phần tử nào | AC nguồn | ACT liên quan | PKG chứa |
 - SS: mã SS-nn; IF: mã IF-nn kèm tên, ví dụ "IF-01 IPaymentGateway". Một subsystem có thể hiện thực nhiều interface khi phục vụ các vai trò khác nhau.
+- Ngay dưới F2 lập bảng Interface gọi ngược: | IF | Tên | Định nghĩa tại PKG | Subsystem gọi | Lớp hiện thực (DC, PKG) | Trách nhiệm | Nguồn (P09 A5, UC) |. Mỗi chỗ P09 ghi cơ chế gọi ngược và mỗi boundary thiết bị hoặc hệ thống ngoài chỉ đẩy sự kiện vào hệ thống có ít nhất một dòng. Mã IF dùng chung dãy với F2. P11b, P12 đọc cả hai bảng.
 - Trách nhiệm: liệt kê theo trách nhiệm của lớp phân tích nguồn, dạng "// tênTráchNhiệm".
 - Che giấu phần tử nào: mô tả các lớp bên trong dự kiến (giao thức, chuyển đổi dữ liệu, quản lý kết nối), chưa cần tên cuối cùng.
 - Tên interface: phản ánh vai trò trong hệ thống, không phản ánh nhà cung cấp cụ thể (IPaymentGateway, không phải IAcmePayApi), trừ khi YEU_CAU_BO_SUNG yêu cầu.
@@ -125,11 +138,11 @@ Mọi phần tử được package khác dùng phải public; mọi lớp bên t
 
 F6. Kiểm tra coupling giữa package
 Bảng: | Phụ thuộc (PKG --> PKG) | Suy ra từ (quan hệ lớp, message) | Cross-coupled | Lower --> Upper | Nhảy layer | Vòng | Kết luận và cách sửa |
-Mỗi ô kiểm tra ghi Không hoặc Có. Mọi dòng có "Có" phải có cách sửa đã áp dụng hoặc ghi vào "Vấn đề còn mở".
+Mỗi ô kiểm tra ghi Không hoặc Có. Cột Nhảy layer ghi "Không áp dụng" khi P09 chọn layered nới lỏng; chỉ ghi Có hoặc Không khi P09 chọn nghiêm ngặt. Mọi dòng có "Có" phải có cách sửa đã áp dụng hoặc ghi vào "Vấn đề còn mở".
 
 F7. Package diagram thiết kế
 File diagrams/P10-package-design.drawio.
-a) Bảng Node: | ID (PKG, SS, IF) | Loại (Package / Subsystem / Interface) | Nhãn | Stereotype («layer», «subsystem», «interface») | Thuộc về | Ghi chú (visibility) |
+a) Bảng Node: | ID (PKG, SS, IF, DC) | Loại (Layer / Package / Subsystem / Interface / Class; Class chỉ vẽ cho lớp hiện thực interface gọi ngược) | Nhãn | Stereotype («layer», «subsystem», «interface») | Thuộc về | Ghi chú (visibility) |
 b) Bảng Edge: | ID | Nguồn | Đích | Loại quan hệ (Dependency / Realization) | Nhãn | Ghi chú |
 Quy tắc ngữ nghĩa UML: package là hình thư mục, phụ thuộc là mũi tên nét đứt đầu mở; subsystem vẽ là component có stereotype «subsystem» (style: shape=component;whiteSpace=wrap;html=1; hoặc hình chữ nhật có nhãn «subsystem»); interface vẽ là lớp có stereotype «interface» (dạng canonical) hoặc vòng tròn nhỏ (dạng elided: ellipse;html=1; kích thước 20 x 20); subsystem nối tới interface nó hiện thực bằng realization (nét đứt, tam giác rỗng); package dùng subsystem thì phụ thuộc vào interface, không vào subsystem.
 Bố cục: layer xếp chồng từ trên xuống như P09; mũi tên phụ thuộc và realization đều đi xuống hoặc ngang, không đi lên (P09 A5); interface đặt giữa package dùng nó và subsystem hiện thực nó, ở layer không cao hơn subsystem; theo C7.3.
@@ -143,7 +156,7 @@ F9. Mục kiểm soát theo C5.
 1. Mọi lớp phân tích hoạt động trong P08 có đúng một dòng ánh xạ; mọi phần tử thiết kế truy được về lớp phân tích hoặc cơ chế kiến trúc.
 2. Mọi ánh xạ khác 1-1 có lý do.
 3. Mọi boundary giao diện hệ thống ngoài và thiết bị là subsystem có interface, hoặc có lý do ghi rõ.
-4. Mỗi subsystem có ít nhất một interface; tên interface bắt đầu bằng I và phản ánh vai trò.
+4. Mỗi subsystem có ít nhất một interface nó hiện thực; subsystem thiết bị chỉ đẩy sự kiện vào thì interface hiện thực gồm việc bật, tắt và đăng ký bộ nhận, còn sự kiện đi qua interface gọi ngược (bảng dưới F2). Tên interface bắt đầu bằng I và phản ánh vai trò.
 5. Mỗi package thuộc đúng một layer của P09; không có hai boundary giao diện người dùng của hai tác nhân khác nhau trong cùng package; không trộn lớp tuỳ chọn với lớp bắt buộc.
 6. Không có package cross-coupled, không vòng phụ thuộc, không phụ thuộc hoặc realization từ layer dưới lên trên, không nhảy layer (khi layered nghiêm ngặt).
 7. Mọi phụ thuộc tới subsystem đi qua interface; không lớp bên trong subsystem nào public.
