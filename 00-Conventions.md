@@ -62,7 +62,7 @@ Phần số trong mã ("nn", "nnn") là số thứ tự có tối thiểu số c
 | TC-nnn | Test case | X2 | TC-015 |
 | RV-nn | Phát hiện review | X1 | RV-08 |
 
-Mã Q-nn và ASM-nn đánh số liên tục trong toàn dự án, không đánh lại từ 01 ở mỗi artifact. Lần chạy nào cũng đọc các artifact đầu vào đã có, tìm mã Q và ASM lớn nhất đã thấy, rồi cấp tiếp từ số đó. Mã lớn nhất tìm trong mục Câu hỏi mở và Giả định của mọi artifact đã có trong THU_MUC_DAU_RA, kể cả file không thuộc đầu vào của bước (chỉ quét mã, không cần đọc nội dung); khi chạy bằng chat không đính kèm được các file đó, người dùng ghi mã Q, ASM lớn nhất hiện có vào YEU_CAU_BO_SUNG. Không chạy song song hai phiên cùng cấp Q, ASM; khi buộc phải chạy song song, người dùng ghi trong YEU_CAU_BO_SUNG của mỗi phiên một dải mã riêng, ví dụ "Q-48 đến Q-59, ASM-37 đến ASM-46". Bước chạy lặp nhiều lần (P04 cho từng use case, P07 cho từng use case, P12 theo package) đọc thêm mục "Câu hỏi mở" và "Giả định" của các file cùng bước đã có trong thư mục đầu ra và cấp tiếp từ số lớn nhất trong đó. Nhờ vậy khi bước sau trích "Q-07", mã chỉ trỏ tới một câu hỏi duy nhất.
+Mã Q-nn và ASM-nn đánh số liên tục trong toàn dự án, không đánh lại từ 01 ở mỗi artifact. Lần chạy nào cũng đọc các artifact đầu vào đã có, tìm mã Q và ASM lớn nhất đã thấy, rồi cấp tiếp từ số đó. Chỉ tính mã ở cột Mã của mục Câu hỏi mở, Giả định; khi tìm bằng công cụ, mẫu tìm phải có ranh giới từ phía trước (ví dụ \bQ-[0-9]+, không khớp phần đuôi của REQ-68). Mã mới đúng bằng số lớn nhất cộng 1; nếu buộc tạo khoảng trống thì ghi lý do ở Vấn đề còn mở. Mã lớn nhất tìm trong mục Câu hỏi mở và Giả định của mọi artifact đã có trong THU_MUC_DAU_RA, kể cả file không thuộc đầu vào của bước (chỉ quét mã, không cần đọc nội dung); khi chạy bằng chat không đính kèm được các file đó, người dùng ghi mã Q, ASM lớn nhất hiện có vào YEU_CAU_BO_SUNG. Không chạy song song hai phiên cùng cấp Q, ASM; khi buộc phải chạy song song, người dùng ghi trong YEU_CAU_BO_SUNG của mỗi phiên một dải mã riêng, ví dụ "Q-48 đến Q-59, ASM-37 đến ASM-46". Bước chạy lặp nhiều lần (P04 cho từng use case, P07 cho từng use case, P12 theo package) đọc thêm mục "Câu hỏi mở" và "Giả định" của các file cùng bước đã có trong thư mục đầu ra và cấp tiếp từ số lớn nhất trong đó. Nhờ vậy khi bước sau trích "Q-07", mã chỉ trỏ tới một câu hỏi duy nhất.
 
 Quy ước tham chiếu trong văn bản: ghi mã kèm tên ở lần đầu trong mỗi mục, ví dụ "UC-004 Hủy lịch hẹn", sau đó có thể chỉ ghi mã.
 
@@ -110,6 +110,7 @@ Mỗi artifact là file Markdown, mở đầu bằng khối thông tin và kết
 | Phiên bản | 1.0 (tăng khi chạy lại) |
 | Đầu vào đã dùng | Danh sách file và phiên bản |
 | Phạm vi | Toàn hệ thống, hoặc UC-nnn cụ thể |
+| Mã Q, ASM cuối đã cấp | Q-nn, ASM-nn lớn nhất toàn dự án sau lần chạy này (để lần chạy sau đọc nhanh) |
 
 ... nội dung chính theo đặc tả của bước ...
 
@@ -214,10 +215,11 @@ diagrams/<Mã bước>-<loại>-<phạm vi>.drawio. Danh sách tên chuẩn:
 | Association (actor - use case) | endArrow=none;html=1; (biến thể có mũi tên: endArrow=open;html=1;, đuôi ở bên khởi xướng, đầu mũi tên mở ở bên nhận (tác nhân chính --> use case; use case --> tác nhân phụ), bật theo lựa chọn ở P03) |
 | «include» / «extend» | endArrow=open;dashed=1;html=1; (nhãn «include» hoặc «extend») |
 | Generalization | endArrow=block;endFill=0;html=1; |
-| Class | swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;collapsible=0;html=1; (các ngăn thuộc tính, phương thức là cell con, ngăn cách bằng line) |
+| Class | swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;collapsible=0;html=1; (các ngăn thuộc tính, phương thức là cell con, ngăn cách bằng line). Lớp có stereotype (lớp phân tích ở VOPC và P08) dùng style này với startSize=40, nhãn "«stereotype»<br>Tên"; style icon dòng dưới chỉ dùng trong sequence, communication diagram |
 | Boundary / Control / Entity (icon) | shape=umlBoundary; / ellipse;shape=umlControl; / ellipse;shape=umlEntity; |
 | Lifeline | shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1; |
 | Message đồng bộ / trả về | endArrow=block;endFill=1;html=1; / endArrow=open;dashed=1;html=1; |
+| Message tạo đối tượng | endArrow=open;dashed=1;html=1; (nhãn có «create», đích là đỉnh lifeline được tạo) |
 | Association (class) | endArrow=none;html=1; hoặc endArrow=open khi có chiều điều hướng |
 | Aggregation / Composition | startArrow=diamondThin;startFill=0; / startArrow=diamondThin;startFill=1; |
 | Control flow (activity) | edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0; (guard trong ngoặc vuông làm nhãn) |
@@ -228,8 +230,11 @@ diagrams/<Mã bước>-<loại>-<phạm vi>.drawio. Danh sách tên chuẩn:
 | Subsystem | shape=component;html=1; (nhãn «subsystem») |
 | Interface dạng rút gọn (lollipop) | ellipse;html=1; kích thước 20 x 20 |
 | Message bất đồng bộ | endArrow=open;endFill=0;html=1; |
+| Gate (sequence diagram thiết kế) | ellipse;html=1; kích thước 10 x 10, đặt trên cạnh khung sd |
 | Combined fragment (opt, alt, break, loop, ref) | rounded=0;whiteSpace=wrap;html=1;fillColor=none;align=left;verticalAlign=top; |
 | Node (deployment) | shape=cube;whiteSpace=wrap;html=1; |
+| Artifact (deployment) | rounded=0;whiteSpace=wrap;html=1; (nhãn "«artifact»<br>Tên") |
+| Communication path (deployment) | endArrow=none;html=1; (nhãn giao thức) |
 | Bảng ERD (logic, vật lý) | như Class: swimlane stackLayout, mỗi cột một dòng con |
 | Quan hệ ERD chân chim | startArrow=ERmandOne;endArrow=ERzeroToMany;html=1; (dashed=1 cho quan hệ không định danh nếu dự án dùng quy ước đó) |
 | Thực thể / thực thể yếu / thuộc tính (Chen) | rounded=0; / shape=ext;double=1; / ellipse; |

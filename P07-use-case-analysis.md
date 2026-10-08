@@ -19,13 +19,27 @@ Bước này hiện thực hoá (realize) một use case bằng các lớp phân
 | Đầu vào | P07-uc-analysis/*.md của các use case đã phân tích trước | Khi đã có | Tái dùng mã AC và tên lớp cho cùng khái niệm |
 | Đầu vào | P02-usecases.md | Nên có | Mục tiêu và tác nhân của use case để đối chiếu; tìm use case do tác nhân thời gian kích hoạt trên đối tượng mà use case này tạo hoặc thay đổi (A2) |
 | Đầu ra | P07-uc-analysis/UC-nnn-slug-analysis.md | Có | Artifact chính của bước |
-| Đầu ra | diagrams/P07-sequence-UC-nnn.drawio | Có | Sequence diagram phân tích (mỗi luồng cần vẽ một trang) |
+| Đầu ra | diagrams/P07-sequence-UC-nnn.drawio | Có | Sequence diagram phân tích (SD1 cho luồng chính và các luồng thay thế gộp được; luồng không gộp được vẽ ở trang riêng) |
 | Đầu ra | diagrams/P07-communication-UC-nnn.drawio | Có | Communication diagram |
 | Đầu ra | diagrams/P07-class-UC-nnn.drawio | Có | VOPC |
 
 ## 3. Cách chạy
 
-- Đính kèm: 00-Conventions.md, project-profile.md, các file đầu vào ở bảng trên, và mọi file phân tích P07 đã có (để tái dùng mã AC).
+- Đính kèm: 00-Conventions.md, project-profile.md, các file đầu vào ở bảng trên. Mỗi lần chạy chỉ cần phần sau:
+
+| Artifact | Phần cần dùng |
+|---|---|
+| Đặc tả P04 của UC_ID | Toàn bộ |
+| P01-actors.md | Mục 2 (bảng tác nhân) |
+| P02-usecases.md | Dòng UC_ID ở Mục 4, các dòng UC có tác nhân thời gian (A2) |
+| P03-usecase-model.md | Các dòng của Mục 1, Mục 2 có UC_ID |
+| P05-glossary.md | Các thuật ngữ mà đặc tả dùng |
+| P06-supplementary-spec.md | Các BR, NFR có UC_ID ở cột áp dụng |
+| Đặc tả P04 của use case được include hoặc extend | Bảng thông tin, luồng chính |
+| Mỗi file P07 đã có | F1 (hàng sổ đăng ký AC), F3.4, F8 b), Câu hỏi mở, Giả định, Vấn đề còn mở; không cần F2, F5, F7, F9, F10 |
+| Mọi artifact trong thư mục đầu ra | Mã ở mục Câu hỏi mở, Giả định (để cấp tiếp mã theo Conventions C3) |
+
+- Khi chạy bằng agent có quyền đọc file, chỉ đọc các phần ở bảng trên (tìm theo tiêu đề mục).
 - Chạy lặp: mỗi lần một use case. Thứ tự khuyến nghị: use case được include trước use case gọi nó; use case gốc trước use case extend nó; use case có nhiều entity cốt lõi trước. Thứ tự này giúp lớp dùng chung được đặt mã một lần và tái dùng.
 - Sau khi mọi use case trong phạm vi đã chạy xong bước này, chuyển sang P08.
 - Chưa có P05 hoặc P06 vẫn chạy được. Hệ quả: tên entity lấy theo thuật ngữ trong P04 và tài liệu nguồn nên có thể phải đổi khi P05 xong; cột GL ghi "-"; khái niệm chưa rõ nghĩa hoặc có thể đồng nghĩa với khái niệm khác thành Q-nn. Chạy lại P07 sau P05, P06 nếu tên hoặc BR thay đổi.
@@ -40,7 +54,7 @@ Bước này hiện thực hoá (realize) một use case bằng các lớp phân
 
 ````text
 [Context]
-Bạn nhận được hồ sơ dự án (project-profile.md), bộ quy ước chung (00-Conventions.md) và các artifact đã chốt của các bước trước. Đọc toàn bộ trước khi làm. Tuân thủ mọi quy tắc trong 00-Conventions.md, đặc biệt C1 (nguồn sự thật, chế độ giả định, không sửa artifact trước), C3 (mã định danh), C5 (khung artifact), C7 (sơ đồ).
+Bạn nhận được hồ sơ dự án (project-profile.md), bộ quy ước chung (00-Conventions.md) và các artifact đã chốt của các bước trước. Đọc toàn bộ đặc tả của use case đang phân tích; với các artifact khác, chỉ đọc phần liên quan tới UC_ID nêu ở danh sách "Đầu vào cần đọc" dưới đây. Tuân thủ mọi quy tắc trong 00-Conventions.md, đặc biệt C1 (nguồn sự thật, chế độ giả định, không sửa artifact trước), C3 (mã định danh), C5 (khung artifact), C7 (sơ đồ).
 
 Use case cần phân tích trong lần chạy này:
 {{PH:UC_ID | Hướng dẫn: ghi đúng mã và tên tiếng Việt của use case như trong P02-usecases.md; mỗi lần chạy chỉ một use case | Ví dụ: "UC-004 Hủy lịch hẹn" (phòng khám); "UC-012 Đặt món" (giao đồ ăn); "UC-007 Nhập kho theo phiếu" (quản lý kho)}}
@@ -55,7 +69,7 @@ Luồng cần vẽ sequence diagram riêng:
 - P05-glossary.md để lấy tên khái niệm chuẩn.
 - P06-supplementary-spec.md để lấy BR, NFR áp dụng cho use case.
 - Nếu chưa có P05 hoặc P06: lấy tên khái niệm từ đặc tả P04 và câu trong tài liệu nguồn, cột GL ghi "-"; BR lấy từ sổ P04-uc-specs/_BR-register.md, NFR lấy từ mục Yêu cầu đặc biệt của P04. Khái niệm chưa rõ nghĩa (không biết hai từ có cùng chỉ một thứ hay không) ghi Q-nn. Ghi "Chạy khi chưa có P05/P06" vào Vấn đề còn mở.
-- Mọi file P07-uc-analysis/*.md đã có. Từ đó lập "sổ đăng ký AC" gồm mọi mã AC đã cấp, tên, stereotype, trách nhiệm.
+- Mọi file P07-uc-analysis/*.md đã có (chỉ mục F1, F3.4, F8 b) và các mục kiểm soát). Từ đó lập "sổ đăng ký AC" gồm mọi mã AC đã cấp, tên, stereotype, trách nhiệm.
 
 [Role]
 Bạn là chuyên gia phân tích hướng đối tượng, thành thạo quy trình Use-Case Analysis (hiện thực hoá use case bằng lớp phân tích boundary, control, entity), robustness analysis, các nguyên tắc phân bổ trách nhiệm GRASP (Information Expert, Creator, Controller, Low Coupling, High Cohesion) và ký pháp UML 2.5.1 cho sequence diagram, communication diagram, class diagram. Bạn làm việc ở mức phân tích: mô tả hệ thống làm gì và ai chịu trách nhiệm, không quyết định công nghệ.
@@ -69,13 +83,14 @@ A1. Nắm bối cảnh use case.
 - Liệt kê quan hệ include, extend của use case và điểm mở rộng.
 - Lập sổ đăng ký AC từ các file P07 đã có. Nếu chưa có file nào, sổ rỗng.
 - Use case được include hoặc extend mà chưa có file P07: đặt trước tên và mã control của nó theo quy tắc đặt tên ở F3.3, ghi trạng thái "Tạm - chờ P07 của UC-xxx". Khi chạy P07 cho use case đó phải dùng đúng mã này.
+- Entity hoặc boundary hệ thống ngoài mà khái niệm do use case khác (không include, không extend) quản lý, và use case đó chưa có P07: cấp mã theo F3.4, ghi "Mới - chủ sở hữu UC-xxx" ở cột Mới hoặc tái dùng và liệt kê trong Vấn đề còn mở; P07 của UC-xxx phải dùng lại mã này.
 
 A2. Bổ sung đặc tả use case (supplement the use-case specification).
 - Với mỗi bước của luồng chính và luồng thay thế mà hệ thống thực hiện, viết lại ở dạng "hệ thống làm gì bên trong": lấy thông tin gì, từ đâu, kiểm tra điều kiện nào, ghi nhận gì, thông báo cho ai.
 - Mô tả bổ sung chỉ làm rõ điều đã có trong đặc tả, BR, glossary. Không thêm chức năng mới. Nếu một bước mơ hồ tới mức không phân bổ được (ví dụ "hệ thống xử lý đơn"), xử lý theo chế độ giả định: NGHIEM_NGAT thì ghi câu hỏi Q-nn; CO_NHAN thì ghi giả định ASM-nn.
 - Không nêu công nghệ (không "truy vấn SQL", "gọi REST", "lưu vào bảng").
-- Thời hạn nội bộ (ví dụ chờ khách lấy tiền trong thời hạn của BR ở máy ATM) không là tác nhân và không là use case riêng. Control ghi nhận bắt đầu chờ bằng message tự gọi (ví dụ "// startWaitingForCashTaken (BR-04)") và nhận sự kiện hết hạn bằng message tự gọi có nhãn "after(<thời hạn>)", ví dụ "// after(BR-04) handleCashNotTaken"; luồng hết hạn vẽ bằng fragment alt hoặc break theo F5.
-- Mốc thời gian phụ thuộc dữ liệu: nếu P02 có use case do tác nhân thời gian kích hoạt tại một mốc tính từ dữ liệu của một đối tượng (ví dụ nhắc bạn đọc khi tới hạn trả sách của phiếu mượn), thì use case tạo ra mốc đó có trách nhiệm đăng ký mốc (hẹn lịch), và use case làm mốc thay đổi hoặc mất hiệu lực (trả sách, gia hạn) có trách nhiệm hẹn lại hoặc huỷ mốc. Ghi bằng message của control ở bước tạo, đổi, kết thúc đối tượng, ví dụ "// scheduleDueReminder (phiếu mượn, hạn trả)", nguồn ghi mã use case do tác nhân thời gian kích hoạt. Mức phân tích không chọn cơ chế lập lịch; P12 thiết kế cơ chế đó.
+- Thời hạn nội bộ (ví dụ chờ khách lấy tiền trong thời hạn của BR ở máy ATM) không là tác nhân và không là use case riêng. Control ghi nhận bắt đầu chờ bằng message tự gọi (ví dụ "// startWaitingForCashTaken (BR-04)") và nhận sự kiện hết hạn bằng message tự gọi có nhãn "after(<thời hạn>)", ví dụ "// after(BR-04) handleCashNotTaken"; luồng hết hạn vẽ bằng fragment alt hoặc break theo F5. Khi thời hạn bao trùm nhiều bước (P04 ghi luồng hết hạn "tại bất kỳ bước nào từ bước N+1 đến bước M": tác nhân nhập tiếp, gọi use case được include, vòng thử lại), vẽ fragment par hai toán hạng ngay sau message bắt đầu chờ. Toán hạng 1 chứa mọi message từ bước N+1 tới bước M, kể cả loop thử lại và message tới control của use case được include. Toán hạng 2 chứa break [hết <thời hạn> (BR-xx) mà <sự kiện> chưa tới], trong đó có message tự gọi "after(BR-xx)" và các message xử lý hết hạn. Khi sự kiện tới trước, control gửi message tự gọi "// stopWaitingFor<SựKiện>". Cột bổ sung của F2 ở bước N ghi rằng hết hạn có thể xảy ra ở mọi bước trong khoảng đó.
+- Mốc thời gian phụ thuộc dữ liệu: nếu P02 có use case do tác nhân thời gian kích hoạt tại một mốc tính từ dữ liệu của một đối tượng (ví dụ nhắc bạn đọc khi tới hạn trả sách của phiếu mượn), thì use case tạo ra mốc đó có trách nhiệm đăng ký mốc (hẹn lịch), và use case làm mốc thay đổi hoặc mất hiệu lực (trả sách, gia hạn) có trách nhiệm hẹn lại hoặc huỷ mốc. Đối tượng mốc là đối tượng chứa giá trị dùng để tính mốc (hạn trả của phiếu mượn, giờ bắt đầu của lịch khám). Chỉ use case tạo đối tượng mốc, đổi giá trị đó hoặc làm đối tượng mất hiệu lực mới có message hẹn, hẹn lại, huỷ; use case chỉ đọc đối tượng mốc hoặc chỉ thêm đối tượng phụ thuộc vào nó (thêm một bản sách vào phiếu mượn đã có) thì không có. Đặc tả P04 đã có bước tương ứng (P04 F4.2 mục 17) thì vẽ theo bước đó. Đặc tả thiếu thì vẫn vẽ message, dẫn ASM-nn (CO_NHAN) hoặc Q-nn (NGHIEM_NGAT), và ghi đề xuất sửa P04; trường hợp này không coi là thêm chức năng mới. Ghi bằng message của control ở bước tạo, đổi, kết thúc đối tượng, ví dụ "// scheduleDueReminder (phiếu mượn, hạn trả)", nguồn ghi mã use case do tác nhân thời gian kích hoạt. Mức phân tích không chọn cơ chế lập lịch; P12 thiết kế cơ chế đó.
 
 A3. Tìm lớp boundary.
 - Với mỗi cặp (tác nhân, use case) tìm một lớp boundary. Tác nhân người sinh boundary giao diện người dùng; tác nhân hệ thống ngoài sinh boundary giao diện hệ thống; tác nhân thiết bị sinh boundary giao diện thiết bị. Tác nhân thời gian (bộ lập lịch) không cần boundary riêng nếu nó chỉ kích hoạt use case; khi đó ghi rõ control nhận sự kiện kích hoạt.
@@ -84,11 +99,11 @@ A3. Tìm lớp boundary.
 - Tra sổ đăng ký AC: nếu khái niệm đã có mã thì dùng lại mã và tên, không tạo mã mới.
 - Tác nhân chỉ tương tác trong phần hành vi của use case được include hoặc extend (ví dụ cổng thanh toán chỉ xuất hiện trong use case Thanh toán được include) thì boundary của nó thuộc phân tích của use case đó; không tạo lại trong use case đang phân tích.
 - Tác nhân phụ là người chỉ nhận thông tin (ví dụ nhà hàng nhận đơn mới) vẫn cần một boundary; control gửi thông tin tới boundary đó. Boundary là giao diện người dùng khi thông tin hiện trên màn hình của hệ thống.
-- Tác nhân người chỉ tương tác qua kênh không phải màn hình (email, SMS, thông báo đẩy), hoặc chỉ thao tác vật lý trên thiết bị (đưa thẻ vào máy, đẩy xe qua thanh chắn) và nhận kết quả qua kênh thông báo: boundary của tác nhân đó thuộc loại "Kênh thông báo", đặt tên theo kênh (F3.1). Thao tác vật lý đi vào hệ thống qua boundary thiết bị.
+- Tác nhân người chỉ tương tác qua kênh không phải màn hình (email, SMS, thông báo đẩy), hoặc chỉ thao tác vật lý trên thiết bị (đưa thẻ vào máy, đẩy xe qua thanh chắn) và nhận kết quả qua kênh thông báo: boundary của tác nhân đó thuộc loại "Kênh thông báo", đặt tên theo kênh (F3.1). Thao tác vật lý đi vào hệ thống qua boundary thiết bị. Thiết bị là bộ phận gắn liền của nền tảng chạy phần mềm (P01 ghi là kênh nhập, không phải tác nhân) thì không sinh boundary; thao tác của người trên thiết bị đi qua boundary giao diện người dùng của người đó.
 
 A4. Tìm lớp entity bằng lọc danh từ.
 - Gạch chân (liệt kê) mọi danh từ và cụm danh từ trong luồng sự kiện, đặc tả bổ sung, dữ liệu vào ra, BR của use case.
-- Loại theo thứ tự và ghi lý do cho từng ứng viên bị loại: trùng lặp hoặc đồng nghĩa (giữ tên theo glossary); mơ hồ (ví dụ "thông tin", "dữ liệu", "hệ thống"); là tác nhân hoặc ngoài phạm vi hệ thống; là khái niệm trong phạm vi nhưng không tham gia hành vi của use case này (chỉ được nhắc tới, không được đọc, ghi hay kiểm tra); là cấu trúc cài đặt (ví dụ "bảng", "file", "danh sách", "form"); là thuộc tính của ứng viên khác (giữ lại để dùng ở A7); là thao tác hoặc sự kiện được mô tả bằng danh từ (ví dụ "việc kiểm tra").
+- Loại theo thứ tự và ghi lý do cho từng ứng viên bị loại: trùng lặp hoặc đồng nghĩa (giữ tên theo glossary); mơ hồ (ví dụ "thông tin", "dữ liệu", "hệ thống"); là tác nhân hoặc ngoài phạm vi hệ thống; là khái niệm trong phạm vi nhưng không tham gia hành vi của use case này (chỉ được nhắc tới, không được đọc, ghi hay kiểm tra); là cấu trúc cài đặt (ví dụ "bảng", "file", "danh sách", "form"; riêng tập hợp có tên riêng trong glossary, có định danh nghiệp vụ và vòng đời riêng, ví dụ danh sách giao hàng của một ca được gửi xuống thiết bị của tài xế, có thể là entity, ghi lý do và mã GL); là thuộc tính của ứng viên khác (giữ lại để dùng ở A7); là thao tác hoặc sự kiện được mô tả bằng danh từ (ví dụ "việc kiểm tra").
 - Ứng viên còn lại là entity nếu hệ thống phải lưu hoặc quản lý thông tin của nó vượt quá một lần thực hiện use case, hoặc nó có hành vi riêng trên dữ liệu của nó.
 - Một danh từ chỉ hồ sơ hoặc bản ghi của tác nhân (ví dụ hồ sơ bệnh nhân, tài khoản bạn đọc) có thể là entity dù tác nhân cùng tên đã bị loại; ghi rõ entity biểu diễn thông tin về tác nhân, không phải bản thân tác nhân.
 - Tra sổ đăng ký AC và glossary để tái dùng mã.
@@ -103,7 +118,7 @@ A6. Phân bổ hành vi cho lớp và mô hình hoá tương tác.
 - Lớp tạo ra đối tượng entity mới là lớp chứa hoặc ghi nhận nó, hoặc có dữ liệu khởi tạo nó (Creator).
 - Vẽ sequence diagram cho luồng chính. Luồng thay thế ngắn (1-3 message khác biệt) vẽ trong cùng sơ đồ bằng combined fragment alt, opt hoặc break với guard lấy từ điều kiện trong đặc tả; luồng thay thế kết thúc use case dùng break (F5). Luồng dài hoặc làm sơ đồ vượt ngưỡng ở mục F5 thì vẽ trang riêng.
 - Kiểm tra từng message theo quy tắc tương tác ở mục F6. Sửa ngay các vi phạm.
-- Vẽ communication diagram cùng message và cùng số thứ tự với sequence diagram của luồng chính. Luồng thay thế đã gộp vào sơ đồ đó (chỉ khi DAY_DU): thêm vào communication diagram với cùng số thứ tự.
+- Vẽ communication diagram cùng message và cùng số thứ tự với sequence diagram của luồng chính. Khi DAY_DU: thêm mọi luồng thay thế (kể cả luồng ở trang riêng) với cùng số thứ tự theo F7.
 
 A7. Mô tả trách nhiệm và thuộc tính.
 - Gom mọi message mà một lớp nhận thành danh sách trách nhiệm của lớp đó. Message giống nhau về ý nghĩa gộp thành một trách nhiệm.
@@ -144,7 +159,7 @@ F3.1 Bảng boundary: | Tác nhân (ACT) | Loại tác nhân | Boundary | Loại
 - Ví dụ sai: DishListScreen, CartPopup, ConfirmDialog là ba boundary riêng cho cùng khách hàng trong cùng UC (sai: tách theo màn hình). ReturnReminderForm cho bạn đọc chỉ nhận email (sai: hậu tố của form cho kênh không có màn hình, P11a sẽ không có màn hình nào cho nó).
 
 F3.2 Bảng lọc danh từ: | STT | Danh từ hoặc cụm danh từ | Vị trí (bước UC, mục dữ liệu, BR) | Kết luận | Lý do |
-Cột Kết luận chỉ nhận một trong các giá trị: Entity (AC-E-...); Loại - trùng hoặc đồng nghĩa với X; Loại - mơ hồ; Loại - là tác nhân hoặc ngoài phạm vi; Loại - cấu trúc cài đặt; Loại - thuộc tính của X; Loại - thao tác hoặc sự kiện; Loại - tham số của quy tắc BR-nn (hằng số, ngưỡng, đơn vị nằm trong một quy tắc); Loại - thuộc phân tích của UC-nnn (khái niệm do use case được include hoặc mở rộng tạo ra và xử lý); Loại - không tham gia hành vi của use case này (khái niệm của UC-nnn), dùng cho khái niệm trong phạm vi chỉ được nhắc tới, ví dụ "kho" trong UC Kiểm kê một ngăn kệ khi luồng không đọc hay ghi gì của kho.
+Cột Kết luận chỉ nhận một trong các giá trị: Entity (AC-E-...); Loại - trùng hoặc đồng nghĩa với X; Loại - mơ hồ; Loại - là tác nhân hoặc ngoài phạm vi; Loại - cấu trúc cài đặt; Loại - thuộc tính của X (X là entity có trong bảng này hoặc trong sổ AC); Loại - thao tác hoặc sự kiện; Loại - tham số của quy tắc BR-nn hoặc ASM-nn (hằng số, ngưỡng, đơn vị, định dạng nằm trong một quy tắc hoặc giả định); Loại - giá trị suy ra từ X (tính khi cần, không lưu, ví dụ số chỗ còn trống); Loại - dữ liệu trao đổi qua boundary Y (không lưu, ví dụ nội dung tin nhắn); Loại - khái niệm do UC-nnn tạo, use case này chỉ đọc hoặc đổi trạng thái qua entity Z (UC-nnn không được include hay mở rộng bởi use case này); Loại - thuộc phân tích của UC-nnn (khái niệm do use case được include hoặc mở rộng tạo ra và xử lý); Loại - không tham gia hành vi của use case này (khái niệm của UC-nnn), dùng cho khái niệm trong phạm vi chỉ được nhắc tới, ví dụ "kho" trong UC Kiểm kê một ngăn kệ khi luồng không đọc hay ghi gì của kho.
 - Mức hợp lý: mọi danh từ trong luồng sự kiện đều xuất hiện trong bảng; mỗi dòng bị loại có lý do cụ thể.
 - Lỗi thường gặp: bỏ qua bước lọc và liệt kê entity theo hiểu biết chung (sai C1); giữ "Thông tin đặt phòng" và "Đơn đặt phòng" thành hai entity (trùng); biến "Địa chỉ giao hàng", "Số điện thoại" thành entity khi chúng không có hành vi và định danh riêng (thuộc tính trá hình).
 - Ví dụ đúng (khách sạn): "số đêm" --> Loại - thuộc tính của Booking; "hệ thống" --> Loại - mơ hồ; "lễ tân" --> Loại - là tác nhân; "phòng" --> Entity AC-E-Room.
@@ -163,7 +178,7 @@ F3.4 Bảng lớp phân tích (bảng lõi, bước P08 đọc bảng này):
 - Thuộc tính chính: tên lowerCamelCase, có thể kèm kiểu khái niệm (Ngày, Giờ, Số tiền, Số lượng, Văn bản, Trạng thái); không kiểu vật lý (varchar, int, BigDecimal).
 - Bước UC nguồn: các STT bước làm phát sinh lớp.
 - Loại boundary: chỉ ghi cho boundary (Giao diện người dùng / Kênh thông báo / Giao diện hệ thống / Giao diện thiết bị); entity, control ghi "-".
-- Mới hoặc tái dùng: "Mới" hoặc "Tái dùng từ UC-nnn". Nếu tái dùng mà bổ sung trách nhiệm, ghi "Tái dùng từ UC-nnn, bổ sung trách nhiệm".
+- Mới hoặc tái dùng: "Mới" hoặc "Tái dùng từ UC-nnn" (được ghi nhiều UC nguồn, ví dụ "Tái dùng từ UC-002, UC-013"). Nếu tái dùng mà bổ sung trách nhiệm, ghi "Tái dùng từ UC-nnn, bổ sung trách nhiệm". Lớp tái dùng: (a) thuộc tính mới ghi kèm "(mới ở UC này)"; (b) trách nhiệm cùng tên với trách nhiệm đã có nhưng khác điều kiện hoặc kết quả thì đặt tên khác (releaseHeldSlot, releaseCancelledSlot), không dùng lại tên; (c) giả định của use case này trái với ASM của file P07 trước về cùng lớp thì ghi Q-nn và dòng "Đề xuất sửa artifact trước" cho file P07 đó, cột này ghi "Tái dùng từ UC-nnn, khác ASM-xx". Entity hoặc boundary hệ thống ngoài mà khái niệm do use case khác quản lý chưa có P07 ghi "Mới - chủ sở hữu UC-xxx" (A1).
 - GL: mã thuật ngữ tương ứng, nếu có.
 Mức hợp lý (kiểm tra được):
 - Mỗi lớp có ít nhất một trách nhiệm trong use case này.
@@ -192,17 +207,17 @@ Với mỗi sơ đồ (một trang trong diagrams/P07-sequence-UC-nnn.drawio), x
 a) Tên sơ đồ và luồng thể hiện (ví dụ "SD1 - Luồng chính và 3a, 5a").
 b) Bảng lifeline (bảng Node): | ID | Loại (Actor / Lifeline / Fragment) | Nhãn | Stereotype | Thuộc về (container) | Ghi chú |
    - Nhãn lifeline dạng ":TênLớp" (đối tượng vô danh) hoặc "tên:TênLớp" khi cần phân biệt hai đối tượng cùng lớp. Actor đặt bên trái, sau đó boundary của actor, control, các entity, cuối cùng boundary hệ thống ngoài hoặc thiết bị và actor phụ ở bên phải.
-   - Fragment: nhãn ghi toán tử (alt, opt, break, loop, ref) và guard trong ngoặc vuông, ví dụ "alt [khung giờ còn trống]". Cột Thuộc về của message nằm trong fragment ghi ID fragment.
+   - Fragment: nhãn ghi toán tử (alt, opt, break, loop, ref) và guard trong ngoặc vuông, ví dụ "alt [khung giờ còn trống]". Cột Thuộc về của message nằm trong fragment ghi ID fragment. Toán hạng thứ hai trở đi của alt có dòng Node ID "<ID fragment>-O<n>" (Loại Fragment, nhãn là guard); trong .drawio là cell text cùng ID, đường ngăn là edge "<ID fragment>-O<n>-SEP" nét đứt.
    - Luồng thay thế kết thúc use case (cột Quay lại / Kết thúc của P04 ghi "Kết thúc") dùng break: khi guard đúng, các message trong break được thực hiện rồi interaction kết thúc, phần còn lại của luồng chính không chạy. Không dùng opt cho luồng này, vì sau opt luồng chính vẫn tiếp tục.
 c) Bảng message (bảng lõi, bảng Edge mở rộng): | STT | Từ | Đến | Message | Loại (Đồng bộ / Trả về / Tự gọi / Tạo) | Fragment | Bước UC |
-   - STT: đánh số phân cấp 1, 1.1, 1.1.1: message con được gửi trong khi xử lý message cha. Luồng thay thế trong fragment dùng tiếp số của luồng chính. Message trả về dùng STT của message gọi, ghi thêm "(trả về)" ở cột STT (ví dụ "1.1 (trả về)"); message trả về không xuất hiện trên communication diagram.
+   - STT: đánh số phân cấp 1, 1.1, 1.1.1: message con được gửi trong khi xử lý message cha. Luồng thay thế trong fragment dùng tiếp số của luồng chính. Message ở trang tách riêng dùng STT của message tại điểm rẽ trong trang luồng chính, kèm hậu tố chữ thường theo mã luồng (luồng 7a rẽ tại message 3.1.4 --> 3.1.4a, 3.1.4a.1...). Luồng "Quay lại bước K" vẽ bằng alt: toán hạng luồng chính chỉ ghi guard và note "tiếp tục luồng chính", không lặp lại message; sau message cuối của toán hạng luồng thay thế ghi note "quay lại bước K". Message trả về dùng STT của message gọi, ghi thêm "(trả về)" ở cột STT (ví dụ "1.1 (trả về)"); message trả về không xuất hiện trên communication diagram.
    - Message: tên trách nhiệm dạng "// tênTráchNhiệm", có thể ghi dữ liệu truyền đi bằng lời trong ngoặc tròn, ví dụ "// reserveSlot (khung giờ, bệnh nhân)". Message từ actor tới boundary mô tả hành động của actor, cùng dạng tên như các message khác, ví dụ "// selectTimeSlot". Không kiểu dữ liệu, không kiểu trả về.
    - Message trả về chỉ vẽ khi mang dữ liệu có ý nghĩa cho bước sau; ghi dữ liệu trả về, ví dụ "danh sách khung giờ trống".
    - Bước UC: STT bước trong F2. Mọi message phải có bước UC; mọi bước hệ thống phải có ít nhất một message.
-Ngưỡng tách sơ đồ: một trang tối đa khoảng 30 message và tối đa 3 fragment ở mức ngoài cùng; vượt ngưỡng thì tách luồng thay thế sang trang riêng, bắt đầu bằng fragment ref tới sơ đồ luồng chính hoặc ghi rõ điểm rẽ nhánh.
+Ngưỡng tách sơ đồ: một trang khoảng 30 message không kể message trả về, và tối đa 3 fragment ở mức ngoài cùng. Luồng thay thế ngắn ưu tiên gộp vào trang luồng chính tại đúng bước rẽ; chỉ tách sang trang riêng khi trang đó vượt ngưỡng, trang riêng bắt đầu bằng fragment ref tới sơ đồ luồng chính hoặc ghi rõ điểm rẽ nhánh. Riêng luồng chính đã vượt ngưỡng thì tách theo đoạn bước (SD1a bước 1-6, SD1b bước 7-13); trang sau bắt đầu bằng fragment ref tới trang trước.
 Quy tắc ngữ nghĩa UML của sequence diagram:
 - Lifeline là đối tượng (instance), không phải lớp; nhãn có dấu hai chấm.
-- Message đồng bộ: mũi tên đặc, đầu đặc. Message trả về: nét đứt, đầu mở. Tự gọi: mũi tên quay về chính lifeline.
+- Message đồng bộ: mũi tên đặc, đầu đặc. Message trả về: nét đứt, đầu mở. Tự gọi: mũi tên quay về chính lifeline. Message Tạo: nét đứt, đầu mở (endArrow=open;dashed=1;html=1;), nhãn có «create», đích là đỉnh lifeline được tạo.
 - Thời gian đi từ trên xuống; không có message đi lên.
 - Combined fragment: alt có ít nhất hai toán hạng ngăn bởi đường nét đứt, mỗi toán hạng có guard; opt có một toán hạng; break có một toán hạng, kết thúc interaction bao ngoài sau khi chạy; loop ghi guard hoặc số lần.
 - Không vẽ message giữa hai actor. Actor không nhận message từ control hoặc entity.
@@ -219,7 +234,8 @@ F6. Quy tắc tương tác giữa các lớp phân tích (kiểm tra trên mọi
 | Boundary | Được (actor của nó) | Không | Được | Không |
 | Control | Không | Được | Được | Được |
 | Entity | Không | Không | Không | Được, khi có quan hệ cấu trúc |
-- Ngoại lệ: tác nhân thời gian --> Control: Được (A3), vì tác nhân thời gian không có boundary riêng; ngoại lệ không áp dụng cho tác nhân khác.
+- Ngoại lệ: tác nhân thời gian --> Control: Được (A3), vì tác nhân thời gian không có boundary riêng.
+- Ngoại lệ: tác nhân người thao tác vật lý trên một thiết bị là tác nhân phụ của cùng use case được gửi message tới boundary của thiết bị đó (mô tả thao tác, ví dụ "// scanBarcode"), rồi boundary thiết bị gửi dữ liệu đọc được tới control. Chỉ áp dụng cho cặp tác nhân, thiết bị nêu ở cùng một bước hoặc hai bước liền nhau của đặc tả. Không có ngoại lệ nào khác.
 - Actor chỉ trao đổi với boundary, trừ tác nhân thời gian (dòng trên).
 - Boundary chỉ trao đổi với actor của nó và với control. Boundary không gọi entity và không gọi boundary khác.
 - Control gọi boundary (kể cả boundary hệ thống ngoài), entity, và control của use case được include.
@@ -228,11 +244,11 @@ F6. Quy tắc tương tác giữa các lớp phân tích (kiểm tra trên mọi
 Liệt kê trong artifact bảng: | Vi phạm | Message hoặc link | Cách sửa đã áp dụng |, hoặc ghi "Không có".
 
 F7. Communication diagram
-File diagrams/P07-communication-UC-nnn.drawio, phạm vi là luồng chính của sơ đồ SD1.
-Communication diagram cho luồng thay thế (chỉ khi DAY_DU): thêm các luồng thay thế đã gộp vào SD1, giữ STT của SD1.
+File diagrams/P07-communication-UC-nnn.drawio, phạm vi là luồng chính (mọi trang SD1 nếu đã tách theo đoạn bước).
+Communication diagram cho luồng thay thế (chỉ khi DAY_DU): thêm mọi luồng thay thế, kể cả luồng vẽ ở trang riêng, giữ STT của trang chứa luồng đó. Use case có nhiều tác nhân chính dùng chung luồng (P02 U-R10 b): biến thể của tác nhân thứ hai vào cùng communication diagram, giữ STT của trang biến thể.
 a) Bảng Node: | ID | Loại (Actor / Object) | Nhãn | Stereotype | Thuộc về | Ghi chú |. Nhãn đối tượng giống lifeline ở F5.
 b) Bảng Edge (link): | ID | Nguồn | Đích | Loại (Link) | Nhãn (các message theo STT, dạng "1: // ... (-->)", "1.1: // ... (<--)") | Chiều message (Nguồn-->Đích hoặc Đích-->Nguồn) |
-- Mỗi cặp đối tượng có trao đổi được nối bằng đúng một link; các message giữa cặp đó ghi trên link, giữ nguyên STT của sequence diagram.
+- Mỗi cặp đối tượng có trao đổi được nối bằng đúng một link; các message giữa cặp đó ghi trên link, giữ nguyên STT của sequence diagram. Message tự gọi ghi trên một link tự nối của đối tượng, ID theo dãy link; link tự nối không sinh quan hệ VOPC.
 - Communication diagram và phần sequence diagram nó thể hiện tương đương ngữ nghĩa: cùng tập message, cùng STT. Nếu lệch là lỗi.
 Quy tắc ngữ nghĩa: link là đường liền không mũi tên; chiều của từng message ghi trong nhãn link bằng "(-->)" (từ Nguồn tới Đích của link) hoặc "(<--)" (ngược lại); không vẽ message trả về. Có thể vẽ thêm mũi tên nhỏ cạnh nhãn cho dễ đọc; mũi tên này có ID dạng <ID link>-A<n> và không cần dòng trong bảng Edge.
 
@@ -240,8 +256,10 @@ F8. VOPC (View Of Participating Classes)
 File diagrams/P07-class-UC-nnn.drawio.
 a) Bảng Node (lớp): | ID (mã AC) | Loại (Class) | Nhãn (tên lớp) | Stereotype | Thuộc về | Ngăn thuộc tính | Ngăn trách nhiệm |
    - Ngăn thuộc tính: từ F3.4. Ngăn trách nhiệm: các "// tênTráchNhiệm" của lớp trong use case này.
-b) Bảng quan hệ (bảng Edge, P08 đọc bảng này): | ID | Lớp A | Lớp B | Loại (Association / Aggregation / Composition / Generalization / Dependency) | Multiplicity (dạng "A <m> - B <m>", ví dụ "A 1 - B 0..*") | Vai trò | Nguồn (link trong F7 hoặc bước UC, BR) |
+b) Bảng quan hệ (bảng Edge, P08 đọc bảng này): | ID | Lớp A | Lớp B | Loại (Association / Aggregation / Composition / Generalization / Dependency) | Multiplicity (dạng "A <m> - B <m>", ví dụ "A 1 - B 0..*"; phía chưa rõ ghi "?", ví dụ "A ? - B 1..5"; cả hai phía chưa rõ ghi "-") | Vai trò | Nguồn (link trong F7 hoặc bước UC, BR) |
    - ID dạng R-UCnnn-nn.
+   - Vai trò: tên vai trò (lowerCamelCase) ở đầu lớp, chỉ ghi khi hai quan hệ giữa cùng cặp lớp cần phân biệt, ngược lại "-". Mô tả quan hệ hoặc chữ "tạm thời" ghi ở cột Nguồn, không ghi ở đây.
+   - Multiplicity: số ở phía A là số đối tượng A ứng với một đối tượng B.
    - Mỗi link trong F7 giữa hai lớp khác nhau sinh một quan hệ. Link actor-boundary không vào VOPC (actor không là lớp trong VOPC), trừ khi dự án yêu cầu vẽ actor.
    - Mức phân tích: association giữa boundary và control, control và entity thường là quan hệ tạm (dùng trong một lần thực hiện); ghi Loại "Association" với ghi chú "tạm thời"; P08 và P12 sẽ quyết định dạng thiết kế.
    - Aggregation, composition, generalization giữa entity chỉ ghi khi đặc tả, BR hoặc glossary cho bằng chứng (ví dụ "đơn gồm nhiều dòng món, dòng món không tồn tại khi đơn bị xoá" --> composition).
@@ -276,11 +294,11 @@ Tự kiểm tra từng mục, trả lời Đạt hoặc Không đạt; mục Kh�
 9. Không có god control (quá 10 trách nhiệm hoặc giữ quy tắc thuộc dữ liệu của entity); mỗi entity có trách nhiệm hành vi hoặc được ghi nhận lý do.
 10. Boundary không chứa quy tắc nghiệp vụ.
 11. Include và extend được thể hiện bằng message tới control của use case liên quan hoặc fragment ref/opt, không vẽ lại nội bộ của use case khác.
-12. Communication diagram có cùng tập message và cùng STT với phần sequence diagram tương ứng: luồng chính, và luồng thay thế đã gộp (chỉ khi DAY_DU).
+12. Communication diagram có cùng tập message và cùng STT với phần sequence diagram tương ứng: luồng chính, và mọi luồng thay thế (chỉ khi DAY_DU).
 13. Mỗi link giữa hai lớp trong communication diagram có quan hệ tương ứng trong VOPC; VOPC không có quan hệ thiếu căn cứ.
 14. Bảng mô hình và file .drawio khớp nhau; file .drawio đáp ứng C7.3.
-15. Luồng thay thế kết thúc use case dùng break; thời hạn nội bộ dùng message tự gọi "after(...)"; mốc thời gian mà use case do tác nhân thời gian kích hoạt phụ thuộc vào có message hẹn, hẹn lại hoặc huỷ ở use case tạo, đổi, kết thúc mốc.
-16. Đạt Conventions C2, C5, C6.
+15. Luồng thay thế kết thúc use case dùng break; thời hạn nội bộ dùng message tự gọi "after(...)"; thời hạn bao trùm nhiều bước vẽ bằng par theo A2, không đặt break tại một điểm cố định; mốc thời gian mà use case do tác nhân thời gian kích hoạt phụ thuộc vào có message hẹn, hẹn lại hoặc huỷ ở use case tạo, đổi, kết thúc mốc.
+16. Đạt Conventions C2, C5, C6. Mã Q, ASM mới nối tiếp liền số lớn nhất đã có (C3), không trùng, không bỏ trống.
 
 [Yêu cầu bổ sung]
 {{PH:YEU_CAU_BO_SUNG | Hướng dẫn: [TUỲ CHỌN] quy định riêng của dự án cho bước này, ưu tiên cao hơn quy tắc mặc định (trừ C1) | Ví dụ: "Dùng hậu tố UI cho mọi boundary người dùng, hậu tố Controller cho control."; "Không vẽ communication diagram cho luồng thay thế."; "Vẽ lớp phân tích bằng biểu tượng robustness thay vì hình chữ nhật."}}
