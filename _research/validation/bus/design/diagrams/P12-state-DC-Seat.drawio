@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net" agent="P12" version="24.0.0">
+<diagram name="ST-03 Seat" id="ST-03">
+<mxGraphModel dx="1000" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="ST-03-I" value="" style="ellipse;fillColor=#000000;" vertex="1" parent="1">
+<mxGeometry x="200" y="40" width="40" height="40" as="geometry"/></mxCell>
+<mxCell id="ST-03-S1" value="&lt;b&gt;Available&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;" vertex="1" parent="1">
+<mxGeometry x="120" y="140" width="200" height="60" as="geometry"/></mxCell>
+<mxCell id="ST-03-S2" value="&lt;b&gt;Held&lt;/b&gt;&lt;br&gt;entry / gắn với lần đặt qua Booking.seats (R-27)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;" vertex="1" parent="1">
+<mxGeometry x="120" y="300" width="200" height="70" as="geometry"/></mxCell>
+<mxCell id="ST-03-S3" value="&lt;b&gt;Sold&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;" vertex="1" parent="1">
+<mxGeometry x="120" y="480" width="200" height="60" as="geometry"/></mxCell>
+<mxCell id="ST-03-T1" value="create(seatCode) / status = AVAILABLE" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.5000;exitY=1.0000;entryX=0.5000;entryY=0.0000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="ST-03-I" target="ST-03-S1">
+<mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+<mxCell id="ST-03-T2" value="hold()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.5000;exitY=1.0000;entryX=0.5000;entryY=0.0000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="ST-03-S1" target="ST-03-S2">
+<mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+<mxCell id="ST-03-T3" value="markSold()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.5000;exitY=1.0000;entryX=0.5000;entryY=0.0000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="ST-03-S2" target="ST-03-S3">
+<mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+<mxCell id="ST-03-T4" value="release() [hết thời hạn giữ chỗ]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.0000;exitY=0.5000;entryX=0.0000;entryY=0.5000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="ST-03-S2" target="ST-03-S1">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="60" y="335"/><mxPoint x="60" y="170"/></Array></mxGeometry></mxCell>
+<mxCell id="ST-03-T5" value="release() [vé của chỗ được trả]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=1.0000;exitY=0.5000;entryX=1.0000;entryY=0.8333;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="ST-03-S3" target="ST-03-S1">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="400" y="510"/><mxPoint x="400" y="190"/></Array></mxGeometry></mxCell>
+</root></mxGraphModel></diagram></mxfile>

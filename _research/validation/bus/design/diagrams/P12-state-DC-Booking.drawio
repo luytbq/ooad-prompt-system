@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net" agent="P12" version="24.0.0">
+<diagram name="ST-01 Booking" id="ST-01">
+<mxGraphModel dx="1000" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="ST-01-I" value="" style="ellipse;fillColor=#000000;" vertex="1" parent="1">
+<mxGeometry x="200" y="40" width="40" height="40" as="geometry"/></mxCell>
+<mxCell id="ST-01-S1" value="&lt;b&gt;Draft&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;" vertex="1" parent="1">
+<mxGeometry x="120" y="140" width="200" height="60" as="geometry"/></mxCell>
+<mxCell id="ST-01-S2" value="&lt;b&gt;Held&lt;/b&gt;&lt;br&gt;entry / ghi holdStartTime; các Seat sang HELD&lt;br&gt;do / chờ thanh toán tối đa HOLD_DURATION (BR-07)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;" vertex="1" parent="1">
+<mxGeometry x="80" y="300" width="280" height="100" as="geometry"/></mxCell>
+<mxCell id="ST-01-S3" value="&lt;b&gt;Ticketed&lt;/b&gt;&lt;br&gt;entry / phát hành vé; các Seat sang SOLD; ghi paymentReference" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;" vertex="1" parent="1">
+<mxGeometry x="20" y="500" width="280" height="90" as="geometry"/></mxCell>
+<mxCell id="ST-01-S4" value="&lt;b&gt;Expired&lt;/b&gt;&lt;br&gt;entry / các Seat về AVAILABLE (BR-08)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;" vertex="1" parent="1">
+<mxGeometry x="400" y="500" width="240" height="80" as="geometry"/></mxCell>
+<mxCell id="ST-01-T1" value="createBooking(bookingId, trip, travelerInfos) / status = DRAFT" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.5000;exitY=1.0000;entryX=0.5000;entryY=0.0000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="ST-01-I" target="ST-01-S1">
+<mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+<mxCell id="ST-01-T2" value="holdSeats(now) [mọi Seat AVAILABLE] / holdStartTime = now" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.5000;exitY=1.0000;entryX=0.5000;entryY=0.0000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="ST-01-S1" target="ST-01-S2">
+<mxGeometry relative="1" as="geometry"><Array as="points"></Array></mxGeometry></mxCell>
+<mxCell id="ST-01-T3" value="issueTickets(paymentReference, idGenerator) / tạo Ticket, Seat.markSold" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.2143;exitY=1.0000;entryX=0.2857;entryY=0.0000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="ST-01-S2" target="ST-01-S3">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="140" y="450"/><mxPoint x="100" y="450"/></Array></mxGeometry></mxCell>
+<mxCell id="ST-01-T4" value="releaseSeats() / Seat.release từng chỗ" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.7857;exitY=1.0000;entryX=0.3333;entryY=0.0000;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="ST-01-S2" target="ST-01-S4">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="300" y="450"/><mxPoint x="480" y="450"/></Array></mxGeometry></mxCell>
+</root></mxGraphModel></diagram></mxfile>

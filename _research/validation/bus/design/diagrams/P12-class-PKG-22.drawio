@@ -1,0 +1,156 @@
+<mxfile host="app.diagrams.net" agent="P12" version="24.0.0">
+<diagram name="PKG-22 TripCatalog" id="PKG-22-1">
+<mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="DC-Booking" value="«entity»&lt;br&gt;&lt;b&gt;Booking&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="70" y="40" width="200" height="40" as="geometry"/></mxCell>
+<mxCell id="DC-Ticket" value="«entity»&lt;br&gt;&lt;b&gt;Ticket&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="350" y="40" width="200" height="40" as="geometry"/></mxCell>
+<mxCell id="DC-PhoneReservation" value="«entity»&lt;br&gt;&lt;b&gt;PhoneReservation&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="630" y="40" width="200" height="40" as="geometry"/></mxCell>
+<mxCell id="IF-10" value="«interface»&lt;br&gt;&lt;b&gt;ITripCatalogRepository&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="910" y="40" width="460" height="130" as="geometry"/></mxCell>
+<mxCell id="IF-10-ops" value="+ findTrips(origin: String, destination: String, departureDate: Date): List&amp;lt;Trip&amp;gt;&lt;br&gt;+ findTrip(route: String, departureDateTime: DateTime): Trip&lt;br&gt;+ findTripById(tripId: String): Trip&lt;br&gt;+ saveTrip(trip: Trip): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="IF-10">
+<mxGeometry y="40" width="460" height="90" as="geometry"/></mxCell>
+<mxCell id="DC-Trip" value="«entity»&lt;br&gt;&lt;b&gt;Trip&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="70" y="310" width="460" height="390" as="geometry"/></mxCell>
+<mxCell id="DC-Trip-attr" value="- tripId: String {unique, readOnly}&lt;br&gt;- departureTime: LocalDateTime {readOnly}&lt;br&gt;- busType: BusType {readOnly}&lt;br&gt;- status: TripStatus = ACTIVE&lt;br&gt;- /availableSeatCount: Integer {&amp;gt;= 0}" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-Trip">
+<mxGeometry y="40" width="460" height="90" as="geometry"/></mxCell>
+<mxCell id="DC-Trip-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;html=1;" vertex="1" parent="DC-Trip">
+<mxGeometry y="130" width="460" height="10" as="geometry"/></mxCell>
+<mxCell id="DC-Trip-ops" value="+ Trip(tripId: String, route: Route, departureTime: LocalDateTime, busType: BusType, baseFare: BaseFare, holidaySurcharge: HolidaySurcharge, seatCodes: List&amp;lt;String&amp;gt;)&lt;br&gt;+ getTripId(): String&lt;br&gt;+ getBusType(): BusType&lt;br&gt;+ getSeatMap(): Map&amp;lt;String, Boolean&amp;gt;&lt;br&gt;+ countAvailableSeats(): Integer&lt;br&gt;+ areSeatsAvailable(seatCodes: List&amp;lt;String&amp;gt;): Boolean&lt;br&gt;+ findSeats(seatCodes: List&amp;lt;String&amp;gt;): List&amp;lt;Seat&amp;gt;&lt;br&gt;+ determineTicketPrice(): Money&lt;br&gt;+ getRouteAndDepartureTime(): TripSchedule&lt;br&gt;+ calculateTimeToDeparture(requestTime: LocalDateTime): Duration&lt;br&gt;+ isCancelled(): Boolean&lt;br&gt;+ isBeforeDeparture(now: LocalDateTime): Boolean&lt;br&gt;+ markCancelled(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-Trip">
+<mxGeometry y="140" width="460" height="250" as="geometry"/></mxCell>
+<mxCell id="DC-Seat" value="«entity»&lt;br&gt;&lt;b&gt;Seat&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="610" y="310" width="350" height="200" as="geometry"/></mxCell>
+<mxCell id="DC-Seat-attr" value="- seatCode: String {readOnly, unique trong chuyến}&lt;br&gt;- status: SeatStatus = AVAILABLE" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-Seat">
+<mxGeometry y="40" width="350" height="40" as="geometry"/></mxCell>
+<mxCell id="DC-Seat-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;html=1;" vertex="1" parent="DC-Seat">
+<mxGeometry y="80" width="350" height="10" as="geometry"/></mxCell>
+<mxCell id="DC-Seat-ops" value="+ Seat(seatCode: String)&lt;br&gt;+ isAvailable(): Boolean&lt;br&gt;+ hold(): void&lt;br&gt;+ release(): void&lt;br&gt;+ markSold(): void&lt;br&gt;+ getSeatCode(): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-Seat">
+<mxGeometry y="90" width="350" height="110" as="geometry"/></mxCell>
+<mxCell id="DC-Route" value="«entity»&lt;br&gt;&lt;b&gt;Route&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="70" y="820" width="460" height="170" as="geometry"/></mxCell>
+<mxCell id="DC-Route-attr" value="- routeId: String {unique, readOnly}&lt;br&gt;- departurePoint: String {không rỗng}&lt;br&gt;- arrivalPoint: String {không rỗng}" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-Route">
+<mxGeometry y="40" width="460" height="60" as="geometry"/></mxCell>
+<mxCell id="DC-Route-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;html=1;" vertex="1" parent="DC-Route">
+<mxGeometry y="100" width="460" height="10" as="geometry"/></mxCell>
+<mxCell id="DC-Route-ops" value="+ Route(routeId: String, departurePoint: String, arrivalPoint: String)&lt;br&gt;+ getDisplayName(): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-Route">
+<mxGeometry y="110" width="460" height="60" as="geometry"/></mxCell>
+<mxCell id="DC-BaseFare" value="«entity»&lt;br&gt;&lt;b&gt;BaseFare&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="610" y="820" width="460" height="170" as="geometry"/></mxCell>
+<mxCell id="DC-BaseFare-attr" value="- baseFareId: String {unique, readOnly}&lt;br&gt;- busType: BusType {readOnly}&lt;br&gt;- amount: Money {&amp;gt; 0}" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-BaseFare">
+<mxGeometry y="40" width="460" height="60" as="geometry"/></mxCell>
+<mxCell id="DC-BaseFare-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;html=1;" vertex="1" parent="DC-BaseFare">
+<mxGeometry y="100" width="460" height="10" as="geometry"/></mxCell>
+<mxCell id="DC-BaseFare-ops" value="+ BaseFare(baseFareId: String, busType: BusType, amount: Money, route: Route)&lt;br&gt;+ calculateTicketPrice(surchargeRatePercent: Integer): Money" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-BaseFare">
+<mxGeometry y="110" width="460" height="60" as="geometry"/></mxCell>
+<mxCell id="DC-HolidaySurcharge" value="«entity»&lt;br&gt;&lt;b&gt;HolidaySurcharge&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="1150" y="820" width="460" height="190" as="geometry"/></mxCell>
+<mxCell id="DC-HolidaySurcharge-attr" value="- holidaySurchargeId: String {unique, readOnly}&lt;br&gt;- startDate: LocalDate {readOnly}&lt;br&gt;- endDate: LocalDate {readOnly, &amp;gt;= startDate}&lt;br&gt;- ratePercent: Integer {0..30}" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-HolidaySurcharge">
+<mxGeometry y="40" width="460" height="80" as="geometry"/></mxCell>
+<mxCell id="DC-HolidaySurcharge-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;html=1;" vertex="1" parent="DC-HolidaySurcharge">
+<mxGeometry y="120" width="460" height="10" as="geometry"/></mxCell>
+<mxCell id="DC-HolidaySurcharge-ops" value="+ HolidaySurcharge(holidaySurchargeId: String, startDate: LocalDate, endDate: LocalDate, ratePercent: Integer)&lt;br&gt;+ getSurchargeRate(departureDate: LocalDate): Integer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-HolidaySurcharge">
+<mxGeometry y="130" width="460" height="60" as="geometry"/></mxCell>
+<mxCell id="DC-SeatAlreadyHeldException" value="«exception»&lt;br&gt;&lt;b&gt;SeatAlreadyHeldException&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="1690" y="820" width="260" height="110" as="geometry"/></mxCell>
+<mxCell id="DC-SeatAlreadyHeldException-attr" value="- seatCode: String[0..1] {readOnly}" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-SeatAlreadyHeldException">
+<mxGeometry y="40" width="260" height="30" as="geometry"/></mxCell>
+<mxCell id="DC-SeatAlreadyHeldException-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;html=1;" vertex="1" parent="DC-SeatAlreadyHeldException">
+<mxGeometry y="70" width="260" height="10" as="geometry"/></mxCell>
+<mxCell id="DC-SeatAlreadyHeldException-ops" value="+ getSeatCode(): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-SeatAlreadyHeldException">
+<mxGeometry y="80" width="260" height="30" as="geometry"/></mxCell>
+<mxCell id="DC-InvalidStateException" value="«exception»&lt;br&gt;&lt;b&gt;InvalidStateException&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="70" y="1080" width="240" height="40" as="geometry"/></mxCell>
+<mxCell id="DC-TripSchedule" value="«value object»&lt;br&gt;&lt;b&gt;TripSchedule&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="390" y="1080" width="300" height="80" as="geometry"/></mxCell>
+<mxCell id="DC-TripSchedule-attr" value="- routeName: String {readOnly}&lt;br&gt;- departureTime: LocalDateTime {readOnly}" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-TripSchedule">
+<mxGeometry y="40" width="300" height="40" as="geometry"/></mxCell>
+<mxCell id="DC-TripStatus" value="«enumeration»&lt;br&gt;&lt;b&gt;TripStatus&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="770" y="1080" width="240" height="80" as="geometry"/></mxCell>
+<mxCell id="DC-TripStatus-attr" value="ACTIVE&lt;br&gt;CANCELLED" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-TripStatus">
+<mxGeometry y="40" width="240" height="40" as="geometry"/></mxCell>
+<mxCell id="DC-SeatStatus" value="«enumeration»&lt;br&gt;&lt;b&gt;SeatStatus&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="1090" y="1080" width="240" height="100" as="geometry"/></mxCell>
+<mxCell id="DC-SeatStatus-attr" value="AVAILABLE&lt;br&gt;HELD&lt;br&gt;SOLD" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-SeatStatus">
+<mxGeometry y="40" width="240" height="60" as="geometry"/></mxCell>
+<mxCell id="DC-BusType" value="«enumeration»&lt;br&gt;&lt;b&gt;BusType&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+<mxGeometry x="1410" y="1080" width="240" height="80" as="geometry"/></mxCell>
+<mxCell id="DC-BusType-attr" value="SLEEPER_40&lt;br&gt;SEATER_29" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="DC-BusType">
+<mxGeometry y="40" width="240" height="40" as="geometry"/></mxCell>
+<mxCell id="R-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.3500;exitY=1;entryX=0.1957;entryY=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="DC-Booking" target="DC-Trip">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="140" y="200"/><mxPoint x="160" y="200"/></Array></mxGeometry></mxCell>
+<mxCell id="R-26-src" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-26">
+<mxGeometry x="-1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-26-dst" value="trip 1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-26">
+<mxGeometry x="1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.6500;exitY=1;entryX=0.2571;entryY=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="DC-Booking" target="DC-Seat">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="200" y="210"/><mxPoint x="700" y="210"/></Array></mxGeometry></mxCell>
+<mxCell id="R-27-src" value="0..1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-27">
+<mxGeometry x="-1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-27-dst" value="seats 1..5" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-27">
+<mxGeometry x="1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.3500;exitY=1;entryX=0.3913;entryY=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="DC-Ticket" target="DC-Trip">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="420" y="220"/><mxPoint x="250" y="220"/></Array></mxGeometry></mxCell>
+<mxCell id="R-29-src" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-29">
+<mxGeometry x="-1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-29-dst" value="trip 1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-29">
+<mxGeometry x="1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.6500;exitY=1;entryX=0.5143;entryY=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="DC-Ticket" target="DC-Seat">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="480" y="230"/><mxPoint x="790" y="230"/></Array></mxGeometry></mxCell>
+<mxCell id="R-30-src" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-30">
+<mxGeometry x="-1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-30-dst" value="seat 1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-30">
+<mxGeometry x="1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;startArrow=open;startFill=0;endArrow=none;exitX=0.6087;exitY=0;entryX=0.3500;entryY=1;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="DC-Trip" target="DC-PhoneReservation">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="350" y="240"/><mxPoint x="700" y="240"/></Array></mxGeometry></mxCell>
+<mxCell id="R-33-src" value="trip 1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-33">
+<mxGeometry x="-1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-33-dst" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-33">
+<mxGeometry x="1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.6500;exitY=1;entryX=0.7429;entryY=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="DC-PhoneReservation" target="DC-Seat">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="760" y="250"/><mxPoint x="870" y="250"/></Array></mxGeometry></mxCell>
+<mxCell id="R-37-src" value="0..1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-37">
+<mxGeometry x="-1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-37-dst" value="seat Q-76" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-37">
+<mxGeometry x="1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-53" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;exitX=0.3261;exitY=1;entryX=0.8043;entryY=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="IF-10" target="DC-Trip">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1060" y="260"/><mxPoint x="440" y="260"/></Array></mxGeometry></mxCell>
+<mxCell id="R-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=diamondThin;startFill=1;endFill=0;exitX=0.3913;exitY=1;entryX=0.3429;entryY=1;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="DC-Trip" target="DC-Seat">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="250" y="730"/><mxPoint x="730" y="730"/></Array></mxGeometry></mxCell>
+<mxCell id="R-23-src" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-23">
+<mxGeometry x="-1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-23-dst" value="seats 1..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-23">
+<mxGeometry x="1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.1957;exitY=1;entryX=0.5000;entryY=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="DC-Trip" target="DC-Route">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="160" y="740"/><mxPoint x="300" y="740"/></Array></mxGeometry></mxCell>
+<mxCell id="R-22-src" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-22">
+<mxGeometry x="-1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-22-dst" value="route 1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-22">
+<mxGeometry x="1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.6087;exitY=1;entryX=0.5000;entryY=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="DC-Trip" target="DC-BaseFare">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="350" y="750"/><mxPoint x="840" y="750"/></Array></mxGeometry></mxCell>
+<mxCell id="R-24-src" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-24">
+<mxGeometry x="-1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-24-dst" value="baseFare 1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-24">
+<mxGeometry x="1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.8043;exitY=1;entryX=0.5000;entryY=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="DC-Trip" target="DC-HolidaySurcharge">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="440" y="760"/><mxPoint x="1380" y="760"/></Array></mxGeometry></mxCell>
+<mxCell id="R-25-src" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-25">
+<mxGeometry x="-1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-25-dst" value="holidaySurcharge 0..1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-25">
+<mxGeometry x="1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.5000;exitY=1;entryX=0.5000;entryY=1;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="DC-BaseFare" target="DC-Route">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="840" y="1040"/><mxPoint x="300" y="1040"/></Array></mxGeometry></mxCell>
+<mxCell id="R-31-src" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-31">
+<mxGeometry x="-1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-31-dst" value="route 1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-31">
+<mxGeometry x="1" relative="1" as="geometry"><mxPoint x="6" y="-4" as="offset"/></mxGeometry></mxCell>
+<mxCell id="R-65" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;exitX=0.6571;exitY=1;entryX=0.3462;entryY=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="DC-Seat" target="DC-SeatAlreadyHeldException">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="840" y="770"/><mxPoint x="1780" y="770"/></Array></mxGeometry></mxCell>
+<mxCell id="R-66" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;exitX=0.6739;exitY=1;entryX=0.6538;entryY=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="IF-10" target="DC-SeatAlreadyHeldException">
+<mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1220" y="270"/><mxPoint x="40" y="270"/><mxPoint x="40" y="780"/><mxPoint x="1860" y="780"/></Array></mxGeometry></mxCell>
+</root></mxGraphModel></diagram>
+</mxfile>
