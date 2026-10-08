@@ -9,7 +9,7 @@ Bước này gom lớp phân tích của mọi use case đã phân tích ở P07
 | Loại | Artifact | Bắt buộc | Dùng để |
 |---|---|---|---|
 | Đầu vào | project-profile.md, 00-Conventions.md | Có | Luật chung, chế độ giả định |
-| Đầu vào | P07-uc-analysis/*.md (mọi use case trong phạm vi) | Có | Bảng lớp phân tích, bảng quan hệ VOPC, sequence của từng use case |
+| Đầu vào | P07-uc-analysis/*.md (mọi use case trong phạm vi) | Có | Chỉ cần F3.4 (bảng lớp phân tích), F6 (quy tắc tương tác), F8 b) (bảng quan hệ VOPC), Câu hỏi mở, Giả định, Đề xuất sửa artifact trước. Không cần F2, F4, F5, F7, F9, F10 (sequence, communication, bảng lọc danh từ) |
 | Đầu vào | P02-usecases.md | Có | Danh sách use case trong phạm vi, để phát hiện use case chưa phân tích |
 | Đầu vào | P05-glossary.md | Nên có | Phân định đồng nghĩa và đồng âm |
 | Đầu vào | P06-supplementary-spec.md | Nên có | BR làm căn cứ multiplicity, composition, generalization |
@@ -34,7 +34,7 @@ Bước này gom lớp phân tích của mọi use case đã phân tích ở P07
 
 ````text
 [Context]
-Bạn nhận được hồ sơ dự án (project-profile.md), bộ quy ước chung (00-Conventions.md) và các artifact đã chốt: P01-actors.md, P02-usecases.md, P05-glossary.md, P06-supplementary-spec.md, toàn bộ P07-uc-analysis/*.md và (nếu có) P04-uc-specs/. Tuân thủ 00-Conventions.md, đặc biệt C1, C3, C5, C7.
+Bạn nhận được hồ sơ dự án (project-profile.md), bộ quy ước chung (00-Conventions.md) và các artifact đã chốt: P01-actors.md, P02-usecases.md, P05-glossary.md, P06-supplementary-spec.md, các mục nêu ở mục 2 (F3.4, F6, F8 b) và các mục kiểm soát) của mọi file P07-uc-analysis/*.md và (nếu có) P04-uc-specs/. Khi chạy bằng agent, chỉ đọc các mục này (tìm theo tiêu đề). Tuân thủ 00-Conventions.md, đặc biệt C1, C3, C5, C7.
 Phạm vi: toàn hệ thống, mọi use case có trong P02-usecases.md và nằm trong phạm vi của dự án.
 
 Cách chia view cho sơ đồ tổng thể:
@@ -60,12 +60,14 @@ A3. Phát hiện trùng lặp và xung đột. Xét từng cặp lớp cùng ste
 - Lớp có nguy cơ là thuộc tính trá hình hoặc cấu trúc cài đặt (ví dụ Address, PhoneNumber, ItemList) còn sót từ P07: ghi đề xuất sửa P07 và hạ thành thuộc tính trong mô hình hợp nhất, nêu rõ.
 
 A4. Gộp trách nhiệm và thuộc tính.
-- Với mỗi lớp hợp nhất, hợp các trách nhiệm từ mọi use case. Hai trách nhiệm cùng ý nghĩa, khác tên thì giữ một tên, ghi tên bị thay trong nhật ký. Hai trách nhiệm cùng tên, khác ý nghĩa thì đổi tên cho phân biệt.
+- Với mỗi lớp hợp nhất, hợp các trách nhiệm từ mọi use case. Hai trách nhiệm cùng ý nghĩa, khác tên thì giữ một tên, ghi tên bị thay ở F2a. Hai trách nhiệm cùng tên, khác ý nghĩa thì đổi tên cho phân biệt.
 - Hợp thuộc tính, loại trùng. Thuộc tính mâu thuẫn (ví dụ một use case coi "status" có 3 giá trị, use case khác có 4) thì ghi câu hỏi mở hoặc giả định.
 - Kiểm tra lại độ cân bằng: control trên 15 trách nhiệm (sau gộp chỉ còn trách nhiệm của các use case nó điều phối) hoặc entity không có trách nhiệm hành vi nào thì ghi vào "Vấn đề còn mở" kèm đề xuất.
 
 A5. Xác định quan hệ.
-- Bắt đầu từ các quan hệ trong bảng VOPC của P07. Hợp quan hệ trùng (cùng cặp lớp, cùng ý nghĩa).
+- Bắt đầu từ các quan hệ trong bảng VOPC của P07. Hợp quan hệ trùng (cùng cặp lớp, cùng ý nghĩa). Hai quan hệ cùng cặp lớp, cùng ý nghĩa nhưng ngược chiều Lớp A, Lớp B là quan hệ trùng: chọn một chiều, đảo multiplicity cho khớp, ghi ID gốc ở Ghi chú.
+- P08 được đổi multiplicity của P07 khi glossary, BR hoặc nguồn cho bằng chứng khác; ghi bằng chứng ở cột Bằng chứng và thêm "Đề xuất sửa artifact trước" cho file P07 đó.
+- Quan hệ giữa hai control do include hoặc extend giữ Loại Dependency, Ghi chú "«include»" hoặc "«extend»".
 - Được thêm quan hệ giữa hai entity không có trong VOPC nào khi glossary, BR hoặc tài liệu nguồn cho bằng chứng (ví dụ glossary định nghĩa "ngăn kệ thuộc một dãy kệ"); cột Ghi chú ghi "Mới ở P08". Không thêm quan hệ chỉ vì hiểu biết chung.
 - Với mỗi quan hệ giữa hai entity, chọn loại theo cây quyết định ở F3, dựa trên bằng chứng từ đặc tả, BR, glossary. Không có bằng chứng thì giữ association.
 - Xác định multiplicity hai đầu từ BR, glossary, dữ liệu vào ra. Không có căn cứ thì để trống và ghi câu hỏi (NGHIEM_NGAT) hoặc giả định (CO_NHAN).
@@ -83,9 +85,13 @@ F1. Độ phủ use case
 Bảng: | UC | Tên | File P07 | Trạng thái (Đã phân tích / Chưa phân tích) |
 
 F2. Nhật ký hợp nhất
-Bảng: | STT | Lớp gốc (AC, tên) | UC nguồn | Tình huống (Đồng nghĩa / Đồng âm / Trùng mã / Boundary hệ thống trùng / Thuộc tính trá hình / Giữ nguyên) | Kết quả (Gộp vào AC-... / Tách, đổi tên thành ... / Hạ thành thuộc tính của AC-... / Giữ) | Bằng chứng (GL, BR, bước UC) |
+Bảng: | STT | Lớp gốc (AC, tên) | UC nguồn | Tình huống (Đồng nghĩa / Đồng âm / Trùng mã / Boundary hệ thống trùng / Thuộc tính trá hình / Tái dùng mã / Giữ nguyên) | Kết quả (Gộp vào AC-... / Tách, đổi tên thành ... / Hạ thành thuộc tính của AC-... / Giữ) | Bằng chứng (GL, BR, bước UC) |
 - Định nghĩa: bản ghi mọi quyết định gộp, tách, đổi tên để người đọc truy ngược từ mô hình hợp nhất về P07.
-- Quy tắc: mọi lớp của mọi P07 xuất hiện đúng một lần ở cột "Lớp gốc". Lớp không thay đổi ghi "Giữ nguyên".
+- Quy tắc: mỗi dòng của bảng lớp phân tích F3.4 trong mỗi file P07 là một dòng (một lớp tái dùng ở n use case có n dòng). Lớp tái dùng đúng mã của use case khác ghi Tình huống "Tái dùng mã"; lớp không thay đổi ở use case cấp mã đầu tiên ghi "Giữ nguyên". "Boundary hệ thống trùng" chỉ dùng khi hai mã khác nhau chỉ cùng một hệ thống ngoài.
+
+F2a. Nhật ký trách nhiệm, thuộc tính và cặp đã xét
+Bảng: | STT | Lớp | Mục gốc (trách nhiệm, thuộc tính hoặc cặp lớp) | UC nguồn | Tình huống (Đổi tên trách nhiệm / Tách trách nhiệm cùng tên / Thuộc tính mâu thuẫn / Cặp đã xét, giữ tách) | Kết quả | Bằng chứng |
+- Mọi trách nhiệm bị đổi tên hoặc gộp theo A4, mọi thuộc tính mâu thuẫn, và mọi cặp đã áp phép thử đồng nghĩa ở A3 mà giữ tách đều có dòng. Không có thì ghi "Không có".
 - Lỗi thường gặp: gộp hai lớp chỉ vì tên giống (bỏ qua đồng âm); gộp các boundary giao diện người dùng của nhiều use case thành một "MainForm" (quá lớn); không ghi bằng chứng.
 - Ví dụ đúng (khách sạn): AC-E-Reservation (UC-003) và AC-E-Booking (UC-005) --> Gộp vào AC-E-Booking, bằng chứng GL-04 ghi "Đặt phòng (Booking); từ không dùng: reservation".
 - Ví dụ đúng (thư viện, đồng âm): Copy trong UC-002 là "bản sách vật lý", Copy trong UC-009 là "bản sao chụp tài liệu" --> Tách: giữ AC-E-Copy cho bản sách (theo GL-03), đổi lớp kia thành PhotocopyRequest (mã mới).
@@ -103,8 +109,8 @@ F4. Bảng quan hệ (bảng lõi)
 | ID | Lớp A | Lớp B | Loại | Multiplicity | Vai trò | Nguồn UC | Bằng chứng | Ghi chú |
 - ID dạng R-nn (cấp mới cho toàn hệ thống); cột Ghi chú ghi ID gốc R-UCnnn-nn từ P07 đã hợp vào, hoặc "Mới ở P08" khi quan hệ không có trong VOPC (A5).
 - Loại: Association, Aggregation, Composition, Generalization, Dependency.
-- Multiplicity: ghi dạng "A <m> - B <m>", ví dụ "A 1 - B 0..*". Được để trống khi chưa có căn cứ, kèm mã Q hoặc ASM.
-- Vai trò: tên vai trò ở một hoặc hai đầu khi cần phân biệt (ví dụ hai association giữa Staff và Shift: "assignedStaff", "supervisor").
+- Multiplicity: ghi dạng "A <m> - B <m>", ví dụ "A 1 - B 0..*". Số ở phía A là số đối tượng A ứng với một đối tượng B, và được vẽ ở đầu A (ví dụ "Appointment 0..* - Patient 1": một bệnh nhân có 0..* lịch hẹn). Được để trống khi chưa có căn cứ, kèm mã Q hoặc ASM.
+- Vai trò: tên vai trò ở một hoặc hai đầu khi cần phân biệt (ví dụ hai association giữa Staff và Shift: "assignedStaff", "supervisor"); không cần thì "-". Mô tả quan hệ hoặc chữ "tạm thời" mà P07 ghi ở cột Vai trò thì chuyển sang Ghi chú.
 Cây quyết định loại quan hệ giữa hai entity:
 1. B "là một loại" A, mọi thuộc tính và trách nhiệm của A đúng với B --> Generalization (B kế thừa A). Phép thử: câu "Mọi B đều là A" đúng theo glossary.
 2. B là một phần của A, B không tồn tại khi không có A, B chỉ thuộc về một A tại một thời điểm, xoá A thì xoá B --> Composition (thoi đặc ở A). Phép thử: đặc tả hoặc BR có câu về vòng đời phụ thuộc.
@@ -118,7 +124,9 @@ Ví dụ sai (quản lý kho): Warehouse <|-- Product (Product kế thừa Wareh
 
 F5. Analysis class diagram tổng thể
 File diagrams/P08-class-analysis.drawio, mỗi view một trang.
-a) Bảng Node: | ID (mã AC) | Loại (Class) | Nhãn | Stereotype | Thuộc về (view) | Ngăn thuộc tính | Ngăn trách nhiệm |
+a) Bảng Node: | ID (mã AC) | ID mxCell | Loại (Class) | Nhãn | Stereotype | Thuộc về (view) | Ngăn thuộc tính | Ngăn trách nhiệm |
+   - ID mxCell: mã AC ở trang Entity; mã AC thêm hậu tố "__Vn" ở trang thứ n khác. Một lớp xuất hiện ở k trang có k dòng; cặp (ID, Thuộc về) là duy nhất. Cột "Thuộc về (view)" là cột "Thuộc về (container)" của C7.1 với giá trị là tên trang.
+   - Lớp phân tích vẽ bằng style Class của C7.3 (không dùng icon), ngăn tên ghi "«stereotype»<br>Tên", startSize=40.
 b) Bảng Edge: dùng ID của F4, cột: | ID | Nguồn | Đích | Loại quan hệ | Nhãn / multiplicity | Thuộc về (view) |
 Quy tắc chia view (mặc định, khi CACH_CHIA_VIEW trống):
 - Trang tổng thể mặc định là trang "Entity": mọi entity và quan hệ giữa chúng (mô hình miền), không có boundary, control.
@@ -140,7 +148,7 @@ F7. Mục kiểm soát theo C5.
 
 [Target]
 1. Mọi use case trong phạm vi có artifact P07, hoặc được liệt kê là chưa phân tích.
-2. Mọi lớp của mọi P07 xuất hiện trong nhật ký hợp nhất với kết quả và bằng chứng.
+2. Mọi dòng F3.4 của mọi P07 xuất hiện trong nhật ký hợp nhất F2 với kết quả và bằng chứng; trách nhiệm đổi tên, thuộc tính mâu thuẫn và cặp đã xét giữ tách có dòng ở F2a.
 3. Không còn hai lớp hoạt động biểu diễn cùng một khái niệm; không còn một lớp biểu diễn hai khái niệm.
 4. Không mã AC nào bị xoá, đổi nghĩa hoặc tái sử dụng; lớp bị gộp có trạng thái "Gộp vào".
 5. Mọi quan hệ trong VOPC của P07 có mặt trong bảng quan hệ hợp nhất (đã hợp hoặc giữ nguyên).

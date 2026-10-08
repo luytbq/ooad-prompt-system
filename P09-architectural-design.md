@@ -21,10 +21,20 @@ Bước này quyết định cấu trúc mức cao nhất của phần mềm: ch
 
 ## 3. Cách chạy
 
-- Đính kèm: 00-Conventions.md, project-profile.md và các file đầu vào.
+- Đính kèm: 00-Conventions.md, project-profile.md và các file đầu vào. Mỗi file chỉ cần phần sau (khi chạy bằng agent, chỉ đọc các mục này, tìm theo tiêu đề):
+
+| Artifact | Phần cần dùng |
+|---|---|
+| P01-actors.md | Bảng tác nhân (Mục 2) |
+| P02-usecases.md | Mục 4 (danh sách UC, nhóm chức năng) |
+| P03-usecase-model.md | Không cần, trừ khi kiểm tra nhóm chức năng |
+| P05-glossary.md | Cột Thuật ngữ, Tiếng Anh |
+| P06-supplementary-spec.md | NFR, ràng buộc thiết kế, giao tiếp ngoài (mục 2 đến 5), Câu hỏi mở, Giả định |
+| P08-analysis-model.md | F1, F3 (cột AC, Stereotype, Tên, Loại boundary, Trạng thái), F4, Câu hỏi mở, Giả định |
+
 - Chạy một lần cho toàn hệ thống. Chạy lại khi NFR hoặc bối cảnh kỹ thuật thay đổi.
 - Nếu NEN_TANG hoặc CONG_NGHE trong hồ sơ dự án là "Chưa chốt", AI lập bảng so sánh 2-3 phương án công nghệ, nêu khuyến nghị có lý do, rồi mới chọn mẫu cho phía giao diện. Người dùng chốt bằng placeholder PHUONG_AN_DA_CHON (điền trước khi chạy, hoặc chạy lại sau khi đọc khuyến nghị); để trống thì AI dùng phương án khuyến nghị và ghi rõ là khuyến nghị chờ xác nhận.
-- Sau khi chạy: sao chép khối trong mục "Cập nhật hồ sơ dự án" (F11) của P09-architecture.md vào project-profile.md mục 3, trước khi chạy P10.
+- Sau khi chạy: thay hai dòng NEN_TANG, CONG_NGHE trong bảng ở project-profile.md mục 3 bằng hai dòng của khối "Cập nhật hồ sơ dự án" (F11), trước khi chạy P10. Chấp nhận khuyến nghị thì không cần chạy lại P09; P10 coi giá trị trong hồ sơ là đã chốt và không xét trạng thái "chờ xác nhận" ở P09.
 
 | Placeholder | Bắt buộc | Ý nghĩa |
 |---|---|---|
@@ -57,7 +67,7 @@ A1. Xác định yêu cầu có ý nghĩa kiến trúc.
 - Từ P06, chọn các NFR và ràng buộc ảnh hưởng tới cấu trúc: hiệu năng, sẵn sàng, bảo mật, khả năng thay đổi giao diện, số loại client, tích hợp hệ thống ngoài và thiết bị, phân tán, triển khai, khả chuyển, dễ kiểm thử.
 - Từ hồ sơ dự án và P01, xác định: loại ứng dụng, số loại client, hệ thống ngoài và thiết bị.
 - Mỗi yêu cầu được viết lại thành kịch bản thuộc tính chất lượng ngắn: nguồn kích thích, kích thích, phản hồi, thước đo. Không tự đặt ngưỡng mà P06 không nêu; thiếu thì ghi Q-nn hoặc ASM-nn.
-- Quyết định kiến trúc cần cho cấu trúc mà nguồn không nêu (loại client của một nhóm người dùng, nơi đặt thành phần trung gian, số node triển khai) được phép đưa ra ở cả hai chế độ, vì thiếu nó không dựng được kiến trúc. Mỗi quyết định như vậy ghi ở F3 dòng "Rủi ro còn mở" kèm Q-nn để người dùng xác nhận.
+- Quyết định kiến trúc cần cho cấu trúc mà nguồn không nêu (loại client của một nhóm người dùng, nơi đặt thành phần trung gian, số node triển khai) được phép đưa ra ở cả hai chế độ, vì thiếu nó không dựng được kiến trúc. Mỗi quyết định như vậy ghi ở F3 dòng "Rủi ro còn mở" kèm Q-nn để người dùng xác nhận; ở CO_NHAN thêm ASM-nn chọn phương án đã dùng và trích mã ASM ở phần tử phụ thuộc (PKG, node triển khai). Ở NGHIEM_NGAT chỉ ghi Q-nn, phần tử phụ thuộc ghi "chờ Q-nn".
 
 A2. Lập danh sách phương án.
 - Chọn 2-4 phương án khả thi cho cấu trúc tổng thể từ các mẫu: Multi-layer (ví dụ 3 layer Presentation, Business/Application, Data/Services), Client-server, Front-end/Back-end (mỗi phía có mẫu riêng), Broker, Transaction-processing, Pipe-and-filter. Mẫu kiến trúc có thể kết hợp (ví dụ client-server ở mức triển khai, layered ở back-end).
@@ -81,9 +91,10 @@ A3b. Chọn mẫu cho phía giao diện.
 - Ghi mẫu đã chọn vào F3 và dùng nó cho bảng ánh xạ F5.
 
 A4. Xác định layer và package cấp cao.
-- Đặt tên layer theo mẫu đã chọn. Với multi-layer, tối thiểu có layer giao diện (presentation), layer nghiệp vụ hoặc ứng dụng (application logic, domain), layer dịch vụ kỹ thuật (persistence, tích hợp hệ thống ngoài, logging, bảo mật). Layer application và domain có thể tách hoặc gộp tuỳ độ phức tạp nghiệp vụ; ghi lý do.
+- Đặt tên layer theo mẫu đã chọn. Với multi-layer, tối thiểu có layer giao diện (presentation), layer nghiệp vụ hoặc ứng dụng (application logic, domain), layer dịch vụ kỹ thuật (persistence, tích hợp hệ thống ngoài, logging, bảo mật). Layer application và domain có thể tách hoặc gộp tuỳ độ phức tạp nghiệp vụ; ghi lý do. Khi tách Domain khỏi Application, đặt Domain là layer thấp nhất: Presentation --> Application --> Services --> Domain. Domain chứa lớp entity và interface kho dữ liệu; Persistence ở Services hiện thực interface đó (realization đi xuống). Không đặt Domain trên Services, vì Persistence phải tham chiếu lớp miền để ánh xạ, sẽ thành phụ thuộc đi lên.
 - Trong mỗi layer, xác định package cấp cao theo nhóm chức năng hoặc theo trách nhiệm kỹ thuật. Mỗi package có một trách nhiệm phát biểu được trong một câu.
 - Xác định quy tắc ánh xạ stereotype lớp phân tích sang layer hoặc vai trò trong mẫu, để P10 áp dụng.
+- Client có logic nghiệp vụ cục bộ (chạy khi mất kết nối): package dùng chung được triển khai ở nhiều node; F4 cột Nguồn ghi node triển khai, F10 ghi artifact chứa package đó ở mỗi node. Phần tiếp nhận yêu cầu ở back-end (REST controller) của mẫu front-end/back-end thuộc layer Presentation phía máy chủ, ghi rõ ở F5.
 
 A5. Đặt quy tắc phụ thuộc.
 - Chọn layered nghiêm ngặt (layer chỉ phụ thuộc layer ngay dưới) hoặc nới lỏng (được phụ thuộc mọi layer dưới). Ghi lý do.
@@ -97,6 +108,7 @@ A6. Định hướng mức cao cho giao tiếp ngoài và dữ liệu.
 
 A7. Kiểm tra mô hình phân tích chứa được trong kiến trúc.
 - Với mỗi lớp phân tích trong P08, xác định layer đích theo quy tắc ánh xạ A4. Lớp nào không có chỗ phù hợp là dấu hiệu kiến trúc thiếu layer hoặc package; sửa kiến trúc.
+- Nhóm chức năng của P02 chưa có lớp hoạt động trong P08 vẫn có package theo nhóm; cột Nguồn của F4 ghi "chưa có lớp P08 (UC-nnn, ...)" và F8 có dòng "Nhóm chưa phân tích" kèm danh sách PKG.
 - Kiểm tra control giữ trạng thái giữa hai sự kiện của tác nhân (chờ thiết bị, chờ hệ thống ngoài, chờ hết thời hạn). Nếu kiến trúc không cho giữ trạng thái đó trong bộ nhớ (nhiều tiến trình, nhân bản, khởi động lại theo NFR sẵn sàng), ghi Đề xuất sửa P07 thêm entity cho trạng thái chờ.
 - Không thực hiện ánh xạ chi tiết sang lớp thiết kế (việc của P10).
 
@@ -107,6 +119,7 @@ Xuất file P09-architecture.md theo khung C5, tiêu đề "# P09 - Thiết kế
 
 F1. Yêu cầu có ý nghĩa kiến trúc
 Bảng: | STT | Nguồn (NFR, ràng buộc, ACT) | Kịch bản thuộc tính chất lượng (kích thích --> phản hồi --> thước đo) | Mức ưu tiên | Ảnh hưởng kiến trúc |
+- Mức ưu tiên: lấy theo TIEU_CHI_UU_TIEN hoặc thứ hạng trong P06. Cả hai không có thì xếp: ràng buộc cứng của nguồn (câu "không được", "phải") trước, rồi NFR có ngưỡng đo được, rồi NFR định tính; ghi "Thiết kế: xếp theo quy tắc F1", không cần ASM.
 - Mức hợp lý: 3-10 dòng. Ít hơn 3 thường là bỏ sót (hệ thống nào cũng có ít nhất yêu cầu về bảo trì, bảo mật hoặc hiệu năng nếu P06 có); nhiều hơn 10 thường là chép cả NFR không ảnh hưởng cấu trúc (ví dụ màu sắc giao diện).
 - Ví dụ đúng (phòng khám): "NFR-03 --> Lễ tân mở danh sách lịch hẹn trong ngày --> hiển thị trong 2 giây với 500 lịch hẹn --> ảnh hưởng: cần tách truy vấn đọc, cân nhắc cache ở layer ứng dụng".
 - Ví dụ sai: "Hệ thống phải nhanh" (không đo được, không có nguồn NFR).
@@ -144,16 +157,17 @@ F4. Layer và package cấp cao (bảng lõi, P10 đọc bảng này)
 - PKG: mã PKG-nn theo C3, cấp từ PKG-01. Mỗi layer là một PKG; package cấp cao bên trong layer là PKG riêng, cột Layer ghi mã PKG của layer chứa nó. P10 sẽ tiếp tục cấp mã từ số lớn nhất ở bước này.
 - Tên: tiếng Anh PascalCase hoặc theo NGON_NGU_TEN_PHAN_TU, danh từ chỉ trách nhiệm, ví dụ Presentation, Application, Domain, Persistence, ExternalIntegration, Appointment, Inventory.
 - Trách nhiệm: một câu, không chứa "và" nối hai trách nhiệm khác loại.
-- Phụ thuộc vào: danh sách PKG; phải tuân F6.
+- Phụ thuộc vào: danh sách PKG; phải tuân F6. Dòng layer ghi hợp các phụ thuộc của package con; bảng kiểm F6 không cần dòng cho layer, F9 chỉ vẽ cạnh giữa package.
+- Nguồn: package chạy ở nhiều node (A4) ghi thêm node triển khai.
 Mức hợp lý: 3-5 layer; mỗi layer 1-8 package cấp cao. Trên 5 layer thường là chia vụn; 1 layer là chưa phân tách.
-Lỗi thường gặp: package theo loại kỹ thuật ở layer nghiệp vụ (Controllers, Models chứa mọi thứ) khi hệ thống có nhiều nhóm chức năng độc lập (quá lớn, cohesion thấp); package cho từng lớp (quá nhỏ); đặt package tích hợp hệ thống ngoài trong layer giao diện (nhầm layer).
-Ví dụ đúng (quản lý kho, 3 layer): PKG-01 Presentation; PKG-02 Application; PKG-03 Services; PKG-04 InventoryUI (layer PKG-01); PKG-05 Inventory (layer PKG-02); PKG-06 Persistence (layer PKG-03); PKG-07 ErpIntegration (layer PKG-03), PKG-05 phụ thuộc PKG-06, PKG-07.
+Lỗi thường gặp: package theo loại kỹ thuật ở layer nghiệp vụ (Controllers, Models chứa mọi thứ) khi hệ thống có nhiều nhóm chức năng độc lập (quá lớn, cohesion thấp); package cho từng lớp (quá nhỏ); đặt package tích hợp hệ thống ngoài trong layer giao diện (nhầm layer); đặt giao diện người dùng của hai tác nhân khác nhau trong cùng package (P10 A3 sẽ phải tách).
+Ví dụ đúng (quản lý kho, 4 layer, nới lỏng): PKG-01 Presentation; PKG-02 Application; PKG-03 Services; PKG-04 Domain; PKG-05 InventoryUI (layer PKG-01); PKG-06 InventoryService (layer PKG-02); PKG-07 Persistence (layer PKG-03); PKG-08 ErpIntegration (layer PKG-03); PKG-09 Inventory (layer PKG-04). PKG-05 phụ thuộc PKG-06; PKG-06 phụ thuộc PKG-07, PKG-08, PKG-09; PKG-07 phụ thuộc PKG-09.
 Ví dụ sai: PKG-06 Persistence phụ thuộc PKG-05 Inventory để gọi hàm nghiệp vụ khi lưu (sai: layer dưới phụ thuộc layer trên).
 
 F5. Quy tắc ánh xạ lớp phân tích sang kiến trúc (P10 đọc bảng này)
 Bảng: | Stereotype hoặc loại lớp phân tích | Layer hoặc vai trò trong mẫu đích | Ghi chú |
 - Tối thiểu có dòng cho: boundary giao diện người dùng; boundary kênh thông báo (email, SMS, thông báo đẩy) khi P08 có; boundary giao diện hệ thống; boundary giao diện thiết bị; control; entity (phần hành vi nghiệp vụ); entity (phần lưu trữ).
-- Ví dụ (layered kết hợp MVC passive ở web): boundary người dùng --> View và phần tiếp nhận yêu cầu (Controller của MVC) ở Presentation; control --> lớp dịch vụ ứng dụng ở Application; entity --> lớp miền ở Domain, phần lưu trữ do Persistence đảm nhận; boundary hệ thống --> subsystem ở Services.
+- Ví dụ (layered kết hợp MVC passive ở web): boundary người dùng --> View và phần tiếp nhận yêu cầu (Controller của MVC) ở Presentation; control --> lớp dịch vụ ứng dụng ở Application; entity --> lớp miền ở Domain (layer thấp nhất), interface kho dữ liệu ở Domain, phần hiện thực lưu trữ ở Persistence thuộc Services; boundary hệ thống --> subsystem ở Services.
 - Ví dụ (desktop MVP): boundary người dùng --> View và Presenter; control --> Application service; entity --> Model.
 - Lưu ý: "controller" của MVC là thành phần giao diện, khác lớp control của phân tích; ghi rõ trong bảng để tránh nhầm.
 
@@ -168,7 +182,7 @@ Liệt kê dạng câu, mỗi câu kiểm tra được:
 Kèm bảng kiểm tra: | Phụ thuộc (PKG --> PKG) | Hợp lệ | Quy tắc áp dụng |, một dòng cho mỗi phụ thuộc trong F4.
 
 F7. Định hướng giao tiếp ngoài và dữ liệu
-Bảng giao tiếp ngoài: | ACT (hệ thống ngoài, thiết bị) | PKG chứa | Nguyên tắc cô lập | Rủi ro (lỗi, timeout, thay đổi API) |
+Bảng giao tiếp ngoài: | ACT (hệ thống ngoài, thiết bị, tác nhân thời gian) hoặc node khác của chính hệ thống | PKG chứa | Nguyên tắc cô lập | Rủi ro (lỗi, timeout, thay đổi API) |
 Bảng dữ liệu: | Mục | Quyết định | Lý do |, gồm: loại cơ chế lưu trữ; layer truy cập dữ liệu; chiến lược giao dịch mức cao (nếu NFR có yêu cầu nhất quán); dữ liệu cần bảo vệ (nếu NFR bảo mật có).
 
 F8. Kiểm tra chứa mô hình phân tích
@@ -185,12 +199,10 @@ F10. Deployment diagram (chỉ khi DAY_DU), khi hệ thống có từ hai node t
 File diagrams/P09-deployment.drawio. Bảng Node: node (thiết bị, môi trường thực thi) và artifact triển khai; bảng Edge: đường truyền thông (communication path) có nhãn giao thức mức khái niệm (ví dụ "mạng nội bộ", "Internet, mã hoá"). Style node: shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;. Không ghi địa chỉ IP, tên máy cụ thể.
 
 F11. Cập nhật hồ sơ dự án
-Khối văn bản để người dùng dán vào project-profile.md mục 3, đặt trong code block text:
-| Trường | Giá trị |
-|---|---|
+Khối chỉ gồm hai dòng bảng (không có dòng tiêu đề), để người dùng thay hai dòng NEN_TANG, CONG_NGHE hiện có trong bảng ở project-profile.md mục 3, đặt trong code block text:
 | NEN_TANG | <giá trị đã chốt> |
 | CONG_NGHE | <ngôn ngữ, framework phía máy chủ, công nghệ phía giao diện, hệ quản trị CSDL> |
-Dưới khối ghi trạng thái ("Đã chốt bởi người dùng" hoặc "Khuyến nghị - chờ người dùng xác nhận") và nhắc: cập nhật hồ sơ trước khi chạy P10. Hồ sơ đã chốt cả hai trường thì ghi "Không cần cập nhật".
+Dưới khối ghi trạng thái ("Đã chốt bởi người dùng" hoặc "Khuyến nghị - chờ người dùng xác nhận"), dòng "Q-nn mà giá trị trên phụ thuộc: <danh sách>. Chấp nhận khối này là chấp nhận phương án đã dùng cho các Q đó.", và nhắc: cập nhật hồ sơ trước khi chạy P10. Hồ sơ đã chốt cả hai trường thì ghi "Không cần cập nhật".
 
 F12. Mục kiểm soát theo C5.
 

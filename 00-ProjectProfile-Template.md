@@ -27,7 +27,7 @@ Cách điền: thay toàn bộ khối {{PH:...}} bằng nội dung thật. Dòng
 
 ## 3. Bối cảnh kỹ thuật [TUỲ CHỌN]
 
-NEN_TANG, CONG_NGHE chỉ dùng từ bước P09 trở đi; để "Chưa chốt" nếu muốn AI đề xuất có so sánh phương án. HE_THONG_NGOAI được P01 (ranh giới hệ thống), P06 (giao tiếp ngoài), P09 và P11b đọc, và có giá trị như tài liệu nguồn ở mức ưu tiên thấp nhất (sau mọi file trong TAI_LIEU_NGUON). Khi hai trường này là "Chưa chốt", P09 so sánh phương án công nghệ, nêu khuyến nghị và xuất mục "Cập nhật hồ sơ dự án" gồm giá trị NEN_TANG, CONG_NGHE đã chốt. Sau P09, dán khối đó vào bảng dưới đây trước khi chạy P10, vì P10, P11a, P12, P13, X2 đọc hai trường này để chọn mẫu giao diện, kiểu dữ liệu, hệ quản trị CSDL và khung kiểm thử.
+NEN_TANG, CONG_NGHE chỉ dùng từ bước P09 trở đi; để "Chưa chốt" nếu muốn AI đề xuất có so sánh phương án. HE_THONG_NGOAI được P01 (ranh giới hệ thống), P06 (giao tiếp ngoài), P09 và P11b đọc, và có giá trị như tài liệu nguồn ở mức ưu tiên thấp nhất (sau mọi file trong TAI_LIEU_NGUON). Khi hai trường này là "Chưa chốt", P09 so sánh phương án công nghệ, nêu khuyến nghị và xuất mục "Cập nhật hồ sơ dự án" gồm giá trị NEN_TANG, CONG_NGHE đã chốt. Sau P09, thay hai dòng NEN_TANG, CONG_NGHE trong bảng dưới đây bằng hai dòng của khối đó trước khi chạy P10 (chấp nhận khuyến nghị thì không cần chạy lại P09), vì P10, P11a, P12, P13, X2 đọc hai trường này để chọn mẫu giao diện, kiểu dữ liệu, hệ quản trị CSDL và khung kiểm thử.
 
 | Trường | Giá trị |
 |---|---|
