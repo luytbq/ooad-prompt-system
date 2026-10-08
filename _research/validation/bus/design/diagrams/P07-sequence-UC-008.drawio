@@ -1,0 +1,119 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="SD1" id="P07-SD1">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1520" pageHeight="1380" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="SD1-L01" value="Hành khách" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="120" height="1260" as="geometry"/></mxCell>
+        <mxCell id="SD1-L02" value=":ReturnTicketForm" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="200" y="40" width="120" height="1260" as="geometry"/></mxCell>
+        <mxCell id="SD1-L03" value=":ReturnTicketController" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="360" y="40" width="120" height="1260" as="geometry"/></mxCell>
+        <mxCell id="SD1-L04" value=":Ticket" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="520" y="40" width="120" height="1260" as="geometry"/></mxCell>
+        <mxCell id="SD1-L05" value=":Trip" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="680" y="40" width="120" height="1260" as="geometry"/></mxCell>
+        <mxCell id="SD1-L06" value=":Seat" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="840" y="40" width="120" height="1260" as="geometry"/></mxCell>
+        <mxCell id="SD1-L07" value=":Refund" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="1000" y="1200" width="120" height="100" as="geometry"/></mxCell>
+        <mxCell id="SD1-L08" value=":PaymentGateway" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="1160" y="40" width="120" height="1260" as="geometry"/></mxCell>
+        <mxCell id="SD1-L09" value="Cổng thanh toán" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="1320" y="40" width="120" height="1260" as="geometry"/></mxCell>
+        <mxCell id="SD1-FR1" value="opt [hình thức hoàn là Qua cổng thanh toán (BR-15)]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=left;" vertex="1" parent="1"><mxGeometry x="340" y="920" width="1120" height="180" as="geometry"/></mxCell>
+        <mxCell id="SD1-M01" value="1: // requestReturnTicket (mã vé, số điện thoại người đi)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="100" y="120" as="sourcePoint"/><mxPoint x="260" y="120" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M02" value="1.1: // startReturnTicket (mã vé, số điện thoại người đi, kênh yêu cầu trả)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="260" y="160" as="sourcePoint"/><mxPoint x="420" y="160" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M03" value="1.1.1: // findTicket (mã vé, số điện thoại người đi)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="200" as="sourcePoint"/><mxPoint x="580" y="200" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M04" value="1.1.1 (trả về): vé khớp thông tin đã cung cấp" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="580" y="240" as="sourcePoint"/><mxPoint x="420" y="240" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M05" value="1.1.2: // checkNotCancelled" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="280" as="sourcePoint"/><mxPoint x="580" y="280" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M06" value="1.1.3: // checkPurchaseChannel (kênh yêu cầu trả, BR-11)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="320" as="sourcePoint"/><mxPoint x="580" y="320" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M07" value="1.1.4: // checkReturnTimeLimit (thời điểm trả, BR-12)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="360" as="sourcePoint"/><mxPoint x="580" y="360" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M08" value="1.1.4.1: // calculateTimeToDeparture (thời điểm trả)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="580" y="400" as="sourcePoint"/><mxPoint x="740" y="400" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M09" value="1.1.4 (trả về): thời gian còn lại trước giờ xuất bến" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="580" y="440" as="sourcePoint"/><mxPoint x="420" y="440" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M10" value="1.1.5: // calculateRefundAmount (thời gian còn lại)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="480" as="sourcePoint"/><mxPoint x="580" y="480" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M11" value="1.1.5 (trả về): mức hoàn và số tiền hoàn" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="580" y="520" as="sourcePoint"/><mxPoint x="420" y="520" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M12" value="1.1.6: // getTicketReturnInfo" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="560" as="sourcePoint"/><mxPoint x="580" y="560" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M13" value="1.1.6.1: // getRouteAndDepartureTime" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="580" y="600" as="sourcePoint"/><mxPoint x="740" y="600" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M14" value="1.1.6.2: // getSeatCode" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="580" y="640" as="sourcePoint"/><mxPoint x="900" y="640" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M15" value="1.1.6 (trả về): mã vé, tuyến, giờ xuất bến, chỗ, giá vé" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="580" y="680" as="sourcePoint"/><mxPoint x="420" y="680" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M16" value="1.1.7: // showReturnInfo (thông tin vé, thời gian còn lại, mức hoàn, số tiền hoàn)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="720" as="sourcePoint"/><mxPoint x="260" y="720" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M17" value="2: // confirmReturnTicket" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="100" y="760" as="sourcePoint"/><mxPoint x="260" y="760" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M18" value="2.1: // confirmReturn" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="260" y="800" as="sourcePoint"/><mxPoint x="420" y="800" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M19" value="2.1.1: // determineRefundMethod" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="840" as="sourcePoint"/><mxPoint x="580" y="840" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M20" value="2.1.1 (trả về): hình thức hoàn theo kênh mua" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="580" y="880" as="sourcePoint"/><mxPoint x="420" y="880" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M21" value="2.1.2: // requestRefund (mã vé, số tiền hoàn)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="960" as="sourcePoint"/><mxPoint x="1220" y="960" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M22" value="2.1.2.1: // submitRefundRequest (mã vé, số tiền hoàn)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="1220" y="1000" as="sourcePoint"/><mxPoint x="1380" y="1000" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M23" value="2.1.2.2: // returnRefundResult (kết quả hoàn tiền)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="1380" y="1040" as="sourcePoint"/><mxPoint x="1220" y="1040" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M24" value="2.1.2 (trả về): kết quả hoàn tiền" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="1220" y="1080" as="sourcePoint"/><mxPoint x="420" y="1080" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M25" value="2.1.3: // cancelTicket (số tiền hoàn, hình thức hoàn)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="1120" as="sourcePoint"/><mxPoint x="580" y="1120" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M26" value="2.1.3.1: // release" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="580" y="1160" as="sourcePoint"/><mxPoint x="900" y="1160" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M27" value="2.1.3.2: // createRefund (vé, mức hoàn, số tiền hoàn, hình thức hoàn)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="580" y="1200" as="sourcePoint"/><mxPoint x="1000" y="1200" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD1-M28" value="2.1.4: // showReturnResult (mã vé, trạng thái vé, số tiền hoàn, hình thức hoàn)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="1240" as="sourcePoint"/><mxPoint x="260" y="1240" as="targetPoint"/></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="SD2" id="P07-SD2">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="560" pageHeight="480" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="SD2-L01" value=":ReturnTicketForm" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="120" height="360" as="geometry"/></mxCell>
+        <mxCell id="SD2-L02" value=":ReturnTicketController" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="200" y="40" width="120" height="360" as="geometry"/></mxCell>
+        <mxCell id="SD2-L03" value=":Ticket" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="360" y="40" width="120" height="360" as="geometry"/></mxCell>
+        <mxCell id="SD2-FR1" value="alt [không có vé nào khớp thông tin đã cung cấp (ASM-18)]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=left;" vertex="1" parent="1"><mxGeometry x="20" y="120" width="480" height="160" as="geometry"/></mxCell>
+        <mxCell id="SD2-FR1-O2" value="[có vé khớp thông tin đã cung cấp]" style="text;html=1;align=left;verticalAlign=top;" vertex="1" parent="1"><mxGeometry x="30" y="200" width="460" height="20" as="geometry"/></mxCell>
+        <mxCell id="SD2-FR1-O2-SEP" value="" style="endArrow=none;dashed=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="20" y="200" as="sourcePoint"/><mxPoint x="500" y="200" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD2-FR2" value="break [vé khớp thông tin và đã bị huỷ (ASM-20)]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=left;" vertex="1" parent="1"><mxGeometry x="20" y="300" width="480" height="60" as="geometry"/></mxCell>
+        <mxCell id="SD2-M01" value="1.1.1a: // showTicketNotFoundNotice" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="260" y="160" as="sourcePoint"/><mxPoint x="100" y="160" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD2-M02" value="1.1.2: // checkNotCancelled" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="260" y="260" as="sourcePoint"/><mxPoint x="420" y="260" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD2-M03" value="1.1.2a: // showTicketCancelledNotice" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="260" y="340" as="sourcePoint"/><mxPoint x="100" y="340" as="targetPoint"/></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="SD3" id="P07-SD3">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="400" pageHeight="380" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="SD3-L01" value=":ReturnTicketForm" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="120" height="260" as="geometry"/></mxCell>
+        <mxCell id="SD3-L02" value=":ReturnTicketController" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="200" y="40" width="120" height="260" as="geometry"/></mxCell>
+        <mxCell id="SD3-FR1" value="break [vé được mua qua kênh khác với kênh yêu cầu trả (BR-11)]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=left;" vertex="1" parent="1"><mxGeometry x="20" y="120" width="320" height="60" as="geometry"/></mxCell>
+        <mxCell id="SD3-FR2" value="break [đúng kênh mua và thời gian còn lại dưới 4 giờ (BR-12)]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=left;" vertex="1" parent="1"><mxGeometry x="20" y="200" width="320" height="60" as="geometry"/></mxCell>
+        <mxCell id="SD3-M01" value="1.1.3a: // showWrongChannelNotice (BR-11)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="260" y="160" as="sourcePoint"/><mxPoint x="100" y="160" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD3-M02" value="1.1.4a: // showReturnTimeLimitNotice (BR-12)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="260" y="240" as="sourcePoint"/><mxPoint x="100" y="240" as="targetPoint"/></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="SD4" id="P07-SD4">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="560" pageHeight="460" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="SD4-L01" value="Hành khách" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="120" height="340" as="geometry"/></mxCell>
+        <mxCell id="SD4-L02" value=":ReturnTicketForm" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="200" y="40" width="120" height="340" as="geometry"/></mxCell>
+        <mxCell id="SD4-L03" value=":ReturnTicketController" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="360" y="40" width="120" height="340" as="geometry"/></mxCell>
+        <mxCell id="SD4-FR1" value="break [tác nhân không xác nhận trả vé (ASM-19)]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=left;" vertex="1" parent="1"><mxGeometry x="20" y="120" width="480" height="140" as="geometry"/></mxCell>
+        <mxCell id="SD4-FR2" value="break [kết quả hoàn tiền không thành công (ASM-21)]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=left;" vertex="1" parent="1"><mxGeometry x="180" y="280" width="320" height="60" as="geometry"/></mxCell>
+        <mxCell id="SD4-M01" value="2a: // declineReturnTicket" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="100" y="160" as="sourcePoint"/><mxPoint x="260" y="160" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD4-M02" value="2a.1: // cancelReturnRequest" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="260" y="200" as="sourcePoint"/><mxPoint x="420" y="200" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD4-M03" value="2a.1.1: // showReturnAbortedNotice" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="240" as="sourcePoint"/><mxPoint x="260" y="240" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD4-M04" value="2.1.3a: // showRefundFailedNotice" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="320" as="sourcePoint"/><mxPoint x="260" y="320" as="targetPoint"/></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="SD5" id="P07-SD5">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="720" pageHeight="740" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="SD5-L01" value="Nhân viên bán vé" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="120" height="620" as="geometry"/></mxCell>
+        <mxCell id="SD5-L02" value=":CounterReturnTicketForm" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="200" y="40" width="120" height="620" as="geometry"/></mxCell>
+        <mxCell id="SD5-L03" value=":ReturnTicketController" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="360" y="40" width="120" height="620" as="geometry"/></mxCell>
+        <mxCell id="SD5-L04" value=":Ticket" style="shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1;" vertex="1" parent="1"><mxGeometry x="520" y="40" width="120" height="620" as="geometry"/></mxCell>
+        <mxCell id="SD5-REF1" value="ref SD1: bước 2 đến 5 (message 1.1.1 đến 1.1.6)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=left;" vertex="1" parent="1"><mxGeometry x="340" y="180" width="320" height="60" as="geometry"/></mxCell>
+        <mxCell id="SD5-REF2" value="ref SD1: bước 10 (message 2.1.3 đến 2.1.3.2)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=left;" vertex="1" parent="1"><mxGeometry x="340" y="480" width="320" height="60" as="geometry"/></mxCell>
+        <mxCell id="SD5-M01" value="1c: // requestReturnTicket (mã vé)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="100" y="120" as="sourcePoint"/><mxPoint x="260" y="120" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD5-M02" value="1c.1: // startReturnTicket (mã vé, kênh yêu cầu trả)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="260" y="160" as="sourcePoint"/><mxPoint x="420" y="160" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD5-M03" value="1c.2: // showReturnInfo (thông tin vé, thời gian còn lại, mức hoàn, số tiền hoàn)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="300" as="sourcePoint"/><mxPoint x="260" y="300" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD5-M04" value="2c: // confirmReturnTicket" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="100" y="340" as="sourcePoint"/><mxPoint x="260" y="340" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD5-M05" value="2c.1: // confirmReturn" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="260" y="380" as="sourcePoint"/><mxPoint x="420" y="380" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD5-M06" value="2c.1.1: // determineRefundMethod" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="420" as="sourcePoint"/><mxPoint x="580" y="420" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD5-M07" value="2c.1.1 (trả về): hình thức hoàn là Tiền mặt tại quầy (luồng 7a: không gửi yêu cầu tới PaymentGateway)" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="580" y="460" as="sourcePoint"/><mxPoint x="420" y="460" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="SD5-M08" value="2c.2: // showReturnResult (mã vé, trạng thái vé, số tiền hoàn, hình thức hoàn)" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="420" y="600" as="sourcePoint"/><mxPoint x="260" y="600" as="targetPoint"/></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,27 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="COMM1" id="P07-COMM1">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="CO-01" value="Hành khách" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="200" width="40" height="80" as="geometry"/></mxCell>
+        <mxCell id="CO-02" value=":ReturnTicketForm" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="200" y="220" width="160" height="40" as="geometry"/></mxCell>
+        <mxCell id="CO-03" value=":ReturnTicketController" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="640" y="220" width="160" height="40" as="geometry"/></mxCell>
+        <mxCell id="CO-04" value=":Ticket" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="640" y="560" width="160" height="40" as="geometry"/></mxCell>
+        <mxCell id="CO-05" value=":Trip" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="200" y="560" width="160" height="40" as="geometry"/></mxCell>
+        <mxCell id="CO-06" value=":Seat" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1080" y="560" width="160" height="40" as="geometry"/></mxCell>
+        <mxCell id="CO-07" value=":Refund" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="640" y="760" width="160" height="40" as="geometry"/></mxCell>
+        <mxCell id="CO-08" value=":PaymentGateway" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1080" y="220" width="160" height="40" as="geometry"/></mxCell>
+        <mxCell id="CO-09" value="Cổng thanh toán" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1"><mxGeometry x="1440" y="200" width="40" height="80" as="geometry"/></mxCell>
+        <mxCell id="LK-01" value="1: // requestReturnTicket (mã vé, số điện thoại người đi) (--&gt;)&lt;br&gt;2: // confirmReturnTicket (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;fontSize=11;" edge="1" parent="1" source="CO-01" target="CO-02"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="LK-02" value="1.1: // startReturnTicket (mã vé, số điện thoại người đi, kênh yêu cầu trả) (--&gt;)&lt;br&gt;1.1.7: // showReturnInfo (thông tin vé, thời gian còn lại, mức hoàn, số tiền hoàn) (&lt;--)&lt;br&gt;2.1: // confirmReturn (--&gt;)&lt;br&gt;2.1.4: // showReturnResult (mã vé, trạng thái vé, số tiền hoàn, hình thức hoàn) (&lt;--)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;fontSize=11;" edge="1" parent="1" source="CO-02" target="CO-03"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="LK-03" value="1.1.1: // findTicket (mã vé, số điện thoại người đi) (--&gt;)&lt;br&gt;1.1.2: // checkNotCancelled (--&gt;)&lt;br&gt;1.1.3: // checkPurchaseChannel (kênh yêu cầu trả, BR-11) (--&gt;)&lt;br&gt;1.1.4: // checkReturnTimeLimit (thời điểm trả, BR-12) (--&gt;)&lt;br&gt;1.1.5: // calculateRefundAmount (thời gian còn lại) (--&gt;)&lt;br&gt;1.1.6: // getTicketReturnInfo (--&gt;)&lt;br&gt;2.1.1: // determineRefundMethod (--&gt;)&lt;br&gt;2.1.3: // cancelTicket (số tiền hoàn, hình thức hoàn) (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;fontSize=11;" edge="1" parent="1" source="CO-03" target="CO-04"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="LK-04" value="1.1.4.1: // calculateTimeToDeparture (thời điểm trả) (--&gt;)&lt;br&gt;1.1.6.1: // getRouteAndDepartureTime (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;fontSize=11;" edge="1" parent="1" source="CO-04" target="CO-05"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="LK-05" value="1.1.6.2: // getSeatCode (--&gt;)&lt;br&gt;2.1.3.1: // release (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;fontSize=11;" edge="1" parent="1" source="CO-04" target="CO-06"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="LK-06" value="2.1.2: // requestRefund (mã vé, số tiền hoàn) (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;fontSize=11;" edge="1" parent="1" source="CO-03" target="CO-08"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="LK-07" value="2.1.2.1: // submitRefundRequest (mã vé, số tiền hoàn) (--&gt;)&lt;br&gt;2.1.2.2: // returnRefundResult (kết quả hoàn tiền) (&lt;--)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;fontSize=11;" edge="1" parent="1" source="CO-08" target="CO-09"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="LK-08" value="2.1.3.2: // createRefund (vé, mức hoàn, số tiền hoàn, hình thức hoàn) (--&gt;)" style="endArrow=none;html=1;labelBackgroundColor=#ffffff;fontSize=11;" edge="1" parent="1" source="CO-04" target="CO-07"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
