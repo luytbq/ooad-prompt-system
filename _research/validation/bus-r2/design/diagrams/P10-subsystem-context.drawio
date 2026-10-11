@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="24.0.0">
+<diagram id="P10-ctx-SS-01" name="SS-01 OnlinePayment">
+<mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="480" math="0" shadow="0">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="DC-CancelTripService" value="DC-CancelTripService" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1"><mxGeometry x="80" y="60" width="200" height="40" as="geometry"/></mxCell>
+<mxCell id="DC-PayTicketOnlineService" value="DC-PayTicketOnlineService" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1"><mxGeometry x="360" y="60" width="200" height="40" as="geometry"/></mxCell>
+<mxCell id="IF-01" value="«interface»&lt;br&gt;IF-01 IPaymentGateway" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1"><mxGeometry x="160" y="200" width="320" height="70" as="geometry"/></mxCell>
+<mxCell id="IF-01-resp" value="// requestTicketRefund" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;whiteSpace=wrap;html=1;" vertex="1" parent="IF-01"><mxGeometry y="40" width="320" height="30" as="geometry"/></mxCell>
+<mxCell id="SS-01" value="«subsystem»&lt;br&gt;SS-01 OnlinePayment" style="shape=component;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="200" y="340" width="240" height="60" as="geometry"/></mxCell>
+<mxCell id="CE-01" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.0625;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="1" source="DC-CancelTripService" target="IF-01"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="CE-02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.9375;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="1" source="DC-PayTicketOnlineService" target="IF-01"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="CE-03" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=0;dashed=1;exitX=0.5;exitY=0.0;exitDx=0;exitDy=0;entryX=0.5;entryY=1.0;entryDx=0;entryDy=0;" edge="1" parent="1" source="SS-01" target="IF-01"><mxGeometry relative="1" as="geometry"/></mxCell>
+</root>
+</mxGraphModel>
+</diagram>
+<diagram id="P10-ctx-SS-02" name="SS-02 SmsNotification">
+<mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="500" math="0" shadow="0">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="DC-BookTicketOnlineService" value="DC-BookTicketOnlineService" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1"><mxGeometry x="80" y="60" width="200" height="40" as="geometry"/></mxCell>
+<mxCell id="DC-CancelTripService" value="DC-CancelTripService" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1"><mxGeometry x="360" y="60" width="200" height="40" as="geometry"/></mxCell>
+<mxCell id="IF-02" value="«interface»&lt;br&gt;IF-02 ISmsGateway" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1"><mxGeometry x="160" y="200" width="320" height="90" as="geometry"/></mxCell>
+<mxCell id="IF-02-resp" value="// sendTicketCodesBySms&lt;br&gt;// sendTripCancellationBySms" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;whiteSpace=wrap;html=1;" vertex="1" parent="IF-02"><mxGeometry y="40" width="320" height="50" as="geometry"/></mxCell>
+<mxCell id="SS-02" value="«subsystem»&lt;br&gt;SS-02 SmsNotification" style="shape=component;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="200" y="360" width="240" height="60" as="geometry"/></mxCell>
+<mxCell id="CE-01" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.0625;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="1" source="DC-BookTicketOnlineService" target="IF-02"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="CE-02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;exitX=0.5;exitY=1.0;exitDx=0;exitDy=0;entryX=0.9375;entryY=0.0;entryDx=0;entryDy=0;" edge="1" parent="1" source="DC-CancelTripService" target="IF-02"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="CE-03" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=0;dashed=1;exitX=0.5;exitY=0.0;exitDx=0;exitDy=0;entryX=0.5;entryY=1.0;entryDx=0;entryDy=0;" edge="1" parent="1" source="SS-02" target="IF-02"><mxGeometry relative="1" as="geometry"/></mxCell>
+</root>
+</mxGraphModel>
+</diagram>
+</mxfile>

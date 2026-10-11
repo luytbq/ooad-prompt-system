@@ -31,6 +31,7 @@ Ngoài phạm vi: bố cục, định tuyến cạnh và độ dễ đọc của
 | P08 | Sonnet | CACH_CHIA_VIEW = Không có; YEU_CAU_BO_SUNG nêu phạm vi UC-009, UC-017 | P08-analysis-model.md; diagrams/P08-class-analysis (3 trang) | 14 lớp (4 B, 4 C, 6 E), R-01..R-22, F2 17 dòng, F2a 15 dòng, Q-59..Q-61, ASM-43, ASM-44; khoảng 12 phút |
 | P09 | Sonnet | RANG_BUOC_KIEN_TRUC, TIEU_CHI_UU_TIEN, PHUONG_AN_DA_CHON = Không có; YEU_CAU_BO_SUNG nêu phạm vi UC-009, UC-017 | P09-architecture.md; diagrams/P09-package-layers, P09-deployment | Chọn PA1 (multi-layer 4 layer, kết hợp client-server cho máy soát vé), khuyến nghị CN1; 26 package (PKG-01..PKG-30), 58 phụ thuộc, 9 node; Q-62..Q-65, ASM-45..ASM-48; khoảng 16 phút |
 | Cập nhật hồ sơ | Không áp dụng (thao tác của người dùng) | Người điều phối (vai người dùng) chấp nhận khuyến nghị CN1, thay hai dòng NEN_TANG, CONG_NGHE bằng hai dòng của khối F11 | project-profile.md | Thao tác đúng một lần theo câu dẫn mới của F11, không phải tự suy cách dán |
+| P10 | Sonnet | TIEU_CHI_NHOM_PACKAGE, KHA_NANG_THAY_DOI_GIAO_DIEN, YEU_CAU_BO_SUNG = Không có | P10-design-elements.md; diagrams/P10-package-design, P10-subsystem-context (2 trang) | 2 SS, IF-01..IF-08, 27 DC, PKG-31 mới, 15 package giữ chỗ; không có Q, ASM mới; khoảng 12 phút |
 
 ## 2. Nhật ký phát hiện
 
