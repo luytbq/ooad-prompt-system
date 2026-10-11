@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net"><diagram id="State-machine-ST-02-DC-Seat" name="State machine ST-02 DC-Seat">
+<mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1800" math="0" shadow="0"><root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="ST-02-I" value="" style="ellipse;fillColor=#000000;html=1;" vertex="1" parent="1"><mxGeometry x="60" y="100" width="40" height="40" as="geometry"/></mxCell>
+<mxCell id="ST-02-S1" value="&lt;b&gt;Available&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;" vertex="1" parent="1"><mxGeometry x="200" y="90" width="220" height="60" as="geometry"/></mxCell>
+<mxCell id="ST-02-S2" value="&lt;b&gt;Held&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;" vertex="1" parent="1"><mxGeometry x="680" y="90" width="220" height="60" as="geometry"/></mxCell>
+<mxCell id="ST-02-S3" value="&lt;b&gt;Sold&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;" vertex="1" parent="1"><mxGeometry x="1160" y="90" width="220" height="60" as="geometry"/></mxCell>
+<mxCell id="ST-02-T1" value="create&lt;br&gt;/ tripState = AVAILABLE" style="html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;endFill=0;exitX=1.0000;exitY=0.5000;exitDx=0;exitDy=0;entryX=0.0000;entryY=0.5000;entryDx=0;entryDy=0;" edge="1" parent="1" source="ST-02-I" target="ST-02-S1"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="ST-02-T2" value="markHeld&lt;br&gt;/ tripState = HELD" style="html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;endFill=0;exitX=1.0000;exitY=0.3333;exitDx=0;exitDy=0;entryX=0.0000;entryY=0.3333;entryDx=0;entryDy=0;" edge="1" parent="1" source="ST-02-S1" target="ST-02-S2"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="ST-02-T3" value="markSold&lt;br&gt;/ tripState = SOLD" style="html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;endFill=0;exitX=1.0000;exitY=0.5000;exitDx=0;exitDy=0;entryX=0.0000;entryY=0.5000;entryDx=0;entryDy=0;" edge="1" parent="1" source="ST-02-S2" target="ST-02-S3"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="ST-02-T4" value="markAvailable&lt;br&gt;/ tripState = AVAILABLE" style="html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;endFill=0;exitX=0.5000;exitY=1.0000;exitDx=0;exitDy=0;entryX=0.5000;entryY=1.0000;entryDx=0;entryDy=0;" edge="1" parent="1" source="ST-02-S2" target="ST-02-S1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="790" y="220"/><mxPoint x="310" y="220"/></Array></mxGeometry></mxCell>
+
+</root></mxGraphModel></diagram></mxfile>
