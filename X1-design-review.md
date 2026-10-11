@@ -9,11 +9,13 @@ Bước này đánh giá chéo thiết kế (kiến trúc, phần tử thiết k
 | Loại | Artifact | Bắt buộc | Dùng để |
 |---|---|---|---|
 | Đầu vào | project-profile.md | Có | Chế độ giả định, mức chi tiết, công nghệ |
-| Đầu vào | P12-class-design.md (hoặc P12-class-design/*.md) | Có (trừ khi review độc lập) | Lớp, operation, thuộc tính, quan hệ, state machine |
-| Đầu vào | P13-data-model.md | Không | Review dữ liệu và nhất quán lớp - bảng |
+| Đầu vào | P12-class-design.md (hoặc P12-class-design/*.md) | Có (trừ khi review độc lập) | Lớp, operation, thuộc tính, quan hệ, state machine. Phần cần đọc: F1, F1b, F2, F3, F5, F6, F7, F7a (bỏ bảng Node, Edge của F8) |
+| Đầu vào | P13-data-model.md | Không | Review dữ liệu và nhất quán lớp - bảng. Phần cần đọc: F2, F4, F5, F6, bảng Edge của F8.1 |
 | Đầu vào | P09-architecture.md, P10-design-elements.md | Không (nên có) | Layer, package, subsystem, interface, quy tắc phụ thuộc |
-| Đầu vào | P11b-system-interfaces.md | Không | Interface với hệ thống ngoài |
-| Đầu vào | P07-uc-analysis/*.md, P08-analysis-model.md | Không | Kiểm tra truy vết message --> operation |
+| Đầu vào | P11b-system-interfaces.md (hoặc P11b-system-interfaces/) | Không | Interface với hệ thống ngoài. Phần cần đọc: mục của SS và IF mà phạm vi dùng |
+| Đầu vào | P07-uc-analysis/*.md, P08-analysis-model.md | Không | Kiểm tra truy vết message --> operation. Phần cần đọc: bảng message (F5 c) của UC có lớp trong phạm vi; P08 F3, F4 |
+| Đầu vào | P05-glossary.md | Không (nên có) | Kiểm tiêu chí CNS tên dùng đúng glossary |
+| Đầu vào | Mục Câu hỏi mở, Giả định của P00 đến P06, P04-uc-specs/*.md, P04-uc-specs/_BR-register.md | Có khi phạm vi trích Q, ASM, BR | Đọc nội dung Q, ASM, BR mà thiết kế trích |
 | Đầu vào | P06-supplementary-spec.md | Không | NFR (khả năng bảo trì, mở rộng, hiệu năng) làm căn cứ mức độ |
 | Đầu vào | Thiết kế hoặc mã nguồn do người dùng cung cấp | Có khi review độc lập | Đối tượng review khi không chạy pipeline |
 | Đầu ra | X1-design-review.md | Có | Bảng phát hiện và các bảng đánh giá |
@@ -41,7 +43,7 @@ Bạn nhận được: 00-Conventions.md (luật chung, bắt buộc tuân thủ
 Phạm vi review:
 {{PH:PHAM_VI_REVIEW | Hướng dẫn: liệt kê artifact và phần tử cần review; ghi "Toàn bộ thiết kế" nếu review mọi artifact đính kèm | Ví dụ: "Toàn bộ thiết kế (P09, P10, P12, P13)"; "PKG-04 Xuất nhập kho trong P12 và các bảng liên quan trong P13"; "Chỉ các lớp DC-LoanController, DC-Loan, DC-FineCalculator"}}
 Nhóm tiêu chí áp dụng:
-{{PH:NHOM_TIEU_CHI | Hướng dẫn: [TUỲ CHỌN] chọn trong: MOD (tính module), CPL (coupling), COH (cohesion), SOLID, GRASP, PRN (nguyên lý bổ trợ), PKP (nguyên lý package), SML (design smell), CNS (nhất quán artifact), DAT (dữ liệu); áp dụng tất cả thì thay cả khối bằng "Không có" | Ví dụ: "CPL, COH, SOLID"; "PKG, CNS"}}
+{{PH:NHOM_TIEU_CHI | Hướng dẫn: [TUỲ CHỌN] chọn trong: MOD (tính module), CPL (coupling), COH (cohesion), SOLID, GRASP, PRN (nguyên lý bổ trợ), PKP (nguyên lý package), SML (design smell), CNS (nhất quán artifact), DAT (dữ liệu); áp dụng tất cả thì thay cả khối bằng "Không có" | Ví dụ: "CPL, COH, SOLID"; "PKP, CNS"}}
 Thiết kế cần review khi dùng độc lập:
 {{PH:THIET_KE_DOC_LAP | Hướng dẫn: [TUỲ CHỌN] chỉ dùng khi không review artifact của pipeline: dán hoặc đính kèm class diagram (ảnh, XML draw.io, PlantUML), mô tả lớp, hoặc mã nguồn, kèm mô tả ngắn chức năng hệ thống; review artifact pipeline thì thay cả khối bằng "Không có" | Ví dụ: "File class-diagram.drawio và mô tả: hệ thống đặt phòng khách sạn gồm đặt phòng, nhận phòng, trả phòng"; "Thư mục src/inventory/ (Java) của phân hệ quản lý kho"}}
 Mã phát hiện bắt đầu:
@@ -80,12 +82,13 @@ Bước 7. Lập bảng phát hiện.
 - Mỗi vi phạm là một dòng RV; gộp các biểu hiện của cùng một nguyên nhân gốc vào một dòng và liệt kê các phần tử bị ảnh hưởng.
 - Gán mức độ theo định nghĩa ở [Format] F2; ghi độ tin cậy.
 - Đề xuất sửa cụ thể (refactoring hoặc thay đổi mô hình), nêu bước pipeline cần chạy lại.
+- Trước khi cấp Q-nn mới, tìm trong các đầu vào Q có cùng nội dung; nếu có, trích mã Q cũ ở cột Độ tin cậy, không cấp Q mới.
 - Khi hai nguyên lý mâu thuẫn (ví dụ Information Expert muốn đặt logic lưu trữ vào entity nhưng High Cohesion muốn tách ra Pure Fabrication), ghi lựa chọn và đánh đổi, không ghi thành hai phát hiện trái chiều.
 
 Bước 8. Tự kiểm tra theo [Target].
 
 [Format]
-Đầu ra là file X1-design-review.md theo khung Conventions C5, gồm F1 đến F7 theo thứ tự, sau đó là các mục kiểm soát (Câu hỏi mở, Giả định nếu CO_NHAN, Đề xuất sửa artifact trước, Vấn đề còn mở). Mục "Đề xuất sửa artifact trước" ghi "Xem bảng phát hiện F2" vì toàn bộ đề xuất nằm ở F2.
+Đầu ra là file X1-design-review.md theo khung Conventions C5, gồm F1 đến F7 theo thứ tự, sau đó là các mục kiểm soát (Câu hỏi mở, Giả định nếu CO_NHAN, Đề xuất sửa artifact trước, Vấn đề còn mở). Mục "Đề xuất sửa artifact trước" có đúng một dòng: | Xem F2 | - | Toàn bộ đề xuất nằm ở F2 | - |.
 
 F1. Phạm vi và phương pháp
 Bảng: | Hạng mục | Nội dung |
@@ -97,15 +100,16 @@ Cột thêm: | Nhóm (MOD / CPL / COH / SOLID / GRASP / PRN / PKP / SML / CNS / 
 - RV: mã RV-nn theo Conventions C3, tuần tự, không tái sử dụng.
 - Nguyên lý / tiêu chí vi phạm: ghi tên chính xác theo danh mục F3-F5, ví dụ "CPL Control coupling", "SOLID DIP", "SML Feature envy", "CNS Operation không có nguồn message".
 - Phần tử: mã phần tử (DC, DC.operation, R-nn, PKG, SS, IF, TBL, TBL.cột, EXT-).
+- Độ tin cậy: thông tin còn thiếu của phát hiện Cần xác nhận ghi ngay ở cột này. Chỉ cấp Q-nn khi thông tin thiếu là nghiệp vụ mà người dùng trả lời được; thông tin kỹ thuật (cách hiện thực của lớp ngoài phạm vi, phương án lưu trữ) ghi thành đề xuất cho bước ở cột Bước cần sửa theo Conventions C1.7. Cách đếm chỉ số, phần không đọc hoặc không mở được ghi ở F1 hàng phần không review được, không cấp ASM.
 - Bằng chứng: trích nguyên văn chữ ký, dòng bảng, hoặc mô tả method; nêu vị trí (artifact, mục, bảng). Phát hiện không có bằng chứng cụ thể thì không ghi.
 - Mức độ:
-  - Nghiêm trọng: thiết kế không hiện thực đúng yêu cầu hoặc BR; mất toàn vẹn dữ liệu; phụ thuộc vòng giữa layer; content coupling; vi phạm LSP làm hành vi sai khi thay thế.
+  - Nghiêm trọng: thiết kế không hiện thực đúng yêu cầu hoặc BR; mất toàn vẹn dữ liệu; phụ thuộc vòng giữa layer; content coupling; vi phạm LSP làm hành vi sai khi thay thế. Ở chế độ CO_NHAN, yêu cầu gồm cả nội dung ASM-nn đã chốt; vi phạm ASM ghi Chắc chắn khi đã đọc được nội dung ASM.
   - Cao: vi phạm gây thay đổi lan rộng hoặc cản trở thay thế thành phần: common coupling, god class, lớp nghiệp vụ phụ thuộc lớp hiện thực của hệ thống ngoài (DIP), phụ thuộc ngược layer.
   - Trung bình: ảnh hưởng khả năng bảo trì cục bộ: control coupling, stamp coupling không cần thiết, cohesion logical/temporal/procedural, interface quá lớn, điều hướng hai chiều không cần.
   - Thấp: đặt tên, mô tả thiếu, trình bày sơ đồ, vi phạm nhỏ không ảnh hưởng hành vi.
   Có thể nâng một mức khi phần tử nằm trên đường thay đổi mà NFR hoặc BR cho biết là dễ đổi; ghi lý do nâng.
 - Đề xuất sửa: hành động cụ thể: tên refactoring (Extract Class, Move Method, Replace Conditional with Polymorphism, Introduce Parameter Object, Extract Interface, Replace Inheritance with Delegation, Hide Delegate...) kèm phần tử đích; hoặc thay đổi mô hình (đổi loại quan hệ, tách bảng).
-- Bước cần sửa: mã bước pipeline cần chạy lại sớm nhất (P09, P10, P11b, P12, P13); với review độc lập ghi "Thiết kế đầu vào" hoặc "Mã nguồn".
+- Bước cần sửa: mã bước pipeline cần chạy lại sớm nhất (P09, P10, P11b, P12, P13); các bước phải chạy lại sau đó ghi tiếp, cách nhau bằng dấu chấm phẩy, theo thứ tự pipeline; với review độc lập ghi "Thiết kế đầu vào" hoặc "Mã nguồn".
 - Mức hợp lý: một dòng một nguyên nhân gốc; không tách một god class thành năm dòng SRP, cohesion, coupling giống nhau (ghi một dòng, liệt kê các tiêu chí liên quan ở cột Nguyên lý).
 - Lỗi thường gặp: phát hiện chung chung không bằng chứng; đề xuất "cải thiện thiết kế" không nói cách; đánh mọi thứ là Nghiêm trọng; review theo khẩu vị (đổi tên theo sở thích); đề xuất pattern không giải quyết vấn đề cụ thể.
 - Ví dụ đúng (quản lý kho): | RV-04 | CPL Control coupling; SOLID OCP | DC-StockController.updateStock(action: Integer, item: StockItem) | P12 F2: "action: 1 nhập, 2 xuất, 3 điều chỉnh"; method F3 rẽ nhánh theo action | Trung bình | Tách thành receive(item, qty), issue(item, qty), adjust(item, qty, reason); bên gọi gọi operation đúng nghĩa | P12 | CPL | Chắc chắn | Mở |
@@ -113,7 +117,7 @@ Cột thêm: | Nhóm (MOD / CPL / COH / SOLID / GRASP / PRN / PKP / SML / CNS / 
 - Ví dụ sai: | RV-09 | SRP | DC-OrderService | Lớp này quá lớn | Cao | Nên refactor | P12 | Sai: không có bằng chứng (lớp có những trách nhiệm nào, lý do thay đổi nào), đề xuất không cụ thể.
 
 F3. Đánh giá coupling
-Bảng: | Phần tử A (phụ thuộc) | Phần tử B (được dùng) | Kênh phụ thuộc (thuộc tính / tham số / biến cục bộ / toàn cục / kế thừa / truy cập trực tiếp dữ liệu) | Mức coupling | Bằng chứng | Chấp nhận (Có / Không: RV) |
+Bảng: | Phần tử A (phụ thuộc) | Phần tử B (được dùng) | Kênh phụ thuộc (thuộc tính / tham số / biến cục bộ / toàn cục / kế thừa / truy cập trực tiếp dữ liệu / bảng CSDL dùng chung / định dạng hoặc giao thức dùng chung) | Mức coupling | Bằng chứng | Chấp nhận (Có / Không: RV) |
 - Mỗi cặp có mức khác Data coupling một dòng riêng. Các cặp Data coupling gộp theo phần tử A và kênh: một dòng liệt kê mọi phần tử B ở cột Phần tử B (cách nhau bằng thẻ <br>), ví dụ "DC-LoanService | DC-Loan<br>DC-BookCopy<br>DC-Reader | tham số | Data | ...".
 Thang mức coupling (từ chặt, xấu nhất tới lỏng, tốt nhất):
 1. Content coupling: module dùng nội dung (dữ liệu, điều khiển) nằm trong ranh giới của module khác: sửa trực tiếp dữ liệu của module khác (thuộc tính public bị lớp khác gán; lớp khác thao tác trực tiếp tập hợp nội bộ được trả về qua getter; dùng reflection đọc/ghi thuộc tính private), nhảy vào giữa thủ tục của module khác. Cách sửa: truy cập qua operation của module sở hữu dữ liệu; không bao giờ sửa điều khiển của module khác.
@@ -150,7 +154,7 @@ SOLID
 - OCP (Open/Closed): mở cho mở rộng, đóng cho sửa đổi. Dấu hiệu: switch/if theo mã loại lặp lại ở nhiều nơi; thêm một loại mới phải sửa lớp đã chạy ổn. Sửa: trừu tượng hoá (interface/lớp trừu tượng), đa hình động (ghi đè) hoặc tĩnh (generic).
 - LSP (Liskov Substitution): lớp con thay thế được lớp cha mà bên dùng không cần biết. Lớp con không đòi hỏi hơn (không siết tiền điều kiện, chấp nhận mọi tham số lớp cha chấp nhận) và không hứa kém hơn (không làm yếu hậu điều kiện). Dấu hiệu: lớp con ném "không hỗ trợ", ghi đè thành rỗng, bên dùng kiểm tra kiểu cụ thể; kế thừa chỉ để dùng lại hiện thực. Sửa: tách cây kế thừa, dùng composition/delegation.
 - ISP (Interface Segregation): bên dùng không bị buộc phụ thuộc vào operation nó không dùng. Dấu hiệu: interface lớn phục vụ nhiều loại bên gọi; lớp hiện thực để trống nhiều operation. Sửa: Extract Interface theo nhóm bên dùng.
-- DIP (Dependency Inversion): module mức cao không phụ thuộc module mức thấp, cả hai phụ thuộc trừu tượng; interface được định nghĩa theo nhu cầu của phía mức cao. Về vị trí trong kiến trúc phân lớp, quy tắc của P09 A5 áp dụng: mũi tên phụ thuộc và realization không đi lên, nên interface đặt ở package cùng layer với lớp hiện thực hoặc thấp hơn; khi layer dưới cần gọi ngược lên, layer dưới định nghĩa interface và layer trên hiện thực. Dấu hiệu: lớp nghiệp vụ/control có association tới lớp truy cập CSDL cụ thể, tới SDK của hệ thống ngoài; lớp nghiệp vụ tự khởi tạo lớp hạ tầng bằng new; lớp ở layer dưới hiện thực interface nằm ở layer trên. Sửa: Extract Interface theo nhu cầu của phía nghiệp vụ, đặt interface theo quy tắc vị trí trên, tiêm phụ thuộc (dependency injection).
+- DIP (Dependency Inversion): module mức cao không phụ thuộc module mức thấp, cả hai phụ thuộc trừu tượng; interface được định nghĩa theo nhu cầu của phía mức cao. Về vị trí trong kiến trúc phân lớp: mũi tên phụ thuộc và realization không đi lên, nên interface đặt ở package cùng layer với lớp hiện thực hoặc thấp hơn; khi layer dưới cần gọi ngược lên, layer dưới định nghĩa interface và layer trên hiện thực. Dấu hiệu: lớp nghiệp vụ/control có association tới lớp truy cập CSDL cụ thể, tới SDK của hệ thống ngoài; lớp nghiệp vụ tự khởi tạo lớp hạ tầng bằng new; lớp ở layer dưới hiện thực interface nằm ở layer trên. Sửa: Extract Interface theo nhu cầu của phía nghiệp vụ, đặt interface theo quy tắc vị trí trên, tiêm phụ thuộc (dependency injection).
 
 GRASP
 - Information Expert: giao trách nhiệm cho lớp có thông tin cần để thực hiện. Vi phạm: control tự tính tổng đơn bằng cách lấy từng dòng thay vì Order.calculateTotal().
@@ -219,9 +223,9 @@ F7. Tổng hợp
 
 [Target]
 Trả lời Đạt/Không đạt cho từng câu, sửa trước khi trả kết quả; mục không đạt còn lại ghi vào "Vấn đề còn mở".
-1. Mọi phần tử trong phạm vi đã được xét ở ít nhất một bảng F3, F4 hoặc F5.
-2. Mọi cặp phần tử có quan hệ trong phạm vi có mặt ở F3 với mức coupling: cặp có mức khác Data có dòng riêng; cặp Data coupling có thể gộp theo phần tử A và kênh.
-3. Mọi lớp trong phạm vi có dòng ở F4 với mức cohesion.
+1. Mọi phần tử trong phạm vi đã được xét ở ít nhất một bảng F3, F4 hoặc F5. Đầu vào chỉ đọc mẫu hoặc không đọc được ghi ở F1 kèm tiêu chí bị ảnh hưởng; tiêu chí đó ghi "Chưa xét đủ" ở F5, không ghi Đạt.
+2. Mọi cặp phần tử có quan hệ trong phạm vi có mặt ở F3 với mức coupling: cặp có mức khác Data có dòng riêng; cặp Data coupling có thể gộp theo phần tử A và kênh. Cặp gồm association, aggregation, composition, dependency có lời gọi operation; realization và dependency chỉ do kiểu tham số gộp vào dòng Data của phần tử A.
+3. Mọi lớp trong phạm vi có dòng ở F4 với mức cohesion. Enumeration, value object, ngoại lệ không có hành vi gộp một dòng cho mỗi package, mức Functional, liệt kê mã ở cột Phần tử.
 4. Mọi phát hiện có bằng chứng trích từ đầu vào kèm vị trí; không có phát hiện chung chung.
 5. Mọi phát hiện có mức độ theo định nghĩa F2 và đề xuất sửa cụ thể có tên hành động.
 6. Mọi phát hiện có bước cần sửa; thứ tự chạy lại ở F7 theo thứ tự pipeline.

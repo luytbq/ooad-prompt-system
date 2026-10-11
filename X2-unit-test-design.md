@@ -20,7 +20,7 @@ Bước này thiết kế bộ test case mức đơn vị (unit: phương thức
 ## 3. Cách chạy
 
 - Đính kèm: 00-Conventions.md, project-profile.md và các file đầu vào ở bảng trên.
-- Chạy theo nhóm lớp (một package hoặc vài lớp liên quan) để kết quả không quá dài; lần chạy sau đính kèm X2 đã có để tiếp tục đánh số TC.
+- Chạy theo nhóm lớp (một package hoặc vài lớp liên quan) để kết quả không quá dài; lần chạy sau đính kèm X2 đã có để tiếp tục đánh số TC. Mỗi lần chạy tối đa khoảng 10 operation được chọn hoặc 60 TC; vượt ngưỡng thì tách theo lớp và dùng MA_TC_BAT_DAU cho lần sau.
 - Placeholder cần điền trong prompt:
 
 | Placeholder | Bắt buộc | Ý nghĩa |
@@ -40,7 +40,7 @@ Bạn nhận được: 00-Conventions.md (luật chung, bắt buộc tuân thủ
 Phạm vi thiết kế test:
 {{PH:PHAM_VI_TEST | Hướng dẫn: liệt kê DC.operation cần test, hoặc ghi mã PKG/DC để AI tự chọn phương thức theo tiêu chí ở Bước 1 | Ví dụ: "DC-StockItem.issue, DC-IssueStockController.confirmIssue"; "Tự chọn trong PKG-02 Mượn trả"; "Mọi operation public của DC-Appointment"}}
 Mục tiêu độ phủ hộp trắng:
-{{PH:MUC_TIEU_PHU | Hướng dẫn: [TUỲ CHỌN] mức độ phủ cần đạt cho phương thức được chọn; dùng mặc định thì thay cả khối bằng "Không có" (100% C1 cho phương thức ưu tiên Cao, 100% C0 cho phương thức còn lại) | Ví dụ: "100% C1 cho mọi phương thức được chọn"; "100% C0, riêng phương thức tính tiền 100% C1 và đường đi cơ sở"}}
+{{PH:MUC_TIEU_PHU | Hướng dẫn: [TUỲ CHỌN] mức độ phủ cần đạt cho phương thức được chọn; dùng mặc định thì thay cả khối bằng "Không có" (100% C1 cho phương thức ưu tiên Cao, 100% C0 cho phương thức còn lại; operation không có thiết kế method ở P12 F3 và không có mã nguồn thì mục tiêu là mọi lớp tương đương và giá trị biên có TC, C0, C1 ghi "Đo khi có mã nguồn") | Ví dụ: "100% C1 cho mọi phương thức được chọn"; "100% C0, riêng phương thức tính tiền 100% C1 và đường đi cơ sở"}}
 Sinh khung mã test:
 {{PH:SINH_MA_TEST | Hướng dẫn: [TUỲ CHỌN] "Có" kèm framework test; chỉ cần thiết kế thì thay cả khối bằng "Không có" | Ví dụ: "Có, Java 17 + JUnit 5 + Mockito"; "Có, Python 3.12 + pytest + unittest.mock"; "Có, C# + xUnit + Moq"}}
 Mã test case bắt đầu:
@@ -52,6 +52,7 @@ Bạn là kỹ sư kiểm thử phần mềm, thành thạo thiết kế test ca
 [Action]
 Bước 0. Kiểm tra đầu vào.
 - Kiểm tra placeholder theo Conventions C6.
+- Hậu điều kiện không quan sát được qua operation công khai của P12: ghi đề xuất sửa P12, TC vẫn ghi kết quả theo hậu điều kiện và nêu operation truy vấn cần thêm.
 - Nếu phương thức trong phạm vi thiếu tiền/hậu điều kiện hoặc ngoại lệ ở P12, ghi vào "Đề xuất sửa artifact trước" và dùng BR/P04 để thiết kế; chỗ không suy ra được kết quả mong đợi thì ghi Q (NGHIEM_NGAT) hoặc ASM (CO_NHAN).
 
 Bước 1. Chọn phương thức cần test.
@@ -64,7 +65,7 @@ Bước 2. Thu thập cơ sở kiểm thử cho từng phương thức: chữ k�
 Bước 3. Kỹ thuật hộp đen (luôn làm trước).
 3.1. Phân vùng tương đương: với mỗi điều kiện đầu vào (tham số, trạng thái đối tượng, dữ liệu liên quan), chia miền thành các lớp mà mọi giá trị trong một lớp được kỳ vọng cho cùng kết quả. Luôn có cả lớp hợp lệ và lớp không hợp lệ (sai kiểu, ngoài miền, rỗng, null). Xét cả phân vùng theo đầu ra (mỗi kết quả khác nhau là một vùng).
 3.2. Phân tích giá trị biên: với mỗi lớp có thứ tự, lấy giá trị ngay tại biên và ngay ngoài biên (min-1, min, max, max+1; thêm giá trị ngay trong biên min+1, max-1 khi phương thức có rủi ro cao). Biên có thể là biên của đầu vào, của đầu ra, của kích thước tập hợp, của thời gian.
-3.3. Bảng quyết định: khi kết quả phụ thuộc tổ hợp của nhiều điều kiện. Liệt kê điều kiện (hàng), mọi tổ hợp (cột quy tắc, 2^n với n điều kiện nhị phân), hành động (hàng). Đánh dấu tổ hợp không thể xảy ra là N/A; gộp quy tắc có hành động giống nhau bằng giá trị "-" (không quan tâm) chỉ khi đặc tả cho biết thứ tự kiểm tra. Mỗi quy tắc còn lại ít nhất một test case.
+3.3. Bảng quyết định: khi kết quả phụ thuộc tổ hợp của nhiều điều kiện. Liệt kê điều kiện (hàng), mọi tổ hợp (cột quy tắc, 2^n với n điều kiện nhị phân), hành động (hàng). Đánh dấu tổ hợp không thể xảy ra là N/A; gộp quy tắc có hành động giống nhau bằng giá trị "-" (không quan tâm) chỉ khi đặc tả cho biết thứ tự kiểm tra. Đặc tả gồm P12 F2 (tiền, hậu điều kiện, ngoại lệ), BR ở P06 và luồng P04; thứ tự bước trong P12 F3 (thiết kế method) chỉ dùng làm căn cứ gộp khi F2 hoặc P04 không mâu thuẫn, ghi rõ căn cứ dưới bảng. Mỗi quy tắc còn lại ít nhất một test case.
 3.4. Chuyển trạng thái (khi phương thức là sự kiện của state machine): mỗi chuyển hợp lệ một test case; với các cặp (trạng thái, sự kiện) không có chuyển, thiết kế test case kiểm tra phương thức từ chối đúng như đặc tả; mỗi guard xét cả đúng và sai, kèm giá trị biên của guard.
 3.5. Theo use case (với phương thức điều phối của lớp control): một kịch bản cho luồng chính, một kịch bản cho mỗi luồng thay thế/ngoại lệ, và các tổ hợp luồng thay thế hợp lý; nếu luồng có vòng lặp (nhập lại khi sai), thêm kịch bản lặp. Đặc tả P04 có mục 8a Kịch bản chính thì lấy danh sách đó làm điểm xuất phát, rồi bổ sung các luồng còn thiếu.
 3.6. Kết quả mong đợi (oracle): suy ra từ đặc tả; ghi giá trị cụ thể (giá trị trả về, ngoại lệ, trạng thái đối tượng sau, tương tác với phụ thuộc). Với trường hợp lỗi, kiểm tra cả việc trạng thái không bị thay đổi. Khi đặc tả không nói kết quả cho một tổ hợp (ví dụ hai điều kiện cùng sai thì báo lỗi nào), không tự quyết: ghi Q/ASM.
@@ -88,7 +89,7 @@ Bước 7. Tự kiểm tra theo [Target].
 [Format]
 Đầu ra là file X2-unit-tests.md theo khung Conventions C5 gồm F1 đến F5 theo thứ tự, sau đó là các mục kiểm soát (Câu hỏi mở, Giả định nếu CO_NHAN, Đề xuất sửa artifact trước, Vấn đề còn mở).
 
-Quy ước mã: TC-nnn theo Conventions C3. Mã nội bộ trong file: lớp tương đương EC-nn, giá trị biên BV-nn, quy tắc bảng quyết định DT<k>-Q<n> (bảng thứ k, quy tắc n), node đồ thị luồng điều khiển N<n>, cạnh CE<n>; mã nội bộ đánh số liên tục trong cả file để không trùng.
+Quy ước mã: TC-nnn theo Conventions C3. Mã nội bộ trong file: lớp tương đương EC-nn, giá trị biên BV-nn, quy tắc bảng quyết định DT<k>-R<n> (bảng thứ k, quy tắc n; chữ R để không lẫn với mã câu hỏi Q-nn), node đồ thị luồng điều khiển N<n>, cạnh CE<n>; mã nội bộ đánh số liên tục trong cả file để không trùng.
 
 F1. Bảng chọn operation
 Cột: | DC.operation | Tiêu chí (BR / rẽ nhánh / tính toán / sự kiện ST / kiểm tra hợp lệ / điều phối UC / gọi hệ thống ngoài) | Ưu tiên (Cao / Trung bình / Thấp) | Chọn (Có / Không: lý do) |
@@ -96,14 +97,17 @@ Cột: | DC.operation | Tiêu chí (BR / rẽ nhánh / tính toán / sự kiện
 
 F2. Phân tích kỹ thuật cho từng operation (mỗi operation một tiểu mục "F2.x DC.operation")
 F2.x.1. Cơ sở kiểm thử: | Mục (chữ ký / tiền điều kiện / hậu điều kiện / ngoại lệ / BR / luồng thay thế / điều kiện hợp lệ) | Nội dung | Nguồn |
+Tiểu mục F2.x.2 đến F2.x.7 không áp dụng cho operation thì gộp thành một dòng ở cuối F2.x.1, ví dụ "Không áp dụng: F2.x.4 (một điều kiện), F2.x.5 (không phải sự kiện của state machine)", không lập tiểu mục rỗng.
 F2.x.2. Phân vùng tương đương: | EC | Điều kiện | Lớp tương đương | Hợp lệ / Không hợp lệ | Giá trị đại diện | Nguồn |
 - Quy tắc: mỗi điều kiện có ít nhất một lớp hợp lệ và một lớp không hợp lệ (trừ khi kiểu dữ liệu làm cho lớp không hợp lệ không thể xảy ra, ghi lý do). Lớp phải rời nhau và phủ hết miền.
+- Operation trả Boolean hoặc giá trị phân loại mà mọi đầu vào thuộc miền: phân vùng theo đầu ra; cột Hợp lệ ghi "Hợp lệ" cho lớp cho kết quả cho phép, "Không hợp lệ" cho lớp cho kết quả từ chối, kèm giá trị trả về trong ngoặc.
+- Lớp null hoặc giá trị vi phạm tiền điều kiện mà P12 không nêu hành vi: ghi một Q (NGHIEM_NGAT) hoặc một ASM (CO_NHAN) chung cho cả lần chạy, liệt kê EC đó nhưng không thiết kế TC cho lớp này.
 - Lỗi thường gặp: chỉ có lớp hợp lệ (bỏ quên giá trị âm, vượt tối đa, null); lớp chồng lấn; chia lớp theo cảm tính không theo BR.
 F2.x.3. Giá trị biên: | BV | Biên (của EC nào) | Giá trị kiểm thử | Kỳ vọng thuộc lớp | Kết quả mong đợi |
 - Lỗi thường gặp: chỉ lấy giá trị giữa lớp; lấy biên sai phía với phép so sánh của BR (BR "từ 200.000 đồng" thì biên là 199.999 và 200.000).
 F2.x.4. Bảng quyết định (khi có từ hai điều kiện ảnh hưởng tổ hợp):
 ```text
-| Điều kiện / Hành động | Q1 | Q2 | Q3 | ... |
+| Điều kiện / Hành động | R1 | R2 | R3 | ... |
 | C1: <điều kiện> | Y | Y | N | ... |
 | C2: <điều kiện> | Y | N | Y | ... |
 | A1: <hành động> | X | - | - | ... |
@@ -122,12 +126,13 @@ F2.x.7. Test double: | Phụ thuộc (DC / IF) | Loại (stub / driver / mock / 
 
 F3. Bảng test case
 Cột lõi: | TC | DC.operation | Kỹ thuật (phân vùng tương đương / giá trị biên / bảng quyết định / chuyển trạng thái / use case / đường đi) | Điều kiện đầu | Dữ liệu vào | Kết quả mong đợi | Nguồn (BR / UC bước) |
-Cột thêm: | Phủ (EC, BV, DT-Q, chuyển trạng thái, nhánh CE) | Test double | Ưu tiên |
+Cột thêm: | Phủ (EC, BV, DT-R, chuyển trạng thái, nhánh CE) | Test double | Ưu tiên |
 - Định nghĩa: một test case là một tập điều kiện đầu, dữ liệu vào và kết quả mong đợi để xác định đơn vị được test có đáp ứng đặc tả không.
 - Điều kiện đầu: trạng thái đối tượng và dữ liệu cần có trước khi gọi (giá trị thuộc tính, trạng thái ST, dữ liệu mà stub trả về, thời điểm giả lập).
 - Dữ liệu vào: giá trị cụ thể của từng tham số.
 - Kết quả mong đợi: giá trị trả về cụ thể, hoặc ngoại lệ cụ thể; trạng thái đối tượng sau (thuộc tính, trạng thái ST); tương tác với mock (gọi gì, bao nhiêu lần). Với ca lỗi, ghi rõ trạng thái không đổi.
 - Nguồn: BR-nn, UC-nnn bước (ví dụ UC-004 3a), ST-nn chuyển, P12 hậu điều kiện.
+- Tổ hợp mà kết quả chờ Q-nn vẫn có dòng TC, Kết quả mong đợi ghi "Chưa xác định: chờ Q-nn", không tính vào độ phủ ở F4; Target 7 áp dụng cho các TC còn lại.
 - Mức hợp lý: mỗi test case kiểm tra một hành vi; các test case độc lập, không phụ thuộc thứ tự chạy, không dùng chung trạng thái có thể thay đổi; mỗi lớp tương đương, giá trị biên, quy tắc bảng quyết định, chuyển trạng thái, nhánh trong mục tiêu phủ đều có ít nhất một test case; một test case có thể phủ nhiều lớp hợp lệ nhưng chỉ nên chứa một giá trị không hợp lệ (để biết lỗi do đâu).
 - Lỗi thường gặp: kết quả mong đợi mơ hồ ("thành công", "hiển thị đúng", "báo lỗi"); lấy kết quả mong đợi bằng cách chạy mã; test case gộp nhiều giá trị không hợp lệ; thiếu kiểm tra trạng thái sau; phụ thuộc thời gian thực hoặc dữ liệu CSDL thật.
 
@@ -144,14 +149,14 @@ Test case:
 | TC-002 | DC-StockItem.issue | giá trị biên | quantityOnHand = 50 | quantity = 1 | Không ngoại lệ; quantityOnHand = 49 | BR-08 | BV-02, EC-02 | | Cao |
 | TC-003 | DC-StockItem.issue | giá trị biên | quantityOnHand = 50 | quantity = 50 | Không ngoại lệ; quantityOnHand = 0 | BR-08 | BV-03, EC-02 | | Cao |
 | TC-004 | DC-StockItem.issue | giá trị biên | quantityOnHand = 50 | quantity = 51 | Ném InsufficientStockException; quantityOnHand = 50 | BR-08, UC-006 4a | BV-04, EC-03 | | Cao |
-Ví dụ đúng (thư viện, DC-LoanPolicy.checkEligibility(reader), bảng quyết định với C1 thẻ còn hạn, C2 số sách đang mượn < 5, C3 không có sách quá hạn; A1 cho mượn, A2 từ chối): 8 quy tắc; chỉ Q1 (Y, Y, Y) cho A1; các quy tắc còn lại cho A2. Nếu đặc tả không nói lý do từ chối nào được báo khi nhiều điều kiện cùng sai, ghi Q "Khi thẻ hết hạn và đang có sách quá hạn, thông báo lý do nào?" thay vì tự chọn.
+Ví dụ đúng (thư viện, DC-LoanPolicy.checkEligibility(reader), bảng quyết định với C1 thẻ còn hạn, C2 số sách đang mượn < 5, C3 không có sách quá hạn; A1 cho mượn, A2 từ chối): 8 quy tắc; chỉ R1 (Y, Y, Y) cho A1; các quy tắc còn lại cho A2. Nếu đặc tả không nói lý do từ chối nào được báo khi nhiều điều kiện cùng sai, ghi Q "Khi thẻ hết hạn và đang có sách quá hạn, thông báo lý do nào?" thay vì tự chọn.
 Ví dụ đúng (phòng khám, DC-Appointment.cancel(requestTime), guard [startTime - requestTime >= 24h], startTime = 10:00 ngày 15): chuyển trạng thái Booked --> Cancelled với requestTime = 10:00 ngày 14 (đúng 24 giờ, được huỷ); requestTime = 10:01 ngày 14 (còn 23 giờ 59 phút, từ chối, trạng thái vẫn Booked); gọi cancel khi trạng thái Completed (từ chối theo đặc tả, trạng thái không đổi).
 Ví dụ đúng (giao đồ ăn, BR: miễn phí giao khi giá trị đơn từ 200.000 đồng): giá trị biên 199.999 (tính phí) và 200.000 (miễn phí).
 Ví dụ sai: | TC-010 | DC-StockItem.issue | | | quantity hợp lệ | Thành công | | Sai: không có điều kiện đầu, dữ liệu không cụ thể, kết quả mơ hồ, không có nguồn.
 Ví dụ hộp trắng (khách sạn, DC-RateCalculator.quote(nights, isMember, season) có ba điểm quyết định: if nights > 7, if isMember, if season = HIGH): V(G) = 3 + 1 = 4, cần tối đa 4 đường đi cơ sở; kiểm tra các test case hộp đen đã phủ đủ 6 nhánh chưa, thêm test case cho nhánh còn thiếu.
 
 F4. Ma trận phủ
-Cột: | Mục cần phủ (EC / BV / DT-Q / chuyển trạng thái / nhánh CE / BR / luồng thay thế P04) | TC phủ | Đạt (Có / Không: lý do) |
+Cột: | Mục cần phủ (EC / BV / DT-R / chuyển trạng thái / nhánh CE / BR / luồng thay thế P04) | TC phủ | Đạt (Có / Không: lý do) |
 - Mọi BR và luồng thay thế P04 liên quan tới phương thức trong phạm vi phải xuất hiện; mục không phủ bằng unit test (ví dụ cần kiểm thử tích hợp hoặc giao diện) ghi lý do và mức kiểm thử phù hợp.
 - Tóm tắt độ phủ C0, C1 đạt được so với MUC_TIEU_PHU cho từng phương thức.
 
@@ -198,12 +203,12 @@ Trả lời Đạt/Không đạt cho từng câu, sửa trước khi trả kết
 4. Mọi tổ hợp điều kiện ảnh hưởng kết quả có bảng quyết định; quy tắc N/A và quy tắc gộp có căn cứ.
 5. Mọi phương thức là sự kiện của state machine có test cho chuyển hợp lệ, guard đúng/sai và sự kiện ở trạng thái không cho phép.
 6. Mọi BR và luồng thay thế P04 liên quan có test case hoặc lý do ở F4.
-7. Mọi test case có điều kiện đầu, dữ liệu vào cụ thể, kết quả mong đợi cụ thể (gồm trạng thái sau), nguồn.
+7. Mọi test case có điều kiện đầu, dữ liệu vào cụ thể, kết quả mong đợi cụ thể (gồm trạng thái sau), nguồn; trừ TC ghi "Chưa xác định: chờ Q-nn" (F3).
 8. Kết quả mong đợi lấy từ đặc tả; chỗ đặc tả không nói có Q/ASM, không tự quyết.
 9. Mục tiêu độ phủ C0/C1 đạt hoặc có lý do; V(G) được tính khi có thiết kế method; V(G) > 10 có đề xuất tách.
 10. Vòng lặp có test 0, 1, m, n-1, n, n+1 khi áp dụng.
 11. Phụ thuộc ngoài (CSDL, hệ thống ngoài, thời gian, ngẫu nhiên) được thay bằng test double phù hợp.
-12. Test case độc lập, mỗi test case một hành vi, chỉ một giá trị không hợp lệ.
+12. Test case độc lập, mỗi test case một hành vi, chỉ một giá trị không hợp lệ, trừ TC của quy tắc bảng quyết định có nhiều điều kiện sai; khi đó ghi điều kiện nào được kiểm trước và căn cứ.
 13. Khung mã (nếu có) khớp F3: cùng số test case, cùng dữ liệu, cùng kết quả mong đợi.
 14. Đạt Conventions C2, C5, C6.
 

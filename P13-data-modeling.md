@@ -9,7 +9,7 @@ Bước này thiết kế cơ sở dữ liệu cho các lớp persistent đã ch
 | Loại | Artifact | Bắt buộc | Dùng để |
 |---|---|---|---|
 | Đầu vào | project-profile.md | Có | Hệ quản trị CSDL trong CONG_NGHE, quy ước đặt tên, chế độ giả định |
-| Đầu vào | P12-class-design.md (hoặc P12-class-design/*.md) | Có | Lớp persistent, thuộc tính, quan hệ, generalization, state machine |
+| Đầu vào | P12-class-design.md (hoặc P12-class-design/*.md) | Có | Lớp persistent, thuộc tính, quan hệ, generalization, state machine. Phần cần đọc: F1 (cột Persistent), F1b, F5 (quan hệ), F6 (state machine), F7, F7a, Câu hỏi mở, Giả định; không cần F4, F8, F10 |
 | Đầu vào | P06-supplementary-spec.md | Có | BR (ràng buộc dữ liệu), NFR (hiệu năng, khối lượng, lưu trữ, bảo mật) |
 | Đầu vào | P04-uc-specs/*.md | Có | Bảng dữ liệu vào/ra (độ dài, định dạng, bắt buộc), truy vấn tìm kiếm trong luồng |
 | Đầu vào | P09-architecture.md | Có | Cơ chế lưu trữ (persistence) đã chọn, phân tán dữ liệu |
@@ -81,7 +81,7 @@ Bước 3. Chuẩn hoá (CSDL quan hệ).
 
 Bước 4. Mô hình vật lý.
 - Chọn kiểu cột theo hệ quản trị (F6.2), độ dài lấy từ điều kiện hợp lệ ở P04 hoặc BR. Thiếu căn cứ thì độ dài cột là quyết định thiết kế theo Conventions C1 mục 7: chọn giá trị và ghi "Thiết kế: <lý do>" ở cột CHECK / mô tả (chuẩn như RFC 5321 cho email, E.164 cho số điện thoại, mặc định của nền tảng, độ dài dự phòng cho tên người), không cần Q hay ASM. Chỉ khi độ dài hoặc định dạng mang nghĩa nghiệp vụ (mã phiếu đúng 10 ký tự theo quy định của tổ chức, số lẻ thập phân của đơn giá) mà nguồn không nêu mới ghi Q (NGHIEM_NGAT) hoặc ASM (CO_NHAN).
-- NULL/NOT NULL theo multiplicity (1 --> NOT NULL; 0..1 --> NULL); DEFAULT theo giá trị mặc định ở P12; CHECK theo ràng buộc P12, BR và tập giá trị enumeration; UNIQUE cho khoá ứng viên; FK với hành vi ON DELETE/ON UPDATE theo loại quan hệ.
+- NULL/NOT NULL theo multiplicity (1 --> NOT NULL; 0..1 --> NULL); DEFAULT theo giá trị mặc định ở P12. Khi lớp chỉ được lưu từ một trạng thái trở đi (P12 hoặc ASM nêu), xét NULL/NOT NULL và DEFAULT theo các trạng thái được lưu: thuộc tính luôn có giá trị ở các trạng thái đó là NOT NULL; giá trị trạng thái không được lưu không đưa vào CHECK và không làm DEFAULT; ghi căn cứ ở cột CHECK hoặc mô tả. CHECK theo ràng buộc P12, BR và tập giá trị enumeration; UNIQUE cho khoá ứng viên; FK với hành vi ON DELETE/ON UPDATE theo loại quan hệ.
 - Index theo truy vấn thực tế trong UC và NFR (F6.3).
 - Nếu SINH_DDL là "Có", sinh script theo hệ quản trị đã chốt, thứ tự tạo bảng cha trước bảng con.
 
@@ -97,7 +97,7 @@ Bước 6. Truy vết và tự kiểm tra.
 Đầu ra là file P13-data-model.md theo khung Conventions C5 gồm các mục F1 đến F9 theo thứ tự, sau đó là các mục kiểm soát (Câu hỏi mở, Giả định nếu CO_NHAN, Đề xuất sửa artifact trước, Vấn đề còn mở).
 
 Quy ước chung:
-- Mã bảng/collection: TBL-nn theo Conventions C3, cấp tuần tự, không đổi khi chạy lại. Tên bảng, cột theo QUY_UOC_CSDL hoặc NGON_NGU_TEN_PHAN_TU (mặc định snake_case, tiếng Anh, tên bảng số ít).
+- Mã bảng/collection: TBL-nn theo Conventions C3, cấp theo thứ tự xuất hiện ở F2, không đổi khi chạy lại; lần chạy sau cho package khác cấp tiếp từ số lớn nhất của P13 đã có, không đánh lại. Tên bảng, cột theo QUY_UOC_CSDL hoặc NGON_NGU_TEN_PHAN_TU (mặc định snake_case, tiếng Anh, tên bảng số ít).
 - Chiến lược khoá chính mặc định khi QUY_UOC_CSDL không nêu: bảng của thực thể độc lập dùng khoá thay thế (surrogate) tên id, kiểu theo kiểu của thuộc tính định danh trong P12 (ví dụ P12 chốt định danh UUID thì dùng UUID); P12 không có thuộc tính định danh thì dùng BIGINT tự tăng; khoá tự nhiên (mã hàng, số phiếu, email) giữ ràng buộc UNIQUE; bảng bộ phận của composition và bảng trung gian dùng khoá ghép có chứa khoá ngoại tới bảng cha. Khoá tự nhiên chỉ làm khoá chính khi chắc chắn không đổi và ngắn; ghi lý do.
 - Mã thực thể khái niệm: E-<TenThucThe>; mã mối quan hệ khái niệm: ER-nn. Mã ràng buộc khoá ngoại dùng làm ID cạnh ERD: fk_<bang_con>_<bang_cha> (thêm hậu tố khi có nhiều FK giữa cùng hai bảng).
 - Tham chiếu nguồn: DC-<Lop>.<thuocTinh> cho cột; R-nn cho quan hệ từ P12.
@@ -109,13 +109,13 @@ Gồm: loại CSDL, hệ quản trị, chiến lược khoá chính, quy ước 
 
 F2. Bảng lớp persistent và chiến lược ánh xạ
 Cột: | DC | Persistent (Có / Không) | Thực thể (E-) | TBL | Chiến lược | Lý do |
-- Chiến lược: "Một lớp - một bảng"; "Nhúng vào TBL-nn" (value object, bộ phận nhúng); "Single table", "Class table", "Concrete table" (kế thừa, xem F4.3); "Tài liệu gốc aggregate"; "Nhúng trong tài liệu TBL-nn".
+- Chiến lược: "Một lớp - một bảng"; "Nhúng vào TBL-nn" (value object, bộ phận nhúng); "Single table", "Class table", "Concrete table" (kế thừa, xem F4.3); "Tài liệu gốc aggregate"; "Nhúng trong tài liệu TBL-nn"; "Bảng thuộc tính đa trị TBL-nn" (value object Persistent = Không nằm trong thuộc tính đa trị của một lớp persistent).
 - Lớp Persistent = Không: ghi lý do (control, boundary, lớp tiện ích, dữ liệu chỉ tồn tại trong phiên).
 - Lỗi thường gặp: tạo bảng cho lớp control hoặc boundary; bỏ sót lớp persistent; tạo bảng cho enumeration mà không có nhu cầu quản lý danh mục (khi tập giá trị cố định, dùng CHECK là đủ; khi người dùng được thêm giá trị, dùng bảng danh mục).
 
 F3. Mô hình khái niệm (ER)
 F3.1. Thực thể: | E | Tên thực thể | Mô tả | Định danh | Thuộc tính (đánh dấu: định danh, phức hợp, đa trị, dẫn xuất) | Thực thể yếu (Có / Không) | Nguồn DC |
-F3.2. Mối quan hệ: | ER | Tên mối quan hệ (động từ) | Thực thể A | Thực thể B | Bản số (1:1 / 1:N / M:N) | Tham gia A, B (bắt buộc / tuỳ chọn) | Thuộc tính của mối quan hệ | Nguồn R (P12) |
+F3.2. Mối quan hệ: | ER | Tên mối quan hệ (động từ) | Thực thể A | Thực thể B | Bản số (1:1 / 1:N / N:1 / M:N, ghi theo chiều A - B) | Tham gia A, B (bắt buộc / tuỳ chọn; tham gia của A bắt buộc khi multiplicity tối thiểu ở đầu B, tức số B ứng với một A, lớn hơn 0) | Thuộc tính của mối quan hệ | Nguồn R (P12) |
 - Định nghĩa: mô hình khái niệm biểu diễn cấu trúc thông tin của thế giới thực một cách tự nhiên, không chịu ràng buộc của hệ quản trị CSDL. Ba thành phần: thực thể, mối quan hệ, thuộc tính.
 - Quy tắc: tên thực thể là danh từ số ít; tên mối quan hệ là động từ đọc được theo chiều A - B ("Độc giả mượn Bản sách"); không có khoá ngoại, không có kiểu dữ liệu vật lý ở mức này.
 - Mức hợp lý: mỗi lớp persistent (không phải value object) tương ứng một thực thể; mọi association giữa lớp persistent có một mối quan hệ; M:N có thuộc tính thì thuộc tính nằm ở mối quan hệ.
@@ -137,6 +137,9 @@ Quy tắc ánh xạ:
 - Aggregation: ánh xạ bằng khoá ngoại; có thể là quan hệ phụ thuộc (FK trong PK) như composition nhưng không CASCADE khi bộ phận dùng chung; được phép ánh xạ thành quan hệ độc lập (FK ngoài PK) để khoá chính đơn giản khi bộ phận có định danh riêng.
 - Chiều điều hướng trong P12 không ảnh hưởng vị trí khoá ngoại: khoá ngoại luôn nằm ở phía N (hoặc ở bảng trung gian).
 - Dependency trong P12 không ánh xạ thành khoá ngoại.
+- Association mà P12 ghi là suy ra (tra theo thuộc tính khác, ví dụ theo ngày) không có FK; Cách ánh xạ ghi "Suy ra theo <cột>", Kiểu và ON DELETE ghi "Không áp dụng".
+- FK được trỏ khoá ứng viên nhiều cột (UNIQUE) khi trỏ khoá thay thế sẽ tạo phụ thuộc bắc cầu.
+- Một FK ghép thể hiện nhiều R-nn: một cạnh ERD, ghi mọi R-nn ở Ghi chú của cạnh và ở F4.2.
 Ví dụ đúng:
 - Giao đồ ăn: | R-03 | Composition | Order 1 - 1..* OrderLine | FK trong PK bảng con | order_line(PK: order_id FK, PK: line_no) | phụ thuộc | CASCADE |
 - Khách sạn: | R-11 | Association | Reservation 0..* - Room 1 | FK ở bảng phía N | reservation.room_id NOT NULL | độc lập | RESTRICT |
@@ -154,6 +157,9 @@ Ba chiến lược:
 Hướng dẫn chọn: mặc định class table khi lớp con có nhiều thuộc tính riêng và có truy vấn đa hình; single table khi lớp con ít thuộc tính riêng và hay truy vấn chung; concrete table khi hầu như không truy vấn đa hình và không có khoá ngoại trỏ tới lớp cha. Mọi lựa chọn ghi lý do.
 Ví dụ (giao đồ ăn, Payment với CardPayment, CashPayment, WalletPayment): chọn single table payment(id, order_id, amount, paid_at, payment_type, card_last4, auth_code, wallet_txn_id) với CHECK (payment_type = 'CARD' AND card_last4 IS NOT NULL) OR ...; lý do: lớp con chỉ có 1-2 thuộc tính riêng, báo cáo doanh thu truy vấn chung mọi loại.
 Ví dụ sai: dùng concrete table cho Person - Doctor, Receptionist rồi bảng appointment cần FK tới "người tạo lịch" là Person: không khai báo được khoá ngoại.
+
+F4.4. Ràng buộc liên bảng: | Mã | Ràng buộc | Bảng | Nguồn (BR / ST / R-nn / ASM) | Cách giữ (trigger / ứng dụng trong giao dịch) |
+- Mỗi ràng buộc phải có nguồn và được đối chiếu với thiết kế method ở P12 F3 của mọi operation ghi các cột liên quan; ràng buộc mâu thuẫn với P12 ghi vào Đề xuất sửa artifact trước, không ghi thành ràng buộc. Không có thì ghi "Không có".
 
 F5. Chuẩn hoá (CSDL quan hệ)
 F5.1. Bảng kiểm tra: | TBL | Khoá (chính và ứng viên) | Phụ thuộc hàm (FD) | 1NF | 2NF | 3NF | BCNF | Kết luận |
@@ -229,7 +235,7 @@ F8.1. ERD logic/vật lý (bắt buộc): diagrams/P13-erd-logical.drawio.
 F8.2. ER khái niệm (chỉ khi DAY_DU): diagrams/P13-erd-conceptual.drawio, ký pháp Chen.
 - Node: thực thể (E-), mối quan hệ (ER-), thuộc tính (AT-<E>-<ten>).
 - Quy tắc ngữ nghĩa: thực thể là hình chữ nhật; thực thể yếu là hình chữ nhật viền kép; mối quan hệ là hình thoi (viền kép với mối quan hệ xác định thực thể yếu); thuộc tính là hình elip nối với thực thể hoặc mối quan hệ; thuộc tính định danh gạch chân; thuộc tính đa trị là elip viền kép; thuộc tính dẫn xuất là elip nét đứt. Bản số (1, N, M) ghi trên đoạn nối giữa thực thể và hình thoi.
-- Style draw.io: thực thể rounded=0;whiteSpace=wrap;html=1; ; thực thể yếu shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1; ; mối quan hệ rhombus;whiteSpace=wrap;html=1; ; thuộc tính ellipse;whiteSpace=wrap;html=1; (định danh thêm fontStyle=4; đa trị shape=doubleEllipse; dẫn xuất dashed=1); cạnh endArrow=none;html=1; .
+- Style draw.io: thực thể rounded=0;whiteSpace=wrap;html=1; ; thực thể yếu shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1; ; mối quan hệ rhombus;whiteSpace=wrap;html=1; ; mối quan hệ xác định thực thể yếu rhombus;double=1;whiteSpace=wrap;html=1; ; định danh riêng phần của thực thể yếu fontStyle=4;dashed=1; ; thuộc tính ellipse;whiteSpace=wrap;html=1; (định danh thêm fontStyle=4; đa trị shape=doubleEllipse; dẫn xuất dashed=1); cạnh endArrow=none;html=1; .
 - Lỗi thường gặp (cả hai sơ đồ): thiếu bảng trung gian nhưng vẽ chân chim ở cả hai đầu trong ERD vật lý; vẽ quan hệ phụ thuộc bằng nét đứt; ERD không khớp F6 (thiếu cột, thiếu FK); vẽ cạnh chân chim ngược phía.
 
 F9. Script DDL (chỉ khi SINH_DDL là "Có")
@@ -238,14 +244,14 @@ F9. Script DDL (chỉ khi SINH_DDL là "Có")
 
 [Target]
 Trả lời Đạt/Không đạt cho từng câu, sửa trước khi trả kết quả; mục không đạt còn lại ghi vào "Vấn đề còn mở".
-1. Mọi lớp Persistent = Có trong P12 có thực thể và bảng/collection (hoặc được nhúng) trong F2; không có bảng cho lớp control/boundary.
+1. Mọi lớp Persistent = Có trong P12 có thực thể và bảng/collection (hoặc được nhúng, hoặc lưu qua bảng thuộc tính đa trị) trong F2; không có bảng cho lớp control/boundary.
 2. Mọi thuộc tính persistent của lớp có cột tương ứng hoặc lý do không lưu (derived không lưu).
-3. Mọi association/aggregation/composition giữa lớp persistent được ánh xạ trong F4.2 đúng quy tắc (FK ở phía N, bảng trung gian cho M:N, composition là quan hệ phụ thuộc có CASCADE).
+3. Mọi association/aggregation/composition giữa lớp persistent được ánh xạ trong F4.2 đúng quy tắc (FK ở phía N, bảng trung gian cho M:N, composition là quan hệ phụ thuộc có CASCADE; association suy ra ghi "Suy ra theo <cột>" là đạt).
 4. Mọi cây kế thừa persistent có chiến lược ánh xạ và lý do.
 5. Mọi bảng có khoá chính; khoá ứng viên nghiệp vụ có UNIQUE.
 6. Mọi bảng có FD liệt kê và đạt 3NF, hoặc có dòng phi chuẩn hoá có chủ đích kèm lý do và cơ chế nhất quán.
 7. Bảng có nhiều khoá ứng viên chồng lấn đã được kiểm tra BCNF.
-8. NULL/NOT NULL khớp multiplicity; DEFAULT khớp giá trị mặc định P12; CHECK phủ ràng buộc BR và tập giá trị enumeration.
+8. NULL/NOT NULL khớp multiplicity (theo các trạng thái được lưu, Bước 4); DEFAULT khớp giá trị mặc định P12; CHECK phủ ràng buộc BR và tập giá trị enumeration; ràng buộc BR liên bảng có dòng ở F4.4.
 9. Kiểu tiền tệ không dùng số thực dấu phẩy động; độ dài chuỗi có căn cứ (P04, BR, hoặc "Thiết kế: <lý do>"); Q, ASM chỉ dùng cho độ dài, định dạng mang nghĩa nghiệp vụ; kiểu khoá chính khớp kiểu định danh của P12.
 10. Mỗi index có truy vấn cụ thể mà nó phục vụ.
 11. Với NoSQL: mỗi quyết định nhúng/tham chiếu có lý do theo F7; không có mảng tăng không giới hạn trong tài liệu.
