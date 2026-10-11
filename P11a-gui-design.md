@@ -38,7 +38,7 @@ Bước này thiết kế giao diện đồ hoạ cho các tác nhân người: 
 
 - Chạy theo hai giai đoạn, chọn bằng placeholder CHE_DO_CHAY:
   1. Giai đoạn 1 (một lần cho toàn hệ thống): ui-standards.md, screen-list.md, screen-transition.md.
-  2. Giai đoạn 2 (lặp, mỗi lần một nhóm màn hình, ví dụ theo use case): SCR-nn-slug.md và mockup. Đính kèm thêm kết quả giai đoạn 1.
+  2. Giai đoạn 2 (lặp, mỗi lần một nhóm màn hình, ví dụ theo use case): SCR-nn-slug.md và mockup. Đính kèm thêm kết quả giai đoạn 1 và mục h) của các SCR đã có. Phạm vi "các màn hình của UC-nnn" gồm màn hình có cột UC của screen-list.md chứa UC-nnn, trừ màn hình điều hướng. Màn hình điều hướng được viết ở một lần chạy riêng "Giai đoạn 2: màn hình điều hướng" sau khi mọi use case mà nó mở đã có màn hình đích, hoặc ở chế độ Toàn bộ. Lần chạy giai đoạn 2 cuối cùng gom mục h) của mọi SCR vào cuối danh mục ở ui-standards.md (chỉ nối thêm dòng, không sửa dòng cũ, không cần chạy lại giai đoạn 2). Chạy tuần tự các lần giai đoạn 2; khi buộc chạy song song, người dùng chia trước dải MSG, Q, ASM cho từng phiên trong YEU_CAU_BO_SUNG.
 - Hệ thống nhỏ (dưới khoảng 10 màn hình) có thể chạy "Toàn bộ" trong một lần.
 
 | Placeholder | Bắt buộc | Ý nghĩa |
@@ -116,7 +116,7 @@ A6. Đánh giá theo chuẩn.
 A7. Tự kiểm tra theo [Target], xuất kết quả.
 
 [Format]
-Mỗi file theo khung C5 (tiêu đề cấp 1, bảng thông tin, mục kiểm soát ở cuối). Tiêu đề: "# P11a - <Tên file> - <Tên hệ thống>".
+Mỗi file theo khung C5 (tiêu đề cấp 1, bảng thông tin, mục kiểm soát ở cuối). Tiêu đề: "# P11a - <Tên file> - <Tên hệ thống>", với SCR-nn-slug.md thì <Tên file> là "SCR-nn <tên màn hình tiếng Việt>".
 
 F1. P11a-gui/ui-standards.md
 a) Bảng chuẩn hoá: | STT | Nhóm | Hạng mục | Quy định | Căn cứ (NFR, BR, nền tảng, Nielsen #, Shneiderman, WCAG SC, Baymard) |
@@ -163,6 +163,7 @@ Bốn mẫu dịch chuyển và ký hiệu (bắt buộc dùng đúng):
 4. Dịch chuyển sang màn hình phụ thuộc có dữ liệu: mở màn hình mới hoạt động trên dữ liệu được chọn ở màn hình trước. Ký hiệu: đường liền, đầu mũi tên mở ở màn hình đích, nhãn là dữ liệu truyền (ví dụ "Lịch hẹn đã chọn"). Style: dashed=0;endArrow=open;endFill=0;html=1;
 Quy tắc:
 - Không vẽ cạnh đóng pop-up quay về màn hình cha; việc quay về là ngầm định của mẫu 2 và 3.
+- Menu chung (theo nhóm Menu của ui-standards.md) không vẽ cạnh; ghi một lần ở Ghi chú của node Start của tác nhân: "Mọi màn hình có menu tới <danh sách SCR>, mẫu 1". Hành vi khi rời màn hình đang giữ tài nguyên qua menu ghi ở đặc tả màn hình đó.
 - Pop-up (mẫu 2, 3) dẫn sang màn hình mới sau khi xác nhận: vẽ cạnh từ pop-up, dùng mẫu 4 khi màn hình mới hiển thị kết quả của thao tác, mẫu 1 khi không; pop-up đóng ngầm định, không vẽ cạnh về cha.
 - Cạnh quay lại màn hình trước (nút Quay lại) chỉ vẽ khi nó là một dịch chuyển có trong đặc tả hoặc chuẩn A1 quy định rõ; khi đó dùng mẫu 1.
 - Nhãn cạnh ngắn: "sự kiện [điều kiện]"; dữ liệu truyền ghi ở mẫu 4.
@@ -188,21 +189,23 @@ F4. Hình ảnh màn hình (trong mỗi SCR-nn-slug.md)
 
 F5. P11a-gui/SCR-nn-slug.md (đặc tả màn hình, mỗi màn hình một file)
 Nếu có MAU_DAC_TA_MAN_HINH thì theo mẫu đó, bổ sung các cột lõi dưới đây nếu mẫu thiếu. Mặc định gồm:
-a) Bảng đầu trang: | Tên hệ thống | Mã và tên màn hình | Ngày tạo | Người duyệt | Người kiểm tra | Người phụ trách |, giá trị theo THONG_TIN_TAI_LIEU.
+a) Khi có THONG_TIN_TAI_LIEU hoặc MAU_DAC_TA_MAN_HINH: thêm các hàng Ngày tạo, Người duyệt, Người kiểm tra, Người phụ trách vào bảng thông tin C5, giá trị theo THONG_TIN_TAI_LIEU; không lập bảng đầu trang riêng. Không có thì bỏ mục a).
 b) Thông tin chung: SCR, UC, bước UC, tác nhân, boundary AC, DC, loại màn hình, màn hình đến từ và đi tới (theo F3).
 c) Hình ảnh màn hình (F4).
-d) Danh sách chức năng (bảng điều khiển): | STT | Điều khiển (Control) | Loại (nút, ô nhập, danh sách chọn, ô chọn, nút chọn, bảng, vùng hiển thị, liên kết) | Thao tác (Operation: Khởi tạo, Nhấn, Chọn, Nhập, Rời trường, Nhấn đúp) | Chức năng (Function) | Nguồn (UC bước, trách nhiệm boundary, MSG) |
+d) Danh sách chức năng (bảng điều khiển): | STT | Điều khiển (Control) | Loại (nút, ô nhập, danh sách chọn, ô chọn, nút chọn, bảng, vùng hiển thị, liên kết) | Thao tác (Operation: Khởi tạo, Nhấn, Chọn, Nhập, Rời trường, Nhấn đúp, Quét (thiết bị đưa dữ liệu vào), Hết thời gian (sự kiện thời gian trên màn hình), Nhận kết quả (kết quả bất đồng bộ từ hệ thống)) | Chức năng (Function) | Nguồn (UC bước, trách nhiệm boundary, MSG) |
    - Định nghĩa: mỗi dòng là một cặp điều khiển và thao tác, cột Chức năng mô tả hệ thống làm gì khi thao tác xảy ra, kể cả màn hình tiếp theo hoặc thông điệp hiển thị.
    - Quy tắc: thao tác "Khởi tạo" mô tả nội dung hiển thị khi mở màn hình; mỗi nút có dòng "Nhấn"; chức năng nêu kết quả cả khi thành công và khi lỗi (tham chiếu MSG).
    - Ví dụ đúng (giao đồ ăn): | 4 | Nút "Đặt món" | Nút chính | Nhấn | Kiểm tra giỏ không rỗng và địa chỉ đã chọn; hợp lệ thì mở SCR-09 Xác nhận đơn; không hợp lệ thì hiển thị MSG-07 tại trường thiếu | UC-012 bước 5, 5a |.
    - Ví dụ sai: | 4 | Nút "Đặt món" | Nút | Nhấn | Đặt món | (sai: không nêu kết quả, không nêu lỗi, không nguồn).
 e) Định nghĩa thuộc tính trường: | Mục (Item name) | Số ký tự tối đa (Number of digits) | Kiểu (Type: Chữ, Số, Ngày, Giờ, Tiền, Lựa chọn, Logic) | Thuộc tính trường (Field attribute: Nhập / Hiển thị / Chọn; bắt buộc; mặc định; căn lề; màu) | Ràng buộc dữ liệu (định dạng, miền giá trị, quy tắc) | Ghi chú (Remarks) | Nguồn (P04 dữ liệu vào ra STT, BR, GL) |
    - Mọi trường nhập và mọi trường hiển thị có dữ liệu nghiệp vụ đều có dòng.
-   - Ràng buộc dữ liệu lấy từ cột "Điều kiện hợp lệ" của bảng dữ liệu vào ra P04 và BR; không tự đặt độ dài, miền giá trị khi nguồn không nêu, ghi Q-nn hoặc ASM-nn.
+   - Ràng buộc dữ liệu lấy từ cột "Điều kiện hợp lệ" của bảng dữ liệu vào ra P04 và BR. Trường do tác nhân nhập: độ dài tối đa và miền giá trị mà nguồn không nêu là giá trị nghiệp vụ, ghi Q-nn (NGHIEM_NGAT) hoặc ASM-nn (CO_NHAN). Trường do hệ thống cấp hoặc tính (mã, định danh, số tiền tính từ BR): độ dài là quyết định thiết kế theo Conventions C1.7, ghi "Thiết kế: <lý do>"; P13 dùng lại giá trị này cho cột tương ứng.
+   - Cột Số ký tự tối đa ghi "-" cho trường Lựa chọn, Logic và trường Hiển thị có độ dài theo giá trị; trường Ngày, Giờ, Tiền ghi độ dài của định dạng hiển thị (ví dụ dd/MM/yyyy là 10).
    - Ví dụ đúng (quản lý kho): | Số lượng nhập | 6 | Số | Nhập, bắt buộc, căn phải | Số nguyên 1-999999, không vượt số lượng còn lại của dòng đơn mua (BR-08) | Định dạng phân cách hàng nghìn | P04 UC-007 mục 5 Dữ liệu vào 1 STT 1, BR-08 |.
    - Ví dụ sai: | Số lượng | 10 | int | ... (sai: kiểu vật lý, không nguồn cho độ dài).
 f) Kiểm tra dữ liệu nhập: | Trường | Thời điểm kiểm tra | Kiểm tra | MSG khi lỗi |, theo thứ tự chuẩn ở F1.
 g) Đánh giá chuẩn (F7) của màn hình này.
+h) Thông điệp mới: | MSG | Loại | Nội dung hiển thị | Nút và hành động | Nguồn |. Thông điệp cần cho màn hình mà danh mục ở ui-standards.md chưa có thì cấp MSG-nn ở mục này, nối tiếp số MSG lớn nhất trong ui-standards.md và mọi SCR đã có. Màn hình khác dùng lại thông điệp này trích "MSG-nn (SCR-mm)". Không có thì ghi "Không có".
 
 F6. Mockup HTML (khi XUAT_HTML là "Có")
 - Mỗi màn hình một file P11a-gui/mockups/SCR-nn-slug.html, tự đủ (HTML và CSS trong một file, không tải tài nguyên ngoài, không JavaScript bắt buộc).
@@ -212,12 +215,12 @@ F6. Mockup HTML (khi XUAT_HTML là "Có")
 F7. Đánh giá theo chuẩn
 Bảng: | SCR | Tiêu chí | Kết quả (Đạt / Vi phạm đã sửa / Vi phạm còn mở / Không áp dụng) | Bằng chứng | Cách xử lý |
 Bảng F7 ghi ở mục g của mỗi SCR-nn-slug.md (giai đoạn 2). Giai đoạn 1 đánh giá ui-standards.md theo từng tiêu chí, cột SCR ghi "Chuẩn hoá", đặt ở cuối ui-standards.md. Lần chạy giai đoạn 2 cuối cùng, hoặc chế độ Toàn bộ, lập bảng tổng hợp ở cuối screen-list.md từ mục g của các SCR.
-Luôn ghi các dòng vi phạm. Dòng Đạt và dòng Không áp dụng chỉ ghi khi MUC_CHI_TIET là DAY_DU, để bảng phủ mọi tiêu chí dưới đây.
+Bảng của mỗi SCR chỉ ghi dòng Vi phạm đã sửa, Vi phạm còn mở và dòng Đạt có bằng chứng riêng của màn hình (khác quy định chung của ui-standards.md). Khi MUC_CHI_TIET là DAY_DU, thêm một dòng "Các tiêu chí còn lại: Đạt theo ui-standards.md STT ..." thay cho từng dòng.
 Tiêu chí:
 - Nielsen: 1 Hiển thị trạng thái hệ thống; 2 Khớp giữa hệ thống và thế giới thực; 3 Người dùng kiểm soát và tự do; 4 Nhất quán và theo chuẩn; 5 Ngăn lỗi; 6 Nhận biết thay vì nhớ lại; 7 Linh hoạt và hiệu quả; 8 Thẩm mỹ và tối giản; 9 Giúp nhận biết, chẩn đoán, khắc phục lỗi; 10 Trợ giúp và tài liệu.
-- Shneiderman (dùng khi rà soát tổng thể): nhất quán; khả dụng cho mọi người dùng; phản hồi đầy đủ; hội thoại có điểm kết thúc rõ; ngăn lỗi; hoàn tác dễ dàng; người dùng làm chủ; giảm tải trí nhớ ngắn hạn.
+- Shneiderman (chỉ đánh giá ở bảng tổng hợp của screen-list.md và bảng của ui-standards.md, không ghi trong từng SCR): nhất quán; khả dụng cho mọi người dùng; phản hồi đầy đủ; hội thoại có điểm kết thúc rõ; ngăn lỗi; hoàn tác dễ dàng; người dùng làm chủ; giảm tải trí nhớ ngắn hạn.
 - WCAG 2.2 AA (các tiêu chí thường gặp ở màn hình nghiệp vụ): 1.1.1 Nội dung không phải chữ; 1.3.1 Thông tin và quan hệ; 1.4.1 Không dùng màu làm tín hiệu duy nhất; 1.4.3 Tương phản chữ tối thiểu 4.5:1 (chữ lớn 3:1); 1.4.4 Phóng to chữ 200%; 1.4.10 Reflow (web); 1.4.11 Tương phản thành phần 3:1; 2.1.1 Bàn phím; 2.4.3 Thứ tự tiêu điểm; 2.4.6 Tiêu đề và nhãn; 2.4.7 Tiêu điểm nhìn thấy; 2.4.11 Tiêu điểm không bị che; 2.5.7 Thay thế thao tác kéo; 2.5.8 Vùng bấm tối thiểu 24 x 24 px; 3.2.3 Điều hướng nhất quán; 3.2.4 Định danh nhất quán; 3.2.6 Trợ giúp nhất quán; 3.3.1 Nhận biết lỗi; 3.3.2 Nhãn hoặc hướng dẫn; 3.3.3 Gợi ý sửa lỗi; 3.3.4 Ngăn lỗi với dữ liệu pháp lý, tài chính; 3.3.7 Không bắt nhập lại; 3.3.8 Xác thực dễ tiếp cận; 4.1.3 Thông điệp trạng thái.
-- Nền tảng (khi phù hợp NEN_TANG): Material Design (vùng chạm tối thiểu 48 dp, mức nhấn mạnh nút, một hành động chính); Apple HIG (vùng chạm tối thiểu 44 pt, điều hướng quay lại theo nền tảng).
+- Nền tảng (Material Design chỉ cho màn hình Android, Apple HIG chỉ cho màn hình iOS; màn hình web không ghi hai dòng này): Material Design (vùng chạm tối thiểu 48 dp, mức nhấn mạnh nút, một hành động chính); Apple HIG (vùng chạm tối thiểu 44 pt, điều hướng quay lại theo nền tảng).
 - Baymard (màn hình có form nhập, giỏ hàng, thanh toán): form một cột; nhãn đặt trên ô nhập, không dùng placeholder thay nhãn; đánh dấu rõ cả trường bắt buộc và tuỳ chọn; kiểm tra ngay khi rời trường, không báo lỗi khi đang gõ; giữ nguyên dữ liệu đã nhập khi báo lỗi; thông điệp lỗi đặt cạnh trường và nói cụ thể; chấp nhận nhiều định dạng nhập hợp lý (khoảng trắng trong số điện thoại, số thẻ); giảm số trường tới mức đặc tả yêu cầu; hiển thị tóm tắt đơn và tổng tiền trong bước thanh toán.
 Lưu ý: chuẩn chỉ quyết định cách trình bày. Nếu một heuristic gợi ý thêm chức năng (ví dụ hoàn tác, lưu nháp, thanh toán không cần tài khoản) mà đặc tả không có, ghi Q-nn hoặc đề xuất sửa P04, không tự thêm.
 
@@ -227,10 +230,10 @@ F8. Mục kiểm soát theo C5 trong mỗi file.
 1. Mỗi quy định chuẩn hoá có giá trị cụ thể, kiểm tra được, có căn cứ; đủ các nhóm Display, Screen, Control, Menu, Bàn phím, Messages, Error, Help, Khả năng tiếp cận, Xác nhận.
 2. Mỗi boundary giao diện người dùng mà P10 mục F3 đặt ở layer giao diện có ít nhất một màn hình; boundary khác (ánh xạ sang subsystem, loại Kênh thông báo) có dòng ở bảng "Boundary không có màn hình" kèm lý do; mỗi màn hình có boundary nguồn hoặc là màn hình điều hướng.
 3. Không có trường, nút, chức năng nào không truy được về đặc tả, bảng dữ liệu vào ra, BR hoặc trách nhiệm boundary.
-4. Mọi thông điệp trong đặc tả có trong danh mục MSG và được tham chiếu ở chức năng của điều khiển.
+4. Mọi thông điệp trong đặc tả có trong danh mục MSG của ui-standards.md hoặc mục h) của một SCR, và được tham chiếu ở chức năng của điều khiển.
 5. Mọi dịch chuyển dùng đúng một trong bốn mẫu, đúng ký hiệu; không vẽ cạnh đóng pop-up; mọi màn hình đến được từ Start và có lối ra.
 6. Mỗi màn hình trong phạm vi có hình ảnh, bảng điều khiển, bảng thuộc tính trường, bảng kiểm tra dữ liệu nhập.
-7. Ràng buộc dữ liệu của trường khớp P04 và BR; không có độ dài, miền giá trị tự đặt không có mã Q hoặc ASM.
+7. Ràng buộc dữ liệu của trường khớp P04 và BR; không có độ dài, miền giá trị của trường nhập tự đặt mà không có mã Q hoặc ASM; độ dài của trường do hệ thống cấp có ghi "Thiết kế: <lý do>".
 8. Dữ liệu mẫu đúng nghiệp vụ: định dạng đúng, tổng hợp khớp, đơn vị nhất quán.
 9. Giai đoạn 1: mọi tiêu chí F7 được đánh giá trên ui-standards.md. Giai đoạn 2: mọi màn hình trong phạm vi được đánh giá theo F7; không còn vi phạm WCAG AA chưa có cách xử lý.
 10. Hình ảnh, sơ đồ dịch chuyển, đặc tả, danh sách màn hình nhất quán tên, mã và dịch chuyển.

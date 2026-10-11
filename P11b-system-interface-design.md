@@ -16,7 +16,8 @@ Bước này thiết kế giao diện giữa phần mềm và các hệ thống 
 | Đầu vào | P06-supplementary-spec.md | Có | NFR về thời gian phản hồi, sẵn sàng, bảo mật, nhất quán |
 | Đầu vào | P09-architecture.md | Có | Layer, quy tắc phụ thuộc, định hướng giao tiếp ngoài |
 | Đầu vào | Tài liệu API hoặc giao thức của hệ thống ngoài, thiết bị | Khi có | Ánh xạ operation sang lời gọi ngoài |
-| Đầu ra | P11b-system-interfaces.md | Có | Interface, operation, thiết kế subsystem |
+| Đầu ra | P11b-system-interfaces.md | Có | Interface, operation, thiết kế subsystem; khi tách theo subsystem thì là file chung (F8 và mục kiểm soát) |
+| Đầu ra | P11b-system-interfaces/SS-nn-<slug>.md | Khi đầu ra dài | Mục F1-F7 của từng subsystem (xem [Format]) |
 | Đầu ra | diagrams/P11b-subsystem-SS-nn.drawio | Có | Mỗi subsystem một file, nhiều trang |
 
 ## 3. Cách chạy
@@ -76,6 +77,7 @@ A2. Xác định interface.
 A3. Định nghĩa operation.
 - Mỗi trách nhiệm "// ..." của boundary nguồn trở thành một hoặc nhiều operation. Không thêm operation không phục vụ use case nào, trừ operation kỹ thuật cần cho chính sách lỗi (ví dụ tra cứu trạng thái giao dịch) và phải ghi lý do.
 - Tên operation phản ánh kết quả (ví dụ authorizePayment, sendAppointmentReminder, readBarcode). Tham số và kết quả dùng kiểu của mô hình (entity, kiểu giá trị) hoặc kiểu dữ liệu chuẩn; không để lộ kiểu của giao thức ngoài (chuỗi JSON, mã HTTP) ra interface.
+- Kiểu trong chữ ký dùng kiểu của ngôn ngữ trong CONG_NGHE khi đã chốt; chưa chốt thì dùng kiểu trung lập (String, Integer, Decimal, Boolean, Date, DateTime, Duration, List<T>).
 - Kiểu giá trị dùng trong chữ ký interface ở layer dưới (tiền, mã tham chiếu thẻ, định danh) phải nằm ở package cùng layer với interface hoặc thấp hơn. Kiểu đó nằm ở package thuộc layer cao hơn layer của interface (theo thứ tự layer ở P09 F4) thì dùng kiểu chuẩn hoặc kiểu riêng của interface, và ghi Đề xuất sửa P10 chuyển kiểu đó xuống package kiểu dữ liệu dùng chung ở layer không cao hơn interface. Khi Domain là layer thấp nhất (P09 A4), entity và kiểu giá trị của Domain được dùng trực tiếp trong chữ ký.
 - Với mỗi operation: tham số vào (tên, kiểu, ràng buộc), kết quả (kiểu, ý nghĩa), ngoại lệ hoặc kết quả lỗi (phân loại ở A5), tiền điều kiện, hậu điều kiện, đồng bộ hay bất đồng bộ, idempotent hay không.
 - Thiết bị đẩy sự kiện vào hệ thống (máy quét, cảm biến): thiết kế thêm interface theo chiều ngược (listener) do phía hệ thống cung cấp, subsystem thiết bị gọi vào; ghi rõ ai cung cấp, ai dùng.
@@ -104,6 +106,7 @@ A7. Tự kiểm tra theo [Target], xuất kết quả.
 
 [Format]
 Xuất file P11b-system-interfaces.md theo khung C5, tiêu đề "# P11b - Giao diện hệ thống và thiết bị - <Tên hệ thống>". Mỗi subsystem một mục cấp 2 "## SS-nn <Tên>", trong đó có các mục F1-F7. Mục tổng hợp F8 ở cuối.
+Khi đầu ra dự kiến dài hơn khoảng 100 KB (thường từ 5 subsystem có sơ đồ hộp trắng trở lên), tách mỗi subsystem một file P11b-system-interfaces/SS-nn-<slug>.md theo khung C5 (tiêu đề "# P11b - SS-nn <Tên> - <Tên hệ thống>"), chứa F1-F7 của subsystem đó. File chung P11b-system-interfaces.md vẫn có, gồm bảng "Danh sách file subsystem" (| SS | File | Phiên bản |), F8 và các mục kiểm soát; Câu hỏi mở, Giả định của mọi subsystem ghi ở file chung để bước sau tìm mã ở một chỗ. Chạy lặp theo PHAM_VI_SUBSYSTEM thì chỉ ghi file của subsystem đó và cập nhật file chung. Bước sau (P12, X1) đọc file chung rồi file của các SS mà phạm vi dùng.
 
 F1. Bối cảnh sử dụng
 Bảng: | UC | Control gọi (AC hoặc DC) | Message trong P07 (STT, tên) | Dữ liệu truyền | Luồng lỗi trong P04 |
