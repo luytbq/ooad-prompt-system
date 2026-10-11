@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net"><diagram id="P13-erd-conceptual" name="P13 ER khái niệm (Chen)">
+<mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3000" pageHeight="1700" math="0" shadow="0"><root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="E-Trip" value="Trip" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1130" y="330" width="140" height="60" as="geometry"/></mxCell>
+<mxCell id="E-Seat" value="Seat" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1130" y="670" width="140" height="60" as="geometry"/></mxCell>
+<mxCell id="E-Booking" value="Booking" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1630" y="1070" width="140" height="60" as="geometry"/></mxCell>
+<mxCell id="E-Ticket" value="Ticket" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="630" y="1070" width="140" height="60" as="geometry"/></mxCell>
+<mxCell id="E-PaymentTransaction" value="PaymentTransaction" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="630" y="1470" width="140" height="60" as="geometry"/></mxCell>
+<mxCell id="E-Fare" value="Fare" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="2300" y="270" width="140" height="60" as="geometry"/></mxCell>
+<mxCell id="ER-01" value="thuộc về" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1120" y="490" width="160" height="80" as="geometry"/></mxCell>
+<mxCell id="ER-02" value="đặt chỗ trên" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1520" y="320" width="160" height="80" as="geometry"/></mxCell>
+<mxCell id="ER-03" value="giữ" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1420" y="660" width="160" height="80" as="geometry"/></mxCell>
+<mxCell id="ER-04" value="phát hành" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1120" y="1060" width="160" height="80" as="geometry"/></mxCell>
+<mxCell id="ER-05" value="ứng với" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="820" y="660" width="160" height="80" as="geometry"/></mxCell>
+<mxCell id="ER-06" value="đi chuyến" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="720" y="320" width="160" height="80" as="geometry"/></mxCell>
+<mxCell id="ER-07" value="gắn với giao dịch" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="620" y="1260" width="160" height="80" as="geometry"/></mxCell>
+<mxCell id="AT-Trip-id" value="id" style="ellipse;whiteSpace=wrap;html=1;fontStyle=4;" vertex="1" parent="1"><mxGeometry x="500" y="100" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Trip-departureTime" value="departureTime" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="680" y="100" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Trip-route" value="route" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="860" y="100" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Trip-vehicleType" value="vehicleType" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1040" y="100" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Trip-status" value="status" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1220" y="100" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Trip-cancelReason" value="cancelReason" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1400" y="100" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Trip-vehicle" value="vehicle" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1580" y="100" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Trip-driver" value="driver" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1760" y="100" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Seat-id" value="id" style="ellipse;whiteSpace=wrap;html=1;fontStyle=4;" vertex="1" parent="1"><mxGeometry x="950" y="820" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Seat-seatCode" value="seatCode" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1130" y="820" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Seat-tripState" value="tripState" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="1310" y="820" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Ticket-id" value="id" style="ellipse;whiteSpace=wrap;html=1;fontStyle=4;" vertex="1" parent="1"><mxGeometry x="40" y="640" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Ticket-ticketCode" value="ticketCode" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="720" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Ticket-travelerName" value="travelerName" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="800" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Ticket-travelerPhone" value="travelerPhone" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="880" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Ticket-fare" value="fare" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="960" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Ticket-purchaseChannel" value="purchaseChannel" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="1040" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Ticket-status" value="status" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="1120" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Ticket-smsStatus" value="smsStatus" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="1200" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Ticket-paymentStatus" value="paymentStatus" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="1280" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Ticket-refundStatus" value="refundStatus" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="1360" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Ticket-cancelNoticeStatus" value="cancelNoticeStatus" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="1440" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Ticket-refundAttemptStatus" value="refundAttemptStatus" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="40" y="1520" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Booking-id" value="id" style="ellipse;whiteSpace=wrap;html=1;fontStyle=4;" vertex="1" parent="1"><mxGeometry x="2000" y="840" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Booking-status" value="status" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="2000" y="920" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Booking-holdStartedAt" value="holdStartedAt" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="2000" y="1000" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Booking-holdExpiry" value="holdExpiry" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="2000" y="1080" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Booking-travelerName" value="travelerName" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="2000" y="1160" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Booking-travelerPhone" value="travelerPhone" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="2000" y="1240" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Booking-seatFare" value="seatFare" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="2000" y="1320" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Fare-id" value="id" style="ellipse;whiteSpace=wrap;html=1;fontStyle=4;" vertex="1" parent="1"><mxGeometry x="2600" y="120" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Fare-route" value="route" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="2600" y="200" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Fare-vehicleType" value="vehicleType" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="2600" y="280" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Fare-amount" value="amount" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="2600" y="360" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="AT-Fare-surchargePercent" value="surchargePercent" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="2600" y="440" width="140" height="40" as="geometry"/></mxCell>
+<mxCell id="ER-01-Seat" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Seat" target="ER-01"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-01-Seat-lbl" value="N" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-01-Seat"><mxGeometry x="-0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ER-01-Trip" style="endArrow=none;html=1;" edge="1" parent="1" source="ER-01" target="E-Trip"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-01-Trip-lbl" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-01-Trip"><mxGeometry x="0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ER-02-Booking" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Booking" target="ER-02"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-02-Booking-lbl" value="N" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-02-Booking"><mxGeometry x="-0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ER-02-Trip" style="endArrow=none;html=1;" edge="1" parent="1" source="ER-02" target="E-Trip"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-02-Trip-lbl" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-02-Trip"><mxGeometry x="0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ER-03-Booking" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Booking" target="ER-03"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-03-Booking-lbl" value="M" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-03-Booking"><mxGeometry x="-0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ER-03-Seat" style="endArrow=none;html=1;" edge="1" parent="1" source="ER-03" target="E-Seat"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-03-Seat-lbl" value="N" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-03-Seat"><mxGeometry x="0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ER-04-Booking" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Booking" target="ER-04"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-04-Booking-lbl" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-04-Booking"><mxGeometry x="-0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ER-04-Ticket" style="endArrow=none;html=1;" edge="1" parent="1" source="ER-04" target="E-Ticket"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-04-Ticket-lbl" value="N" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-04-Ticket"><mxGeometry x="0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ER-05-Ticket" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="ER-05"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-05-Ticket-lbl" value="N" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-05-Ticket"><mxGeometry x="-0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ER-05-Seat" style="endArrow=none;html=1;" edge="1" parent="1" source="ER-05" target="E-Seat"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-05-Seat-lbl" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-05-Seat"><mxGeometry x="0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ER-06-Ticket" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="ER-06"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-06-Ticket-lbl" value="N" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-06-Ticket"><mxGeometry x="-0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ER-06-Trip" style="endArrow=none;html=1;" edge="1" parent="1" source="ER-06" target="E-Trip"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-06-Trip-lbl" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-06-Trip"><mxGeometry x="0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ER-07-Ticket" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="ER-07"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-07-Ticket-lbl" value="N" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-07-Ticket"><mxGeometry x="-0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ER-07-PaymentTransaction" style="endArrow=none;html=1;" edge="1" parent="1" source="ER-07" target="E-PaymentTransaction"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ER-07-PaymentTransaction-lbl" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="ER-07-PaymentTransaction"><mxGeometry x="0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell>
+<mxCell id="ED-AT-Trip-id" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Trip" target="AT-Trip-id"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Trip-departureTime" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Trip" target="AT-Trip-departureTime"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Trip-route" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Trip" target="AT-Trip-route"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Trip-vehicleType" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Trip" target="AT-Trip-vehicleType"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Trip-status" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Trip" target="AT-Trip-status"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Trip-cancelReason" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Trip" target="AT-Trip-cancelReason"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Trip-vehicle" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Trip" target="AT-Trip-vehicle"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Trip-driver" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Trip" target="AT-Trip-driver"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Seat-id" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Seat" target="AT-Seat-id"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Seat-seatCode" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Seat" target="AT-Seat-seatCode"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Seat-tripState" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Seat" target="AT-Seat-tripState"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Ticket-id" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="AT-Ticket-id"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Ticket-ticketCode" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="AT-Ticket-ticketCode"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Ticket-travelerName" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="AT-Ticket-travelerName"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Ticket-travelerPhone" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="AT-Ticket-travelerPhone"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Ticket-fare" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="AT-Ticket-fare"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Ticket-purchaseChannel" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="AT-Ticket-purchaseChannel"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Ticket-status" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="AT-Ticket-status"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Ticket-smsStatus" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="AT-Ticket-smsStatus"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Ticket-paymentStatus" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="AT-Ticket-paymentStatus"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Ticket-refundStatus" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="AT-Ticket-refundStatus"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Ticket-cancelNoticeStatus" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="AT-Ticket-cancelNoticeStatus"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Ticket-refundAttemptStatus" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Ticket" target="AT-Ticket-refundAttemptStatus"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Booking-id" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Booking" target="AT-Booking-id"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Booking-status" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Booking" target="AT-Booking-status"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Booking-holdStartedAt" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Booking" target="AT-Booking-holdStartedAt"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Booking-holdExpiry" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Booking" target="AT-Booking-holdExpiry"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Booking-travelerName" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Booking" target="AT-Booking-travelerName"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Booking-travelerPhone" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Booking" target="AT-Booking-travelerPhone"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Booking-seatFare" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Booking" target="AT-Booking-seatFare"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Fare-id" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Fare" target="AT-Fare-id"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Fare-route" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Fare" target="AT-Fare-route"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Fare-vehicleType" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Fare" target="AT-Fare-vehicleType"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Fare-amount" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Fare" target="AT-Fare-amount"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ED-AT-Fare-surchargePercent" style="endArrow=none;html=1;" edge="1" parent="1" source="E-Fare" target="AT-Fare-surchargePercent"><mxGeometry relative="1" as="geometry"/></mxCell>
+</root></mxGraphModel></diagram></mxfile>
