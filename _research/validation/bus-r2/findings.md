@@ -22,6 +22,10 @@ Ngoài phạm vi: bố cục, định tuyến cạnh và độ dễ đọc của
 | P02R | Sonnet | DOI_TUONG_REVIEW = P01, P02; PHAM_VI_REVIEW = TAC_NHAN, DANH_SACH_UC | P02R-review.md | Đạt: 0 Nghiêm trọng, 2 Trung bình, 2 Thấp (UCR-01..UCR-04); Q-41, Q-42, ASM-15, ASM-16. Người điều phối (vai người dùng) chọn áp dụng cả 4 UCR |
 | P02 (lần 2, bản 1.1) | Sonnet | YEU_CAU_BO_SUNG = "Áp dụng UCR-01, UCR-02, UCR-03, UCR-04 của P02R-review.md phiên bản 1.0." | P02-usecases.md (ghi đè) | 27 UC hiệu lực, UC-013 Loại (gộp vào UC-012); không cấp mã mới |
 | P03 | Sonnet | KIEU_DUONG_ASSOCIATION, CACH_PHAN_RA_SO_DO, YEU_CAU_BO_SUNG = Không có | P03-usecase-model.md; 4 file .drawio | 48 RL (41 association, 6 include, 1 extend), Q-43, ASM-17; khoảng 24 phút |
+| P04 UC-009 | Sonnet | UC_ID = UC-009; còn lại Không có | P04-uc-specs/UC-009-book-ticket-online.md, _BR-register.md, diagrams/P04-activity-UC-009 | 12 bước chính, 8 luồng thay thế, BR-01..BR-06, Q-44, Q-45, ASM-18..ASM-24; khoảng 11 phút |
+| P04 UC-017 | Sonnet | UC_ID = UC-017; còn lại Không có | P04-uc-specs/UC-017-cancel-trip.md, _BR-register.md, diagrams/P04-activity-UC-017 | 14 bước chính, 7 luồng thay thế, BR-07..BR-11, Q-46..Q-50, ASM-25..ASM-33; phiên bị ngắt do hết hạn mức khi đã ghi artifact, được cho làm tiếp để tự kiểm và ghi nhật ký |
+| P05 | Sonnet | NGUON_THUAT_NGU_CHUAN = Không có; YEU_CAU_BO_SUNG nêu phạm vi hai đặc tả UC-009, UC-017 | P05-glossary.md | 28 GL, 20 ứng viên loại, không có Q, ASM mới; khoảng 10 phút |
+| P06 | Sonnet | MO_HINH_CHAT_LUONG = Không có; YEU_CAU_BO_SUNG nêu phạm vi hai đặc tả | P06-supplementary-spec.md, _BR-register.md | 14 NFR, 26 BR (BR-12..BR-26 mới), Q-51..Q-54, ASM-34..ASM-38; chạy sau P05; khoảng 9 phút |
 
 ## 2. Nhật ký phát hiện
 
