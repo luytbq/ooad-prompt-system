@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="24.0.0">
+  <diagram id="P09-deployment" name="Deployment">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="920" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="N-07" value="Máy in vé nhiệt&lt;br&gt;(ACT-08)" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="N-02" value="Máy tính quầy bán vé&lt;br&gt;(trình duyệt web)" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="40" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="N-01" value="Thiết bị của hành khách&lt;br&gt;(trình duyệt web)" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="40" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="N-03" value="Máy tính nhân viên điều hành, quản lý&lt;br&gt;(trình duyệt web)" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="40" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="N-04" value="Máy soát vé cầm tay&lt;br&gt;(Android, đầu quét mã vạch)" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="40" width="260" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="N-05" value="Máy chủ ứng dụng" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="300" y="360" width="960" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="N-06" value="Máy chủ cơ sở dữ liệu" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="600" y="760" width="300" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="N-08" value="Cổng thanh toán của đối tác&lt;br&gt;(ACT-06, hệ thống ngoài)" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="360" width="240" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="N-09" value="Cổng SMS của nhà mạng&lt;br&gt;(ACT-07, hệ thống ngoài)" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="500" width="240" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="A-01" value="«artifact»&lt;br&gt;Ứng dụng soát vé&lt;br&gt;PKG-10, PKG-18 (phần máy soát vé), PKG-25, PKG-26" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="N-04">
+          <mxGeometry x="20" y="50" width="220" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="A-02" value="«artifact»&lt;br&gt;Ứng dụng web&lt;br&gt;PKG-05 đến PKG-09, PKG-11 đến PKG-24, PKG-27 đến PKG-30" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="N-05">
+          <mxGeometry x="40" y="60" width="880" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="A-03" value="«artifact»&lt;br&gt;Cơ sở dữ liệu quan hệ" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="N-06">
+          <mxGeometry x="20" y="40" width="260" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="L-01" value="Internet, mã hoá" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=360;entryDy=0;" edge="1" parent="1" source="N-01" target="N-05">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="L-02" value="Internet, mã hoá" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=100;entryDy=0;" edge="1" parent="1" source="N-02" target="N-05">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="L-03" value="Internet, mã hoá" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=620;entryDy=0;" edge="1" parent="1" source="N-03" target="N-05">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="L-04" value="Mạng di động, mã hoá, có thể gián đoạn" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=910;entryDy=0;" edge="1" parent="1" source="N-04" target="N-05">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="L-05" value="Mạng nội bộ máy chủ" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=1;exitDx=450;exitDy=0;entryX=0;entryY=0;entryDx=150;entryDy=0;" edge="1" parent="1" source="N-05" target="N-06">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="L-06" value="Internet, mã hoá" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=50;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="N-05" target="N-08">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="L-07" value="Internet, mã hoá" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=190;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="N-05" target="N-09">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="L-08" value="Kết nối cục bộ" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="N-02" target="N-07">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

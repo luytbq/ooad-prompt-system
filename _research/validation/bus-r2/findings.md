@@ -29,6 +29,8 @@ Ngoài phạm vi: bố cục, định tuyến cạnh và độ dễ đọc của
 | P07 UC-009 | Sonnet | UC_ID = UC-009 Đặt vé trực tuyến; LUONG_CAN_VE, YEU_CAU_BO_SUNG = Không có | P07-uc-analysis/UC-009-book-ticket-online-analysis.md; diagrams/P07-sequence/communication/class-UC-009 | 10 lớp (2 control tạm cho UC-008, UC-010), 46 message, 4 trang sequence (SD1a..SD1c, SD2), 12 quan hệ; Q-55..Q-57, ASM-39..ASM-41; khoảng 18 phút |
 | P07 UC-017 | Sonnet | UC_ID = UC-017 Huỷ chuyến; còn lại Không có | P07-uc-analysis/UC-017-cancel-trip-analysis.md; 3 file .drawio | 7 lớp (tái dùng Trip, Ticket, SmsGateway), 30 message, 2 trang sequence, 8 quan hệ; Q-58, ASM-42; người chạy tự khai đọc thêm một phần file P07 UC-009 ngoài mục được phép; khoảng 16 phút |
 | P08 | Sonnet | CACH_CHIA_VIEW = Không có; YEU_CAU_BO_SUNG nêu phạm vi UC-009, UC-017 | P08-analysis-model.md; diagrams/P08-class-analysis (3 trang) | 14 lớp (4 B, 4 C, 6 E), R-01..R-22, F2 17 dòng, F2a 15 dòng, Q-59..Q-61, ASM-43, ASM-44; khoảng 12 phút |
+| P09 | Sonnet | RANG_BUOC_KIEN_TRUC, TIEU_CHI_UU_TIEN, PHUONG_AN_DA_CHON = Không có; YEU_CAU_BO_SUNG nêu phạm vi UC-009, UC-017 | P09-architecture.md; diagrams/P09-package-layers, P09-deployment | Chọn PA1 (multi-layer 4 layer, kết hợp client-server cho máy soát vé), khuyến nghị CN1; 26 package (PKG-01..PKG-30), 58 phụ thuộc, 9 node; Q-62..Q-65, ASM-45..ASM-48; khoảng 16 phút |
+| Cập nhật hồ sơ | Không áp dụng (thao tác của người dùng) | Người điều phối (vai người dùng) chấp nhận khuyến nghị CN1, thay hai dòng NEN_TANG, CONG_NGHE bằng hai dòng của khối F11 | project-profile.md | Thao tác đúng một lần theo câu dẫn mới của F11, không phải tự suy cách dán |
 
 ## 2. Nhật ký phát hiện
 

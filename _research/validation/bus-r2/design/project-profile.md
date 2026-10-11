@@ -23,8 +23,8 @@
 
 | Trường | Giá trị |
 |---|---|
-| NEN_TANG | Chưa chốt |
-| CONG_NGHE | Chưa chốt |
+| NEN_TANG | Ứng dụng web dựng phía máy chủ (website đặt vé và phần mềm nhân viên nhà xe chạy trên trình duyệt) và ứng dụng Android gốc cho máy soát vé cầm tay |
+| CONG_NGHE | Máy chủ: Java 17, Spring Boot; giao diện web: Thymeleaf; máy soát vé: Kotlin, Android, SQLite; hệ quản trị CSDL: PostgreSQL |
 | HE_THONG_NGOAI | Cổng thanh toán trực tuyến của đối tác (API thanh toán và hoàn tiền, chưa có tài liệu API); Cổng SMS của nhà mạng (API REST); Máy soát vé cầm tay Android có đầu quét mã vạch, do nhà xe tự trang bị; Máy in vé nhiệt tại quầy |
 
 ## 4. Ràng buộc đặc thù của dự án [TUỲ CHỌN]
