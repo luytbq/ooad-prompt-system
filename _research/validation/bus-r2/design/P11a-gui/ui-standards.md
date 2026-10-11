@@ -3,10 +3,10 @@
 | Thuộc tính | Giá trị |
 |---|---|
 | Bước | P11a (giai đoạn 1) |
-| Phiên bản | 1.0 |
+| Phiên bản | 1.1 (giai đoạn 1 phiên bản 1.0; nối MSG-15, MSG-16 từ giai đoạn 2) |
 | Đầu vào đã dùng | 00-Conventions.md; project-profile.md (NEN_TANG, CONG_NGHE đã chốt); P01-actors.md (Mục 2); P02-usecases.md (Mục 4); P04-uc-specs/UC-009-book-ticket-online.md và UC-017-cancel-trip.md (luồng sự kiện, bảng dữ liệu vào ra, thông điệp, Câu hỏi mở, Giả định); P05-glossary.md (Thuật ngữ, Định nghĩa); P06-supplementary-spec.md (NFR, BR); P07-uc-analysis/UC-009 và UC-017 (message với boundary giao diện người dùng, Câu hỏi mở, Giả định); P08-analysis-model.md (F3, dòng boundary giao diện người dùng); P09-architecture.md (F3, F5); P10-design-elements.md (F3, F4). Placeholder: CHE_DO_CHAY = Giai đoạn 1; THIET_BI_HIEN_THI = website cho hành khách dùng được trên máy tính và điện thoại (responsive, có cảm ứng), phần mềm web cho nhân viên nhà xe trên máy tính bàn tại quầy và văn phòng, ứng dụng Android trên máy soát vé cầm tay; NHAN_DIEN_THUONG_HIEU = Không có (bảng màu trung tính đạt WCAG, ghi là quyết định thiết kế ở UI-STT 16); MAU_DAC_TA_MAN_HINH = Không có; XUAT_HTML = Không; THONG_TIN_TAI_LIEU = Không có; YEU_CAU_BO_SUNG = phạm vi UC-009, UC-017 và màn hình điều hướng cần thiết. Q, ASM lớn nhất quét từ mọi artifact trong thư mục đầu ra trước lần chạy: Q-65, ASM-48; lần chạy này cấp Q-66 đến Q-68 và ASM-49, ASM-50 |
 | Phạm vi | Toàn hệ thống (quy định dùng chung); thông điệp lấy từ UC-009, UC-017 |
-| Mã Q, ASM cuối đã cấp | Q-68, ASM-50 |
+| Mã Q, ASM cuối đã cấp | Q-72, ASM-54 (giai đoạn 2 cấp Q-70 đến Q-72, ASM-52 đến ASM-54, ghi ở SCR-03 và SCR-06) |
 
 ## F1a. Bảng chuẩn hoá
 
@@ -102,8 +102,10 @@ Giá trị ghi "Thiết kế" là quyết định trình bày theo Conventions C
 | MSG-12 | Thành công | Đã bỏ yêu cầu huỷ chuyến. Chuyến và vé không thay đổi. | Banner tại SCR-05; nút đóng "x" | UC-017 bước *a |
 | MSG-13 | Đang xử lý | Đang xử lý yêu cầu. Vui lòng chờ và không đóng trang. | Chỉ báo xoay cạnh nút vừa nhấn; không có nút huỷ (UI-STT 44) | UI-STT 43, 44; UC-009 bước 4 đến 12; UC-017 bước 4 đến 14 |
 | MSG-14 | Lỗi | Hệ thống tạm thời chưa xử lý được yêu cầu. Thông tin đã nhập vẫn được giữ lại. Vui lòng thử lại sau ít phút. | Hộp modal; nút "Đóng" --> đóng hộp, ở lại màn hình hiện tại | UI-STT 53 |
+| MSG-15 | Lỗi | Có <n> trường cần sửa. Vui lòng kiểm tra các trường được đánh dấu lỗi. | Banner tại SCR-03 khi nhấn nút chính mà có từ hai trường lỗi; tiêu điểm vào trường lỗi đầu tiên; nút đóng "x" | UC-009 bước 7a; UI-STT 54 (SCR-03 mục h) |
+| MSG-16 | Cảnh báo | Chỗ của bạn chỉ còn được giữ <5 phút / 1 phút / 30 giây>. Vui lòng hoàn tất thanh toán. | Thông báo role status cho trình đọc màn hình tại ba mốc; không có nút và không chiếm tiêu điểm | BR-03; UC-009 bước 5; UI-STT 46 (SCR-03 mục h) |
 
-Các mục h) của SCR giai đoạn 2 nối thêm dòng vào cuối danh mục này, không sửa dòng cũ. Mã MSG lớn nhất hiện có: MSG-14.
+Các mục h) của SCR giai đoạn 2 nối thêm dòng vào cuối danh mục này, không sửa dòng cũ. Mã MSG lớn nhất hiện có: MSG-16 (MSG-15, MSG-16 nối từ mục h của SCR-03; các SCR-02, SCR-04, SCR-06, SCR-07, SCR-08 không có thông điệp mới).
 
 ## F7. Đánh giá chuẩn (giai đoạn 1)
 

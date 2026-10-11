@@ -3,10 +3,10 @@
 | Thuộc tính | Giá trị |
 |---|---|
 | Bước | P11a (giai đoạn 1) |
-| Phiên bản | 1.0 |
+| Phiên bản | 1.1 (giai đoạn 1 phiên bản 1.0; thêm bảng tổng hợp F7 ở giai đoạn 2) |
 | Đầu vào đã dùng | 00-Conventions.md; project-profile.md; P01-actors.md (Mục 2); P02-usecases.md (Mục 4); P04-uc-specs/UC-009-book-ticket-online.md và UC-017-cancel-trip.md (luồng sự kiện, bảng dữ liệu vào ra, thông điệp); P05-glossary.md; P06-supplementary-spec.md; P07-uc-analysis/UC-009 và UC-017 (message với boundary giao diện người dùng, Câu hỏi mở, Giả định); P08-analysis-model.md (F3, dòng boundary giao diện người dùng); P09-architecture.md (F3, F5); P10-design-elements.md (F3, F4); P11a-gui/ui-standards.md (phiên bản 1.0, UI-STT 7, 8, 11, 34, F1b). Placeholder: CHE_DO_CHAY = Giai đoạn 1; XUAT_HTML = Không; THONG_TIN_TAI_LIEU = Không có; YEU_CAU_BO_SUNG = phạm vi UC-009, UC-017 và màn hình điều hướng cần thiết. Q, ASM lớn nhất quét trước lần chạy: Q-65, ASM-48 |
 | Phạm vi | UC-009, UC-017 và hai màn hình điều hướng của ACT-01, ACT-03 |
-| Mã Q, ASM cuối đã cấp | Q-68, ASM-50 |
+| Mã Q, ASM cuối đã cấp | Q-72, ASM-54 (giai đoạn 2 cấp Q-70 đến Q-72, ASM-52 đến ASM-54, ghi ở SCR-03 và SCR-06) |
 
 ## Boundary cần màn hình (nguồn: P10 F3, F4)
 
@@ -71,7 +71,84 @@ SCR-01 và SCR-05 là hai màn hình điều hướng duy nhất của lần ch�
 
 ## Bảng tổng hợp đánh giá chuẩn (F7)
 
-Chưa lập. Bảng này được lập ở lần chạy giai đoạn 2 cuối cùng từ mục g của các SCR; đánh giá chuẩn hoá của giai đoạn 1 nằm ở cuối ui-standards.md.
+Tổng hợp từ mục g) của SCR-02, SCR-03, SCR-04, SCR-06, SCR-07, SCR-08 (giai đoạn 2, lần chạy cuối) và Shneiderman toàn bộ sáu màn hình. Màn hình điều hướng SCR-01 và SCR-05 chưa có đặc tả nên chưa đánh giá. Có 7 dòng Vi phạm còn mở và 2 dòng Vi phạm đã sửa ở mức màn hình; đánh giá chuẩn hoá của giai đoạn 1 nằm ở cuối ui-standards.md.
+
+| SCR | Tiêu chí | Kết quả | Bằng chứng | Cách xử lý |
+|---|---|---|---|---|
+| SCR-02 | Nielsen 1 Hiển thị trạng thái hệ thống | Đạt | Vùng "Đã chọn" cập nhật ngay khi chọn; MSG-13 sau 1 giây khi kiểm tra và giữ chỗ | - |
+| SCR-02 | Nielsen 3 Người dùng kiểm soát và tự do | Đạt | Có "Huỷ yêu cầu mua vé" và mục "Trang chủ"; không có nút "Quay lại" vì SCR-02 là bước đầu sau UC-008 và đặc tả không có dịch chuyển lùi | - |
+| SCR-02 | Nielsen 5 Ngăn lỗi | Đạt | Nút "Tiếp tục" vô hiệu khi chưa chọn chỗ; gợi ý "Chọn tối đa 5 chỗ"; chỗ không chọn được không bấm được | Giao diện không chặn chọn chỗ thứ 6 để luồng 4b còn đến được; hệ thống chặn bằng MSG-03 |
+| SCR-02 | Nielsen 9 Giúp nhận biết, chẩn đoán, khắc phục lỗi | Đạt | MSG-02, MSG-03, MSG-04 nêu điều sai và việc cần làm; MSG-03 giữ các chỗ đã chọn | - |
+| SCR-02 | WCAG 1.4.1 Không dùng màu làm tín hiệu duy nhất | Đạt | Ba trạng thái chỗ khác nhau bằng viền, biểu tượng (dấu tick, gạch chéo) và chú giải chữ | - |
+| SCR-02 | WCAG 1.4.11 Tương phản thành phần | Đạt | Viền chỗ trống #1F4E8C 2 px trên trắng 8,31:1; viền chỗ không chọn được #6B7280 trên nền ô #D5DAE0 là 3,44:1; chữ mã chỗ #52606D trên #D5DAE0 là 4,59:1 | - |
+| SCR-02 | WCAG 2.1.1 Bàn phím | Đạt | Lưới chỗ một điểm dừng Tab, mũi tên di chuyển, Space chọn (UI-STT 41) | - |
+| SCR-02 | WCAG 2.5.8 Vùng bấm tối thiểu | Đạt | Ô chỗ 44 x 44 px, khoảng cách 8 px | - |
+| SCR-02 | WCAG 4.1.3 Thông điệp trạng thái | Đạt | "Đã chọn" và MSG-03 khai báo role; MSG-02, MSG-04, MSG-14 là hộp modal giữ tiêu điểm | - |
+| SCR-02 | Baymard: giữ nguyên dữ liệu đã nhập khi báo lỗi | Đạt | MSG-03 và MSG-14 giữ nguyên các chỗ đã chọn | - |
+| SCR-02 | Các tiêu chí còn lại | Đạt | Đạt theo ui-standards.md STT 1 đến 17, 18, 19, 27, 32, 34 đến 37, 39, 40, 43 đến 45, 47 đến 49, 53, 57 đến 64 | - |
+| SCR-03 | Nielsen 1 Hiển thị trạng thái hệ thống | Đạt | Thời hạn giữ chỗ và thời gian còn lại luôn hiển thị; MSG-13 khi xử lý thanh toán | - |
+| SCR-03 | Nielsen 3 Người dùng kiểm soát và tự do | Đạt | Có "Huỷ yêu cầu mua vé" và mục "Trang chủ" trả chỗ ngay; không có nút "Quay lại" SCR-02 vì đặc tả không có dịch chuyển lùi từ bước 6 | - |
+| SCR-03 | Nielsen 5 Ngăn lỗi | Vi phạm còn mở | Mục "Trang chủ" và "Huỷ yêu cầu mua vé" trả chỗ ngay không qua xác nhận, hành khách bấm nhầm sẽ mất chỗ đã giữ | Q-71; chưa thêm hộp xác nhận vì đặc tả không có |
+| SCR-03 | Nielsen 6 Nhận biết thay vì nhớ lại | Vi phạm còn mở | Tóm tắt có tuyến, giờ xuất bến, chỗ nhưng không có giá vé và tổng tiền vì P04 chưa có dữ liệu này trước bước 12 | Q-70 |
+| SCR-03 | Nielsen 9 Giúp nhận biết, chẩn đoán, khắc phục lỗi | Đạt | MSG-05, MSG-06 ngay dưới ô, nói rõ việc cần làm; MSG-15 nêu số trường cần sửa | - |
+| SCR-03 | WCAG 1.4.1 Không dùng màu làm tín hiệu duy nhất | Đạt | Lỗi có biểu tượng và tiền tố "Lỗi:"; trường bắt buộc ghi "(bắt buộc)" bằng chữ | - |
+| SCR-03 | WCAG 2.2.1 Điều chỉnh thời gian | Đạt | Thời hạn 10 phút do BR-03 quy định nên không cho kéo dài (ngoại lệ thiết yếu); thời gian còn lại hiển thị, trình đọc màn hình được báo ở ba mốc (MSG-16) | - |
+| SCR-03 | WCAG 3.3.1 Nhận biết lỗi | Đạt | Lỗi hiện bằng chữ cạnh ô, gắn aria-describedby, kèm banner MSG-15 khi có từ hai lỗi | - |
+| SCR-03 | WCAG 3.3.2 Nhãn hoặc hướng dẫn | Đạt | Nhãn luôn hiển thị, gắn for; gợi ý ví dụ nằm dưới nhãn, không dùng placeholder thay nhãn | - |
+| SCR-03 | WCAG 3.3.4 Ngăn lỗi với dữ liệu tài chính | Vi phạm còn mở | Hành khách sang bước thanh toán mà chưa thấy tổng tiền trên màn hình này | Q-70; tổng tiền được xác nhận ở màn hình thanh toán của UC-010 |
+| SCR-03 | WCAG 3.3.7 Không bắt nhập lại | Đạt | Họ tên và số điện thoại chỉ nhập một lần cho cả lần đặt (ASM-19); MSG-14 giữ dữ liệu | - |
+| SCR-03 | WCAG 4.1.3 Thông điệp trạng thái | Đạt | Mốc còn 5 phút, 1 phút, 30 giây thông báo bằng role status; MSG-15 và lỗi trường khai báo role alert | - |
+| SCR-03 | Baymard: form một cột, nhãn trên ô, đánh dấu bắt buộc | Đạt | Hai ô một cột, nhãn trên ô, ghi "(bắt buộc)" | - |
+| SCR-03 | Baymard: giảm số trường tới mức đặc tả yêu cầu | Đạt | Chỉ có hai ô của Dữ liệu vào 2; không có tài khoản, không có trường thẻ | - |
+| SCR-03 | Baymard: hiển thị tóm tắt đơn và tổng tiền | Vi phạm còn mở | Chỉ có tóm tắt chuyến và chỗ, chưa có giá vé và tổng tiền | Q-70 |
+| SCR-03 | Các tiêu chí còn lại | Đạt | Đạt theo ui-standards.md STT 1 đến 17, 18, 19, 22, 27 đến 33, 34 đến 37, 39, 40, 43 đến 45, 47 đến 55, 57 đến 64, 69 | - |
+| SCR-04 | Nielsen 1 Hiển thị trạng thái hệ thống | Đạt | Tiêu đề "Vé đã phát hành" và bảng mã vé cho hành khách biết kết quả | - |
+| SCR-04 | Nielsen 2 Khớp giữa hệ thống và thế giới thực | Đạt | Dùng "vé", "mã vé", "chỗ", "người đi" theo glossary; tiền ghi "250.000 đ" | - |
+| SCR-04 | Nielsen 9 Giúp nhận biết, chẩn đoán, khắc phục lỗi | Vi phạm còn mở | Khi SMS mã vé không gửi được (luồng 11a), màn hình không báo cho hành khách nên hành khách có thể chờ SMS không bao giờ đến | Q-67; chưa thêm dòng thông tin vì đặc tả không nêu |
+| SCR-04 | WCAG 1.3.1 Thông tin và quan hệ | Đạt | Bảng vé dùng th có scope; dòng tổng tiền có nhãn "Tổng tiền" | - |
+| SCR-04 | WCAG 3.2.4 Định danh nhất quán | Đạt | Nút "Về trang chủ" cùng nhãn và cùng đích với mục "Trang chủ" | - |
+| SCR-04 | WCAG 1.4.10 Reflow | Đạt | Bảng chuyển thành thẻ dưới 600 px (UI-STT 25) | - |
+| SCR-04 | Các tiêu chí còn lại | Đạt | Đạt theo ui-standards.md STT 1 đến 17, 18, 27, 32, 33 đến 37, 45, 47, 49, 53, 57 đến 64 | - |
+| SCR-06 | Nielsen 1 Hiển thị trạng thái hệ thống | Đạt | Cột "Trạng thái" cho biết chuyến Chưa huỷ hay Đã huỷ ngay trên danh sách | - |
+| SCR-06 | Nielsen 3 Người dùng kiểm soát và tự do | Đạt | "Bỏ yêu cầu huỷ chuyến" và "Trang chủ" thoát không thay đổi dữ liệu; xác nhận ở SCR-07 có "Không huỷ" | - |
+| SCR-06 | Nielsen 5 Ngăn lỗi | Đạt | Nút "Tiếp tục huỷ chuyến" vô hiệu tới khi chọn đủ chuyến và lý do; lý do không chọn sẵn; thao tác huỷ phải qua SCR-07 | Chuyến đã huỷ hoặc đã xuất bến vẫn chọn được vì luồng 4a, 4b của đặc tả |
+| SCR-06 | Nielsen 6 Nhận biết thay vì nhớ lại | Đạt | Mỗi dòng hiển thị đủ tuyến, giờ, xe, tài xế, trạng thái để nhận biết chuyến | - |
+| SCR-06 | Nielsen 7 Linh hoạt và hiệu quả | Vi phạm còn mở | Khoảng 80 chuyến mỗi ngày (nguồn mục mở đầu) nên lịch chạy một tuần có hàng trăm dòng, chỉ có phân trang 20 dòng, không có lọc theo ngày hoặc tuyến | Q-72; chưa thêm bộ lọc vì đặc tả không có |
+| SCR-06 | Nielsen 9 Giúp nhận biết, chẩn đoán, khắc phục lỗi | Đạt | MSG-10, MSG-11 nêu chuyến nào, vì sao không huỷ được và việc cần làm; làm mới danh sách | - |
+| SCR-06 | WCAG 1.3.1 Thông tin và quan hệ | Đạt | Bảng dùng th có scope; nhóm lý do dùng fieldset và legend | - |
+| SCR-06 | WCAG 1.4.1 Không dùng màu làm tín hiệu duy nhất | Đạt | Trạng thái "Đã huỷ" có chữ và biểu tượng; dòng được chọn có nút chọn đánh dấu | - |
+| SCR-06 | WCAG 1.4.10 Reflow | Đạt | Bảng chuyển thành thẻ dưới 600 px, kể cả khi phóng to 400% trên máy tính bàn | - |
+| SCR-06 | WCAG 2.4.3 Thứ tự tiêu điểm | Đạt | Thứ tự Tab: thanh trên, banner, bảng, nhóm lý do, nút hành động (UI-STT 32) | - |
+| SCR-06 | WCAG 3.3.2 Nhãn hoặc hướng dẫn | Đạt | Nhóm lý do có nhãn "(bắt buộc)"; mỗi nút chọn có nhãn đọc được | - |
+| SCR-06 | WCAG 3.3.7 Không bắt nhập lại | Đạt | MSG-10, MSG-11, MSG-14 giữ nguyên lý do đã chọn | - |
+| SCR-06 | Các tiêu chí còn lại | Đạt | Đạt theo ui-standards.md STT 2, 4 đến 17, 18, 19, 23, 27, 28, 32 đến 37, 39, 40, 43 đến 45, 47 đến 55, 57 đến 64 | - |
+| SCR-07 | Nielsen 1 Hiển thị trạng thái hệ thống | Đạt | MSG-13 khi xử lý; không đóng hộp cho tới khi có kết quả | - |
+| SCR-07 | Nielsen 2 Khớp giữa hệ thống và thế giới thực | Đạt | Nhãn nút đặt theo hành động: "Xác nhận huỷ chuyến", "Không huỷ" | - |
+| SCR-07 | Nielsen 3 Người dùng kiểm soát và tự do | Đạt | "Không huỷ" và Esc đóng hộp không thay đổi dữ liệu | - |
+| SCR-07 | Nielsen 4 Nhất quán và theo chuẩn | Vi phạm đã sửa | Bản đầu cho MSG-14 hiện chồng lên hộp xác nhận (hai hộp modal lồng nhau) | Đóng SCR-07 trước, hiển thị MSG-14 tại SCR-06 (chức năng 4) |
+| SCR-07 | Nielsen 5 Ngăn lỗi | Đạt | Thao tác không hoàn tác có hộp xác nhận riêng nêu lại chuyến, lý do, hệ quả; tiêu điểm đầu ở nút an toàn; Enter không kích hoạt nút nguy hiểm | - |
+| SCR-07 | WCAG 1.4.1 Không dùng màu làm tín hiệu duy nhất | Đạt | Tiêu đề hộp có biểu tượng và tiền tố "Cảnh báo:"; nút nguy hiểm khác nút phụ bằng nhãn | - |
+| SCR-07 | WCAG 1.4.3 Tương phản chữ tối thiểu | Đạt | Chữ trắng trên #B3261E 6,54:1; cảnh báo #7A4A00 trên #FFF4D6 6,83:1 | - |
+| SCR-07 | WCAG 2.4.3 Thứ tự tiêu điểm | Đạt | Tiêu điểm vào "Không huỷ", giữ trong hộp, trả về nút "Tiếp tục huỷ chuyến" khi đóng | - |
+| SCR-07 | WCAG 3.3.4 Ngăn lỗi với dữ liệu pháp lý, tài chính | Đạt | Việc huỷ gây hoàn tiền phải xác nhận trước khi gửi, hệ quả nêu bằng chữ | - |
+| SCR-07 | WCAG 4.1.3 Thông điệp trạng thái | Đạt | Hộp khai báo role alertdialog; MSG-13 khai báo role status | - |
+| SCR-07 | Các tiêu chí còn lại | Đạt | Đạt theo ui-standards.md STT 2, 4 đến 17, 18, 19, 20, 27, 32, 33, 39, 40, 43 đến 45, 47, 53, 57 đến 68 | - |
+| SCR-08 | Nielsen 1 Hiển thị trạng thái hệ thống | Đạt | Màn hình kết quả nêu đủ bảy dữ liệu ra: số vé huỷ, SMS đã và chưa báo, hoàn tiền đã và chưa được, vé chờ hoàn tiền mặt | - |
+| SCR-08 | Nielsen 4 Nhất quán và theo chuẩn | Đạt | Cùng bố cục mục chi tiết chỉ đọc (nhãn trên hoặc trái, giá trị đậm) và nút "Về trang chủ" như SCR-04 | - |
+| SCR-08 | Nielsen 9 Giúp nhận biết, chẩn đoán, khắc phục lỗi | Vi phạm còn mở | Khi có số điện thoại chưa báo được hoặc vé chưa hoàn được, màn hình nêu danh sách nhưng không nêu cách xử lý tiếp vì cơ chế xử lý lại chưa quy định | Q-49, Q-50 (P04 UC-017) |
+| SCR-08 | WCAG 1.4.1 Không dùng màu làm tín hiệu duy nhất | Vi phạm đã sửa | Bản đầu chỉ tô nền vàng cho dòng "Số điện thoại chưa báo được" và "Vé chưa hoàn được" khi có giá trị | Thêm biểu tượng và tiền tố chữ "Cảnh báo:" (UI-STT 17) |
+| SCR-08 | WCAG 1.4.3 Tương phản chữ tối thiểu | Đạt | Chữ cảnh báo #7A4A00 trên #FFF4D6 6,83:1 | - |
+| SCR-08 | WCAG 1.3.1 Thông tin và quan hệ | Đạt | Mỗi nhóm kết quả là danh sách mô tả (dt, dd) có tiêu đề nhóm cấp dưới không nhảy cấp | - |
+| SCR-08 | WCAG 4.1.3 Thông điệp trạng thái | Đạt | Vùng kết quả khai báo role status để trình đọc màn hình đọc kết quả khi mở màn hình, tiêu điểm vẫn ở tiêu đề | - |
+| SCR-08 | Các tiêu chí còn lại | Đạt | Đạt theo ui-standards.md STT 2, 4 đến 17, 18, 27, 32 đến 37, 45, 47, 49, 53, 57 đến 64 | - |
+| Tất cả (SCR-02, 03, 04, 06, 07, 08) | Shneiderman: nhất quán | Đạt | Cả sáu màn hình dùng chung bố cục vùng, vị trí nút (nút chính bên phải, nút phụ bên trái), thanh trên và nhãn nút theo UI-STT 7, 8, 10, 34 | - |
+| Tất cả (SCR-02, 03, 04, 06, 07, 08) | Shneiderman: khả dụng cho mọi người dùng | Đạt | Hành khách không cần tài khoản (NFR-02); hai nhóm thiết bị theo UI-STT 1, 2; tương phản và bàn phím theo UI-STT 57 đến 64 | - |
+| Tất cả (SCR-02, 03, 04, 06, 07, 08) | Shneiderman: phản hồi đầy đủ | Đạt | SCR-02, SCR-03, SCR-07 có MSG-13 khi xử lý; mọi lỗi nghiệp vụ có MSG; SCR-04 và SCR-08 là màn hình kết quả | - |
+| Tất cả (SCR-02, 03, 04, 06, 07, 08) | Shneiderman: hội thoại có điểm kết thúc rõ | Đạt | UC-009 kết thúc ở SCR-04 hoặc hộp MSG-04, MSG-07, MSG-08 và về SCR-01; UC-017 kết thúc ở SCR-08 hoặc MSG-12 và về SCR-05 | - |
+| Tất cả (SCR-02, 03, 04, 06, 07, 08) | Shneiderman: ngăn lỗi | Đạt | Nút chính vô hiệu khi thiếu lựa chọn bắt buộc (SCR-02, SCR-06); xác nhận riêng cho huỷ chuyến (SCR-07) | SCR-03 còn thiếu xác nhận khi rời bằng menu (Q-71) |
+| Tất cả (SCR-02, 03, 04, 06, 07, 08) | Shneiderman: hoàn tác dễ dàng | Đạt | Không có chức năng hoàn tác trong đặc tả (UI-STT 68); lối thoát trước khi gửi: SCR-02, SCR-03 (Huỷ yêu cầu mua vé), SCR-06, SCR-07 (Không huỷ) | Không thêm chức năng |
+| Tất cả (SCR-02, 03, 04, 06, 07, 08) | Shneiderman: người dùng làm chủ | Đạt | Mọi thao tác do người dùng khởi phát; Esc và nút thoát ở màn hình có lối thoát | - |
+| Tất cả (SCR-02, 03, 04, 06, 07, 08) | Shneiderman: giảm tải trí nhớ ngắn hạn | Vi phạm còn mở | SCR-03 không hiển thị giá vé và tổng tiền ở bước ngay trước thanh toán (Q-70); các màn hình khác hiển thị đủ chuyến và chỗ | Q-70 |
 
 ## Câu hỏi mở
 
@@ -86,6 +163,8 @@ Chưa lập. Bảng này được lập ở lần chạy giai đoạn 2 cuối c
 | Không có | - | - | - |
 
 ASM-49 (kèm Q-66) và ASM-50 của lần chạy này ghi ở screen-transition.md.
+
+Q-70, Q-71 và ASM-52, ASM-53 của giai đoạn 2 ghi ở SCR-03-enter-traveler-info.md; Q-72 và ASM-54 ghi ở SCR-06-select-trip-to-cancel.md.
 
 ## Đề xuất sửa artifact trước
 
