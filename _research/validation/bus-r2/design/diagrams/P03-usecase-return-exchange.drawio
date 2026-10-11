@@ -1,0 +1,79 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="P03-usecase-return-exchange" name="Trả vé và đổi vé">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="990" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="SYS" value="Hệ thống bán vé xe khách SaoViet Bus" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=none;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="40" width="600" height="580" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-01" value="Hành khách" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="160" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-02" value="Nhân viên bán vé" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="310" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-06" value="«system»&lt;br&gt;Cổng thanh toán" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="60" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-07" value="«system»&lt;br&gt;Cổng SMS" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="160" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT-08" value="«device»&lt;br&gt;Máy in vé" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="510" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-012" value="Trả vé" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="100" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-014" value="Đổi vé trực tuyến&lt;hr&gt;extension points&lt;br&gt;Thu phần chênh lệch" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="210" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-010" value="Thanh toán vé trực tuyến" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="400" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-015" value="Đổi vé tại quầy" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="510" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UC-008" value="Tra cứu chuyến xe" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="440" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="N-01" value="Condition: {vé mới đắt hơn vé cũ}&lt;br&gt;extension point: Thu phần chênh lệch" style="shape=note;whiteSpace=wrap;html=1;size=14;" vertex="1" parent="1">
+          <mxGeometry x="520" y="260" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-20" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-012">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-21" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-02" target="UC-012">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-22" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-06" target="UC-012">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-23" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-01" target="UC-014">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-24" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-07" target="UC-014">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-25" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-02" target="UC-015">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-26" style="endArrow=none;html=1;" edge="1" parent="1" source="ACT-08" target="UC-015">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-46" value="«include»" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1" source="UC-014" target="UC-008">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-47" value="«include»" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1" source="UC-015" target="UC-008">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-48" value="«extend»" style="endArrow=open;dashed=1;html=1;" edge="1" parent="1" source="UC-010" target="UC-014">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RL-48-N" style="endArrow=none;dashed=1;html=1;" edge="1" parent="1" source="N-01" target="RL-48">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
