@@ -26,6 +26,9 @@ Ngoài phạm vi: bố cục, định tuyến cạnh và độ dễ đọc của
 | P04 UC-017 | Sonnet | UC_ID = UC-017; còn lại Không có | P04-uc-specs/UC-017-cancel-trip.md, _BR-register.md, diagrams/P04-activity-UC-017 | 14 bước chính, 7 luồng thay thế, BR-07..BR-11, Q-46..Q-50, ASM-25..ASM-33; phiên bị ngắt do hết hạn mức khi đã ghi artifact, được cho làm tiếp để tự kiểm và ghi nhật ký |
 | P05 | Sonnet | NGUON_THUAT_NGU_CHUAN = Không có; YEU_CAU_BO_SUNG nêu phạm vi hai đặc tả UC-009, UC-017 | P05-glossary.md | 28 GL, 20 ứng viên loại, không có Q, ASM mới; khoảng 10 phút |
 | P06 | Sonnet | MO_HINH_CHAT_LUONG = Không có; YEU_CAU_BO_SUNG nêu phạm vi hai đặc tả | P06-supplementary-spec.md, _BR-register.md | 14 NFR, 26 BR (BR-12..BR-26 mới), Q-51..Q-54, ASM-34..ASM-38; chạy sau P05; khoảng 9 phút |
+| P07 UC-009 | Sonnet | UC_ID = UC-009 Đặt vé trực tuyến; LUONG_CAN_VE, YEU_CAU_BO_SUNG = Không có | P07-uc-analysis/UC-009-book-ticket-online-analysis.md; diagrams/P07-sequence/communication/class-UC-009 | 10 lớp (2 control tạm cho UC-008, UC-010), 46 message, 4 trang sequence (SD1a..SD1c, SD2), 12 quan hệ; Q-55..Q-57, ASM-39..ASM-41; khoảng 18 phút |
+| P07 UC-017 | Sonnet | UC_ID = UC-017 Huỷ chuyến; còn lại Không có | P07-uc-analysis/UC-017-cancel-trip-analysis.md; 3 file .drawio | 7 lớp (tái dùng Trip, Ticket, SmsGateway), 30 message, 2 trang sequence, 8 quan hệ; Q-58, ASM-42; người chạy tự khai đọc thêm một phần file P07 UC-009 ngoài mục được phép; khoảng 16 phút |
+| P08 | Sonnet | CACH_CHIA_VIEW = Không có; YEU_CAU_BO_SUNG nêu phạm vi UC-009, UC-017 | P08-analysis-model.md; diagrams/P08-class-analysis (3 trang) | 14 lớp (4 B, 4 C, 6 E), R-01..R-22, F2 17 dòng, F2a 15 dòng, Q-59..Q-61, ASM-43, ASM-44; khoảng 12 phút |
 
 ## 2. Nhật ký phát hiện
 

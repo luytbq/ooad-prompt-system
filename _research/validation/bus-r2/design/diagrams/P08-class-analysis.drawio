@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="24.0.0">
+  <diagram id="P08-page-1" name="Entity">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1120" pageHeight="1060" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="AC-E-Booking" value="«entity»&lt;br&gt;Booking" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="280" height="350" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Booking__attrs" value="trip&lt;br&gt;seatCodes&lt;br&gt;status&lt;br&gt;holdStartedAt&lt;br&gt;holdExpiry&lt;br&gt;travelerName&lt;br&gt;travelerPhone&lt;br&gt;seatFare" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Booking">
+          <mxGeometry y="40" width="280" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Booking__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Booking">
+          <mxGeometry y="200" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Booking__resp" value="// createBooking&lt;br&gt;// checkSeatCountWithinLimit&lt;br&gt;// holdSeats&lt;br&gt;// recordTravelerInfo&lt;br&gt;// calculateTotalAmount&lt;br&gt;// releaseHeldSeats&lt;br&gt;// issueTickets" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Booking">
+          <mxGeometry y="210" width="280" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Seat" value="«entity»&lt;br&gt;Seat" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="40" width="280" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Seat__attrs" value="seatCode&lt;br&gt;tripState" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Seat">
+          <mxGeometry y="40" width="280" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Seat__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Seat">
+          <mxGeometry y="80" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Seat__resp" value="// checkAvailable&lt;br&gt;// markHeld&lt;br&gt;// markSold&lt;br&gt;// markAvailable" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Seat">
+          <mxGeometry y="90" width="280" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Trip" value="«entity»&lt;br&gt;Trip" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="40" width="280" height="270" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Trip__attrs" value="departureTime&lt;br&gt;route&lt;br&gt;vehicleType&lt;br&gt;status&lt;br&gt;cancelReason&lt;br&gt;vehicle&lt;br&gt;driver" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Trip">
+          <mxGeometry y="40" width="280" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Trip__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Trip">
+          <mxGeometry y="180" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Trip__resp" value="// checkDepartureNotReached&lt;br&gt;// listTripsInSchedule&lt;br&gt;// checkNotCancelled&lt;br&gt;// cancelTrip" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Trip">
+          <mxGeometry y="190" width="280" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction" value="«entity»&lt;br&gt;PaymentTransaction" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="490" width="280" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__attrs" value="transactionCode&lt;br&gt;collectedAmount&lt;br&gt;refundedAmount" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-PaymentTransaction">
+          <mxGeometry y="40" width="280" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-PaymentTransaction">
+          <mxGeometry y="100" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__resp" value="// recordRefund" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-PaymentTransaction">
+          <mxGeometry y="110" width="280" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Ticket" value="«entity»&lt;br&gt;Ticket" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="490" width="280" height="490" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Ticket__attrs" value="ticketCode&lt;br&gt;travelerName&lt;br&gt;travelerPhone&lt;br&gt;fare&lt;br&gt;purchaseChannel&lt;br&gt;status&lt;br&gt;smsStatus&lt;br&gt;paymentStatus&lt;br&gt;refundStatus&lt;br&gt;cancelNoticeStatus&lt;br&gt;refundAttemptStatus" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Ticket">
+          <mxGeometry y="40" width="280" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Ticket__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Ticket">
+          <mxGeometry y="260" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Ticket__resp" value="// createTicket&lt;br&gt;// generateTicketCode&lt;br&gt;// recordSmsNotSent&lt;br&gt;// cancelTicketsOfTrip&lt;br&gt;// groupTicketCodesByTravelerPhone&lt;br&gt;// recordCancelNoticeNotSent&lt;br&gt;// selectOnlineTicketsToRefund&lt;br&gt;// calculateRefundAmount&lt;br&gt;// markRefunded&lt;br&gt;// recordRefundNotCompleted&lt;br&gt;// summarizeTripCancellation" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Ticket">
+          <mxGeometry y="270" width="280" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Fare" value="«entity»&lt;br&gt;Fare" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="490" width="280" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Fare__attrs" value="route&lt;br&gt;vehicleType&lt;br&gt;amount&lt;br&gt;surchargePercent" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Fare">
+          <mxGeometry y="40" width="280" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Fare__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Fare">
+          <mxGeometry y="120" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Fare__resp" value="// determineFare" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Fare">
+          <mxGeometry y="130" width="280" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=1;exitY=0;exitDx=0;exitDy=60;entryX=0;entryY=0;entryDx=0;entryDy=60;" edge="1" parent="1" source="AC-E-Booking" target="AC-E-Seat">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-10__ma" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-10">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-10__mb" value="1..5" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-10">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=30;exitDy=0;entryX=0;entryY=0;entryDx=30;entryDy=0;" edge="1" parent="1" source="AC-E-Booking" target="AC-E-Ticket">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="70" y="420"/>
+              <mxPoint x="430" y="420"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-11__ma" value="0..1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-11">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-11__mb" value="0..5" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-11">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=250;exitDy=0;entryX=0;entryY=1;entryDx=30;entryDy=0;" edge="1" parent="1" source="AC-E-Booking" target="AC-E-Trip">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="290" y="430"/>
+              <mxPoint x="790" y="430"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-12__ma" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-12">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-12__mb" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-12">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0;exitDx=250;exitDy=0;entryX=0;entryY=1;entryDx=250;entryDy=0;" edge="1" parent="1" source="AC-E-Ticket" target="AC-E-Trip">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="440"/>
+              <mxPoint x="1010" y="440"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-19__ma" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-19">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-19__mb" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-19">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0;exitDx=0;exitDy=60;entryX=1;entryY=0;entryDx=0;entryDy=60;" edge="1" parent="1" source="AC-E-Ticket" target="AC-E-PaymentTransaction">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-20__ma" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-20">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-20__mb" value="0..1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-20">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=1;exitY=0;exitDx=0;exitDy=60;entryX=0;entryY=0;entryDx=0;entryDy=60;" edge="1" parent="1" source="AC-E-Seat" target="AC-E-Trip">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-21__ma" value="1..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-21">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-21__mb" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-21">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0;exitDx=140;exitDy=0;entryX=0;entryY=1;entryDx=140;entryDy=0;" edge="1" parent="1" source="AC-E-Ticket" target="AC-E-Seat">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-22__ma" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-22">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-22__mb" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-22">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="P08-page-2" name="Đặt vé trực tuyến">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1840" pageHeight="1440" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="AC-B-BookTicketOnlineForm__V2" value="«boundary»&lt;br&gt;BookTicketOnlineForm" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="40" width="280" height="410" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-BookTicketOnlineForm__V2__attrs" value="selectedSeats&lt;br&gt;travelerName&lt;br&gt;travelerPhone&lt;br&gt;issuedTickets&lt;br&gt;totalAmount" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-B-BookTicketOnlineForm__V2">
+          <mxGeometry y="40" width="280" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-BookTicketOnlineForm__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-B-BookTicketOnlineForm__V2">
+          <mxGeometry y="140" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-BookTicketOnlineForm__V2__resp" value="// requestBookTicket&lt;br&gt;// selectSeats&lt;br&gt;// enterTravelerInfo&lt;br&gt;// cancelBooking&lt;br&gt;// notifyNoTripSelected&lt;br&gt;// notifySeatsUnavailable&lt;br&gt;// notifySeatLimitExceeded&lt;br&gt;// notifyTripDeparted&lt;br&gt;// notifyTravelerInfoMissing&lt;br&gt;// notifyPaymentFailed&lt;br&gt;// notifyHoldExpired&lt;br&gt;// notifyBookingCancelled&lt;br&gt;// showIssuedTickets" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-B-BookTicketOnlineForm__V2">
+          <mxGeometry y="150" width="280" height="260" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SmsGateway__V2" value="«boundary»&lt;br&gt;SmsGateway" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="40" width="280" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SmsGateway__V2__attrs" value="recipientPhone&lt;br&gt;ticketCodes&lt;br&gt;noticeContent" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-B-SmsGateway__V2">
+          <mxGeometry y="40" width="280" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SmsGateway__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-B-SmsGateway__V2">
+          <mxGeometry y="100" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SmsGateway__V2__resp" value="// sendTicketCodesBySms&lt;br&gt;// sendTripCancellationBySms" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-B-SmsGateway__V2">
+          <mxGeometry y="110" width="280" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-SearchTripsController__V2" value="«control»&lt;br&gt;SearchTripsController" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="540" width="280" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-SearchTripsController__V2__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-C-SearchTripsController__V2">
+          <mxGeometry y="40" width="280" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-SearchTripsController__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-C-SearchTripsController__V2">
+          <mxGeometry y="60" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-SearchTripsController__V2__resp" value="// searchTrips" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-C-SearchTripsController__V2">
+          <mxGeometry y="70" width="280" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-BookTicketOnlineController__V2" value="«control»&lt;br&gt;BookTicketOnlineController" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="540" width="280" height="210" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-BookTicketOnlineController__V2__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-C-BookTicketOnlineController__V2">
+          <mxGeometry y="40" width="280" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-BookTicketOnlineController__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-C-BookTicketOnlineController__V2">
+          <mxGeometry y="60" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-BookTicketOnlineController__V2__resp" value="// startBookTicketOnline&lt;br&gt;// processSeatSelection&lt;br&gt;// processTravelerInfo&lt;br&gt;// requestCancelBooking&lt;br&gt;// startWaitingForPaymentResult&lt;br&gt;// stopWaitingForPaymentResult&lt;br&gt;// handleHoldExpiry" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-C-BookTicketOnlineController__V2">
+          <mxGeometry y="70" width="280" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-PayTicketOnlineController__V2" value="«control»&lt;br&gt;PayTicketOnlineController" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="540" width="280" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-PayTicketOnlineController__V2__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-C-PayTicketOnlineController__V2">
+          <mxGeometry y="40" width="280" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-PayTicketOnlineController__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-C-PayTicketOnlineController__V2">
+          <mxGeometry y="60" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-PayTicketOnlineController__V2__resp" value="// payTicketOnline&lt;br&gt;// cancelPayment" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-C-PayTicketOnlineController__V2">
+          <mxGeometry y="70" width="280" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Fare__V2" value="«entity»&lt;br&gt;Fare" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="870" width="280" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Fare__V2__attrs" value="route&lt;br&gt;vehicleType&lt;br&gt;amount&lt;br&gt;surchargePercent" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Fare__V2">
+          <mxGeometry y="40" width="280" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Fare__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Fare__V2">
+          <mxGeometry y="120" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Fare__V2__resp" value="// determineFare" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Fare__V2">
+          <mxGeometry y="130" width="280" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Trip__V2" value="«entity»&lt;br&gt;Trip" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="870" width="280" height="270" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Trip__V2__attrs" value="departureTime&lt;br&gt;route&lt;br&gt;vehicleType&lt;br&gt;status&lt;br&gt;cancelReason&lt;br&gt;vehicle&lt;br&gt;driver" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Trip__V2">
+          <mxGeometry y="40" width="280" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Trip__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Trip__V2">
+          <mxGeometry y="180" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Trip__V2__resp" value="// checkDepartureNotReached&lt;br&gt;// listTripsInSchedule&lt;br&gt;// checkNotCancelled&lt;br&gt;// cancelTrip" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Trip__V2">
+          <mxGeometry y="190" width="280" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Seat__V2" value="«entity»&lt;br&gt;Seat" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="870" width="280" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Seat__V2__attrs" value="seatCode&lt;br&gt;tripState" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Seat__V2">
+          <mxGeometry y="40" width="280" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Seat__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Seat__V2">
+          <mxGeometry y="80" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Seat__V2__resp" value="// checkAvailable&lt;br&gt;// markHeld&lt;br&gt;// markSold&lt;br&gt;// markAvailable" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Seat__V2">
+          <mxGeometry y="90" width="280" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Booking__V2" value="«entity»&lt;br&gt;Booking" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="870" width="280" height="350" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Booking__V2__attrs" value="trip&lt;br&gt;seatCodes&lt;br&gt;status&lt;br&gt;holdStartedAt&lt;br&gt;holdExpiry&lt;br&gt;travelerName&lt;br&gt;travelerPhone&lt;br&gt;seatFare" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Booking__V2">
+          <mxGeometry y="40" width="280" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Booking__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Booking__V2">
+          <mxGeometry y="200" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Booking__V2__resp" value="// createBooking&lt;br&gt;// checkSeatCountWithinLimit&lt;br&gt;// holdSeats&lt;br&gt;// recordTravelerInfo&lt;br&gt;// calculateTotalAmount&lt;br&gt;// releaseHeldSeats&lt;br&gt;// issueTickets" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Booking__V2">
+          <mxGeometry y="210" width="280" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Ticket__V2" value="«entity»&lt;br&gt;Ticket" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="870" width="280" height="490" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Ticket__V2__attrs" value="ticketCode&lt;br&gt;travelerName&lt;br&gt;travelerPhone&lt;br&gt;fare&lt;br&gt;purchaseChannel&lt;br&gt;status&lt;br&gt;smsStatus&lt;br&gt;paymentStatus&lt;br&gt;refundStatus&lt;br&gt;cancelNoticeStatus&lt;br&gt;refundAttemptStatus" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Ticket__V2">
+          <mxGeometry y="40" width="280" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Ticket__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Ticket__V2">
+          <mxGeometry y="260" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Ticket__V2__resp" value="// createTicket&lt;br&gt;// generateTicketCode&lt;br&gt;// recordSmsNotSent&lt;br&gt;// cancelTicketsOfTrip&lt;br&gt;// groupTicketCodesByTravelerPhone&lt;br&gt;// recordCancelNoticeNotSent&lt;br&gt;// selectOnlineTicketsToRefund&lt;br&gt;// calculateRefundAmount&lt;br&gt;// markRefunded&lt;br&gt;// recordRefundNotCompleted&lt;br&gt;// summarizeTripCancellation" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Ticket__V2">
+          <mxGeometry y="270" width="280" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-01__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=140;exitDy=0;entryX=0;entryY=0;entryDx=30;entryDy=0;" edge="1" parent="1" source="AC-B-BookTicketOnlineForm__V2" target="AC-C-BookTicketOnlineController__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="480"/>
+              <mxPoint x="870" y="480"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-02__V2" value="«include»" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;exitX=0;exitY=0;exitDx=0;exitDy=60;entryX=1;entryY=0;entryDx=0;entryDy=60;" edge="1" parent="1" source="AC-C-BookTicketOnlineController__V2" target="AC-C-SearchTripsController__V2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-03__V2" value="«include»" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;exitX=1;exitY=0;exitDx=0;exitDy=60;entryX=0;entryY=0;entryDx=0;entryDy=60;" edge="1" parent="1" source="AC-C-BookTicketOnlineController__V2" target="AC-C-PayTicketOnlineController__V2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-04__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=90;exitDy=0;entryX=0;entryY=0;entryDx=140;entryDy=0;" edge="1" parent="1" source="AC-C-BookTicketOnlineController__V2" target="AC-E-Trip__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="780"/>
+              <mxPoint x="540" y="780"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-05__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=140;exitDy=0;entryX=0;entryY=0;entryDx=140;entryDy=0;" edge="1" parent="1" source="AC-C-BookTicketOnlineController__V2" target="AC-E-Seat__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="790"/>
+              <mxPoint x="900" y="790"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-06__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=40;exitDy=0;entryX=0;entryY=0;entryDx=140;entryDy=0;" edge="1" parent="1" source="AC-C-BookTicketOnlineController__V2" target="AC-E-Fare__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="880" y="800"/>
+              <mxPoint x="180" y="800"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-07__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=190;exitDy=0;entryX=0;entryY=0;entryDx=140;entryDy=0;" edge="1" parent="1" source="AC-C-BookTicketOnlineController__V2" target="AC-E-Booking__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1030" y="810"/>
+              <mxPoint x="1260" y="810"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-08__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=240;exitDy=0;entryX=0;entryY=0;entryDx=140;entryDy=0;" edge="1" parent="1" source="AC-C-BookTicketOnlineController__V2" target="AC-E-Ticket__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="820"/>
+              <mxPoint x="1620" y="820"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-09__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0;exitDx=250;exitDy=0;entryX=0;entryY=1;entryDx=140;entryDy=0;" edge="1" parent="1" source="AC-C-BookTicketOnlineController__V2" target="AC-B-SmsGateway__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1090" y="490"/>
+              <mxPoint x="1420" y="490"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-10__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0;exitDx=0;exitDy=60;entryX=1;entryY=0;entryDx=0;entryDy=60;" edge="1" parent="1" source="AC-E-Booking__V2" target="AC-E-Seat__V2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-10__V2__ma" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-10__V2">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-10__V2__mb" value="1..5" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-10__V2">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-11__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=1;exitY=0;exitDx=0;exitDy=60;entryX=0;entryY=0;entryDx=0;entryDy=60;" edge="1" parent="1" source="AC-E-Booking__V2" target="AC-E-Ticket__V2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-11__V2__ma" value="0..1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-11__V2">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-11__V2__mb" value="0..5" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-11__V2">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-12__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=140;exitDy=0;entryX=0;entryY=1;entryDx=30;entryDy=0;" edge="1" parent="1" source="AC-E-Booking__V2" target="AC-E-Trip__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1260" y="1390"/>
+              <mxPoint x="430" y="1390"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-12__V2__ma" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-12__V2">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-12__V2__mb" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-12__V2">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-21__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0;exitDx=0;exitDy=60;entryX=1;entryY=0;entryDx=0;entryDy=60;" edge="1" parent="1" source="AC-E-Seat__V2" target="AC-E-Trip__V2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-21__V2__ma" value="1..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-21__V2">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-21__V2__mb" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-21__V2">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-22__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=250;exitDy=0;entryX=0;entryY=1;entryDx=140;entryDy=0;" edge="1" parent="1" source="AC-E-Ticket__V2" target="AC-E-Seat__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1730" y="1400"/>
+              <mxPoint x="900" y="1400"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-22__V2__ma" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-22__V2">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-22__V2__mb" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-22__V2">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-19__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=30;exitDy=0;entryX=0;entryY=1;entryDx=250;entryDy=0;" edge="1" parent="1" source="AC-E-Ticket__V2" target="AC-E-Trip__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1510" y="1410"/>
+              <mxPoint x="650" y="1410"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-19__V2__ma" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-19__V2">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-19__V2__mb" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-19__V2">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="P08-page-3" name="Lịch chạy và chuyến">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1120" pageHeight="1250" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="AC-B-CancelTripForm__V3" value="«boundary»&lt;br&gt;CancelTripForm" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="280" height="290" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-CancelTripForm__V3__attrs" value="scheduledTrips&lt;br&gt;selectedTrip&lt;br&gt;cancelReason&lt;br&gt;cancellationResult" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-B-CancelTripForm__V3">
+          <mxGeometry y="40" width="280" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-CancelTripForm__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-B-CancelTripForm__V3">
+          <mxGeometry y="120" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-CancelTripForm__V3__resp" value="// requestCancelTrip&lt;br&gt;// showScheduledTrips&lt;br&gt;// selectTripAndReason&lt;br&gt;// notifyTripAlreadyCancelled&lt;br&gt;// notifyTripDeparted&lt;br&gt;// abortCancelTrip&lt;br&gt;// notifyCancelTripAborted&lt;br&gt;// showCancellationResult" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-B-CancelTripForm__V3">
+          <mxGeometry y="130" width="280" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SmsGateway__V3" value="«boundary»&lt;br&gt;SmsGateway" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="40" width="280" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SmsGateway__V3__attrs" value="recipientPhone&lt;br&gt;ticketCodes&lt;br&gt;noticeContent" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-B-SmsGateway__V3">
+          <mxGeometry y="40" width="280" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SmsGateway__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-B-SmsGateway__V3">
+          <mxGeometry y="100" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SmsGateway__V3__resp" value="// sendTicketCodesBySms&lt;br&gt;// sendTripCancellationBySms" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-B-SmsGateway__V3">
+          <mxGeometry y="110" width="280" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PaymentGateway__V3" value="«boundary»&lt;br&gt;PaymentGateway" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="40" width="280" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PaymentGateway__V3__attrs" value="transactionCode&lt;br&gt;ticketCode&lt;br&gt;refundAmount&lt;br&gt;refundResult" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-B-PaymentGateway__V3">
+          <mxGeometry y="40" width="280" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PaymentGateway__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-B-PaymentGateway__V3">
+          <mxGeometry y="120" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PaymentGateway__V3__resp" value="// requestTicketRefund" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-B-PaymentGateway__V3">
+          <mxGeometry y="130" width="280" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-CancelTripController__V3" value="«control»&lt;br&gt;CancelTripController" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="420" width="280" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-CancelTripController__V3__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-C-CancelTripController__V3">
+          <mxGeometry y="40" width="280" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-CancelTripController__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-C-CancelTripController__V3">
+          <mxGeometry y="60" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-CancelTripController__V3__resp" value="// startCancelTrip&lt;br&gt;// processTripCancellation&lt;br&gt;// requestAbortCancelTrip&lt;br&gt;// cancelOverdueReservationMark&lt;br&gt;// cancelPassengerListMark" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-C-CancelTripController__V3">
+          <mxGeometry y="70" width="280" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Trip__V3" value="«entity»&lt;br&gt;Trip" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="680" width="280" height="270" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Trip__V3__attrs" value="departureTime&lt;br&gt;route&lt;br&gt;vehicleType&lt;br&gt;status&lt;br&gt;cancelReason&lt;br&gt;vehicle&lt;br&gt;driver" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Trip__V3">
+          <mxGeometry y="40" width="280" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Trip__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Trip__V3">
+          <mxGeometry y="180" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Trip__V3__resp" value="// checkDepartureNotReached&lt;br&gt;// listTripsInSchedule&lt;br&gt;// checkNotCancelled&lt;br&gt;// cancelTrip" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Trip__V3">
+          <mxGeometry y="190" width="280" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Ticket__V3" value="«entity»&lt;br&gt;Ticket" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="680" width="280" height="490" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Ticket__V3__attrs" value="ticketCode&lt;br&gt;travelerName&lt;br&gt;travelerPhone&lt;br&gt;fare&lt;br&gt;purchaseChannel&lt;br&gt;status&lt;br&gt;smsStatus&lt;br&gt;paymentStatus&lt;br&gt;refundStatus&lt;br&gt;cancelNoticeStatus&lt;br&gt;refundAttemptStatus" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Ticket__V3">
+          <mxGeometry y="40" width="280" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Ticket__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Ticket__V3">
+          <mxGeometry y="260" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Ticket__V3__resp" value="// createTicket&lt;br&gt;// generateTicketCode&lt;br&gt;// recordSmsNotSent&lt;br&gt;// cancelTicketsOfTrip&lt;br&gt;// groupTicketCodesByTravelerPhone&lt;br&gt;// recordCancelNoticeNotSent&lt;br&gt;// selectOnlineTicketsToRefund&lt;br&gt;// calculateRefundAmount&lt;br&gt;// markRefunded&lt;br&gt;// recordRefundNotCompleted&lt;br&gt;// summarizeTripCancellation" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-Ticket__V3">
+          <mxGeometry y="270" width="280" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__V3" value="«entity»&lt;br&gt;PaymentTransaction" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="680" width="280" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__V3__attrs" value="transactionCode&lt;br&gt;collectedAmount&lt;br&gt;refundedAmount" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-PaymentTransaction__V3">
+          <mxGeometry y="40" width="280" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-PaymentTransaction__V3">
+          <mxGeometry y="100" width="280" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__V3__resp" value="// recordRefund" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AC-E-PaymentTransaction__V3">
+          <mxGeometry y="110" width="280" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-13__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=140;exitDy=0;entryX=0;entryY=0;entryDx=30;entryDy=0;" edge="1" parent="1" source="AC-B-CancelTripForm__V3" target="AC-C-CancelTripController__V3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="360"/>
+              <mxPoint x="430" y="360"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-14__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=30;exitDy=0;entryX=0;entryY=0;entryDx=140;entryDy=0;" edge="1" parent="1" source="AC-C-CancelTripController__V3" target="AC-E-Trip__V3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="620"/>
+              <mxPoint x="180" y="620"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-15__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=140;exitDy=0;entryX=0;entryY=0;entryDx=140;entryDy=0;" edge="1" parent="1" source="AC-C-CancelTripController__V3" target="AC-E-Ticket__V3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-16__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=1;exitDx=250;exitDy=0;entryX=0;entryY=0;entryDx=140;entryDy=0;" edge="1" parent="1" source="AC-C-CancelTripController__V3" target="AC-E-PaymentTransaction__V3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="630"/>
+              <mxPoint x="900" y="630"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-17__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0;exitDx=140;exitDy=0;entryX=0;entryY=1;entryDx=140;entryDy=0;" edge="1" parent="1" source="AC-C-CancelTripController__V3" target="AC-B-SmsGateway__V3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-18__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0;exitDx=250;exitDy=0;entryX=0;entryY=1;entryDx=140;entryDy=0;" edge="1" parent="1" source="AC-C-CancelTripController__V3" target="AC-B-PaymentGateway__V3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="370"/>
+              <mxPoint x="900" y="370"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-19__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0;exitDx=0;exitDy=60;entryX=1;entryY=0;entryDx=0;entryDy=60;" edge="1" parent="1" source="AC-E-Ticket__V3" target="AC-E-Trip__V3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-19__V3__ma" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-19__V3">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-19__V3__mb" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-19__V3">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-20__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=1;exitY=0;exitDx=0;exitDy=60;entryX=0;entryY=0;entryDx=0;entryDy=60;" edge="1" parent="1" source="AC-E-Ticket__V3" target="AC-E-PaymentTransaction__V3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-20__V3__ma" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-20__V3">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-20__V3__mb" value="0..1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-20__V3">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
