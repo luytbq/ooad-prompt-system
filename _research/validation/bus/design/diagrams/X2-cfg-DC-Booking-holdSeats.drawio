@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="cfg-b_hold" name="CFG DC-Booking.holdSeats">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="N25" value="" style="ellipse;fillColor=#000000;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="N26" value="N26: status khác DRAFT?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="140" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N27" value="N27: ném InvalidStateException" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="750" y="150" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N28" value="N28: seats = trip.findSeats(mã chỗ của travelerInfos)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="270" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N29" value="N29: còn Seat chưa giữ?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="380" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N30" value="N30: seat.hold() ném SeatAlreadyHeldException?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="500" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N31" value="N31: SeatAlreadyHeldException lan ra" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="750" y="510" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N32" value="N32: seat đã chuyển HELD" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="630" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N33" value="N33: holdStartTime = now; status = HELD" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="750" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N34" value="" style="ellipse;shape=endState;fillColor=#000000;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="880" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE30" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N25" target="N26">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE31" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N26" target="N27">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE32" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N26" target="N28">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE33" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N28" target="N29">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE34" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N29" target="N30">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE35" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N29" target="N33">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="420"/>
+              <mxPoint x="460" y="720"/>
+              <mxPoint x="300" y="720"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE36" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N30" target="N31">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE37" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N30" target="N32">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE38" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N32" target="N29">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="660"/>
+              <mxPoint x="160" y="420"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE39" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N33" target="N34">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE40" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N27" target="N34">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="180"/>
+              <mxPoint x="1000" y="900"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE41" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N31" target="N34">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1020" y="540"/>
+              <mxPoint x="1020" y="900"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

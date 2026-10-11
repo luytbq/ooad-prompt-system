@@ -1,0 +1,71 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="cfg-b_release" name="CFG DC-Booking.releaseSeats">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="860" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="N35" value="" style="ellipse;fillColor=#000000;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="N36" value="N36: status khác HELD?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="140" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N37" value="N37: kết thúc, bỏ qua" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="750" y="150" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N38" value="N38: còn Seat chưa trả?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="260" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N39" value="N39: seat.release()" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="390" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N40" value="N40: xoá liên kết seats; status = EXPIRED" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="510" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N41" value="" style="ellipse;shape=endState;fillColor=#000000;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="640" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE42" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N35" target="N36">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE43" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N36" target="N37">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE44" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N36" target="N38">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE45" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N38" target="N39">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE46" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N39" target="N38">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="420"/>
+              <mxPoint x="160" y="300"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE47" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N38" target="N40">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="300"/>
+              <mxPoint x="460" y="480"/>
+              <mxPoint x="300" y="480"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE48" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N40" target="N41">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE49" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N37" target="N41">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="180"/>
+              <mxPoint x="1000" y="660"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

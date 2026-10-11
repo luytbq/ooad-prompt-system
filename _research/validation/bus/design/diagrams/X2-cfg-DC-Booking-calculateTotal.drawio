@@ -1,0 +1,51 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="cfg-b_total" name="CFG DC-Booking.calculateTotal">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="740" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="N19" value="" style="ellipse;fillColor=#000000;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="N20" value="N20: status khác DRAFT?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="140" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N21" value="N21: ném InvalidStateException" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="750" y="150" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N22" value="N22: ticketPrice = trip.determineTicketPrice()" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="270" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N23" value="N23: totalAmount = ticketPrice.times(size); trả totalAmount" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="390" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N24" value="" style="ellipse;shape=endState;fillColor=#000000;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="520" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE24" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N19" target="N20">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE25" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N20" target="N21">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE26" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N20" target="N22">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE27" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N22" target="N23">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE28" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N23" target="N24">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE29" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N21" target="N24">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="180"/>
+              <mxPoint x="1000" y="540"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

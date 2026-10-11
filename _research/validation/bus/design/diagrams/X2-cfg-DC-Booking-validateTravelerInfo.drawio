@@ -1,0 +1,122 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="cfg-b_validate" name="CFG DC-Booking.validateTravelerInfo">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="N9" value="" style="ellipse;fillColor=#000000;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="N10" value="N10: còn phần tử travelerInfos chưa duyệt (vòng 1)?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="140" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N11" value="N11: travelerName rỗng sau khi cắt khoảng trắng?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="260" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N12" value="N12: travelerPhone rỗng?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="380" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N13" value="N13: trả MISSING_INFO" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="750" y="330" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N14" value="N14: còn phần tử chưa duyệt (vòng 2)?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="500" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N15" value="N15: PhoneNumber.isValid(travelerPhone) = false?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="620" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N16" value="N16: trả INVALID_PHONE" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="750" y="630" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N17" value="N17: trả NONE" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="750" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N18" value="" style="ellipse;shape=endState;fillColor=#000000;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="880" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE10" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N9" target="N10">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE11" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N10" target="N11">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE12" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N11" target="N13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="300"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE13" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N11" target="N12">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE14" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N12" target="N13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="420"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE15" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N12" target="N10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="420"/>
+              <mxPoint x="160" y="180"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE16" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N10" target="N14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="180"/>
+              <mxPoint x="460" y="480"/>
+              <mxPoint x="300" y="480"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE17" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N14" target="N15">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE18" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N15" target="N16">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE19" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N15" target="N14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="140" y="660"/>
+              <mxPoint x="140" y="540"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE20" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N14" target="N17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="540"/>
+              <mxPoint x="480" y="720"/>
+              <mxPoint x="300" y="720"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE21" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N13" target="N18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="360"/>
+              <mxPoint x="1000" y="900"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE22" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N16" target="N18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1020" y="660"/>
+              <mxPoint x="1020" y="900"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE23" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N17" target="N18">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

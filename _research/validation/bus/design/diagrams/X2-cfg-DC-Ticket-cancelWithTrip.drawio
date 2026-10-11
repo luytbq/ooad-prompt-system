@@ -1,0 +1,45 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="cfg-t_cwt" name="CFG DC-Ticket.cancelWithTrip">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="620" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="N63" value="" style="ellipse;fillColor=#000000;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="N64" value="N64: status khác ISSUED?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="140" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N65" value="N65: ném InvalidStateException" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="750" y="150" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N66" value="N66: status = CANCELLED (không đụng Seat)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="270" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N67" value="" style="ellipse;shape=endState;fillColor=#000000;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="400" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE73" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N63" target="N64">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE74" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N64" target="N65">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE75" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N64" target="N66">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE76" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N66" target="N67">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE77" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N65" target="N67">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="180"/>
+              <mxPoint x="1000" y="420"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

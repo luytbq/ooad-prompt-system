@@ -1,0 +1,76 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="cfg-t_cancel" name="CFG DC-Ticket.cancelTicket">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="980" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="N54" value="" style="ellipse;fillColor=#000000;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="N55" value="N55: status khác ISSUED?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="140" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N56" value="N56: ném InvalidStateException" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="750" y="150" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N57" value="N57: status = CANCELLED; seat.release()" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="270" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N58" value="N58: refundMethod là VIA_GATEWAY?" style="rhombus;html=1;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="210" y="380" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="N59" value="N59: outcome = REFUNDED" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="750" y="390" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N60" value="N60: outcome = AWAITING_CASH_PAYOUT" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="510" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N61" value="N61: refund = Refund.createRefund(refundAmount, rate, method, outcome); trả refund" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="630" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="N62" value="" style="ellipse;shape=endState;fillColor=#000000;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="760" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE63" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N54" target="N55">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE64" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N55" target="N56">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE65" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N55" target="N57">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE66" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N57" target="N58">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE67" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N58" target="N59">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE68" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N58" target="N60">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE69" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N59" target="N61">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="660"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CE70" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N60" target="N61">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE71" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N61" target="N62">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="CE72" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N56" target="N62">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="180"/>
+              <mxPoint x="1000" y="780"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
