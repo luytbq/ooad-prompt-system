@@ -45,4 +45,4 @@ Trạng thái: đã chạy P00, P01, P02, P02R, P03, P04 (UC-004, UC-005, UC-008
 ## Việc còn lại
 
 - Chạy P07 cho UC-004, UC-005, UC-008; P08, P09, P10, P11a (UC đặt lịch), P11b (SMS Gateway), P12, P13, X1, X2.
-- Kiểm chứng lại P01-P04 bằng một đề miền khác để loại ảnh hưởng của ví dụ phòng khám (F-11).
+- Kiểm chứng lại P01-P04 bằng một đề miền khác để loại ảnh hưởng của ví dụ phòng khám (F-11). Đã chạy toàn bộ P00 đến X2 trên miền bán vé xe khách SaoViet Bus bằng phiên AI độc lập cho từng bước; kết quả ở _research/validation/bus/findings.md.
