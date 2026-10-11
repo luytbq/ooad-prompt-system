@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram id="P11a-screen-transition" name="P11a-screen-transition">
+    <mxGraphModel dx="1440" dy="680" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="P-ACT-01" value="Hành khách (ACT-01)" style="swimlane;horizontal=0;html=1;startSize=40;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1440" height="340" as="geometry"/>
+        </mxCell>
+        <mxCell id="P-ACT-03" value="Nhân viên điều hành (ACT-03)" style="swimlane;horizontal=0;html=1;startSize=40;" vertex="1" parent="1">
+          <mxGeometry x="0" y="340" width="1440" height="340" as="geometry"/>
+        </mxCell>
+        <mxCell id="START-ACT-01" value="" style="ellipse;fillColor=#000000;" vertex="1" parent="P-ACT-01">
+          <mxGeometry x="80" y="110" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="SCR-01" value="«Độc lập»&lt;br&gt;SCR-01&lt;br&gt;Trang chủ hành khách" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="P-ACT-01">
+          <mxGeometry x="240" y="100" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="SCR-02" value="«Phụ thuộc có dữ liệu»&lt;br&gt;SCR-02&lt;br&gt;Chọn chỗ" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="P-ACT-01">
+          <mxGeometry x="560" y="100" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="SCR-03" value="«Phụ thuộc có dữ liệu»&lt;br&gt;SCR-03&lt;br&gt;Nhập thông tin người đi" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="P-ACT-01">
+          <mxGeometry x="880" y="100" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="SCR-04" value="«Phụ thuộc có dữ liệu»&lt;br&gt;SCR-04&lt;br&gt;Vé đã phát hành" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="P-ACT-01">
+          <mxGeometry x="1200" y="100" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="START-ACT-03" value="" style="ellipse;fillColor=#000000;" vertex="1" parent="P-ACT-03">
+          <mxGeometry x="80" y="110" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="SCR-05" value="«Độc lập»&lt;br&gt;SCR-05&lt;br&gt;Trang chủ điều hành" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="P-ACT-03">
+          <mxGeometry x="240" y="100" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="SCR-06" value="«Độc lập»&lt;br&gt;SCR-06&lt;br&gt;Chọn chuyến cần huỷ" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="P-ACT-03">
+          <mxGeometry x="560" y="100" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="SCR-07" value="«Con phụ thuộc»&lt;br&gt;SCR-07&lt;br&gt;Xác nhận huỷ chuyến" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="P-ACT-03">
+          <mxGeometry x="880" y="100" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="SCR-08" value="«Phụ thuộc có dữ liệu»&lt;br&gt;SCR-08&lt;br&gt;Kết quả huỷ chuyến" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="P-ACT-03">
+          <mxGeometry x="1200" y="100" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="E-01" value="mở website" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="START-ACT-01" target="SCR-01">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E-02" value="Chuyến đã chọn" style="dashed=0;endArrow=open;endFill=0;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="SCR-01" target="SCR-02">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E-03" value="Các chỗ đang giữ" style="dashed=0;endArrow=open;endFill=0;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="SCR-02" target="SCR-03">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E-04" value="Các vé đã phát hành" style="dashed=0;endArrow=open;endFill=0;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="SCR-03" target="SCR-04">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E-05" value="huỷ / thất bại" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="SCR-02" target="SCR-01">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="220"/>
+              <mxPoint x="360" y="220"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E-06" value="huỷ / thất bại" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="SCR-03" target="SCR-01">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="960" y="250"/>
+              <mxPoint x="320" y="250"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E-07" value="Về trang chủ" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="SCR-04" target="SCR-01">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1280" y="280"/>
+              <mxPoint x="280" y="280"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E-08" value="có phiên làm việc" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="START-ACT-03" target="SCR-05">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E-09" value="chọn Huỷ chuyến" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="SCR-05" target="SCR-06">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E-10" value="Tiếp tục [đã chọn]" style="dashed=0;startArrow=diamondThin;startFill=0;endArrow=open;endFill=0;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="SCR-06" target="SCR-07">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E-11" value="Kết quả huỷ chuyến" style="dashed=0;endArrow=open;endFill=0;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="SCR-07" target="SCR-08">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E-12" value="bỏ yêu cầu" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="SCR-06" target="SCR-05">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="560"/>
+              <mxPoint x="360" y="560"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E-13" value="Về trang chủ" style="dashed=1;endArrow=open;endFill=0;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="SCR-08" target="SCR-05">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1280" y="590"/>
+              <mxPoint x="320" y="590"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
