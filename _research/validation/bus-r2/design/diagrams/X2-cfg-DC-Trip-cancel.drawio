@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net"><diagram id="X2-cfg-DC-Trip-cancel" name="DC-Trip.cancel(CancelReason, LocalDateTime)">
+<mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="920" math="0" shadow="0"><root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="N1" value="" style="ellipse;fillColor=#000000;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="60" width="40" height="40" as="geometry"/></mxCell>
+<mxCell id="N2" value="status = CANCELLED?" style="rhombus;html=1;" vertex="1" parent="1"><mxGeometry x="120" y="190" width="360" height="140" as="geometry"/></mxCell>
+<mxCell id="N3" value="Ném TripAlreadyCancelledException (luồng 4a)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="660" y="220" width="320" height="80" as="geometry"/></mxCell>
+<mxCell id="N4" value="now &amp;gt;= departureTime?" style="rhombus;html=1;" vertex="1" parent="1"><mxGeometry x="120" y="370" width="360" height="140" as="geometry"/></mxCell>
+<mxCell id="N5" value="Ném TripDepartedException (luồng 4b)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="660" y="400" width="320" height="80" as="geometry"/></mxCell>
+<mxCell id="N6" value="status = CANCELLED; cancelReason = reason" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="140" y="580" width="320" height="80" as="geometry"/></mxCell>
+<mxCell id="N7" value="" style="ellipse;shape=endState;fillColor=#000000;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="780" width="40" height="40" as="geometry"/></mxCell>
+<mxCell id="CE1" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N1" target="N2"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE2" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N2" target="N3"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE3" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N2" target="N4"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE4" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N4" target="N5"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE5" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N4" target="N6"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE6" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N6" target="N7"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE7" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N3" target="N7"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1040" y="260"/><mxPoint x="1040" y="800"/></Array></mxGeometry></mxCell>
+<mxCell id="CE8" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N5" target="N7"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1040" y="440"/><mxPoint x="1040" y="800"/></Array></mxGeometry></mxCell>
+</root></mxGraphModel></diagram></mxfile>

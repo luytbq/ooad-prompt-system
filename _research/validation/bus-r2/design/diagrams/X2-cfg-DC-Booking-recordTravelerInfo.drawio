@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net"><diagram id="X2-cfg-DC-Booking-recordTravelerInfo" name="DC-Booking.recordTravelerInfo(String, String, LocalDateTime)">
+<mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1460" math="0" shadow="0"><root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="N16" value="" style="ellipse;fillColor=#000000;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="60" width="40" height="40" as="geometry"/></mxCell>
+<mxCell id="N17" value="status = SEATS_RELEASED?" style="rhombus;html=1;" vertex="1" parent="1"><mxGeometry x="120" y="190" width="360" height="140" as="geometry"/></mxCell>
+<mxCell id="N18" value="Ném HoldExpiredException (chỗ đã trả)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="660" y="220" width="320" height="80" as="geometry"/></mxCell>
+<mxCell id="N19" value="status khác HOLDING?" style="rhombus;html=1;" vertex="1" parent="1"><mxGeometry x="120" y="370" width="360" height="140" as="geometry"/></mxCell>
+<mxCell id="N20" value="Ném IllegalStateException" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="660" y="400" width="320" height="80" as="geometry"/></mxCell>
+<mxCell id="N21" value="isHoldExpired(now)?" style="rhombus;html=1;" vertex="1" parent="1"><mxGeometry x="120" y="550" width="360" height="140" as="geometry"/></mxCell>
+<mxCell id="N22" value="Ném HoldExpiredException (luồng 5a)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="660" y="580" width="320" height="80" as="geometry"/></mxCell>
+<mxCell id="N23" value="travelerName rỗng sau khi cắt khoảng trắng?" style="rhombus;html=1;" vertex="1" parent="1"><mxGeometry x="120" y="730" width="360" height="140" as="geometry"/></mxCell>
+<mxCell id="N24" value="travelerPhone rỗng sau khi bỏ khoảng trắng, dấu chấm, dấu gạch ngang?" style="rhombus;html=1;" vertex="1" parent="1"><mxGeometry x="120" y="910" width="360" height="140" as="geometry"/></mxCell>
+<mxCell id="N25" value="Ném TravelerInfoMissingException (luồng 7a)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="660" y="760" width="320" height="80" as="geometry"/></mxCell>
+<mxCell id="N26" value="travelerName = tên đã cắt khoảng trắng; travelerPhone = PhoneNumber.of(chuỗi đã chuẩn hoá)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="140" y="1120" width="320" height="80" as="geometry"/></mxCell>
+<mxCell id="N27" value="" style="ellipse;shape=endState;fillColor=#000000;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="1320" width="40" height="40" as="geometry"/></mxCell>
+<mxCell id="CE19" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N16" target="N17"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE20" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N17" target="N18"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE21" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N17" target="N19"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE22" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N19" target="N20"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE23" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N19" target="N21"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE24" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N21" target="N22"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE25" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N21" target="N23"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE26" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N23" target="N25"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE27" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N23" target="N24"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE28" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N24" target="N25"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="820" y="980"/></Array></mxGeometry></mxCell>
+<mxCell id="CE29" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N24" target="N26"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE30" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N26" target="N27"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE31" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N18" target="N27"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1040" y="260"/><mxPoint x="1040" y="1340"/></Array></mxGeometry></mxCell>
+<mxCell id="CE32" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N20" target="N27"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1040" y="440"/><mxPoint x="1040" y="1340"/></Array></mxGeometry></mxCell>
+<mxCell id="CE33" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N22" target="N27"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1040" y="620"/><mxPoint x="1040" y="1340"/></Array></mxGeometry></mxCell>
+<mxCell id="CE34" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N25" target="N27"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1040" y="800"/><mxPoint x="1040" y="1340"/></Array></mxGeometry></mxCell>
+</root></mxGraphModel></diagram></mxfile>

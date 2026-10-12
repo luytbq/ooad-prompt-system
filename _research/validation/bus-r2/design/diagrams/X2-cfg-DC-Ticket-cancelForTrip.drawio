@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net"><diagram id="X2-cfg-DC-Ticket-cancelForTrip" name="DC-Ticket.cancelForTrip()">
+<mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="920" math="0" shadow="0"><root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="N48" value="" style="ellipse;fillColor=#000000;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="60" width="40" height="40" as="geometry"/></mxCell>
+<mxCell id="N49" value="status khác ISSUED?" style="rhombus;html=1;" vertex="1" parent="1"><mxGeometry x="120" y="190" width="360" height="140" as="geometry"/></mxCell>
+<mxCell id="N50" value="Ném IllegalStateException" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="660" y="220" width="320" height="80" as="geometry"/></mxCell>
+<mxCell id="N51" value="status = CANCELLED" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="140" y="400" width="320" height="80" as="geometry"/></mxCell>
+<mxCell id="N52" value="paymentStatus = PAID?" style="rhombus;html=1;" vertex="1" parent="1"><mxGeometry x="120" y="550" width="360" height="140" as="geometry"/></mxCell>
+<mxCell id="N53" value="refundStatus = NOT_REFUNDED" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="660" y="580" width="320" height="80" as="geometry"/></mxCell>
+<mxCell id="N54" value="" style="ellipse;shape=endState;fillColor=#000000;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="780" width="40" height="40" as="geometry"/></mxCell>
+<mxCell id="CE60" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N48" target="N49"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE61" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N49" target="N50"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE62" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N49" target="N51"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE63" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N51" target="N52"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE64" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N52" target="N53"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE65" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N52" target="N54"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE66" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N53" target="N54"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="820" y="800"/></Array></mxGeometry></mxCell>
+<mxCell id="CE67" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N50" target="N54"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1040" y="260"/><mxPoint x="1040" y="800"/></Array></mxGeometry></mxCell>
+</root></mxGraphModel></diagram></mxfile>

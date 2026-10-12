@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net"><diagram id="X2-cfg-DC-Ticket-calculateRefundAmount" name="DC-Ticket.calculateRefundAmount()">
+<mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0"><root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="N55" value="" style="ellipse;fillColor=#000000;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="60" width="40" height="40" as="geometry"/></mxCell>
+<mxCell id="N56" value="isOnlineRefundPending() sai?" style="rhombus;html=1;" vertex="1" parent="1"><mxGeometry x="120" y="190" width="360" height="140" as="geometry"/></mxCell>
+<mxCell id="N57" value="Ném IllegalStateException" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="660" y="220" width="320" height="80" as="geometry"/></mxCell>
+<mxCell id="N58" value="Trả về fare" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="140" y="400" width="320" height="80" as="geometry"/></mxCell>
+<mxCell id="N59" value="" style="ellipse;shape=endState;fillColor=#000000;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="600" width="40" height="40" as="geometry"/></mxCell>
+<mxCell id="CE68" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N55" target="N56"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE69" value="Đúng" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N56" target="N57"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE70" value="Sai" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N56" target="N58"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE71" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N58" target="N59"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="CE72" value="" style="endArrow=block;endFill=1;html=1;" edge="1" parent="1" source="N57" target="N59"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1040" y="260"/><mxPoint x="1040" y="620"/></Array></mxGeometry></mxCell>
+</root></mxGraphModel></diagram></mxfile>

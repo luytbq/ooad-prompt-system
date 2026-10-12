@@ -37,6 +37,8 @@ Ngoài phạm vi: bố cục, định tuyến cạnh và độ dễ đọc của
 | P11a giai đoạn 2 | Sonnet | CHE_DO_CHAY = "Giai đoạn 2: các màn hình của UC-009, UC-017"; còn lại như giai đoạn 1 | P11a-gui/SCR-02..04, SCR-06..08 (6 file); MSG-15, MSG-16 nối vào ui-standards.md; bảng tổng hợp F7 ở screen-list.md | 6 SCR, Q-70..Q-72, ASM-52..ASM-54; phiên bị ngắt do hết hạn mức trước khi ghi file, được cho làm tiếp |
 | P12 | Sonnet | PHAM_VI_THIET_KE = "PKG-13 Booking, PKG-27 Operations, PKG-28 Ticketing (chưa có file P12 nào khác)"; còn lại Không có | P12-class-design/PKG-13-PKG-27-PKG-28-booking-ticketing.md (khoảng 150 KB); 8 file .drawio (4 class, 4 state) | 15 lớp ở F1, 26 kiểu phụ trợ ở F1b, 91 operation, R-23..R-45 mới, ST-01..ST-04, Q-73, Q-74, ASM-55, ASM-56; khoảng 28 phút |
 | P13 | Sonnet | LOAI_CSDL, QUY_UOC_CSDL, KHOI_LUONG_DU_LIEU, SINH_DDL = Không có; YEU_CAU_BO_SUNG nêu phạm vi lớp persistent của PKG-27, PKG-28 | P13-data-model.md; diagrams/P13-erd-logical, P13-erd-conceptual | 5 lớp persistent, 6 bảng, 7 ER, 9 ràng buộc liên bảng (F4.4), 9 index; không có Q, ASM mới; khoảng 17 phút |
+| X1 | Sonnet | PHAM_VI_REVIEW = PKG-13, PKG-27, PKG-28 (file P12) và P13 của các package đó; NHOM_TIEU_CHI, YEU_CAU_BO_SUNG = Không có | X1-design-review.md | 19 RV (2 Nghiêm trọng, 2 Cao, 10 Trung bình, 5 Thấp), Q-75, Q-76; mục đọc không đủ ghi "Chưa xét đủ"; khoảng 20 phút |
+| X2 | Sonnet | PHAM_VI_TEST = DC-Booking, DC-Ticket, DC-Trip; còn lại Không có | X2-unit-tests.md; 7 file diagrams/X2-cfg-* | 11/25 dòng F1 được chọn, 65 TC, 76 EC, 27 BV, 7 bảng quyết định (28 quy tắc), Q-77, ASM-57; chạy sau X1 (tuần tự); người chạy tự khai đọc 40 dòng đầu nhật ký X1 và chạy một lệnh git status chỉ đọc; khoảng 21 phút |
 
 ## 2. Nhật ký phát hiện
 
