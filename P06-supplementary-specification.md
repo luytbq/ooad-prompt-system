@@ -174,7 +174,7 @@ Hai bảng:
 [Target]
 Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 1. Mọi REQ loại Phi chức năng, Ràng buộc, Giao tiếp ngoài, Quy tắc nghiệp vụ trong P00, và REQ loại Dữ liệu mà P02 ghi "Chuyển P06", xuất hiện trong ma trận truy vết với NFR, BR hoặc lý do.
-2. Mọi dòng "Yêu cầu đặc biệt" của các đặc tả P04 đã thành NFR có cột Áp dụng cho ghi đúng UC.
+2. Mọi dòng "Yêu cầu đặc biệt" của các đặc tả P04 đã được xử lý theo [Action] 4: thành NFR có cột Áp dụng cho ghi đúng UC; hoặc trùng BR thì Ghi chú của REQ đó ở ma trận REQ --> NFR/BR ghi "Yêu cầu đặc biệt UC-nnn dòng k đã có ở BR-xx" và có đề xuất sửa P04 bỏ dòng đó; hoặc là chức năng thì có đề xuất sửa P02 hoặc P04.
 3. Mọi NFR có đúng một nhóm FURPS+ kèm đặc tính ISO/IEC 25010 tương ứng; mỗi NFR chỉ một đại lượng.
 4. Mọi NFR có ngưỡng từ nguồn thì có phát biểu đo được và tiêu chí đo (phương pháp, điều kiện, cách tính); NFR không có ngưỡng thì ghi "Chưa đo được" kèm Q-nn (NGHIEM_NGAT), hoặc có ngưỡng theo ASM-nn kèm Q-nn (CO_NHAN).
 5. Không có ngưỡng, công nghệ, ràng buộc nào do AI tự thêm ở chế độ NGHIEM_NGAT.
