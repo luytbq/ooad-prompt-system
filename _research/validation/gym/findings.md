@@ -21,6 +21,9 @@ Ngoài phạm vi: bố cục, định tuyến cạnh và độ dễ đọc của
 | P00 | Sonnet | TRONG_TAM_PHAN_TICH, YEU_CAU_BO_SUNG = Không có | P00-problem-brief.md | 96 REQ, 14 SH, Q-01..Q-43, không có ASM (NGHIEM_NGAT); khoảng 13 phút |
 | P01 | Sonnet | QUYET_DINH_RANH_GIOI, YEU_CAU_BO_SUNG = Không có | P01-actors.md | 14 ACT (7 người, 4 hệ thống ngoài, 1 thiết bị, 2 thời gian), 24 ứng viên loại, Q-44, Q-45; khoảng 5 phút |
 | Xem đề xuất sau P01 | Không áp dụng (thao tác của người dùng) | - | - | Theo README mục 3 bước 4, người điều phối (vai người dùng) đọc mục Đề xuất sửa artifact trước của P01 (SH-09 đổi Tương tác trực tiếp của Khách vãng lai, REQ-21 đổi loại): không làm đổi luồng, BR, tiền điều kiện hay trạng thái, P01 đã xử lý cả hai trường hợp, nên không chạy lại P00 |
+| P02 (lần 1) | Sonnet | PHAM_VI_LAN_CHAY, QUY_UOC_DA_CHOT, YEU_CAU_BO_SUNG = Không có | P02-usecases.md | 28 UC (27 User-goal, 1 Subfunction), 6 nhóm, 71 CAND, 31 EV, Q-46..Q-49; khoảng 13 phút |
+| P02R | Sonnet | DOI_TUONG_REVIEW = P01, P02 bản 1.0 kèm đề và P00; PHAM_VI_REVIEW = TAC_NHAN, DANH_SACH_UC; còn lại Không có | P02R-review.md | Đạt: 0 Nghiêm trọng, 0 Trung bình, 3 Thấp (UCR-01 đổi tên UC-005 cho thấy gia hạn, UCR-02 sửa Mục tiêu của UC-011, UC-015, UC-021, UC-022, UCR-03 đổi tên UC-021); không có Q mới. Người điều phối (vai người dùng) chọn áp dụng cả ba UCR; khoảng 6 phút |
+| P02 (lần 2, bản 1.1) | Sonnet | YEU_CAU_BO_SUNG = "Áp dụng UCR-01, UCR-02, UCR-03 của P02R-review.md phiên bản 1.0." | P02-usecases.md (ghi đè) | 28 UC, đổi tên UC-005 (Mua hoặc gia hạn gói tập), UC-021 (Phản hồi yêu cầu đặt buổi tập), sửa Mục tiêu bốn UC; không cấp mã mới; khoảng 2 phút |
 
 ## 2. Nhật ký phát hiện
 
