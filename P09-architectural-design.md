@@ -94,7 +94,7 @@ A4. Xác định layer và package cấp cao.
 - Đặt tên layer theo mẫu đã chọn. Với multi-layer, tối thiểu có layer giao diện (presentation), layer nghiệp vụ hoặc ứng dụng (application logic, domain), layer dịch vụ kỹ thuật (persistence, tích hợp hệ thống ngoài, logging, bảo mật). Layer application và domain có thể tách hoặc gộp tuỳ độ phức tạp nghiệp vụ; ghi lý do. Khi tách Domain khỏi Application, đặt Domain là layer thấp nhất: Presentation --> Application --> Services --> Domain. Domain chứa lớp entity và interface kho dữ liệu; Persistence ở Services hiện thực interface đó (realization đi xuống). Không đặt Domain trên Services, vì Persistence phải tham chiếu lớp miền để ánh xạ, sẽ thành phụ thuộc đi lên.
 - Trong mỗi layer, xác định package cấp cao theo nhóm chức năng hoặc theo trách nhiệm kỹ thuật. Mỗi package có một trách nhiệm phát biểu được trong một câu.
 - Xác định quy tắc ánh xạ stereotype lớp phân tích sang layer hoặc vai trò trong mẫu, để P10 áp dụng.
-- Client có logic nghiệp vụ cục bộ (chạy khi mất kết nối): package dùng chung được triển khai ở nhiều node; F4 cột Nguồn ghi node triển khai, F10 ghi artifact chứa package đó ở mỗi node. Phần tiếp nhận yêu cầu ở back-end (REST controller) của mẫu front-end/back-end thuộc layer Presentation phía máy chủ, ghi rõ ở F5.
+- Client có logic nghiệp vụ cục bộ (chạy khi mất kết nối): phần chạy trên client là các package riêng gắn node client, xếp vào cùng các layer theo vai trò (giao diện client ở Presentation, kho cục bộ và client đồng bộ ở Services), không thêm layer. Package dùng chung cho nhiều node chỉ chứa logic không phụ thuộc node và có cùng tập phụ thuộc trên mọi node; phần khác nhau theo node (nguồn dữ liệu, kho cục bộ) được dùng qua interface do package dùng chung định nghĩa, mỗi node có package hiện thực riêng (A5). Lời gọi qua mạng giữa hai node (client đồng bộ gọi điểm vào của máy chủ) không là phụ thuộc package: không ghi ở F4, F6, F9; ghi ở F7 (dòng node khác của chính hệ thống) và F10 (communication path). F4 cột Nguồn ghi node triển khai; F10 ghi artifact chứa package ở mỗi node, và mọi package mà một package trong artifact phụ thuộc phải có trong cùng artifact. Phần tiếp nhận yêu cầu ở back-end (REST controller) của mẫu front-end/back-end thuộc layer Presentation phía máy chủ, ghi rõ ở F5.
 
 A5. Đặt quy tắc phụ thuộc.
 - Chọn layered nghiêm ngặt (layer chỉ phụ thuộc layer ngay dưới) hoặc nới lỏng (được phụ thuộc mọi layer dưới). Ghi lý do.
@@ -179,6 +179,7 @@ Liệt kê dạng câu, mỗi câu kiểm tra được:
 - Nếu layered nghiêm ngặt: không nhảy layer (Presentation không phụ thuộc trực tiếp Services).
 - Cách truyền thông tin ngược lên nếu có: interface do layer dưới định nghĩa, layer trên hiện thực (A5).
 - Package phụ thuộc vào interface của subsystem, không phụ thuộc vào lớp bên trong subsystem.
+- Lời gọi qua mạng giữa hai node không là phụ thuộc package (A4).
 Kèm bảng kiểm tra: | Phụ thuộc (PKG --> PKG) | Hợp lệ | Quy tắc áp dụng |, một dòng cho mỗi phụ thuộc trong F4.
 
 F7. Định hướng giao tiếp ngoài và dữ liệu

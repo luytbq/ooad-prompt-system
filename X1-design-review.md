@@ -15,7 +15,7 @@ Bước này đánh giá chéo thiết kế (kiến trúc, phần tử thiết k
 | Đầu vào | P11b-system-interfaces.md (hoặc P11b-system-interfaces/) | Không | Interface với hệ thống ngoài. Phần cần đọc: mục của SS và IF mà phạm vi dùng |
 | Đầu vào | P07-uc-analysis/*.md, P08-analysis-model.md | Không | Kiểm tra truy vết message --> operation. Phần cần đọc: bảng message (F5 c) của UC có lớp trong phạm vi; P08 F3, F4 |
 | Đầu vào | P05-glossary.md | Không (nên có) | Kiểm tiêu chí CNS tên dùng đúng glossary |
-| Đầu vào | Mục Câu hỏi mở, Giả định của P00 đến P06, P04-uc-specs/*.md, P04-uc-specs/_BR-register.md | Có khi phạm vi trích Q, ASM, BR | Đọc nội dung Q, ASM, BR mà thiết kế trích |
+| Đầu vào | Mục Câu hỏi mở, Giả định, Đề xuất sửa artifact trước của mọi artifact P00 đến P13 đã có; P04-uc-specs/*.md, P04-uc-specs/_BR-register.md | Có | Đọc nội dung Q, ASM, BR mà thiết kế trích; tìm Q trùng trước khi cấp Q mới (Bước 7); biết đề xuất sửa còn treo liên quan tới phần tử trong phạm vi |
 | Đầu vào | P06-supplementary-spec.md | Không | NFR (khả năng bảo trì, mở rộng, hiệu năng) làm căn cứ mức độ |
 | Đầu vào | Thiết kế hoặc mã nguồn do người dùng cung cấp | Có khi review độc lập | Đối tượng review khi không chạy pipeline |
 | Đầu ra | X1-design-review.md | Có | Bảng phát hiện và các bảng đánh giá |
@@ -82,7 +82,7 @@ Bước 7. Lập bảng phát hiện.
 - Mỗi vi phạm là một dòng RV; gộp các biểu hiện của cùng một nguyên nhân gốc vào một dòng và liệt kê các phần tử bị ảnh hưởng.
 - Gán mức độ theo định nghĩa ở [Format] F2; ghi độ tin cậy.
 - Đề xuất sửa cụ thể (refactoring hoặc thay đổi mô hình), nêu bước pipeline cần chạy lại.
-- Trước khi cấp Q-nn mới, tìm trong các đầu vào Q có cùng nội dung; nếu có, trích mã Q cũ ở cột Độ tin cậy, không cấp Q mới.
+- Trước khi cấp Q-nn mới, tìm Q cùng nội dung trong mục Câu hỏi mở của mọi artifact đã có (kể cả P07, P08, P12); nếu có, trích mã Q cũ ở cột Độ tin cậy, không cấp Q mới. Phát hiện mà một bước trước đã ghi ở Đề xuất sửa artifact trước thì nêu ở cột Bằng chứng: "đã đề xuất ở <bước>, chưa áp dụng".
 - Khi hai nguyên lý mâu thuẫn (ví dụ Information Expert muốn đặt logic lưu trữ vào entity nhưng High Cohesion muốn tách ra Pure Fabrication), ghi lựa chọn và đánh đổi, không ghi thành hai phát hiện trái chiều.
 
 Bước 8. Tự kiểm tra theo [Target].
@@ -109,7 +109,7 @@ Cột thêm: | Nhóm (MOD / CPL / COH / SOLID / GRASP / PRN / PKP / SML / CNS / 
   - Thấp: đặt tên, mô tả thiếu, trình bày sơ đồ, vi phạm nhỏ không ảnh hưởng hành vi.
   Có thể nâng một mức khi phần tử nằm trên đường thay đổi mà NFR hoặc BR cho biết là dễ đổi; ghi lý do nâng.
 - Đề xuất sửa: hành động cụ thể: tên refactoring (Extract Class, Move Method, Replace Conditional with Polymorphism, Introduce Parameter Object, Extract Interface, Replace Inheritance with Delegation, Hide Delegate...) kèm phần tử đích; hoặc thay đổi mô hình (đổi loại quan hệ, tách bảng).
-- Bước cần sửa: mã bước pipeline cần chạy lại sớm nhất (P09, P10, P11b, P12, P13); các bước phải chạy lại sau đó ghi tiếp, cách nhau bằng dấu chấm phẩy, theo thứ tự pipeline; với review độc lập ghi "Thiết kế đầu vào" hoặc "Mã nguồn".
+- Bước cần sửa: mã bước sớm nhất chứa nguyên nhân gốc (P04 khi thiếu luồng, tiền điều kiện hoặc BR của use case; P06 khi thiếu BR, NFR; P07, P08 khi thiếu trách nhiệm, quan hệ; P09, P10, P11a, P11b, P12, P13 cho quyết định thiết kế), rồi các bước phải chạy lại sau đó theo bảng phụ thuộc ở README mục 5, cách nhau bằng dấu chấm phẩy, theo thứ tự pipeline. Thiết kế làm đúng theo artifact trước (P12 theo đúng P04) thì ghi bước của artifact đó, không ghi P12; với review độc lập ghi "Thiết kế đầu vào" hoặc "Mã nguồn".
 - Mức hợp lý: một dòng một nguyên nhân gốc; không tách một god class thành năm dòng SRP, cohesion, coupling giống nhau (ghi một dòng, liệt kê các tiêu chí liên quan ở cột Nguyên lý).
 - Lỗi thường gặp: phát hiện chung chung không bằng chứng; đề xuất "cải thiện thiết kế" không nói cách; đánh mọi thứ là Nghiêm trọng; review theo khẩu vị (đổi tên theo sở thích); đề xuất pattern không giải quyết vấn đề cụ thể.
 - Ví dụ đúng (quản lý kho): | RV-04 | CPL Control coupling; SOLID OCP | DC-StockController.updateStock(action: Integer, item: StockItem) | P12 F2: "action: 1 nhập, 2 xuất, 3 điều chỉnh"; method F3 rẽ nhánh theo action | Trung bình | Tách thành receive(item, qty), issue(item, qty), adjust(item, qty, reason); bên gọi gọi operation đúng nghĩa | P12 | CPL | Chắc chắn | Mở |
@@ -197,7 +197,7 @@ Nguyên lý package (PKP)
 - SAP (Stable Abstractions): package càng ổn định càng trừu tượng (D gần 0).
 
 Nhất quán giữa artifact (CNS)
-- Mọi message trong P07 có operation ở P12; mọi operation public có nguồn.
+- Mọi message trong P07 có dòng ở P12 F4: operation của lớp nhận, hoặc với message đi lên layer trên là kiểu trả về, ngoại lệ hay interface gọi ngược (P12 Bước 2.1); mọi operation public có nguồn.
 - Mọi AC trong P10 có DC hoặc lý do; mọi IF trong P11b có lớp «interface» và lớp hiện thực.
 - State machine khớp operation (sự kiện) và thuộc tính (trạng thái); guard khớp BR.
 - Multiplicity P12 khớp BR và khớp NULL/FK ở P13; mọi lớp persistent có bảng; mọi cột có nguồn.
