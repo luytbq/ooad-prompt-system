@@ -61,6 +61,7 @@ A3. Phát hiện trùng lặp và xung đột. Xét từng cặp lớp cùng ste
 
 A4. Gộp trách nhiệm và thuộc tính.
 - Với mỗi lớp hợp nhất, hợp các trách nhiệm từ mọi use case. Hai trách nhiệm cùng ý nghĩa, khác tên thì giữ một tên, ghi tên bị thay ở F2a. Hai trách nhiệm cùng tên, khác ý nghĩa thì đổi tên cho phân biệt.
+- Trách nhiệm cấp tập hợp còn nằm trên lớp phần tử (P07 A6): chuyển sang lớp toàn thể có quan hệ cấu trúc với lớp đó, không có lớp toàn thể thì chuyển cho control của use case nguồn; ghi F2a Tình huống "Chuyển trách nhiệm sang lớp toàn thể" và đề xuất sửa P07 của use case nguồn.
 - Hợp thuộc tính, loại trùng. Thuộc tính mâu thuẫn (ví dụ một use case coi "status" có 3 giá trị, use case khác có 4) thì ghi câu hỏi mở hoặc giả định.
 - Kiểm tra lại độ cân bằng: control trên 15 trách nhiệm (sau gộp chỉ còn trách nhiệm của các use case nó điều phối) hoặc entity không có trách nhiệm hành vi nào thì ghi vào "Vấn đề còn mở" kèm đề xuất.
 
@@ -90,7 +91,7 @@ Bảng: | STT | Lớp gốc (AC, tên) | UC nguồn | Tình huống (Đồng ngh
 - Quy tắc: mỗi dòng của bảng lớp phân tích F3.4 trong mỗi file P07 là một dòng (một lớp tái dùng ở n use case có n dòng). Lớp tái dùng đúng mã của use case khác ghi Tình huống "Tái dùng mã"; lớp không thay đổi ở use case cấp mã đầu tiên ghi "Giữ nguyên". "Boundary hệ thống trùng" chỉ dùng khi hai mã khác nhau chỉ cùng một hệ thống ngoài.
 
 F2a. Nhật ký trách nhiệm, thuộc tính và cặp đã xét
-Bảng: | STT | Lớp | Mục gốc (trách nhiệm, thuộc tính hoặc cặp lớp) | UC nguồn | Tình huống (Đổi tên trách nhiệm / Tách trách nhiệm cùng tên / Thuộc tính mâu thuẫn / Cặp đã xét, giữ tách) | Kết quả | Bằng chứng |
+Bảng: | STT | Lớp | Mục gốc (trách nhiệm, thuộc tính hoặc cặp lớp) | UC nguồn | Tình huống (Đổi tên trách nhiệm / Tách trách nhiệm cùng tên / Chuyển trách nhiệm sang lớp toàn thể / Thuộc tính mâu thuẫn / Cặp đã xét, giữ tách) | Kết quả | Bằng chứng |
 - Mọi trách nhiệm bị đổi tên hoặc gộp theo A4, mọi thuộc tính mâu thuẫn, và mọi cặp đã áp phép thử đồng nghĩa ở A3 mà giữ tách đều có dòng. Không có thì ghi "Không có".
 - Lỗi thường gặp: gộp hai lớp chỉ vì tên giống (bỏ qua đồng âm); gộp các boundary giao diện người dùng của nhiều use case thành một "MainForm" (quá lớn); không ghi bằng chứng.
 - Ví dụ đúng (khách sạn): AC-E-Reservation (UC-003) và AC-E-Booking (UC-005) --> Gộp vào AC-E-Booking, bằng chứng GL-04 ghi "Đặt phòng (Booking); từ không dùng: reservation".
@@ -148,7 +149,7 @@ F7. Mục kiểm soát theo C5.
 
 [Target]
 1. Mọi use case trong phạm vi có artifact P07, hoặc được liệt kê là chưa phân tích.
-2. Mọi dòng F3.4 của mọi P07 xuất hiện trong nhật ký hợp nhất F2 với kết quả và bằng chứng; trách nhiệm đổi tên, thuộc tính mâu thuẫn và cặp đã xét giữ tách có dòng ở F2a.
+2. Mọi dòng F3.4 của mọi P07 xuất hiện trong nhật ký hợp nhất F2 với kết quả và bằng chứng; trách nhiệm đổi tên, trách nhiệm chuyển sang lớp toàn thể, thuộc tính mâu thuẫn và cặp đã xét giữ tách có dòng ở F2a.
 3. Không còn hai lớp hoạt động biểu diễn cùng một khái niệm; không còn một lớp biểu diễn hai khái niệm.
 4. Không mã AC nào bị xoá, đổi nghĩa hoặc tái sử dụng; lớp bị gộp có trạng thái "Gộp vào".
 5. Mọi quan hệ trong VOPC của P07 có mặt trong bảng quan hệ hợp nhất (đã hợp hoặc giữ nguyên).
