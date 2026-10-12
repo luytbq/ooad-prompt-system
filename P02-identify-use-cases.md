@@ -87,7 +87,8 @@ Q3. Mức mục tiêu là gì (theo định nghĩa ở [Format])?
   - Subfunction: sang Q4.
   - User-goal: sang Q5.
 Q4. Ứng viên Subfunction có đủ điều kiện đứng thành use case riêng không? Chỉ giữ khi thoả ít nhất một điều kiện sau, và mọi điều kiện đều có căn cứ trong nguồn:
-  a) Là một đoạn tương tác liền mạch (thường từ 3 bước trao đổi trở lên) được dùng lặp lại trong từ hai use case User-goal trở lên (ứng viên cho quan hệ include ở P03). Đoạn đó phải bắt buộc trong mọi kịch bản thành công của từng UC gốc được đếm. UC gốc chỉ dùng đoạn đó khi một điều kiện đúng thì không được đếm cho Q4 a; xét Q4 b cho UC gốc đó và ghi cả hai ở Mô tả ngắn, ví dụ "Q4 a: UC-002, UC-005; Q4 b: UC-007" (P03 vẽ include cho UC gốc của Q4 a, extend cho UC gốc của Q4 b).
+  a) Là một đoạn tương tác liền mạch (thường từ 3 bước trao đổi trở lên) được dùng lặp lại trong từ hai use case User-goal trở lên (ứng viên cho quan hệ include ở P03). Đoạn đó phải bắt buộc trong mọi kịch bản thành công của từng UC gốc được đếm. UC gốc chỉ dùng đoạn đó khi một điều kiện đúng thì không được đếm cho Q4 a; xét Q4 b cho UC gốc đó và ghi cả hai ở Mô tả ngắn, ví dụ "Q4 a: UC-002, UC-005; Q4 b: UC-007" (P03 vẽ include cho UC gốc của Q4 a, extend cho UC gốc của Q4 b). Ghi ở Mô tả ngắn của UC Subfunction được giữ, không ghi ở UC gốc.
+     Đoạn dùng chung trùng với một UC User-goal đã giữ (tác nhân có mục tiêu độc lập với đoạn đó, ví dụ tra cứu sách trước khi mượn): không giữ Subfunction mới, kết luận "Gộp vào UC-nnn" (UC User-goal đó) và ghi ở Mô tả ngắn của UC-nnn "Được include bởi UC-xxx, UC-yyy (Q4 a)".
   b) Là hành vi tuỳ chọn hoặc ngoại lệ có điều kiện, đủ lớn (thường từ 3 bước trở lên) hoặc được nguồn mô tả như một dịch vụ riêng có thể bổ sung sau (ứng viên cho quan hệ extend ở P03).
   c) Là phần rất lớn của một use case User-goal khiến use case đó vượt ngưỡng kích thước (ứng viên tách ra để dễ quản lý).
   d) Là một mục tiêu con bên trong một use case User-goal, đồng thời thoả cả ba vế: có kết quả riêng kiểm chứng được; được nguồn mô tả tách bạch (có quy tắc, dữ liệu, tác nhân phụ hoặc luồng lỗi riêng); có thể thực hiện lại hoặc thất bại độc lập mà không huỷ toàn bộ mục tiêu cha (ứng viên cho quan hệ include ở P03, UC gốc là use case chứa nó). Điều kiện này không phụ thuộc số bước ước lượng.
@@ -233,6 +234,7 @@ U-R10 Nhập liệu thay mặt người khác (người đại diện).
 - Nếu cả người được đại diện (tự làm trực tuyến) và người đại diện (làm hộ) đều làm cùng một mục tiêu, xét hai điều kiện sau theo thứ tự; hai điều kiện loại trừ nhau, mỗi trường hợp chỉ rơi vào đúng một:
   a) Hai UC riêng khi thoả ít nhất một trong hai:
      - Luồng của người đại diện có một đoạn tương tác riêng từ 2 bước trở lên mà luồng của người được đại diện không có, ví dụ tạo hồ sơ cho người được phục vụ, xác minh danh tính người được phục vụ.
+       Bước của người đại diện có bước tương ứng cùng mục đích ở luồng của người được đại diện không tính vào đoạn riêng, ví dụ tra đặt phòng của khách so với chọn đặt phòng của mình, nhận tiền mặt tại quầy so với hoàn tiền qua cổng thanh toán, in phiếu xác nhận so với gửi mã xác nhận qua email.
      - Kết quả khác nhau: đối tượng được tạo hoặc thay đổi kết thúc ở trạng thái khác (phòng do nhân viên quầy đặt được giữ ngay, phòng do khách tự đặt chờ đặt cọc).
      Tên phân biệt theo góc nhìn tác nhân ("Đặt phòng" và "Đặt phòng cho khách"), phần chung là ứng viên include ở P03.
   b) Không thoả a: một UC, nối với cả hai tác nhân chính, khác biệt thành luồng thay thế ở P04. Trường hợp này gồm: chỉ khác một bước tìm hoặc chọn người, đối tượng được phục vụ (một bước, không tính là đoạn tương tác riêng); chỉ khác điều kiện hoặc ngưỡng của cùng một quy tắc (mốc thời gian, giới hạn số lượng khác nhau theo vai trò), ghi thành BR có điều kiện theo vai trò ở P04. Nếu hai tác nhân dùng chung nhiều UC như vậy, xét đề xuất tác nhân cha theo U-R11.
@@ -244,7 +246,8 @@ U-R11 Nhiều tác nhân cùng một UC.
 
 U-R12 Biến thể của cùng một mục tiêu.
 - Biến thể theo phương thức, kênh, loại dữ liệu (thanh toán tiền mặt hay thẻ, tìm theo tên hay theo mã, nhận phòng có đặt trước hay khách vãng lai) mặc định là luồng thay thế của một UC (U-AP15).
-- Chỉ tách thành UC riêng hoặc đề xuất tổng quát hoá use case (quyết định ở P03) khi mỗi biến thể có luồng chính khác nhau đáng kể, có tác nhân phụ khác nhau hoặc quy tắc nghiệp vụ riêng lớn mà nguồn mô tả.
+- Chỉ tách thành UC riêng hoặc đề xuất tổng quát hoá use case (quyết định ở P03) khi mỗi biến thể có luồng chính khác nhau đáng kể hoặc quy tắc nghiệp vụ riêng lớn mà nguồn mô tả. Tác nhân phụ hoặc kênh nhận, trả tiền khác nhau (cổng thanh toán hay tiền mặt tại quầy) không đủ để tách; chúng là luồng thay thế.
+- Biến thể khác nhau ở người thao tác (tác nhân tự làm, nhân viên làm hộ) xét theo U-R10, không theo quy tắc này.
 
 U-R13 Quy trình có phê duyệt hoặc nhiều bên nối tiếp.
 - Mỗi bước do một tác nhân khác thực hiện vào lúc khác là một UC riêng: "Lập phiếu xuất kho" (thủ kho) và "Duyệt phiếu xuất kho" (quản lý kho); "Đặt món" (khách hàng), "Xác nhận đơn" (nhà hàng), "Nhận đơn giao" (tài xế). Không gom thành một UC quy trình (U-AP05).
@@ -326,8 +329,8 @@ Cột UC: mã UC-nnn theo Conventions C3, cấp theo Bước 9.1; hai bảng có
 
 Cột Tên (VI), Tên (EN): theo U-N1 đến U-N8.
 
-Cột Tác nhân chính: mã ACT (và tên ở lần đầu), nhiều tác nhân ngăn bằng dấu phẩy khi áp dụng U-R10 hoặc U-R11. UC mức Subfunction giữ theo Q4:
-- Tác nhân chính của UC gốc vẫn tương tác trực tiếp trong phần được tách (chọn, nhập, xác nhận): ghi tác nhân chính của UC gốc kèm "(qua UC-xxx)", UC-xxx là UC gốc. Với Q4a, ghi tác nhân chính của mọi UC gốc có tương tác trong phần đó. Ví dụ: "Thanh toán đơn" giữ theo Q4d, khách hàng chọn phương thức và nhập thông tin thẻ: "ACT-01 (qua UC-004)".
+Cột Tác nhân chính: mã ACT (và tên ở lần đầu), nhiều tác nhân ngăn bằng dấu phẩy khi áp dụng U-R10 hoặc U-R11. UC được include (Subfunction giữ theo Q4, hoặc UC User-goal dùng chung theo Q4 a):
+- Tác nhân chính của UC gốc vẫn tương tác trực tiếp trong phần được tách (chọn, nhập, xác nhận): ghi tác nhân chính của UC gốc kèm "(qua UC-xxx)", UC-xxx là UC gốc. Với Q4a, ghi tác nhân chính của mọi UC gốc có tương tác trong phần đó. Ví dụ: "Thanh toán đơn" giữ theo Q4d, khách hàng chọn phương thức và nhập thông tin thẻ: "ACT-01 (qua UC-004)". Tác nhân trực tiếp ngăn bằng dấu phẩy, phần "(qua ...)" đặt sau dấu chấm phẩy: "ACT-01; ACT-02 (qua UC-004, UC-005)".
 - Phần được tách không có tác nhân nào tương tác trực tiếp (chỉ gồm bước của hệ thống và tác nhân phụ): ghi "-" và "Được gọi từ UC-xxx".
 - P03 vẫn không vẽ association từ tác nhân chính ghi "(qua UC-xxx)" tới UC này (P03 Bước 2.2).
 

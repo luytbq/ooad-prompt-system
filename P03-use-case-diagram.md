@@ -64,9 +64,9 @@ Bước 2. Xác định association giữa tác nhân và use case.
 2.4. Không bao giờ tạo association giữa hai tác nhân, hoặc giữa hai use case.
 
 Bước 3. Xác định «include».
-Ngữ nghĩa: UC gốc (base) gọi tường minh toàn bộ hành vi của UC được include tại một vị trí xác định trong luồng của UC gốc, mỗi lần UC gốc chạy qua vị trí đó. UC gốc không hoàn chỉnh nếu thiếu phần được include. UC được include không đứng một mình: nó chỉ được thực hiện như một phần của UC gốc.
+Ngữ nghĩa: UC gốc (base) gọi tường minh toàn bộ hành vi của UC được include tại một vị trí xác định trong luồng của UC gốc, mỗi lần UC gốc chạy qua vị trí đó. UC gốc không hoàn chỉnh nếu thiếu phần được include. UC được include giữ theo Q4 không đứng một mình: nó chỉ được thực hiện như một phần của UC gốc. UC User-goal được include theo vế cuối của a) dưới đây vẫn được tác nhân của nó khởi xướng độc lập (nối theo Bước 2.2 b).
 Tạo «include» từ UC-A tới UC-B chỉ khi đồng thời:
-  a) UC-B được P02 giữ ở mức Subfunction theo điều kiện Q4a (hành vi dùng chung cho từ hai UC trở lên) hoặc Q4c (tách phần rất lớn để dễ quản lý) hoặc Q4d (mục tiêu con có kết quả riêng, được nguồn mô tả tách bạch, thực hiện lại hoặc thất bại độc lập với UC-A), hoặc UC-B là UC User-goal mà nguồn nêu rõ luôn phải thực hiện như một phần bắt buộc của UC-A.
+  a) UC-B được P02 giữ ở mức Subfunction theo điều kiện Q4a (hành vi dùng chung cho từ hai UC trở lên) hoặc Q4c (tách phần rất lớn để dễ quản lý) hoặc Q4d (mục tiêu con có kết quả riêng, được nguồn mô tả tách bạch, thực hiện lại hoặc thất bại độc lập với UC-A), hoặc UC-B là UC User-goal mà P02 ghi "Được include bởi UC-A" (Q4 a) hoặc mà nguồn, một ASM-nn đã có ở P00 đến P02 nêu luôn phải thực hiện như một phần bắt buộc của UC-A; ở CO_NHAN chưa có căn cứ thì tạo ASM-nn kèm Q-nn (Conventions C1.2).
   b) Hành vi của UC-B là bắt buộc trong mọi kịch bản thành công của UC-A (phép thử: "UC-A có bao giờ đạt mục tiêu mà không cần UC-B không?" Nếu có, không phải include; xem Bước 4).
   c) Có căn cứ trong nguồn.
 Không dùng include cho: vẽ trình tự các bước của một quy trình khi phần được tách không thoả Q4a đến Q4d của P02 (phân rã chức năng); UC được P02 tách ra theo Q4 thì được include, kể cả khi nó nằm ở đầu hoặc cuối luồng của UC gốc; xác thực đăng nhập của mọi UC (dùng tiền điều kiện); hành vi chỉ một UC dùng và nhỏ (để nguyên là bước trong UC đó); hành vi tuỳ chọn hoặc có điều kiện.
@@ -75,7 +75,7 @@ Không lồng include quá hai tầng (UC-A include UC-B include UC-C là tối 
 Bước 4. Xác định «extend».
 Ngữ nghĩa: UC mở rộng (extension) bổ sung hành vi vào UC gốc tại một điểm mở rộng (extension point) có tên trong UC gốc, chỉ khi điều kiện mở rộng đúng. UC gốc hoàn chỉnh và có ý nghĩa khi không có phần mở rộng; UC gốc không biết tới UC mở rộng. Mũi tên đi từ UC mở rộng tới UC gốc.
 Tạo «extend» từ UC-X (mở rộng) tới UC-Y (gốc) chỉ khi đồng thời:
-  a) UC-X được P02 giữ theo điều kiện Q4b (hành vi tuỳ chọn hoặc ngoại lệ, đủ lớn hoặc là dịch vụ bổ sung), hoặc là UC mà nguồn mô tả như một lựa chọn thêm trong khi thực hiện UC-Y, hoặc UC-X là UC Subfunction đã được include ở UC khác và UC-Y chỉ dùng nó khi một điều kiện kiểm chứng được đúng (P02 ghi Q4 b cho UC-Y ở Mô tả ngắn).
+  a) UC-X được P02 giữ theo điều kiện Q4b (hành vi tuỳ chọn hoặc ngoại lệ, đủ lớn hoặc là dịch vụ bổ sung), hoặc là UC mà nguồn mô tả như một lựa chọn thêm trong khi thực hiện UC-Y, hoặc UC-X là UC Subfunction đã được include ở UC khác và UC-Y chỉ dùng nó khi một điều kiện kiểm chứng được đúng (Mô tả ngắn của UC-X ở P02 ghi "Q4 b: UC-Y").
   b) UC-Y đạt được mục tiêu của nó trong kịch bản không có UC-X.
   c) Xác định được điều kiện mở rộng (một mệnh đề kiểm chứng được) và tên điểm mở rộng (một vị trí trong luồng của UC-Y, đặt tên theo bước nghiệp vụ, không theo số thứ tự bước).
 Không dùng extend cho: lỗi nhỏ, luồng thay thế ngắn (để trong đặc tả UC-Y ở P04); hành vi bắt buộc (dùng include); tuỳ chọn chỉ 1-2 bước.
