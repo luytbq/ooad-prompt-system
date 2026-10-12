@@ -38,7 +38,7 @@ Bước này thiết kế giao diện đồ hoạ cho các tác nhân người: 
 
 - Chạy theo hai giai đoạn, chọn bằng placeholder CHE_DO_CHAY:
   1. Giai đoạn 1 (một lần cho toàn hệ thống): ui-standards.md, screen-list.md, screen-transition.md.
-  2. Giai đoạn 2 (lặp, mỗi lần một nhóm màn hình, ví dụ theo use case): SCR-nn-slug.md và mockup. Đính kèm thêm kết quả giai đoạn 1 và mục h) của các SCR đã có. Phạm vi "các màn hình của UC-nnn" gồm màn hình có cột UC của screen-list.md chứa UC-nnn, trừ màn hình điều hướng. Màn hình điều hướng được viết ở lần chạy "Giai đoạn 2: màn hình điều hướng" sau các lần chạy giai đoạn 2 của mọi use case trong phạm vi dự án, hoặc gộp vào lần chạy giai đoạn 2 cuối cùng, hoặc ở chế độ Toàn bộ; lối vào use case chưa có màn hình đích ghi "Chưa có màn hình đích (UC-nnn)" ở chức năng của điều khiển. Lần chạy giai đoạn 2 cuối cùng phải gồm mọi màn hình điều hướng chưa có đặc tả, rồi mới gom mục h) của mọi SCR vào cuối danh mục ở ui-standards.md (chỉ nối thêm dòng, không sửa dòng cũ, không cần chạy lại giai đoạn 2). Chạy tuần tự các lần giai đoạn 2; khi buộc chạy song song, người dùng chia trước dải MSG, Q, ASM cho từng phiên trong YEU_CAU_BO_SUNG.
+  2. Giai đoạn 2 (lặp, mỗi lần một nhóm màn hình, ví dụ theo use case): SCR-nn-slug.md và mockup. Đính kèm thêm kết quả giai đoạn 1 và mục h) của các SCR đã có. Phạm vi "các màn hình của UC-nnn" gồm màn hình có cột UC của screen-list.md chứa UC-nnn, trừ màn hình điều hướng. Màn hình điều hướng được viết ở lần chạy "Giai đoạn 2: màn hình điều hướng" sau các lần chạy giai đoạn 2 của mọi use case trong phạm vi dự án, hoặc gộp vào lần chạy giai đoạn 2 cuối cùng, hoặc ở chế độ Toàn bộ; lối vào use case chưa có màn hình đích ghi "Chưa có màn hình đích (UC-nnn)" ở chức năng của điều khiển. Lần chạy giai đoạn 2 cuối cùng phải gồm mọi màn hình điều hướng chưa có đặc tả, rồi mới gom mục h) của mọi SCR vào cuối danh mục ở ui-standards.md (chỉ nối thêm dòng, không sửa dòng cũ, không cần chạy lại giai đoạn 2). Lần chạy nối dòng vào ui-standards.md, screen-list.md tăng phiên bản phụ của file đó (1.0 --> 1.1), ghi hàng Bước "P11a (giai đoạn 1; nối từ giai đoạn 2)", thêm các SCR đã gom vào hàng Đầu vào đã dùng và cập nhật hàng Mã Q, ASM cuối đã cấp; không sửa nội dung khác của file. Chạy tuần tự các lần giai đoạn 2; khi buộc chạy song song, người dùng chia trước dải MSG, Q, ASM cho từng phiên trong YEU_CAU_BO_SUNG.
 - Hệ thống nhỏ (dưới khoảng 10 màn hình) có thể chạy "Toàn bộ" trong một lần.
 
 | Placeholder | Bắt buộc | Ý nghĩa |
@@ -111,7 +111,7 @@ A4. Tạo hình ảnh màn hình.
 A5. Viết đặc tả màn hình theo F5.
 
 A6. Đánh giá theo chuẩn.
-- Đánh giá từng màn hình theo 10 heuristic của Nielsen và các tiêu chí WCAG 2.2 AA ở F7, và theo Baymard với màn hình có form nhập hoặc thanh toán. Sửa vi phạm trong hình ảnh và đặc tả trước khi xuất, ghi lại vi phạm đã sửa.
+- Đánh giá từng màn hình theo 10 heuristic của Nielsen và các tiêu chí WCAG 2.2 AA ở F7, và theo Baymard với màn hình có form nhập hoặc thanh toán. Sửa vi phạm trong hình ảnh và đặc tả trước khi xuất. Dòng "Vi phạm đã sửa" chỉ ghi khi áp nguyên quy định của ui-standards.md hoặc đặc tả sẽ gây vi phạm ở màn hình này và màn hình đã làm khác để đạt tiêu chí, kèm quy định hoặc bước gây vi phạm và cách làm của màn hình; lỗi tự phát hiện và sửa trong lúc soạn không ghi.
 
 A7. Tự kiểm tra theo [Target], xuất kết quả.
 
@@ -142,7 +142,7 @@ b) Danh mục thông điệp: | MSG | Loại (Lỗi / Cảnh báo / Xác nhận 
 F2. P11a-gui/screen-list.md (bảng lõi)
 | SCR | Tên | Boundary AC nguồn | UC | Tác nhân | Loại | Lớp thiết kế (DC) | Mục đích | Bước UC phục vụ |
 - SCR: mã SCR-nn theo C3, cấp theo thứ tự tác nhân rồi theo thứ tự dịch chuyển.
-- Tên: danh từ mô tả nội dung, tiếng Việt kèm tên tiếng Anh cho slug, ví dụ "Chọn khung giờ khám (Select time slot)".
+- Tên: cụm từ ngắn nêu việc tác nhân làm trên màn hình (màn hình thao tác, ví dụ "Chọn khung giờ khám (Select time slot)") hoặc nội dung hiển thị (màn hình kết quả, ví dụ "Lịch hẹn đã đặt (Booked appointment)"), tiếng Việt kèm tên tiếng Anh cho slug.
 - Boundary AC nguồn: mã AC; màn hình điều hướng ghi "Điều hướng" và liệt kê UC được mở từ nó.
 - Loại (theo mẫu dịch chuyển dẫn tới màn hình): Độc lập (dịch chuyển đơn giản); Con phụ thuộc (pop-up modal, màn hình cha bị khoá); Con độc lập (pop-up không khoá màn hình cha); Phụ thuộc có dữ liệu (màn hình mới mở với dữ liệu truyền từ màn hình trước).
 - Lớp thiết kế: DC tương ứng trong P10 nếu có.

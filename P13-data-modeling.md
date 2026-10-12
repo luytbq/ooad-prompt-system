@@ -9,7 +9,7 @@ Bước này thiết kế cơ sở dữ liệu cho các lớp persistent đã ch
 | Loại | Artifact | Bắt buộc | Dùng để |
 |---|---|---|---|
 | Đầu vào | project-profile.md | Có | Hệ quản trị CSDL trong CONG_NGHE, quy ước đặt tên, chế độ giả định |
-| Đầu vào | P12-class-design.md (hoặc P12-class-design/*.md) | Có | Lớp persistent, thuộc tính, quan hệ, generalization, state machine. Phần cần đọc: F1 (cột Persistent), F1b, F5 (quan hệ), F6 (state machine), F7, F7a, Câu hỏi mở, Giả định; không cần F4, F8, F10 |
+| Đầu vào | P12-class-design.md (hoặc P12-class-design/*.md) | Có | Lớp persistent, thuộc tính, quan hệ, generalization, state machine. Phần cần đọc: F1 (cột Persistent), F1b, F3 (chỉ operation ghi thuộc tính persistent, để đối chiếu F4.4), F5 (quan hệ), F6 (state machine), F7, Câu hỏi mở, Giả định, Vấn đề còn mở; không cần F2, F4, F8, F9, F10 |
 | Đầu vào | P06-supplementary-spec.md | Có | BR (ràng buộc dữ liệu), NFR (hiệu năng, khối lượng, lưu trữ, bảo mật) |
 | Đầu vào | P04-uc-specs/*.md | Có | Bảng dữ liệu vào/ra (độ dài, định dạng, bắt buộc), truy vấn tìm kiếm trong luồng |
 | Đầu vào | P09-architecture.md | Có | Cơ chế lưu trữ (persistence) đã chọn, phân tán dữ liệu |

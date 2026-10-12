@@ -127,7 +127,7 @@ A7. Mô tả trách nhiệm và thuộc tính.
 
 A8. Lập VOPC.
 - Mỗi link trong communication diagram sinh ra ít nhất một quan hệ trong VOPC. Không có quan hệ nào trong VOPC mà không có link hoặc bằng chứng từ đặc tả.
-- Ghi multiplicity khi đặc tả hoặc BR nêu rõ; nếu không rõ thì để trống và ghi câu hỏi hoặc giả định, không đoán. Quan hệ cuối cùng được chốt ở P08.
+- Ghi multiplicity khi đặc tả hoặc BR nêu rõ; nếu không rõ thì ghi "?" ở phía đó (F8 b) và ghi câu hỏi hoặc giả định, không đoán. Quan hệ cuối cùng được chốt ở P08.
 
 A9. Tự kiểm tra theo [Target], sửa, rồi mới xuất kết quả.
 
@@ -257,7 +257,7 @@ F8. VOPC (View Of Participating Classes)
 File diagrams/P07-class-UC-nnn.drawio.
 a) Bảng Node (lớp): | ID (mã AC) | Loại (Class) | Nhãn (tên lớp) | Stereotype | Thuộc về | Ngăn thuộc tính | Ngăn trách nhiệm |
    - Ngăn thuộc tính: từ F3.4. Ngăn trách nhiệm: các "// tênTráchNhiệm" của lớp trong use case này.
-b) Bảng quan hệ (bảng Edge, P08 đọc bảng này): | ID | Lớp A | Lớp B | Loại (Association / Aggregation / Composition / Generalization / Dependency) | Multiplicity (dạng "A <m> - B <m>", ví dụ "A 1 - B 0..*"; phía chưa rõ ghi "?", ví dụ "A ? - B 1..5"; cả hai phía chưa rõ ghi "-") | Vai trò | Nguồn (link trong F7 hoặc bước UC, BR) |
+b) Bảng quan hệ (bảng Edge, P08 đọc bảng này): | ID | Lớp A | Lớp B | Loại (Association / Aggregation / Composition / Generalization / Dependency) | Multiplicity (dạng "A <m> - B <m>", ví dụ "A 1 - B 0..*"; phía chưa rõ ghi "?", ví dụ "A ? - B 1..5", và dẫn Q-nn hoặc ASM-nn ở cột Nguồn theo A8; cả hai phía chưa rõ ghi "-") | Vai trò | Nguồn (link trong F7 hoặc bước UC, BR) |
    - ID dạng R-UCnnn-nn.
    - Vai trò: tên vai trò (lowerCamelCase) ở đầu lớp, chỉ ghi khi hai quan hệ giữa cùng cặp lớp cần phân biệt, ngược lại "-". Mô tả quan hệ hoặc chữ "tạm thời" ghi ở cột Nguồn, không ghi ở đây.
    - Multiplicity: số ở phía A là số đối tượng A ứng với một đối tượng B.

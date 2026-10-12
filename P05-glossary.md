@@ -22,7 +22,7 @@ Bước chạy một lần sau khi đã có đặc tả use case, và chạy l�
 
 ## 3. Cách chạy
 
-- Đính kèm: 00-Conventions.md, project-profile.md, tài liệu nguồn, P00, P01, P02 (chỉ cần Mục 4 và Mục 5, giảm kích thước đầu vào khi chạy bằng chat), mọi đặc tả P04 đã có, sổ BR (nếu có), bản P05 cũ (nếu chạy lại).
+- Đính kèm: 00-Conventions.md, project-profile.md, tài liệu nguồn, P00, P01, P02 (chỉ cần Mục 4 và Mục 5, giảm kích thước đầu vào khi chạy bằng chat), mọi đặc tả P04 đã có (chỉ cần mục 1 đến mục 8 và mục Câu hỏi mở, Giả định; không cần mục 9 Activity diagram; chạy bằng agent thì chỉ đọc các mục này), sổ BR (nếu có), bản P05 cũ (nếu chạy lại).
 - Chạy một lần cho toàn hệ thống. Có thể chạy sớm sau P02 để có bản nháp, rồi chạy lại sau khi xong mọi đặc tả P04.
 - Placeholder trong prompt:
 

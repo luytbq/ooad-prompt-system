@@ -52,7 +52,7 @@ Bạn là kỹ sư kiểm thử phần mềm, thành thạo thiết kế test ca
 [Action]
 Bước 0. Kiểm tra đầu vào.
 - Kiểm tra placeholder theo Conventions C6.
-- Hậu điều kiện không quan sát được qua operation công khai của P12: ghi đề xuất sửa P12, TC vẫn ghi kết quả theo hậu điều kiện và nêu operation truy vấn cần thêm.
+- Hậu điều kiện không quan sát được qua operation công khai của P12: ghi đề xuất sửa P12, TC vẫn ghi kết quả theo hậu điều kiện và nêu operation truy vấn cần thêm. Điều kiện đầu không dựng được bằng operation công khai của P12 (trạng thái chỉ use case chưa thiết kế tạo ra): dùng bộ dựng chỉ có ở test, ghi tên bộ dựng ở cột Điều kiện đầu và loại fake ở F2.x.7, và ghi đề xuất sửa P12 nêu operation tạo cần thêm.
 - Nếu phương thức trong phạm vi thiếu tiền/hậu điều kiện hoặc ngoại lệ ở P12, ghi vào "Đề xuất sửa artifact trước" và dùng BR/P04 để thiết kế; chỗ không suy ra được kết quả mong đợi thì ghi Q (NGHIEM_NGAT) hoặc ASM (CO_NHAN).
 
 Bước 1. Chọn phương thức cần test.
@@ -71,7 +71,7 @@ Bước 3. Kỹ thuật hộp đen (luôn làm trước).
 3.6. Kết quả mong đợi (oracle): suy ra từ đặc tả; ghi giá trị cụ thể (giá trị trả về, ngoại lệ, trạng thái đối tượng sau, tương tác với phụ thuộc). Với trường hợp lỗi, kiểm tra cả việc trạng thái không bị thay đổi. Khi đặc tả không nói kết quả cho một tổ hợp (ví dụ hai điều kiện cùng sai thì báo lỗi nào), không tự quyết: ghi Q/ASM.
 
 Bước 4. Kỹ thuật hộp trắng (khi có thiết kế method hoặc mã nguồn).
-4.1. Dựng đồ thị luồng điều khiển (CFG): node là khối lệnh tuần tự hoặc điểm quyết định; cạnh là luồng điều khiển; nhánh đúng/sai ghi nhãn.
+4.1. Dựng đồ thị luồng điều khiển (CFG): node là khối lệnh tuần tự hoặc điểm quyết định; cạnh là luồng điều khiển; nhánh đúng/sai ghi nhãn. Lệnh ném ngoại lệ là khối lệnh nối tới node kết thúc. Lời gọi tới operation khác có ngoại lệ được P12 F2 nêu mà method này không bắt là một node quyết định "<lời gọi> ném <ngoại lệ>?"; ngoại lệ không có ở P12 F2 không tạo nhánh.
 4.2. Tính độ phức tạp cyclomatic V(G) = E - N + 2 (E số cạnh, N số node của một đồ thị liên thông), hoặc số điểm quyết định nhị phân + 1. V(G) là số đường đi cơ sở độc lập và là cận trên số test case cần để phủ mọi nhánh. V(G) lớn hơn 10 là dấu hiệu phương thức quá phức tạp: ghi đề xuất tách phương thức cho P12.
 4.3. Kiểm tra độ phủ của bộ test hộp đen: C0 (tỷ lệ lệnh được thực thi) và C1 (tỷ lệ nhánh được đi qua). Thêm test case cho lệnh/nhánh chưa phủ, trong phạm vi đặc tả ngoài. Với điều kiện ghép (A và B, A hoặc B), C1 không bảo đảm mỗi điều kiện con nhận cả đúng và sai; nếu điều kiện ghép hiện thực BR, thêm test case để mỗi điều kiện con nhận cả hai giá trị.
 4.4. Vòng lặp: với vòng lặp đơn có số lần tối đa n và số lần điển hình m (m < n), kiểm thử: bỏ qua vòng (0 lần), 1 lần, m lần, n-1, n, n+1 lần (n+1 là trường hợp không hợp lệ nếu đặc tả giới hạn). Vòng lồng: cố định vòng ngoài ở số lần điển hình, kiểm thử vòng trong như vòng đơn; sau đó cố định vòng trong ở số lần điển hình, kiểm thử vòng ngoài như vòng đơn.

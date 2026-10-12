@@ -9,7 +9,7 @@ Bước này đánh giá chéo thiết kế (kiến trúc, phần tử thiết k
 | Loại | Artifact | Bắt buộc | Dùng để |
 |---|---|---|---|
 | Đầu vào | project-profile.md | Có | Chế độ giả định, mức chi tiết, công nghệ |
-| Đầu vào | P12-class-design.md (hoặc P12-class-design/*.md) | Có (trừ khi review độc lập) | Lớp, operation, thuộc tính, quan hệ, state machine. Phần cần đọc: F1, F1b, F2, F3, F5, F6, F7, F7a (bỏ bảng Node, Edge của F8) |
+| Đầu vào | P12-class-design.md (hoặc P12-class-design/*.md) | Có (trừ khi review độc lập) | Lớp, operation, thuộc tính, quan hệ, state machine. Phần cần đọc: F1, F1b, F2, F3, F4, F5, F6, F7, F9; bảng Node, Edge của F8 chỉ khi áp dụng tiêu chí CNS "Class diagram khớp bảng" (không đọc thì F5 ghi tiêu chí đó là "Không xét: không đọc F8") |
 | Đầu vào | P13-data-model.md | Không | Review dữ liệu và nhất quán lớp - bảng. Phần cần đọc: F2, F4, F5, F6, bảng Edge của F8.1 |
 | Đầu vào | P09-architecture.md, P10-design-elements.md | Không (nên có) | Layer, package, subsystem, interface, quy tắc phụ thuộc |
 | Đầu vào | P11b-system-interfaces.md (hoặc P11b-system-interfaces/) | Không | Interface với hệ thống ngoài. Phần cần đọc: mục của SS và IF mà phạm vi dùng |
@@ -147,7 +147,7 @@ Ví dụ đúng (thư viện): | DC-FineCalculator | Functional | Mọi operatio
 
 F5. Danh mục nguyên lý, design smell, nhất quán, dữ liệu
 Bảng tổng hợp theo nguyên lý: | Nguyên lý | Phần tử đã xét | Kết luận (Đạt / Vi phạm: RV) |
-Áp dụng các tiêu chí sau (mỗi tiêu chí: phát biểu, dấu hiệu vi phạm, cách sửa).
+Áp dụng các tiêu chí sau (mỗi tiêu chí: phát biểu, dấu hiệu vi phạm, cách sửa). Kết quả của Bước 1 (MOD) cũng ghi ở bảng này, mỗi tiêu chí Decomposable, Composable, Understandable, Continuity, Protection một dòng; dòng Continuity ghi từng thay đổi đã thử ở cột Phần tử đã xét dạng "<thay đổi>: <số lớp> lớp, <số package> package (<mã phần tử>)".
 
 SOLID
 - SRP (Single Responsibility): một lớp chỉ có một lý do để thay đổi. Dấu hiệu: operation phục vụ các nhóm người dùng/tác nhân khác nhau; một entity vừa chứa dữ liệu nghiệp vụ vừa quyết định thứ tự sắp xếp, định dạng in, lưu trữ. Sửa: Extract Class theo lý do thay đổi.
@@ -214,6 +214,7 @@ F6. Phụ thuộc package
 F6.1. Bảng phụ thuộc: | PKG nguồn | PKG đích | Quan hệ lớp tạo ra phụ thuộc (R-nn) | Hợp lệ theo layer (Có / Không) |
 F6.2. Vòng phụ thuộc: liệt kê từng vòng (PKG-a --> PKG-b --> PKG-a) hoặc "Không có".
 F6.3. Chỉ số (chỉ khi DAY_DU): | PKG | Ca (số lớp ngoài package phụ thuộc vào lớp trong package) | Ce (số lớp ngoài package mà lớp trong package phụ thuộc) | I = Ce / (Ca + Ce) | A = số lớp trừu tượng và interface / tổng số lớp | D = abs(A + I - 1) | Nhận xét |
+- Cách đếm: lớp có hành vi và interface ở P12 F1; không đếm enumeration, value object, ngoại lệ ở F1b và kiểu của nền tảng. Lớp ngoài phạm vi đếm khi có tên ở P10 F3 và có quan hệ ở P10 hoặc P12 F5; package chưa có lớp không đếm. Có package liên quan chưa có P12 thì cột Nhận xét ghi "Tham khảo: chưa gồm <PKG>".
 - I gần 0: ổn định (nhiều bên phụ thuộc, nên trừu tượng); I gần 1: không ổn định (dễ đổi, nên cụ thể). D lớn (khoảng từ 0,5 trở lên) cho biết package vừa ổn định vừa cụ thể (khó thay đổi) hoặc vừa không ổn định vừa trừu tượng (trừu tượng thừa); ghi nhận xét, không tự động là vi phạm.
 
 F7. Tổng hợp

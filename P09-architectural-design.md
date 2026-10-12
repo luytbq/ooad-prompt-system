@@ -25,7 +25,7 @@ Bước này quyết định cấu trúc mức cao nhất của phần mềm: ch
 
 | Artifact | Phần cần dùng |
 |---|---|
-| P01-actors.md | Bảng tác nhân (Mục 2) |
+| P01-actors.md | Mục 1 (Ranh giới hệ thống: thành phần trong, ngoài, nền tảng chạy thành phần nội bộ), Mục 2 (Bảng tác nhân), Giả định |
 | P02-usecases.md | Mục 4 (danh sách UC, nhóm chức năng) |
 | P03-usecase-model.md | Không cần, trừ khi kiểm tra nhóm chức năng |
 | P05-glossary.md | Cột Thuật ngữ, Tiếng Anh |
@@ -34,7 +34,7 @@ Bước này quyết định cấu trúc mức cao nhất của phần mềm: ch
 
 - Chạy một lần cho toàn hệ thống. Chạy lại khi NFR hoặc bối cảnh kỹ thuật thay đổi.
 - Nếu NEN_TANG hoặc CONG_NGHE trong hồ sơ dự án là "Chưa chốt", AI lập bảng so sánh 2-3 phương án công nghệ, nêu khuyến nghị có lý do, rồi mới chọn mẫu cho phía giao diện. Người dùng chốt bằng placeholder PHUONG_AN_DA_CHON (điền trước khi chạy, hoặc chạy lại sau khi đọc khuyến nghị); để trống thì AI dùng phương án khuyến nghị và ghi rõ là khuyến nghị chờ xác nhận.
-- Sau khi chạy: thay hai dòng NEN_TANG, CONG_NGHE trong bảng ở project-profile.md mục 3 bằng hai dòng của khối "Cập nhật hồ sơ dự án" (F11), trước khi chạy P10. Chấp nhận khuyến nghị thì không cần chạy lại P09; P10 coi giá trị trong hồ sơ là đã chốt và không xét trạng thái "chờ xác nhận" ở P09.
+- Sau khi chạy: thay hai dòng NEN_TANG, CONG_NGHE trong bảng ở project-profile.md mục 3 bằng hai dòng của khối "Cập nhật hồ sơ dự án" (F11), trước khi chạy P10. Chấp nhận khuyến nghị thì không cần chạy lại P09; P10 coi giá trị trong hồ sơ là đã chốt, không xét trạng thái "chờ xác nhận" ở P09, và coi các Q-nn liệt kê dưới khối F11 là đã trả lời theo ASM tương ứng.
 
 | Placeholder | Bắt buộc | Ý nghĩa |
 |---|---|---|
@@ -103,7 +103,7 @@ A5. Đặt quy tắc phụ thuộc.
 - Ghi rõ các chỗ dùng cơ chế gọi ngược qua interface.
 
 A6. Định hướng mức cao cho giao tiếp ngoài và dữ liệu.
-- Với mỗi hệ thống ngoài và thiết bị trong P01: layer và package chứa phần giao tiếp, nguyên tắc cô lập (mỗi hệ thống ngoài được che sau một interface, sẽ thành subsystem ở P10).
+- Với mỗi hệ thống ngoài, thiết bị ở P01 Mục 2 và mỗi thành phần nội bộ chạy trên thiết bị riêng ở P01 Mục 1 (node khác của chính hệ thống, dòng riêng ở F7): layer và package chứa phần giao tiếp, nguyên tắc cô lập (mỗi hệ thống ngoài được che sau một interface, sẽ thành subsystem ở P10).
 - Lưu trữ: loại cơ chế lưu trữ (quan hệ, tài liệu, file) và layer chứa phần truy cập dữ liệu. Nếu CONG_NGHE chưa chốt, dùng hệ quản trị của phương án công nghệ ở A3a.
 
 A7. Kiểm tra mô hình phân tích chứa được trong kiến trúc.
@@ -166,7 +166,7 @@ Ví dụ sai: PKG-06 Persistence phụ thuộc PKG-05 Inventory để gọi hàm
 
 F5. Quy tắc ánh xạ lớp phân tích sang kiến trúc (P10 đọc bảng này)
 Bảng: | Stereotype hoặc loại lớp phân tích | Layer hoặc vai trò trong mẫu đích | Ghi chú |
-- Tối thiểu có dòng cho: boundary giao diện người dùng; boundary kênh thông báo (email, SMS, thông báo đẩy) khi P08 có; boundary giao diện hệ thống; boundary giao diện thiết bị; control; entity (phần hành vi nghiệp vụ); entity (phần lưu trữ).
+- Tối thiểu có dòng cho: boundary giao diện người dùng; boundary có Loại boundary "Kênh thông báo" ở P08 F3 (tác nhân người chỉ nhận email, SMS, thông báo đẩy) khi P08 có, còn boundary tới cổng SMS, máy chủ email thuộc dòng boundary giao diện hệ thống; boundary giao diện hệ thống; boundary giao diện thiết bị; control; entity (phần hành vi nghiệp vụ); entity (phần lưu trữ).
 - Ví dụ (layered kết hợp MVC passive ở web): boundary người dùng --> View và phần tiếp nhận yêu cầu (Controller của MVC) ở Presentation; control --> lớp dịch vụ ứng dụng ở Application; entity --> lớp miền ở Domain (layer thấp nhất), interface kho dữ liệu ở Domain, phần hiện thực lưu trữ ở Persistence thuộc Services; boundary hệ thống --> subsystem ở Services.
 - Ví dụ (desktop MVP): boundary người dùng --> View và Presenter; control --> Application service; entity --> Model.
 - Lưu ý: "controller" của MVC là thành phần giao diện, khác lớp control của phân tích; ghi rõ trong bảng để tránh nhầm.
@@ -187,7 +187,7 @@ Bảng giao tiếp ngoài: | ACT (hệ thống ngoài, thiết bị, tác nhân 
 Bảng dữ liệu: | Mục | Quyết định | Lý do |, gồm: loại cơ chế lưu trữ; layer truy cập dữ liệu; chiến lược giao dịch mức cao (nếu NFR có yêu cầu nhất quán); dữ liệu cần bảo vệ (nếu NFR bảo mật có).
 
 F8. Kiểm tra chứa mô hình phân tích
-Bảng: | Nhóm lớp phân tích (theo stereotype hoặc nhóm chức năng) | Số lớp | Layer, PKG đích | Vấn đề |. Mọi lớp hoạt động trong P08 thuộc một nhóm.
+Bảng: | Nhóm lớp phân tích (theo stereotype hoặc nhóm chức năng) | Số lớp | Layer, PKG đích | Vấn đề |. Mọi lớp hoạt động trong P08 (Trạng thái ở P08 F3 là "Hoạt động" hoặc "Tạm (chờ P07 của UC-nnn)"; chỉ lớp "Gộp vào" bị bỏ) thuộc một nhóm.
 
 F9. Package diagram
 File diagrams/P09-package-layers.drawio.

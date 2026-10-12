@@ -37,7 +37,7 @@ Kết quả là đầu vào của P03 (sơ đồ use case và quan hệ), P04 (�
 ````text
 [Context]
 Đọc theo thứ tự: 00-Conventions.md (luật chung, bắt buộc tuân thủ), project-profile.md, P00-problem-brief.md (bảng REQ, phạm vi), P01-actors.md (tác nhân đã chốt), rồi tài liệu nguồn.
-Nếu có P02-usecases.md cũ và P02R-review.md đi kèm thì đây là lần chạy lại sau review: giữ mọi mã UC, CAND, EV, Q, ASM; chỉ áp dụng các UCR ghi trong Yêu cầu bổ sung, cùng các sửa hệ quả để artifact nhất quán; chép các Q-nn do P02R cấp vào mục Câu hỏi mở (giữ mã, cột Nguồn gây mơ hồ ghi "P02R"); tăng phiên bản; ghi các phần tử đã đổi theo từng UCR vào mục "Thay đổi so với phiên bản trước" (Mục 7). UCR không áp dụng ghi mã và lý do vào mục Vấn đề còn mở.
+Nếu có P02-usecases.md cũ và P02R-review.md đi kèm thì đây là lần chạy lại sau review: giữ mọi mã UC, CAND, EV, Q, ASM; chỉ áp dụng các UCR ghi trong Yêu cầu bổ sung, cùng các sửa hệ quả để artifact nhất quán; chép các Q-nn, ASM-nn do P02R cấp vào mục Câu hỏi mở, Giả định (giữ mã, cột Nguồn gây mơ hồ ghi "P02R: " kèm căn cứ P02R đã ghi); tăng phiên bản; ghi các phần tử đã đổi theo từng UCR vào mục "Thay đổi so với phiên bản trước" (Mục 7). UCR không áp dụng ghi mã và lý do vào mục Vấn đề còn mở.
 Nếu không có P00-problem-brief.md, dùng trực tiếp tài liệu nguồn và thay mã REQ bằng trích dẫn ngắn trong ngoặc kép kèm vị trí. Nếu không có P01-actors.md, dừng lại và yêu cầu chạy P01 trước, trừ khi yêu cầu bổ sung cho phép tự xác định tác nhân (khi đó áp dụng tóm tắt: tác nhân là vai trò bên ngoài ranh giới, tương tác trực tiếp, có mục tiêu hoặc cung cấp dịch vụ, có căn cứ trong nguồn).
 
 Phạm vi lần chạy:
@@ -356,7 +356,7 @@ Cột Nhóm chức năng:
 
 Cột REQ: mọi REQ mà UC phủ.
 
-Cột Mức: User-goal hoặc Subfunction (Subfunction chỉ khi được giữ theo Q4 hoặc U-R01; ghi điều kiện a, b, c hoặc d của Q4 trong Mô tả ngắn).
+Cột Mức: User-goal hoặc Subfunction (Subfunction chỉ khi được giữ theo Q4 hoặc U-R01; ghi điều kiện a, b, c hoặc d của Q4 trong Mô tả ngắn). UC bị loại khi chạy lại vẫn giữ dòng ở bảng 4a và 4b: cột Mức ghi "Loại", các cột tác nhân ghi "-", Mô tả ngắn ghi lý do và UC nhận phần việc; Mục 6 chỉ đếm UC khác Loại.
 
 Cột CAND nguồn: các CAND đã giữ hoặc gộp vào UC này.
 

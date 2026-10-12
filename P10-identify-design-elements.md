@@ -29,7 +29,7 @@ Bước này chuyển mô hình phân tích thành các phần tử của mô h�
 | P09-architecture.md | F4, F5, F6, F7, Câu hỏi mở, Giả định |
 | P01-actors.md, P02-usecases.md | Bảng tác nhân; Mục 4 (UC, nhóm chức năng) |
 | P06-supplementary-spec.md | NFR về khả năng thay thế, bảo mật, giao tiếp ngoài |
-| P03-usecase-model.md, P04-uc-specs/ | Quan hệ extend và use case tuỳ chọn (A3, lớp tuỳ chọn) |
+| P03-usecase-model.md | Bảng quan hệ (dòng extend) và điều kiện extend, để xác định lớp tuỳ chọn (A3); không cần P04 |
 
 - Chạy một lần cho toàn hệ thống, sau P09 và sau khi đã thay hai dòng NEN_TANG, CONG_NGHE của project-profile.md bằng khối "Cập nhật hồ sơ dự án" của P09 (khi hồ sơ từng ghi "Chưa chốt"). Chạy lại khi P08 hoặc P09 thay đổi.
 
@@ -58,12 +58,12 @@ Bạn là kiến trúc sư phần mềm và nhà thiết kế hướng đối t�
 [Action]
 A0. Kiểm tra đầu vào.
 - Kiểm tra placeholder theo Conventions C6.
-- Đối chiếu mẫu kiến trúc và mẫu cho phía giao diện ở P09 mục F3 với NEN_TANG, CONG_NGHE hiện tại của hồ sơ dự án. Hồ sơ vẫn ghi "Chưa chốt": dùng công nghệ ở P09 mục F11 và ghi vào Vấn đề còn mở "Hồ sơ chưa cập nhật theo P09". Mẫu lệch công nghệ (ví dụ P09 chọn MVC passive cho web render phía máy chủ, hồ sơ chốt SPA): ghi Đề xuất sửa P09 và Q-nn, tiếp tục theo công nghệ trong hồ sơ.
+- Đối chiếu mẫu kiến trúc và mẫu cho phía giao diện ở P09 mục F3 với NEN_TANG, CONG_NGHE hiện tại của hồ sơ dự án. Hồ sơ vẫn ghi "Chưa chốt": dùng công nghệ ở P09 mục F11 và ghi vào Vấn đề còn mở "Hồ sơ chưa cập nhật theo P09". Mẫu lệch công nghệ (ví dụ P09 chọn MVC passive cho web render phía máy chủ, hồ sơ chốt SPA): ghi Đề xuất sửa P09 và Q-nn, tiếp tục theo công nghệ trong hồ sơ. Hồ sơ đã ghi đúng giá trị khối F11 của P09: các Q-nn liệt kê dưới khối F11 coi là đã trả lời theo ASM tương ứng, ghi một dòng ở Vấn đề còn mở "Q-nn (danh sách) đóng theo hồ sơ đã cập nhật sau P09", không dẫn chúng như câu hỏi còn mở.
 
 A1. Xác định subsystem ứng viên.
 - Xét mọi lớp phân tích hoạt động trong P08. Một lớp (hoặc nhóm lớp) là ứng viên subsystem khi thoả ít nhất một tiêu chí: là boundary giao diện hệ thống ngoài; là boundary giao diện thiết bị; cung cấp dịch vụ phức tạp hoặc tiện ích dùng ở nhiều use case và che giấu được bên trong; có khả năng bị thay thế bằng biến thể khác (đổi nhà cung cấp, đổi thiết bị) theo NFR hoặc KHA_NANG_THAY_DOI_GIAO_DIEN; cần giới hạn truy cập vì lý do bảo mật; đại diện cho sản phẩm có sẵn được dùng lại (thư viện giao tiếp, hỗ trợ truy cập dữ liệu, tiện ích chung).
-- Package tích hợp, hạ tầng của P09 không có lớp phân tích nguồn (máy in nối qua phần mềm trung gian, bộ định thời, đồng bộ với máy trạm) cũng được xét: F1 ghi cột Lớp phân tích là "- (ACT-nn hoặc PKG-nn của P09)", F2 ghi AC nguồn "Cơ chế: <mục P09>". Phần hiện thực interface kho dữ liệu (Persistence) không thành subsystem: ghi ở bảng phần tử thiết kế mới do cơ chế kiến trúc (F3); operation của interface kho dữ liệu do P12 thiết kế.
-- Boundary loại Kênh thông báo (email, SMS, thông báo đẩy) ánh xạ theo dòng tương ứng ở P09 mục F5; thường thành subsystem gửi thông báo khi kênh đi qua dịch vụ ngoài, không thành lớp giao diện người dùng.
+- Package tích hợp, hạ tầng của P09 không có lớp phân tích nguồn (máy in nối qua phần mềm trung gian, bộ định thời, đồng bộ với máy trạm) cũng được xét khi ít nhất một use case nó phục vụ đã có P07; package chỉ phục vụ use case chưa có P07 thì theo F1 (giữ chỗ, chưa tạo subsystem). Khi được xét: F1 ghi cột Lớp phân tích là "- (ACT-nn hoặc PKG-nn của P09)", F2 ghi AC nguồn "Cơ chế: <mục P09>". Phần hiện thực interface kho dữ liệu (Persistence) không thành subsystem: ghi ở bảng phần tử thiết kế mới do cơ chế kiến trúc (F3); operation của interface kho dữ liệu do P12 thiết kế.
+- Boundary có Loại boundary "Kênh thông báo" ở P08 F3 ánh xạ theo dòng tương ứng ở P09 mục F5; thường thành subsystem gửi thông báo khi kênh đi qua dịch vụ ngoài, không thành lớp giao diện người dùng.
 - Lớp "siêu nhân" (một boundary có nhiều trách nhiệm phức tạp) là dấu hiệu nên thành subsystem: trách nhiệm của nó trở thành operation của interface, phần hiện thực chia cho các lớp bên trong.
 - Mỗi subsystem: đặt tên theo năng lực cung cấp; xác định interface nó hiện thực (tên bắt đầu bằng chữ I, phản ánh vai trò); liệt kê trách nhiệm (lấy từ trách nhiệm của lớp phân tích nguồn); liệt kê phần tử được che giấu. Chi tiết operation để P11b làm.
 
@@ -118,7 +118,7 @@ F2. Bảng subsystem (bảng lõi, P11b đọc bảng này)
 
 F3. Bảng ánh xạ lớp phân tích sang phần tử thiết kế (bảng lõi, P12 đọc bảng này)
 | AC | Kết quả (Lớp thiết kế DC / Subsystem SS / Package / Tách thành nhiều lớp) | Phần tử thiết kế | PKG | Lý do |
-- Mọi lớp hoạt động trong P08 có đúng một dòng. Lớp "Gộp vào" không có dòng.
+- Mọi lớp trong P08 F3 có Trạng thái "Hoạt động" hoặc "Tạm (chờ P07 của UC-nnn)" có đúng một dòng; lớp Tạm ghi "Tạm, chờ P07 của UC-nnn" ở cột Lý do. Lớp "Gộp vào" không có dòng.
 - Phần tử thiết kế: mã và tên, nhiều phần tử cách nhau bằng thẻ <br>, ví dụ "DC-BookingView<br>DC-BookingPresenter".
 - Lý do: bắt buộc khi kết quả khác 1-1; với 1-1 ghi "Lớp đơn giản, một trừu tượng".
 Mức hợp lý: phần lớn lớp ánh xạ 1-1; tỷ lệ tách cao bất thường (hơn một nửa) cần kiểm tra lại mô hình phân tích hoặc bảng ánh xạ của P09.

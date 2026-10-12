@@ -81,6 +81,7 @@ Nhóm A - Tác nhân
   - A-C2 Cùng một cơ chế người thao tác qua thiết bị nhưng các use case chọn tác nhân chính khác nhau (use case này chọn người, use case kia chọn thiết bị).
   - A-C3 Tác nhân thời gian cho hết giờ chờ trong phiên của một use case đang chạy.
   - A-C4 Tác nhân phụ bị ghi làm tác nhân chính hoặc ngược lại theo phép thử "ai muốn kết quả này" và "ai được hệ thống nhờ làm một phần việc".
+  - A-C5 Thiếu tác nhân phụ: use case gọi tới hệ thống hoặc thiết bị ngoài ranh giới (gửi SMS, thu, hoàn tiền qua cổng thanh toán, in qua máy in) mà nguồn hoặc ASM-nn nêu, nhưng cột Tác nhân phụ không ghi.
 
 Nhóm U - Use case
 Mức mục tiêu:
@@ -177,7 +178,7 @@ Bố cục (Nhóm L, dùng cùng mã với P03 Phần D; chỉ ở mức Thấp 
 Người review được nâng hoặc hạ một mức khi hệ quả thực tế khác mặc định, và phải nêu lý do trong cột Vấn đề.
 
 === Phần C. Nội dung đầu ra ===
-Khi chạy trong pipeline (có 00-Conventions.md), thêm bảng thông tin và các mục kiểm soát theo Conventions C5 (Câu hỏi mở, Giả định khi CO_NHAN, Đề xuất sửa artifact trước, Vấn đề còn mở); Mục 6 Giới hạn của review đặt trước các mục kiểm soát đó. Câu hỏi cần người viết trả lời ở Mục 6 được cấp mã Q-nn theo Conventions C3 và ghi vào mục Câu hỏi mở. Khi chạy độc lập, bỏ bảng thông tin và mục kiểm soát.
+Khi chạy trong pipeline (có 00-Conventions.md), thêm bảng thông tin và các mục kiểm soát theo Conventions C5 (Câu hỏi mở, Giả định khi CO_NHAN, Đề xuất sửa artifact trước, Vấn đề còn mở); Mục 6 Giới hạn của review đặt trước các mục kiểm soát đó. Câu hỏi cần người viết trả lời ở Mục 6 được cấp mã Q-nn theo Conventions C3 và ghi vào mục Câu hỏi mở. Ở CO_NHAN, đề xuất sửa dựa trên một phương án nguồn chưa xác nhận thì có ASM-nn chọn phương án đó kèm Q-nn (Conventions C1.2), mã ASM ghi ở cột Đề xuất sửa. Khi chạy độc lập, bỏ bảng thông tin và mục kiểm soát.
 Xuất file P02R-review.md (hoặc trả trong chat) gồm các mục theo thứ tự:
 
 Mục 1. Tóm tắt
@@ -233,7 +234,7 @@ Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 ## 5. Ghi chú cho người dùng
 
 - Review trong pipeline: sau P02, chạy P02R với phạm vi TAC_NHAN, DANH_SACH_UC; sau P03, chạy với SO_DO. Nếu kết luận "Không đạt", sửa bằng cách chạy lại bước tương ứng (đính kèm P02R-review.md) với YEU_CAU_BO_SUNG ghi các mã phát hiện cần xử lý, không sửa tay artifact.
-- Kết luận "Đạt" hoặc "Đạt có điều kiện" mà vẫn có phát hiện: người dùng chọn UCR cần áp dụng. Có ít nhất một UCR được áp dụng: chạy lại P02 kèm P02R-review.md trước khi chạy P03; UCR không áp dụng ghi mã và lý do vào mục Vấn đề còn mở của P02. Không áp dụng UCR nào: không chạy lại P02; khi chạy P03, ghi vào YEU_CAU_BO_SUNG "Đã review P02R <phiên bản>, không áp dụng UCR-xx, UCR-yy (lý do)", P03 chép dòng này vào mục Vấn đề còn mở của P03. Chép cả các Q-nn mới của P02R (mã và câu hỏi) vào YEU_CAU_BO_SUNG của P03, để P03 ghi chúng vào mục Câu hỏi mở và bước sau còn thấy. P03 đọc P02, không đọc Mục 4 của P02R trực tiếp.
+- Kết luận "Đạt" hoặc "Đạt có điều kiện" mà vẫn có phát hiện: người dùng chọn UCR cần áp dụng. Có ít nhất một UCR được áp dụng: chạy lại P02 kèm P02R-review.md trước khi chạy P03; UCR không áp dụng ghi mã và lý do vào mục Vấn đề còn mở của P02. Không áp dụng UCR nào: không chạy lại P02; khi chạy P03, ghi vào YEU_CAU_BO_SUNG "Đã review P02R <phiên bản>, không áp dụng UCR-xx, UCR-yy (lý do)", P03 chép dòng này vào mục Vấn đề còn mở của P03. Chép cả các Q-nn, ASM-nn mới của P02R (mã và nội dung) vào YEU_CAU_BO_SUNG của P03, để P03 ghi chúng vào mục Câu hỏi mở và bước sau còn thấy. P03 đọc P02, không đọc Mục 4 của P02R trực tiếp.
 - Review ngoài pipeline: chỉ cần prompt này và đối tượng review. Có tài liệu nguồn thì kết quả đáng tin hơn nhiều, vì mới kiểm được thừa và thiếu.
 - Sơ đồ dạng ảnh: nên dùng ảnh rõ nét, nhãn không bị che. Nếu có file .drawio thì đính kèm file, AI đọc được chính xác chiều mũi tên.
 - Người viết và người review bất đồng về ca tranh cãi (Đăng nhập, CRUD, báo cáo): ghi quy ước chung vào QUY_UOC_DA_CHOT rồi chạy lại, thay vì tranh luận từng phát hiện.
