@@ -1,0 +1,9 @@
+<mxfile host="app.diagrams.net" version="24.0.0">
+<diagram id="SS07-DP" name="Phụ thuộc">
+<mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0"><root>
+<mxCell id="0"/><mxCell id="1" parent="0"/>
+<mxCell id="SS-07" value="«subsystem»&lt;br&gt;SS-07 Authentication" style="shape=component;html=1;whiteSpace=wrap;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="240" height="60" as="geometry"/></mxCell>
+<mxCell id="PKG-26" value="PKG-26 Account" style="shape=folder;tabWidth=80;tabHeight=20;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1"><mxGeometry x="420" y="40" width="240" height="60" as="geometry"/></mxCell>
+<mxCell id="SS07-DP-E1" value="«use»" style="endArrow=open;dashed=1;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="SS-07" target="PKG-26"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+</root></mxGraphModel></diagram>
+</mxfile>
