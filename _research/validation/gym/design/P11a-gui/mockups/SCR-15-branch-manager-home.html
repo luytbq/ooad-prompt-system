@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SCR-15 Trang chủ Quản lý chi nhánh - VietFit</title>
+<style>
+:root{--primary:#E4572E;--secondary:#29335C;--text:#1C1F2A;--text2:#4A5060;--border:#767C8D;--line:#C9CDD8;--bg2:#F4F5F9;--sel:#E8EAF3;--err:#B3261E;--errbg:#FDECEA;--ok:#1B6E3C;--okbg:#E8F5EC}
+*{box-sizing:border-box}
+body{margin:0;background:#DDE0EA;color:var(--text);font-family:"Be Vietnam Pro",system-ui,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.5}
+.note{max-width:1366px;margin:12px auto 0;padding:0 16px;font-size:14px;color:var(--text)}
+.phone{width:360px;min-height:640px;background:#fff;margin:16px auto;position:relative;overflow:hidden}
+.bar{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 16px;background:#fff;border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:6px;height:28px;font-weight:700;font-size:16px;color:var(--secondary)}
+.logo .mark{display:inline-block;width:28px;height:28px;background:var(--primary);border-radius:6px}
+.home{width:48px;height:48px;border:0;background:transparent;color:var(--secondary);font:inherit;font-size:12px;font-weight:500;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0;cursor:pointer}
+.content{padding:16px}
+h1{margin:0 0 8px;font-size:20px;line-height:1.5;font-weight:700;color:var(--text)}
+.legendnote{margin:0 0 16px;font-size:14px;color:var(--text2)}
+fieldset{border:0;margin:0 0 24px;padding:0}
+legend{padding:0 0 4px;font-size:14px;font-weight:500;color:var(--text)}
+.req{color:var(--err)}
+.err{display:flex;align-items:flex-start;gap:6px;margin:0 0 8px;font-size:14px;color:var(--err)}
+.card{display:flex;align-items:flex-start;gap:12px;min-height:72px;padding:12px;margin:0 0 8px;background:#fff;border:1px solid var(--border);border-radius:8px;position:relative;cursor:pointer}
+.card input{position:absolute;opacity:0;width:100%;height:100%;left:0;top:0;margin:0;cursor:pointer}
+.card:focus-within{outline:3px solid var(--secondary);outline-offset:2px}
+.card .body{display:flex;flex-direction:column;flex:1;font-size:16px}
+.card .t{font-weight:700}
+.card .b{font-weight:700}
+.card .ind{flex:0 0 24px;height:24px;border:2px solid var(--secondary);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.card.is-selected{border:2px solid var(--secondary);padding:11px;background:#fff}
+.card.is-selected .ind{background:var(--secondary)}
+.nav-card{display:flex;align-items:center;gap:12px;min-height:64px;padding:0 16px;margin:0 0 8px;background:#fff;border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:16px;font-weight:500;text-decoration:none}
+.nav-card:focus{outline:3px solid var(--secondary);outline-offset:2px}
+ul.plain{list-style:none;margin:0;padding:0}
+.actions{display:flex;flex-direction:column;gap:8px;margin-top:24px}
+button.primary{height:48px;width:100%;border:0;border-radius:8px;background:var(--primary);color:#fff;font:inherit;font-size:20px;font-weight:700;cursor:pointer}
+button.secondary{height:48px;width:100%;border:2px solid var(--secondary);border-radius:8px;background:#fff;color:var(--secondary);font:inherit;font-size:16px;font-weight:500;cursor:pointer}
+button:focus-visible{outline:3px solid var(--secondary);outline-offset:2px}
+.banner{display:flex;align-items:flex-start;gap:8px;padding:12px;margin:0 0 16px;border:1px solid var(--ok);border-radius:8px;background:var(--okbg);color:var(--text)}
+dl.kv{margin:16px 0 0}
+dl.kv div{display:flex;justify-content:space-between;gap:16px;margin:0 0 16px}
+dl.kv dt{font-weight:500;color:var(--text)}
+dl.kv dd{margin:0;text-align:right;color:var(--text)}
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center}
+.dialog{width:312px;background:#fff;border-radius:12px;padding:24px}
+.dialog h2{margin:0 0 8px;font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px}
+.dialog p{margin:0 0 16px;font-size:16px}
+.dialog .actions{margin-top:0}
+.frame-label{max-width:360px;margin:16px auto 0;font-size:14px;font-weight:500}
+/* web */
+.web{width:1366px;min-height:768px;margin:16px auto;background:#fff;display:grid;grid-template-columns:240px 1fr;grid-template-rows:56px 1fr}
+.web .bar{grid-column:1 / 3;padding:0 24px}
+.web .logo{height:32px}
+.web .logo .mark{width:32px;height:32px}
+.menu{background:var(--bg2);padding:8px 0}
+.menu a{display:flex;align-items:center;gap:12px;height:44px;padding:0 16px;color:var(--text);font-size:14px;font-weight:500;text-decoration:none;border-left:4px solid transparent}
+.menu a[aria-current="page"]{background:var(--sel);border-left-color:var(--primary);color:var(--secondary);font-weight:700}
+.menu a:focus{outline:3px solid var(--secondary);outline-offset:-3px}
+.web main{padding:24px;max-width:1200px}
+.web h1{font-size:24px;margin-bottom:24px}
+.web .nav-card{width:320px;font-size:16px}
+</style>
+</head>
+<body>
+<div class="web">
+<header class="bar"><div class="logo" role="img" aria-label="VietFit"><span class="mark"></span><span aria-hidden="true">VietFit</span></div></header>
+<nav class="menu" aria-label="Menu chính">
+<a href="#" aria-current="page"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11l8-7 8 7v9H4z" fill="none" stroke="#29335C" stroke-width="2" stroke-linejoin="round"/></svg><span>Trang chủ</span></a>
+<a href="#" data-uc="UC-009"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="#29335C" stroke-width="2"/><path d="M8 12h8" stroke="#29335C" stroke-width="2" fill="none"/></svg><span>Lập lịch lớp nhóm</span></a>
+<a href="#" data-uc="UC-014"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="#29335C" stroke-width="2"/><path d="M8 12h8" stroke="#29335C" stroke-width="2" fill="none"/></svg><span>Huỷ lớp nhóm vì sự cố</span></a>
+</nav>
+<main>
+<h1>Trang chủ Quản lý chi nhánh</h1>
+<ul class="plain">
+<li><a class="nav-card" href="#" data-uc="UC-009"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="#29335C" stroke-width="2"/><path d="M8 12h8" stroke="#29335C" stroke-width="2" fill="none"/></svg><span>Lập lịch lớp nhóm</span></a></li>
+<li><a class="nav-card" href="#" data-uc="UC-014"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="#29335C" stroke-width="2"/><path d="M8 12h8" stroke="#29335C" stroke-width="2" fill="none"/></svg><span>Huỷ lớp nhóm vì sự cố</span></a></li>
+</ul>
+</main>
+</div>
+</body>
+</html>
