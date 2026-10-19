@@ -24,7 +24,7 @@
 | Trường | Giá trị |
 |---|---|
 | NEN_TANG | Ứng dụng di động Android và iOS cho hội viên và huấn luyện viên; ứng dụng web chạy trên trình duyệt máy tính cho lễ tân, quản lý chi nhánh và giám đốc chuỗi |
-| CONG_NGHE | Chưa chốt |
+| CONG_NGHE | Ứng dụng di động: React Native (TypeScript); ứng dụng web: React SPA (TypeScript); máy chủ: Node.js với NestJS (TypeScript), giao tiếp REST/JSON; hệ quản trị CSDL: PostgreSQL |
 | HE_THONG_NGOAI | Cổng thanh toán trực tuyến của đối tác (API REST, có tài liệu API thanh toán và tra cứu giao dịch); Cổng SMS của nhà mạng (API REST); Dịch vụ thông báo đẩy của nền tảng di động; Hệ thống hoá đơn điện tử của đơn vị cung cấp (API REST, chưa có tài liệu API); Cửa quay có đầu đọc mã QR tại mỗi chi nhánh, do nhà cung cấp thiết bị lắp đặt, gửi mã QR đọc được tới phần mềm qua API và mở cửa theo kết quả trả về |
 
 ## 4. Ràng buộc đặc thù của dự án [TUỲ CHỌN]
