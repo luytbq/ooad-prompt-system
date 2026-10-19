@@ -1,0 +1,776 @@
+<mxfile host="app.diagrams.net" agent="P08" version="24.0.0">
+  <diagram id="P08-V1" name="Entity">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="1130" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="AC-E-PaymentTransaction" value="«entity»&lt;br&gt;PaymentTransaction" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="240" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__attrs" value="paymentMethod (Trạng thái)&lt;br&gt;amount (Số tiền)&lt;br&gt;posTransactionCode (Văn bản)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-PaymentTransaction">
+          <mxGeometry y="40" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-PaymentTransaction">
+          <mxGeometry y="100" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__ops" value="// createTransaction&lt;br&gt;// prepareInvoiceData" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-PaymentTransaction">
+          <mxGeometry y="110" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackageOrder" value="«entity»&lt;br&gt;PackageOrder" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="300" width="240" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackageOrder__attrs" value="durationMonths (Số lượng)&lt;br&gt;packageType (Văn bản)&lt;br&gt;appliedBranch (Văn bản)&lt;br&gt;startDate (Ngày)&lt;br&gt;amountDue (Số tiền)&lt;br&gt;status (Trạng thái)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-PackageOrder">
+          <mxGeometry y="40" width="240" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackageOrder__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-PackageOrder">
+          <mxGeometry y="160" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackageOrder__ops" value="// createOrder&lt;br&gt;// cancelUnpaidOrder&lt;br&gt;// recordPayment" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-PackageOrder">
+          <mxGeometry y="170" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member" value="«entity»&lt;br&gt;Member" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="300" width="240" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__attrs" value="bookingSuspension (Trạng thái)&lt;br&gt;qrCode (Văn bản)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Member">
+          <mxGeometry y="40" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Member">
+          <mxGeometry y="80" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__ops" value="// activatePackage&lt;br&gt;// checkBookingNotSuspended&lt;br&gt;// checkDailyBookingLimit&lt;br&gt;// determineNotificationChannel&lt;br&gt;// matchesQrCode&lt;br&gt;// checkPackageEligibility&lt;br&gt;// recordEntryScan" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Member">
+          <mxGeometry y="90" width="240" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-ClassBooking" value="«entity»&lt;br&gt;ClassBooking" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="40" width="240" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-ClassBooking__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-ClassBooking">
+          <mxGeometry y="40" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-ClassBooking__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-ClassBooking">
+          <mxGeometry y="60" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-ClassBooking__ops" value="// initializeBooking&lt;br&gt;// provideBookedMember" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-ClassBooking">
+          <mxGeometry y="70" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-GroupClass" value="«entity»&lt;br&gt;GroupClass" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="40" width="240" height="330" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-GroupClass__attrs" value="classType (Văn bản)&lt;br&gt;room (Văn bản)&lt;br&gt;trainer (Văn bản)&lt;br&gt;startTime (Ngày, Giờ)&lt;br&gt;capacity (Số lượng)&lt;br&gt;status (Trạng thái)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-GroupClass">
+          <mxGeometry y="40" width="240" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-GroupClass__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-GroupClass">
+          <mxGeometry y="160" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-GroupClass__ops" value="// provideClassInfo&lt;br&gt;// checkBookable&lt;br&gt;// checkSpotAvailable&lt;br&gt;// reserveSpot&lt;br&gt;// addToWaitlist&lt;br&gt;// checkUnderBookedCancellable&lt;br&gt;// cancelClass&lt;br&gt;// collectBookedMembers" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-GroupClass">
+          <mxGeometry y="170" width="240" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Waitlist" value="«entity»&lt;br&gt;Waitlist" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="460" width="240" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Waitlist__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Waitlist">
+          <mxGeometry y="40" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Waitlist__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Waitlist">
+          <mxGeometry y="60" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Waitlist__ops" value="// addMember" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Waitlist">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-MembershipPackage" value="«entity»&lt;br&gt;MembershipPackage" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="620" width="240" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-MembershipPackage__attrs" value="durationMonths (Số lượng)&lt;br&gt;packageType (Văn bản)&lt;br&gt;appliedBranch (Văn bản)&lt;br&gt;startDate (Ngày)&lt;br&gt;expiryDate (Ngày)&lt;br&gt;status (Trạng thái)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-MembershipPackage">
+          <mxGeometry y="40" width="240" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-MembershipPackage__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-MembershipPackage">
+          <mxGeometry y="160" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-MembershipPackage__ops" value="// calculateRenewalStartDate&lt;br&gt;// initializePackage&lt;br&gt;// checkEntryEligibility" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-MembershipPackage">
+          <mxGeometry y="170" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-EntryScan" value="«entity»&lt;br&gt;EntryScan" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="620" width="240" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-EntryScan__attrs" value="scanTime (Ngày, Giờ)&lt;br&gt;branch (Văn bản)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-EntryScan">
+          <mxGeometry y="40" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-EntryScan__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-EntryScan">
+          <mxGeometry y="80" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-EntryScan__ops" value="// createEntryScan" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-EntryScan">
+          <mxGeometry y="90" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackagePrice" value="«entity»&lt;br&gt;PackagePrice" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="920" width="240" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackagePrice__attrs" value="durationMonths (Số lượng)&lt;br&gt;packageType (Văn bản)&lt;br&gt;appliedBranch (Văn bản)&lt;br&gt;price (Số tiền)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-PackagePrice">
+          <mxGeometry y="40" width="240" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackagePrice__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-PackagePrice">
+          <mxGeometry y="120" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackagePrice__ops" value="// getPriceInfo&lt;br&gt;// calculateAmountDue" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-PackagePrice">
+          <mxGeometry y="130" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Promotion" value="«entity»&lt;br&gt;Promotion" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="920" width="240" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Promotion__attrs" value="validFrom (Ngày)&lt;br&gt;validTo (Ngày)&lt;br&gt;discountRate (Số lượng, tối đa 20% theo BR-38)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Promotion">
+          <mxGeometry y="40" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Promotion__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Promotion">
+          <mxGeometry y="100" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Promotion__ops" value="// determineApplicableDiscount" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Promotion">
+          <mxGeometry y="110" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-DayPass" value="«entity»&lt;br&gt;DayPass" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="920" width="240" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-DayPass__attrs" value="qrCode (Văn bản)&lt;br&gt;purchaseDate (Ngày)&lt;br&gt;purchaseBranch (Văn bản)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-DayPass">
+          <mxGeometry y="40" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-DayPass__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-DayPass">
+          <mxGeometry y="100" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-DayPass__ops" value="// matchesQrCode&lt;br&gt;// checkUsableToday&lt;br&gt;// checkUsableAtBranch" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-DayPass">
+          <mxGeometry y="110" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-PackageOrder" target="AC-E-PaymentTransaction">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-11__lblA" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-11">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-11__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-11">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-Member" target="AC-E-MembershipPackage">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-12__lblA" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-12">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-12__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-12">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-PackageOrder" target="AC-E-Member">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-13__lblA" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-13">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-13__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-13">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0.1667;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-GroupClass" target="AC-E-ClassBooking">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-17__lblA" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-17">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-17__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-17">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-GroupClass" target="AC-E-Waitlist">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-18__lblA" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-18">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-18__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-18">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-Member" target="AC-E-ClassBooking">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-19__lblA" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-19">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-19__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-19">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.8913;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-Waitlist" target="AC-E-Member">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-20__lblA" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-20">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-20__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-20">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.1667;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-Member" target="AC-E-EntryScan">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="570"/>
+              <mxPoint x="160" y="570"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-28__lblA" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-28">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-28__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-28">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="P08-V2" name="Gói tập">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1170" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="AC-B-PurchaseOrRenewPackageUI__V2" value="«boundary»&lt;br&gt;PurchaseOrRenewPackageUI" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="40" width="300" height="290" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PurchaseOrRenewPackageUI__V2__attrs" value="selectedDurationMonths&lt;br&gt;selectedPackageType&lt;br&gt;selectedBranch&lt;br&gt;packageToRenew" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-PurchaseOrRenewPackageUI__V2">
+          <mxGeometry y="40" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PurchaseOrRenewPackageUI__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-B-PurchaseOrRenewPackageUI__V2">
+          <mxGeometry y="120" width="300" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PurchaseOrRenewPackageUI__V2__ops" value="// requestPurchaseOrRenewal&lt;br&gt;// showPackageOptions&lt;br&gt;// selectPackage&lt;br&gt;// showOrderSummary&lt;br&gt;// confirmPurchase&lt;br&gt;// showOrderCancelledNotice&lt;br&gt;// showPaymentFailedNotice&lt;br&gt;// showActivatedPackage" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-PurchaseOrRenewPackageUI__V2">
+          <mxGeometry y="130" width="300" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SellPackageUI__V2" value="«boundary»&lt;br&gt;SellPackageUI" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="40" width="300" height="330" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SellPackageUI__V2__attrs" value="selectedDurationMonths&lt;br&gt;selectedPackageType&lt;br&gt;selectedBranch&lt;br&gt;packageToRenew&lt;br&gt;buyer&lt;br&gt;posTransactionCode" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-SellPackageUI__V2">
+          <mxGeometry y="40" width="300" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SellPackageUI__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-B-SellPackageUI__V2">
+          <mxGeometry y="160" width="300" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SellPackageUI__V2__ops" value="// requestPackageSale&lt;br&gt;// showPackageOptions&lt;br&gt;// selectPackage&lt;br&gt;// showOrderSummary&lt;br&gt;// confirmSale&lt;br&gt;// confirmCashCollected&lt;br&gt;// enterPosTransactionCode&lt;br&gt;// showActivatedPackage" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-SellPackageUI__V2">
+          <mxGeometry y="170" width="300" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PaymentGateway__V2" value="«boundary»&lt;br&gt;PaymentGateway" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="40" width="240" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PaymentGateway__V2__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-PaymentGateway__V2">
+          <mxGeometry y="40" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PaymentGateway__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-B-PaymentGateway__V2">
+          <mxGeometry y="60" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PaymentGateway__V2__ops" value="// requestPayment&lt;br&gt;// returnPaymentResult" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-PaymentGateway__V2">
+          <mxGeometry y="70" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-EInvoiceGateway__V2" value="«boundary»&lt;br&gt;EInvoiceGateway" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1350" y="40" width="240" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-EInvoiceGateway__V2__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-EInvoiceGateway__V2">
+          <mxGeometry y="40" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-EInvoiceGateway__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-B-EInvoiceGateway__V2">
+          <mxGeometry y="60" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-EInvoiceGateway__V2__ops" value="// sendTransactionData" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-EInvoiceGateway__V2">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-PurchaseOrRenewPackageHandler__V2" value="«control»&lt;br&gt;PurchaseOrRenewPackageHandler" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="500" width="300" height="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-PurchaseOrRenewPackageHandler__V2__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-C-PurchaseOrRenewPackageHandler__V2">
+          <mxGeometry y="40" width="300" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-PurchaseOrRenewPackageHandler__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-C-PurchaseOrRenewPackageHandler__V2">
+          <mxGeometry y="60" width="300" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-PurchaseOrRenewPackageHandler__V2__ops" value="// startPurchase&lt;br&gt;// processPackageSelection&lt;br&gt;// placeOrder&lt;br&gt;// startWaitingForPayment&lt;br&gt;// handlePaymentTimeout&lt;br&gt;// stopWaitingForPayment&lt;br&gt;// handlePaymentResult&lt;br&gt;// confirmCashPayment&lt;br&gt;// confirmPosPayment" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-C-PurchaseOrRenewPackageHandler__V2">
+          <mxGeometry y="70" width="300" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackagePrice__V2" value="«entity»&lt;br&gt;PackagePrice" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="900" width="240" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackagePrice__V2__attrs" value="durationMonths (Số lượng)&lt;br&gt;packageType (Văn bản)&lt;br&gt;appliedBranch (Văn bản)&lt;br&gt;price (Số tiền)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-PackagePrice__V2">
+          <mxGeometry y="40" width="240" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackagePrice__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-PackagePrice__V2">
+          <mxGeometry y="120" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackagePrice__V2__ops" value="// getPriceInfo&lt;br&gt;// calculateAmountDue" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-PackagePrice__V2">
+          <mxGeometry y="130" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Promotion__V2" value="«entity»&lt;br&gt;Promotion" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="900" width="240" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Promotion__V2__attrs" value="validFrom (Ngày)&lt;br&gt;validTo (Ngày)&lt;br&gt;discountRate (Số lượng, tối đa 20% theo BR-38)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Promotion__V2">
+          <mxGeometry y="40" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Promotion__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Promotion__V2">
+          <mxGeometry y="100" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Promotion__V2__ops" value="// determineApplicableDiscount" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Promotion__V2">
+          <mxGeometry y="110" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-MembershipPackage__V2" value="«entity»&lt;br&gt;MembershipPackage" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="900" width="240" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-MembershipPackage__V2__attrs" value="durationMonths (Số lượng)&lt;br&gt;packageType (Văn bản)&lt;br&gt;appliedBranch (Văn bản)&lt;br&gt;startDate (Ngày)&lt;br&gt;expiryDate (Ngày)&lt;br&gt;status (Trạng thái)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-MembershipPackage__V2">
+          <mxGeometry y="40" width="240" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-MembershipPackage__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-MembershipPackage__V2">
+          <mxGeometry y="160" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-MembershipPackage__V2__ops" value="// calculateRenewalStartDate&lt;br&gt;// initializePackage&lt;br&gt;// checkEntryEligibility" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-MembershipPackage__V2">
+          <mxGeometry y="170" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__V2" value="«entity»&lt;br&gt;Member" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="900" width="240" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__V2__attrs" value="bookingSuspension (Trạng thái)&lt;br&gt;qrCode (Văn bản)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Member__V2">
+          <mxGeometry y="40" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Member__V2">
+          <mxGeometry y="80" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__V2__ops" value="// activatePackage&lt;br&gt;// checkBookingNotSuspended&lt;br&gt;// checkDailyBookingLimit&lt;br&gt;// determineNotificationChannel&lt;br&gt;// matchesQrCode&lt;br&gt;// checkPackageEligibility&lt;br&gt;// recordEntryScan" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Member__V2">
+          <mxGeometry y="90" width="240" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackageOrder__V2" value="«entity»&lt;br&gt;PackageOrder" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="900" width="240" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackageOrder__V2__attrs" value="durationMonths (Số lượng)&lt;br&gt;packageType (Văn bản)&lt;br&gt;appliedBranch (Văn bản)&lt;br&gt;startDate (Ngày)&lt;br&gt;amountDue (Số tiền)&lt;br&gt;status (Trạng thái)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-PackageOrder__V2">
+          <mxGeometry y="40" width="240" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackageOrder__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-PackageOrder__V2">
+          <mxGeometry y="160" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PackageOrder__V2__ops" value="// createOrder&lt;br&gt;// cancelUnpaidOrder&lt;br&gt;// recordPayment" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-PackageOrder__V2">
+          <mxGeometry y="170" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__V2" value="«entity»&lt;br&gt;PaymentTransaction" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="900" width="240" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__V2__attrs" value="paymentMethod (Trạng thái)&lt;br&gt;amount (Số tiền)&lt;br&gt;posTransactionCode (Văn bản)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-PaymentTransaction__V2">
+          <mxGeometry y="40" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__V2__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-PaymentTransaction__V2">
+          <mxGeometry y="100" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-PaymentTransaction__V2__ops" value="// createTransaction&lt;br&gt;// prepareInvoiceData" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-PaymentTransaction__V2">
+          <mxGeometry y="110" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-01__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.1333;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-B-PurchaseOrRenewPackageUI__V2" target="AC-C-PurchaseOrRenewPackageHandler__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="420"/>
+              <mxPoint x="850" y="420"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-02__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.3667;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-B-SellPackageUI__V2" target="AC-C-PurchaseOrRenewPackageHandler__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="840" y="410"/>
+              <mxPoint x="920" y="410"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-07__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.6;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-B-PaymentGateway__V2" target="AC-C-PurchaseOrRenewPackageHandler__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1170" y="410"/>
+              <mxPoint x="990" y="410"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-10__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.8333;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-B-EInvoiceGateway__V2" target="AC-C-PurchaseOrRenewPackageHandler__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1470" y="420"/>
+              <mxPoint x="1060" y="420"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-04__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.0667;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-C-PurchaseOrRenewPackageHandler__V2" target="AC-E-PackagePrice__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="830" y="780"/>
+              <mxPoint x="160" y="780"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-05__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.2333;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-C-PurchaseOrRenewPackageHandler__V2" target="AC-E-Promotion__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="880" y="790"/>
+              <mxPoint x="480" y="790"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-06__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.4;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-C-PurchaseOrRenewPackageHandler__V2" target="AC-E-MembershipPackage__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="800"/>
+              <mxPoint x="800" y="800"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-08__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5667;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-C-PurchaseOrRenewPackageHandler__V2" target="AC-E-Member__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="800"/>
+              <mxPoint x="1120" y="800"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-03__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.7333;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-C-PurchaseOrRenewPackageHandler__V2" target="AC-E-PackageOrder__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1030" y="790"/>
+              <mxPoint x="1440" y="790"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-09__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.9;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-C-PurchaseOrRenewPackageHandler__V2" target="AC-E-PaymentTransaction__V2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="780"/>
+              <mxPoint x="1760" y="780"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-12__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0.2609;exitDx=0;exitDy=0;entryX=1;entryY=0.2609;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-Member__V2" target="AC-E-MembershipPackage__V2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-12__V2__lblA" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-12__V2">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-12__V2__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-12__V2">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-13__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0.2609;exitDx=0;exitDy=0;entryX=1;entryY=0.2609;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-PackageOrder__V2" target="AC-E-Member__V2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-13__V2__lblA" value="0..*" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-13__V2">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-13__V2__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-13__V2">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-11__V2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=1;exitY=0.2609;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-PackageOrder__V2" target="AC-E-PaymentTransaction__V2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-11__V2__lblA" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-11__V2">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-11__V2__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-11__V2">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="P08-V3" name="Lớp nhóm">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1280" pageHeight="1090" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="AC-B-BookClassSpotUI__V3" value="«boundary»&lt;br&gt;BookClassSpotUI" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="40" width="240" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-BookClassSpotUI__V3__attrs" value="selectedClass" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-BookClassSpotUI__V3">
+          <mxGeometry y="40" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-BookClassSpotUI__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-B-BookClassSpotUI__V3">
+          <mxGeometry y="60" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-BookClassSpotUI__V3__ops" value="// requestBookClass&lt;br&gt;// showClassSchedule&lt;br&gt;// selectClass&lt;br&gt;// showBookingRejectedNotice&lt;br&gt;// showClassFullNotice&lt;br&gt;// requestJoinWaitlist&lt;br&gt;// showWaitlistPosition&lt;br&gt;// showBookedSpot" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-BookClassSpotUI__V3">
+          <mxGeometry y="70" width="240" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PushNotificationGateway__V3" value="«boundary»&lt;br&gt;PushNotificationGateway" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="40" width="260" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PushNotificationGateway__V3__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-PushNotificationGateway__V3">
+          <mxGeometry y="40" width="260" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PushNotificationGateway__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-B-PushNotificationGateway__V3">
+          <mxGeometry y="60" width="260" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-PushNotificationGateway__V3__ops" value="// sendPushNotification" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-PushNotificationGateway__V3">
+          <mxGeometry y="70" width="260" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SmsGateway__V3" value="«boundary»&lt;br&gt;SmsGateway" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="40" width="260" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SmsGateway__V3__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-SmsGateway__V3">
+          <mxGeometry y="40" width="260" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SmsGateway__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-B-SmsGateway__V3">
+          <mxGeometry y="60" width="260" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-SmsGateway__V3__ops" value="// sendSms" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-SmsGateway__V3">
+          <mxGeometry y="70" width="260" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-BookClassSpotHandler__V3" value="«control»&lt;br&gt;BookClassSpotHandler" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="400" width="300" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-BookClassSpotHandler__V3__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-C-BookClassSpotHandler__V3">
+          <mxGeometry y="40" width="300" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-BookClassSpotHandler__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-C-BookClassSpotHandler__V3">
+          <mxGeometry y="60" width="300" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-BookClassSpotHandler__V3__ops" value="// startBooking&lt;br&gt;// bookClass&lt;br&gt;// joinWaitlist" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-C-BookClassSpotHandler__V3">
+          <mxGeometry y="70" width="300" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-CancelUnderBookedClassHandler__V3" value="«control»&lt;br&gt;CancelUnderBookedClassHandler" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="400" width="300" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-CancelUnderBookedClassHandler__V3__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-C-CancelUnderBookedClassHandler__V3">
+          <mxGeometry y="40" width="300" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-CancelUnderBookedClassHandler__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-C-CancelUnderBookedClassHandler__V3">
+          <mxGeometry y="60" width="300" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-CancelUnderBookedClassHandler__V3__ops" value="// handleClassCutoff&lt;br&gt;// cancelAbsenceMark&lt;br&gt;// cancelWaitlistTransferMark" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-C-CancelUnderBookedClassHandler__V3">
+          <mxGeometry y="70" width="300" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__V3" value="«entity»&lt;br&gt;Member" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="680" width="240" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__V3__attrs" value="bookingSuspension (Trạng thái)&lt;br&gt;qrCode (Văn bản)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Member__V3">
+          <mxGeometry y="40" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Member__V3">
+          <mxGeometry y="80" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__V3__ops" value="// activatePackage&lt;br&gt;// checkBookingNotSuspended&lt;br&gt;// checkDailyBookingLimit&lt;br&gt;// determineNotificationChannel&lt;br&gt;// matchesQrCode&lt;br&gt;// checkPackageEligibility&lt;br&gt;// recordEntryScan" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Member__V3">
+          <mxGeometry y="90" width="240" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-ClassBooking__V3" value="«entity»&lt;br&gt;ClassBooking" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="680" width="240" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-ClassBooking__V3__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-ClassBooking__V3">
+          <mxGeometry y="40" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-ClassBooking__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-ClassBooking__V3">
+          <mxGeometry y="60" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-ClassBooking__V3__ops" value="// initializeBooking&lt;br&gt;// provideBookedMember" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-ClassBooking__V3">
+          <mxGeometry y="70" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-GroupClass__V3" value="«entity»&lt;br&gt;GroupClass" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="680" width="240" height="330" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-GroupClass__V3__attrs" value="classType (Văn bản)&lt;br&gt;room (Văn bản)&lt;br&gt;trainer (Văn bản)&lt;br&gt;startTime (Ngày, Giờ)&lt;br&gt;capacity (Số lượng)&lt;br&gt;status (Trạng thái)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-GroupClass__V3">
+          <mxGeometry y="40" width="240" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-GroupClass__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-GroupClass__V3">
+          <mxGeometry y="160" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-GroupClass__V3__ops" value="// provideClassInfo&lt;br&gt;// checkBookable&lt;br&gt;// checkSpotAvailable&lt;br&gt;// reserveSpot&lt;br&gt;// addToWaitlist&lt;br&gt;// checkUnderBookedCancellable&lt;br&gt;// cancelClass&lt;br&gt;// collectBookedMembers" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-GroupClass__V3">
+          <mxGeometry y="170" width="240" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Waitlist__V3" value="«entity»&lt;br&gt;Waitlist" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="680" width="240" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Waitlist__V3__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Waitlist__V3">
+          <mxGeometry y="40" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Waitlist__V3__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Waitlist__V3">
+          <mxGeometry y="60" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Waitlist__V3__ops" value="// addMember" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Waitlist__V3">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-14__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-B-BookClassSpotUI__V3" target="AC-C-BookClassSpotHandler__V3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-23__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.1333;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-B-PushNotificationGateway__V3" target="AC-C-CancelUnderBookedClassHandler__V3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-24__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.8333;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-B-SmsGateway__V3" target="AC-C-CancelUnderBookedClassHandler__V3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1010" y="330"/>
+              <mxPoint x="900" y="330"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-15__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.2667;exitY=1;exitDx=0;exitDy=0;entryX=0.3333;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-C-BookClassSpotHandler__V3" target="AC-E-Member__V3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-16__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.8667;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-C-BookClassSpotHandler__V3" target="AC-E-GroupClass__V3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="570"/>
+              <mxPoint x="740" y="570"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-21__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.7;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-C-CancelUnderBookedClassHandler__V3" target="AC-E-GroupClass__V3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-22__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.1667;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-C-CancelUnderBookedClassHandler__V3" target="AC-E-Member__V3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="590"/>
+              <mxPoint x="220" y="590"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-19__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=1;exitY=0.2174;exitDx=0;exitDy=0;entryX=0;entryY=0.4545;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-Member__V3" target="AC-E-ClassBooking__V3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-19__V3__lblA" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-19__V3">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-19__V3__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-19__V3">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-17__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0.1515;exitDx=0;exitDy=0;entryX=1;entryY=0.4545;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-GroupClass__V3" target="AC-E-ClassBooking__V3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-17__V3__lblA" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-17__V3">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-17__V3__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-17__V3">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-18__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=1;exitY=0.1515;exitDx=0;exitDy=0;entryX=0;entryY=0.5556;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-GroupClass__V3" target="AC-E-Waitlist__V3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-18__V3__lblA" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-18__V3">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-18__V3__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-18__V3">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-20__V3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-Waitlist__V3" target="AC-E-Member__V3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1120" y="1050"/>
+              <mxPoint x="160" y="1050"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-20__V3__lblA" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-20__V3">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-20__V3__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-20__V3">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="P08-V4" name="Ra vào chi nhánh">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1280" pageHeight="870" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="AC-B-TurnstileDevice__V4" value="«boundary»&lt;br&gt;TurnstileDevice" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="40" width="260" height="190" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-TurnstileDevice__V4__attrs" value="scannedQrCode (Văn bản)&lt;br&gt;turnstileBranch (Văn bản)&lt;br&gt;scanTime (Ngày, Giờ)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-TurnstileDevice__V4">
+          <mxGeometry y="40" width="260" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-TurnstileDevice__V4__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-B-TurnstileDevice__V4">
+          <mxGeometry y="100" width="260" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-B-TurnstileDevice__V4__ops" value="// scanQrCode&lt;br&gt;// receiveScannedCode&lt;br&gt;// sendEntryResult&lt;br&gt;// openDoor" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-B-TurnstileDevice__V4">
+          <mxGeometry y="110" width="260" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-EnterBranchHandler__V4" value="«control»&lt;br&gt;EnterBranchHandler" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="360" width="300" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-EnterBranchHandler__V4__attrs" value="" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-C-EnterBranchHandler__V4">
+          <mxGeometry y="40" width="300" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-EnterBranchHandler__V4__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-C-EnterBranchHandler__V4">
+          <mxGeometry y="60" width="300" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-C-EnterBranchHandler__V4__ops" value="// handleEntryRequest&lt;br&gt;// handleDayPassEntry" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-C-EnterBranchHandler__V4">
+          <mxGeometry y="70" width="300" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-DayPass__V4" value="«entity»&lt;br&gt;DayPass" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="600" width="240" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-DayPass__V4__attrs" value="qrCode (Văn bản)&lt;br&gt;purchaseDate (Ngày)&lt;br&gt;purchaseBranch (Văn bản)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-DayPass__V4">
+          <mxGeometry y="40" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-DayPass__V4__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-DayPass__V4">
+          <mxGeometry y="100" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-DayPass__V4__ops" value="// matchesQrCode&lt;br&gt;// checkUsableToday&lt;br&gt;// checkUsableAtBranch" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-DayPass__V4">
+          <mxGeometry y="110" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-EntryScan__V4" value="«entity»&lt;br&gt;EntryScan" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="600" width="240" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-EntryScan__V4__attrs" value="scanTime (Ngày, Giờ)&lt;br&gt;branch (Văn bản)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-EntryScan__V4">
+          <mxGeometry y="40" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-EntryScan__V4__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-EntryScan__V4">
+          <mxGeometry y="80" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-EntryScan__V4__ops" value="// createEntryScan" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-EntryScan__V4">
+          <mxGeometry y="90" width="240" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__V4" value="«entity»&lt;br&gt;Member" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="600" width="240" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__V4__attrs" value="bookingSuspension (Trạng thái)&lt;br&gt;qrCode (Văn bản)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Member__V4">
+          <mxGeometry y="40" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__V4__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-Member__V4">
+          <mxGeometry y="80" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-Member__V4__ops" value="// activatePackage&lt;br&gt;// checkBookingNotSuspended&lt;br&gt;// checkDailyBookingLimit&lt;br&gt;// determineNotificationChannel&lt;br&gt;// matchesQrCode&lt;br&gt;// checkPackageEligibility&lt;br&gt;// recordEntryScan" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-Member__V4">
+          <mxGeometry y="90" width="240" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-MembershipPackage__V4" value="«entity»&lt;br&gt;MembershipPackage" style="swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;collapsible=0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="600" width="240" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-MembershipPackage__V4__attrs" value="durationMonths (Số lượng)&lt;br&gt;packageType (Văn bản)&lt;br&gt;appliedBranch (Văn bản)&lt;br&gt;startDate (Ngày)&lt;br&gt;expiryDate (Ngày)&lt;br&gt;status (Trạng thái)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-MembershipPackage__V4">
+          <mxGeometry y="40" width="240" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-MembershipPackage__V4__sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AC-E-MembershipPackage__V4">
+          <mxGeometry y="160" width="240" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="AC-E-MembershipPackage__V4__ops" value="// calculateRenewalStartDate&lt;br&gt;// initializePackage&lt;br&gt;// checkEntryEligibility" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="AC-E-MembershipPackage__V4">
+          <mxGeometry y="170" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-25__V4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-B-TurnstileDevice__V4" target="AC-C-EnterBranchHandler__V4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-27__V4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.1333;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-C-EnterBranchHandler__V4" target="AC-E-DayPass__V4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="530"/>
+              <mxPoint x="160" y="530"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-26__V4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0.8667;exitY=1;exitDx=0;exitDy=0;entryX=0.3333;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-C-EnterBranchHandler__V4" target="AC-E-Member__V4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="530"/>
+              <mxPoint x="760" y="530"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R-28__V4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=0;exitY=0.2174;exitDx=0;exitDy=0;entryX=1;entryY=0.4545;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-Member__V4" target="AC-E-EntryScan__V4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-28__V4__lblA" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-28__V4">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-28__V4__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-28__V4">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-12__V4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=1;exitY=0.2174;exitDx=0;exitDy=0;entryX=0;entryY=0.2174;entryDx=0;entryDy=0;" edge="1" parent="1" source="AC-E-Member__V4" target="AC-E-MembershipPackage__V4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="R-12__V4__lblA" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-12__V4">
+          <mxGeometry x="-1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="R-12__V4__lblB" value="?" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" vertex="1" connectable="0" parent="R-12__V4">
+          <mxGeometry x="1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
