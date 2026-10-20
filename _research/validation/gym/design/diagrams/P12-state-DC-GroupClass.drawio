@@ -1,0 +1,15 @@
+<mxfile host="app.diagrams.net" version="24.0.0">
+<diagram id="P12-ST-01" name="P12 state DC-GroupClass ST-01">
+<mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1200" math="0" shadow="0"><root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="ST-01-I" value="" style="ellipse;fillColor=#000000;" vertex="1" parent="1"><mxGeometry x="660" y="40" width="40" height="40" as="geometry"/></mxCell>
+<mxCell id="ST-01-S1" value="Scheduled" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;" vertex="1" parent="1"><mxGeometry x="600" y="140" width="160" height="60" as="geometry"/></mxCell>
+<mxCell id="ST-01-S2" value="Cancelled" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;" vertex="1" parent="1"><mxGeometry x="600" y="340" width="160" height="60" as="geometry"/></mxCell>
+<mxCell id="ST-01-T1" value="create(...) / status = SCHEDULED" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.5000;exitY=1.0000;entryX=0.5000;entryY=0.0000;" edge="1" parent="1" source="ST-01-I" target="ST-01-S1"><mxGeometry relative="1" as="geometry"><mxPoint x="140" y="0" as="offset"/></mxGeometry></mxCell>
+<mxCell id="ST-01-T2" value="reserveSpot(member) [bookedCount &amp;lt; capacity] / thêm ClassBooking" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=1.0000;exitY=0.3333;entryX=1.0000;entryY=0.6667;" edge="1" parent="1" source="ST-01-S1" target="ST-01-S1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="820" y="160"/><mxPoint x="820" y="180"/></Array><mxPoint x="270" y="0" as="offset"/></mxGeometry></mxCell>
+<mxCell id="ST-01-T3" value="addToWaitlist(member, now) [bookedCount &amp;gt;= capacity] / thêm WaitlistEntry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.0000;exitY=0.3333;entryX=0.0000;entryY=0.6667;" edge="1" parent="1" source="ST-01-S1" target="ST-01-S1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="540" y="160"/><mxPoint x="540" y="180"/></Array><mxPoint x="-290" y="0" as="offset"/></mxGeometry></mxCell>
+<mxCell id="ST-01-T4" value="cancelClass() / status = CANCELLED" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;exitX=0.5000;exitY=1.0000;entryX=0.5000;entryY=0.0000;" edge="1" parent="1" source="ST-01-S1" target="ST-01-S2"><mxGeometry relative="1" as="geometry"><mxPoint x="130" y="0" as="offset"/></mxGeometry></mxCell>
+</root></mxGraphModel>
+</diagram>
+</mxfile>
