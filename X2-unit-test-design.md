@@ -40,7 +40,7 @@ Bạn nhận được: 00-Conventions.md (luật chung, bắt buộc tuân thủ
 Phạm vi thiết kế test:
 {{PH:PHAM_VI_TEST | Hướng dẫn: liệt kê DC.operation cần test, hoặc ghi mã PKG/DC để AI tự chọn phương thức theo tiêu chí ở Bước 1 | Ví dụ: "DC-StockItem.issue, DC-IssueStockController.confirmIssue"; "Tự chọn trong PKG-02 Mượn trả"; "Mọi operation public của DC-Appointment"}}
 Mục tiêu độ phủ hộp trắng:
-{{PH:MUC_TIEU_PHU | Hướng dẫn: [TUỲ CHỌN] mức độ phủ cần đạt cho phương thức được chọn; dùng mặc định thì thay cả khối bằng "Không có" (100% C1 cho phương thức ưu tiên Cao, 100% C0 cho phương thức còn lại; operation không có thiết kế method ở P12 F3 và không có mã nguồn thì mục tiêu là mọi lớp tương đương và giá trị biên có TC, C0, C1 ghi "Đo khi có mã nguồn") | Ví dụ: "100% C1 cho mọi phương thức được chọn"; "100% C0, riêng phương thức tính tiền 100% C1 và đường đi cơ sở"}}
+{{PH:MUC_TIEU_PHU | Hướng dẫn: [TUỲ CHỌN] mức độ phủ cần đạt cho phương thức được chọn; dùng mặc định thì thay cả khối bằng "Không có" (100% C1 cho phương thức ưu tiên Cao, 100% C0 cho phương thức còn lại) | Ví dụ: "100% C1 cho mọi phương thức được chọn"; "100% C0, riêng phương thức tính tiền 100% C1 và đường đi cơ sở"}}
 Sinh khung mã test:
 {{PH:SINH_MA_TEST | Hướng dẫn: [TUỲ CHỌN] "Có" kèm framework test; chỉ cần thiết kế thì thay cả khối bằng "Không có" | Ví dụ: "Có, Java 17 + JUnit 5 + Mockito"; "Có, Python 3.12 + pytest + unittest.mock"; "Có, C# + xUnit + Moq"}}
 Mã test case bắt đầu:
@@ -68,12 +68,12 @@ Bước 3. Kỹ thuật hộp đen (luôn làm trước).
 3.3. Bảng quyết định: khi kết quả phụ thuộc tổ hợp của nhiều điều kiện. Liệt kê điều kiện (hàng), mọi tổ hợp (cột quy tắc, 2^n với n điều kiện nhị phân), hành động (hàng). Đánh dấu tổ hợp không thể xảy ra là N/A; gộp quy tắc có hành động giống nhau bằng giá trị "-" (không quan tâm) chỉ khi đặc tả cho biết thứ tự kiểm tra. Đặc tả gồm P12 F2 (tiền, hậu điều kiện, ngoại lệ), BR ở P06 và luồng P04; thứ tự bước trong P12 F3 (thiết kế method) chỉ dùng làm căn cứ gộp khi F2 hoặc P04 không mâu thuẫn, ghi rõ căn cứ dưới bảng. P04 ghi nguồn không nêu thứ tự kiểm tra thì không mâu thuẫn với F3 nhưng thứ tự của F3 chưa có nguồn: quy tắc vi phạm từ hai điều kiện trở lên mà kết quả phụ thuộc thứ tự ghi một Q chung theo 3.6, không gộp bằng "-". Mỗi quy tắc còn lại ít nhất một test case, trừ nhóm quy tắc có kết quả chờ cùng một Q: nhóm chọn một đến hai quy tắc đại diện có TC, nhóm ghi ở F4 kèm Q.
 3.4. Chuyển trạng thái (khi phương thức là sự kiện của state machine): mỗi chuyển hợp lệ một test case; với các cặp (trạng thái, sự kiện) không có chuyển, thiết kế test case kiểm tra phương thức từ chối đúng như đặc tả; mỗi guard xét cả đúng và sai, kèm giá trị biên của guard.
 3.5. Theo use case (với phương thức điều phối của lớp control): một kịch bản cho luồng chính, một kịch bản cho mỗi luồng thay thế/ngoại lệ, và các tổ hợp luồng thay thế hợp lý; nếu luồng có vòng lặp (nhập lại khi sai), thêm kịch bản lặp. Đặc tả P04 có mục 8a Kịch bản chính thì lấy danh sách đó làm điểm xuất phát, rồi bổ sung các luồng còn thiếu.
-3.6. Kết quả mong đợi (oracle): suy ra từ đặc tả; ghi giá trị cụ thể (giá trị trả về, ngoại lệ, trạng thái đối tượng sau, tương tác với phụ thuộc). Với trường hợp lỗi, kiểm tra cả việc trạng thái không bị thay đổi. Khi đặc tả không nói kết quả cho một tổ hợp (ví dụ hai điều kiện cùng sai thì báo lỗi nào), không tự quyết: ghi Q/ASM.
+3.6. Kết quả mong đợi (oracle): suy ra từ đặc tả; ghi giá trị cụ thể (giá trị trả về, ngoại lệ, trạng thái đối tượng sau, tương tác với phụ thuộc). Với trường hợp lỗi, kiểm tra cả việc trạng thái không bị thay đổi. Khi đặc tả không nói kết quả cho một tổ hợp (ví dụ hai điều kiện cùng sai thì báo lỗi nào), không tự quyết: ghi Q/ASM. Hành vi chỉ có ở thiết kế method P12 F3 mà F2 và P04 không nêu được dùng làm oracle, cột Nguồn ghi "P12 F3" kèm Đề xuất sửa P12 bổ sung vào F2.
 
-Bước 4. Kỹ thuật hộp trắng (khi có thiết kế method hoặc mã nguồn).
+Bước 4. Kỹ thuật hộp trắng (khi có thiết kế method hoặc mã nguồn). Operation không có thiết kế method ở P12 F3 và không có mã nguồn: mục tiêu là mọi lớp tương đương và giá trị biên có TC, C0, C1 (kể cả mục tiêu do MUC_TIEU_PHU đặt) ghi "Đo khi có mã nguồn" ở F4.
 4.1. Dựng đồ thị luồng điều khiển (CFG): node là khối lệnh tuần tự hoặc điểm quyết định; cạnh là luồng điều khiển; nhánh đúng/sai ghi nhãn. Lệnh ném ngoại lệ là khối lệnh nối tới node kết thúc. Lời gọi tới operation khác có ngoại lệ được P12 F2 nêu mà method này không bắt là một node quyết định "<lời gọi> ném <ngoại lệ>?"; ngoại lệ không có ở P12 F2 không tạo nhánh.
 4.2. Tính độ phức tạp cyclomatic V(G) = E - N + 2 (E số cạnh, N số node của một đồ thị liên thông), hoặc số điểm quyết định nhị phân + 1. V(G) là số đường đi cơ sở độc lập và là cận trên số test case cần để phủ mọi nhánh. V(G) lớn hơn 10 là dấu hiệu phương thức quá phức tạp: ghi đề xuất tách phương thức cho P12.
-4.3. Kiểm tra độ phủ của bộ test hộp đen: C0 (tỷ lệ lệnh được thực thi) và C1 (tỷ lệ nhánh được đi qua). Thêm test case cho lệnh/nhánh chưa phủ, trong phạm vi đặc tả ngoài. Với điều kiện ghép (A và B, A hoặc B), C1 không bảo đảm mỗi điều kiện con nhận cả đúng và sai; nếu điều kiện ghép hiện thực BR, thêm test case để mỗi điều kiện con nhận cả hai giá trị.
+4.3. Kiểm tra độ phủ của bộ test hộp đen: C0 (tỷ lệ lệnh được thực thi) và C1 (tỷ lệ nhánh được đi qua). Thêm test case cho lệnh/nhánh chưa phủ, trong phạm vi đặc tả ngoài. Với điều kiện ghép (A và B, A hoặc B), C1 không bảo đảm mỗi điều kiện con nhận cả đúng và sai; nếu điều kiện ghép hiện thực BR, thêm test case để mỗi điều kiện con nhận cả hai giá trị. Nhánh không thể đi tới theo đặc tả (bất biến của thiết kế chặn): không thiết kế TC ép giá trị trái đặc tả, ghi lý do ở bảng phủ, loại khỏi mẫu số C1 và ghi đề xuất cho P12 bỏ nhánh.
 4.4. Vòng lặp: với vòng lặp đơn có số lần tối đa n và số lần điển hình m (m < n), kiểm thử: bỏ qua vòng (0 lần), 1 lần, m lần, n-1, n, n+1 lần (n+1 là trường hợp không hợp lệ nếu đặc tả giới hạn). Vòng lồng: cố định vòng ngoài ở số lần điển hình, kiểm thử vòng trong như vòng đơn; sau đó cố định vòng trong ở số lần điển hình, kiểm thử vòng ngoài như vòng đơn.
 4.5. Không bỏ test case hộp đen khi một test case hộp trắng đã phủ cùng nhánh: độ phủ 100% không phát hiện được chức năng bị thiếu hoặc sai điều kiện so sánh tại biên (ví dụ viết > thay vì >=), nên các test case biên vẫn cần.
 
@@ -81,6 +81,7 @@ Bước 5. Test double.
 - Xác định phụ thuộc của phương thức (quan hệ association/dependency ở P12, interface IF) cần thay thế để test cô lập: truy cập CSDL, hệ thống ngoài, thời gian hệ thống, sinh số ngẫu nhiên, lớp chưa hiện thực.
 - Chọn loại: stub (trả giá trị định sẵn cho phương thức được test gọi xuống), driver (chương trình gọi đơn vị được test khi thành phần gọi thật chưa có), mock (kiểm tra phương thức được test đã gọi phụ thuộc đúng cách, đúng tham số, đúng số lần), fake (hiện thực đơn giản chạy được, ví dụ kho dữ liệu trong bộ nhớ).
 - Thời gian hiện tại và giá trị ngẫu nhiên phải được tiêm vào (tham số hoặc đối tượng đồng hồ giả lập) để kết quả lặp lại được.
+- Operation private có logic của BR: kiểm qua operation công khai gọi nó; không đạt được thì chọn trực tiếp, ghi lý do và cách truy cập ở F2.x.7, không đề xuất đổi visibility.
 
 Bước 6. Lập bảng test case, ma trận phủ; nếu SINH_MA_TEST là "Có", sinh khung mã test.
 
@@ -199,7 +200,7 @@ class StockItemTest {
 Trả lời Đạt/Không đạt cho từng câu, sửa trước khi trả kết quả; mục không đạt còn lại ghi vào "Vấn đề còn mở".
 1. Mọi phương thức trong phạm vi có dòng ở F1 với quyết định chọn và lý do.
 2. Mọi phương thức được chọn có phân vùng tương đương gồm cả lớp hợp lệ và không hợp lệ, lớp rời nhau và phủ hết miền.
-3. Mọi lớp có thứ tự có giá trị biên tại và ngay ngoài biên, đúng phía với phép so sánh của BR.
+3. Mọi lớp có thứ tự có giá trị biên tại và ngay ngoài biên, đúng phía với phép so sánh của BR; biên ngay ngoài thuộc lớp vi phạm tiền điều kiện mà P12 không nêu hành vi ghi BV với kết quả "Chưa xác định: chờ Q-nn", không có TC.
 4. Mọi tổ hợp điều kiện ảnh hưởng kết quả có bảng quyết định; quy tắc N/A, quy tắc gộp và nhóm quy tắc chờ cùng một Q có căn cứ.
 5. Mọi phương thức là sự kiện của state machine có test cho chuyển hợp lệ, guard đúng/sai và sự kiện ở trạng thái không cho phép.
 6. Mọi BR và luồng thay thế P04 liên quan có test case hoặc lý do ở F4.

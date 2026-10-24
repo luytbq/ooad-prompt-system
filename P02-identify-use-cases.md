@@ -23,7 +23,7 @@ Kết quả là đầu vào của P03 (sơ đồ use case và quan hệ), P04 (�
 - Đính kèm: 00-Conventions.md, project-profile.md, P00-problem-brief.md, P01-actors.md, tài liệu nguồn.
 - Chạy một lần cho toàn hệ thống. Với hệ thống rất lớn có thể chạy theo từng phân hệ bằng placeholder PHAM_VI_LAN_CHAY; khi đó mã UC và CAND phải nối tiếp các lần chạy trước.
 - Chạy lại khi P00 hoặc P01 thay đổi; giữ nguyên mã đã cấp, phần tử bị loại vẫn giữ mã và ghi "Loại".
-- Chạy lại sau review: chỉ khi có ít nhất một UCR được áp dụng. Đính kèm thêm P02-usecases.md hiện có và P02R-review.md, ghi trong YEU_CAU_BO_SUNG các mã UCR cần áp dụng (ví dụ "Áp dụng UCR-01, UCR-03; không áp dụng UCR-02"). UCR không áp dụng ghi mã và lý do vào mục Vấn đề còn mở của P02. Khi không áp dụng UCR nào, không chạy lại P02; ghi quyết định vào YEU_CAU_BO_SUNG của P03 (xem P02R mục 5).
+- Chạy lại sau review: chỉ khi có ít nhất một UCR được áp dụng. Đính kèm thêm P02-usecases.md hiện có và P02R-review.md, ghi trong YEU_CAU_BO_SUNG các mã UCR cần áp dụng (ví dụ "Áp dụng UCR-01, UCR-03; không áp dụng UCR-02"). UCR không áp dụng ghi mã và lý do vào mục Vấn đề còn mở của P02. Lần chạy lại chỉ cần đọc các dòng của P02 mà UCR nêu, Mục 5, Mục 6, Mục 7 và P02R Mục 3, Mục 4; đọc P00, P01 chỉ khi UCR đổi tác nhân, REQ hoặc danh sách UC. Khi không áp dụng UCR nào, không chạy lại P02; ghi quyết định vào YEU_CAU_BO_SUNG của P03 (xem P02R mục 5).
 - Placeholder cần điền trong prompt:
 
 | Placeholder | Bắt buộc | Ý nghĩa |
@@ -237,7 +237,7 @@ U-R10 Nhập liệu thay mặt người khác (người đại diện).
        Bước của người đại diện có bước tương ứng cùng mục đích ở luồng của người được đại diện không tính vào đoạn riêng, ví dụ tra đặt phòng của khách so với chọn đặt phòng của mình, nhận tiền mặt tại quầy so với hoàn tiền qua cổng thanh toán, in phiếu xác nhận so với gửi mã xác nhận qua email.
      - Kết quả khác nhau: đối tượng được tạo hoặc thay đổi kết thúc ở trạng thái khác (phòng do nhân viên quầy đặt được giữ ngay, phòng do khách tự đặt chờ đặt cọc).
      Tên phân biệt theo góc nhìn tác nhân ("Đặt phòng" và "Đặt phòng cho khách"), phần chung là ứng viên include ở P03.
-  b) Không thoả a: một UC, nối với cả hai tác nhân chính, khác biệt thành luồng thay thế ở P04. Trường hợp này gồm: chỉ khác một bước tìm hoặc chọn người, đối tượng được phục vụ (một bước, không tính là đoạn tương tác riêng); chỉ khác điều kiện hoặc ngưỡng của cùng một quy tắc (mốc thời gian, giới hạn số lượng khác nhau theo vai trò), ghi thành BR có điều kiện theo vai trò ở P04. Nếu hai tác nhân dùng chung nhiều UC như vậy, xét đề xuất tác nhân cha theo U-R11.
+  b) Không thoả a: một UC, nối với cả hai tác nhân chính, khác biệt thành luồng thay thế ở P04. Tên UC theo góc nhìn bên được phục vụ, động từ đúng với kết quả của bên đó ("Đặt phòng" dùng cho cả việc nhân viên quầy đặt hộ, vì kết quả là khách có phòng); Mô tả ngắn nêu cách gọi theo người đại diện. Trường hợp này gồm: chỉ khác một bước tìm hoặc chọn người, đối tượng được phục vụ (một bước, không tính là đoạn tương tác riêng); chỉ khác điều kiện hoặc ngưỡng của cùng một quy tắc (mốc thời gian, giới hạn số lượng khác nhau theo vai trò), ghi thành BR có điều kiện theo vai trò ở P04. Nếu hai tác nhân dùng chung nhiều UC như vậy, xét đề xuất tác nhân cha theo U-R11.
 - Ghi vào cột Lý do: "U-R10 a" kèm điều kiện thoả, hoặc "U-R10 b".
 
 U-R11 Nhiều tác nhân cùng một UC.
@@ -307,7 +307,7 @@ Mục 2. Danh sách sự kiện
 
 Mục 3. Bảng ứng viên use case
 | CAND | Ứng viên | Kết luận | Phép thử không đạt | Lý do | REQ | Nguồn phát hiện |
-- Kết luận: một trong "Giữ thành UC-nnn", "Gộp vào UC-nnn", "Là bước của UC-nnn", "Tách thành CAND-xx, CAND-yy", "Loại", "Chờ Q-nn".
+- Kết luận: một trong "Giữ thành UC-nnn", "Gộp vào UC-nnn", "Là bước của UC-nnn", "Tách thành CAND-xx, CAND-yy", "Loại", "Chờ Q-nn". Bước dùng chung của nhiều UC mà không thoả Q4 ghi "Là bước của UC-nnn, UC-mmm" (liệt kê đủ).
 - "Chờ Q-nn" chỉ dùng ở chế độ NGHIEM_NGAT. Ở chế độ CO_NHAN, ứng viên có dấu hiệu trong nguồn nhưng chưa đủ căn cứ thì được tạo ASM-nn chọn một phương án của Q-nn (hoặc dùng ASM-nn mà P00, P01 đã ghi), kết luận theo ASM đó và ghi mã ASM ở cột Lý do; Q-nn vẫn giữ để người dùng xác nhận (Conventions mục C1.2). Ví dụ (phòng khám): nguồn nêu lễ tân xếp lịch làm việc của bác sĩ nhưng không nói ai tạo hồ sơ bác sĩ --> CO_NHAN: ASM-nn "Quản trị viên tạo và sửa hồ sơ bác sĩ", ứng viên "Quản lý hồ sơ bác sĩ" kết luận Giữ thành UC-nnn; NGHIEM_NGAT: Chờ Q-nn. Tác nhân chính của UC theo ASM lấy trong P01; P01 không có vai trò phù hợp thì ghi "Đề xuất sửa artifact trước" (bước P01) và vẫn kết luận theo ASM với tác nhân được đề xuất.
 - "Chờ Q-nn" (NGHIEM_NGAT): ứng viên có dấu hiệu trong nguồn nhưng chưa đủ căn cứ để giữ hoặc loại, và câu hỏi mở Q-nn quyết định số phận của nó. Cột Lý do nêu câu trả lời nào dẫn tới UC. Ứng viên này không vào Mục 4; P03 bỏ qua. Khi Q-nn được trả lời, chạy lại P02 để đổi kết luận. Không dùng "Chờ Q-nn" cho ứng viên không có căn cứ trong nguồn (kết luận "Loại" theo U-T10).
 - Phép thử không đạt: mã U-T và mã U-AP liên quan, hoặc "-" khi Giữ.
@@ -338,7 +338,7 @@ Cột Tác nhân phụ: mã ACT các tác nhân mà hệ thống gọi tới tro
 
 Cột Mục tiêu (kết quả có giá trị):
 - Định nghĩa: kết quả mà tác nhân chính nhận được khi UC thành công, nhìn từ phía tác nhân.
-- Quy tắc: một câu, bắt đầu bằng tác nhân hoặc kết quả, kiểm chứng được. Không mô tả cách hệ thống làm.
+- Quy tắc: một câu, bắt đầu bằng tác nhân hoặc kết quả, kiểm chứng được. Không mô tả cách hệ thống làm. Chỉ nêu kết quả mà nguồn hoặc REQ của UC nêu, không thêm hệ quả suy ra. UC làm hộ (U-R10) và UC của tác nhân thời gian (U-R06, U-R07) nêu kết quả cho bên được phục vụ hoặc bên hưởng lợi, ví dụ "Bạn đọc có phiếu mượn được gia hạn; thủ thư đã ghi nhận lý do gia hạn tại quầy".
 - Ví dụ đúng: "Bệnh nhân có một lịch khám đã được giữ chỗ với bác sĩ và khung giờ mong muốn." "Thủ kho có phiếu nhập kho được ghi nhận, tồn kho tăng tương ứng."
 - Ví dụ sai: "Hệ thống lưu lịch hẹn vào CSDL." (góc nhìn hệ thống, kỹ thuật). "Đặt lịch thành công." (không nói ai nhận gì).
 
@@ -381,7 +381,7 @@ Mục 7. Các mục kiểm soát theo Conventions C5. Khi chạy lại sau revie
 Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 1. Mọi tác nhân chính trong P01 có ít nhất một dòng ở danh sách mục tiêu và ít nhất một UC.
 2. Mọi sự kiện ở Mục 2 có ứng viên tương ứng, và ứng viên đó có kết luận cuối.
-3. Mọi ứng viên có đúng một kết luận thuộc sáu giá trị cho phép; mọi kết luận "Chờ Q-nn" trỏ tới câu hỏi có trong mục Câu hỏi mở, và ở chế độ CO_NHAN không có kết luận "Chờ Q-nn" (ứng viên đó có ASM-nn); mọi tham chiếu UC-nnn, CAND-nn trỏ tới phần tử tồn tại.
+3. Mọi ứng viên có đúng một kết luận thuộc sáu dạng cho phép (dạng "Là bước của" được liệt kê nhiều UC); mọi kết luận "Chờ Q-nn" trỏ tới câu hỏi có trong mục Câu hỏi mở của P02 hoặc của P00, P01 (Q kế thừa không chép lại), và ở chế độ CO_NHAN không có kết luận "Chờ Q-nn" (ứng viên đó có ASM-nn); mọi tham chiếu UC-nnn, CAND-nn trỏ tới phần tử tồn tại.
 4. Mọi UC mức User-goal đạt U-T1 đến U-T12, trừ phép thử bị một quy tắc U-R hoặc QUY_UOC_DA_CHOT ghi đè (mã U-R hoặc quy ước đó được ghi ở cột Lý do); mọi UC mức Subfunction thoả Q4 hoặc U-R01.
 5. Không UC nào khớp một anti-pattern U-AP01 đến U-AP16.
 6. Mọi tên UC tuân thủ U-N1 đến U-N8; không có từ cấm.

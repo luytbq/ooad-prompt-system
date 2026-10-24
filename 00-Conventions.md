@@ -218,6 +218,7 @@ diagrams/<Mã bước>-<loại>-<phạm vi>.drawio. Danh sách tên chuẩn:
 | Class | swimlane;fontStyle=1;align=center;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;collapsible=0;html=1; (các ngăn thuộc tính, phương thức là cell con, ngăn cách bằng line). Lớp có stereotype (lớp phân tích ở VOPC và P08) dùng style này với startSize=40, nhãn "«stereotype»<br>Tên"; style icon dòng dưới chỉ dùng trong sequence, communication diagram |
 | Boundary / Control / Entity (icon) | shape=umlBoundary; / ellipse;shape=umlControl; / ellipse;shape=umlEntity; |
 | Lifeline | shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1; |
+| Actor trong sequence diagram | shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;html=1; |
 | Message đồng bộ / trả về | endArrow=block;endFill=1;html=1; / endArrow=open;dashed=1;html=1; |
 | Message tạo đối tượng | endArrow=open;dashed=1;html=1; (nhãn có «create», đích là đỉnh lifeline được tạo) |
 | Association (class) | endArrow=none;html=1; hoặc endArrow=open khi có chiều điều hướng |

@@ -95,7 +95,7 @@ B. File P04-uc-specs/_BR-register.md đã đồng bộ, cùng mẫu cột như b
 
 Mục 2, 3, 4, 5 dùng chung một dãy mã NFR-nn (Conventions C3) và cùng mẫu bảng lõi:
 | NFR | Nhóm (FURPS+ / ISO 25010) | Phát biểu đo được | Tiêu chí đo | Áp dụng cho (UC / toàn hệ thống) | REQ |
-Mã cấp theo thứ tự xuất hiện qua các mục 2, 3, 4, 5. Mục không có phần tử ghi "Không có".
+Mã cấp theo thứ tự xuất hiện qua các mục 2, 3, 4, 5. Mục không có phần tử ghi "Không có". NFR lấy từ hồ sơ dự án mà P00 không có REQ tương ứng: cột REQ ghi "project-profile.md, <tên trường>", ví dụ "project-profile.md, NEN_TANG"; không dẫn REQ Chức năng làm căn cứ ngữ cảnh.
 
 Quy tắc chi tiết:
 
@@ -146,7 +146,7 @@ F4. Phát biểu đo được và tiêu chí đo
 - Lỗi thường gặp: gom nhiều đại lượng vào một NFR ("nhanh và ổn định"); ghi mục tiêu thiết kế thay vì yêu cầu ("dùng cache để tăng tốc" là giải pháp); ghi ngưỡng không có điều kiện ("1 giây" lúc bình thường hay lúc cao điểm?); tách một yêu cầu có hai điều kiện thành hai NFR mâu thuẫn thay vì ghi rõ điều kiện từng ngưỡng.
 
 F5. Ràng buộc thiết kế và giao tiếp ngoài
-- Ràng buộc thiết kế (mục 4): chỉ gồm điều nguồn hoặc hồ sơ dự án đã chốt (NEN_TANG, CONG_NGHE, RANG_BUOC_DAC_THU): nền tảng, ngôn ngữ, hệ quản trị dữ liệu, chuẩn bắt buộc, luật. Mỗi ràng buộc ghi lý do nếu nguồn có. Nhóm: "+ Ràng buộc thiết kế". Hồ sơ ghi "Chưa chốt" thì không tạo ràng buộc từ trường đó của hồ sơ; REQ loại Ràng buộc của P00 (ví dụ nguồn yêu cầu có ứng dụng di động cho khách) vẫn thành NFR như mọi REQ khác. REQ loại Ràng buộc nêu đặc tính bảo mật hay dữ liệu (không lưu X) mà không nêu công nghệ thì xếp mục 3, nhóm "F - Functionality / Security". Mục 2 chỉ chứa chức năng dùng chung có REQ loại Chức năng.
+- Ràng buộc thiết kế (mục 4): chỉ gồm điều nguồn hoặc hồ sơ dự án đã chốt (NEN_TANG, CONG_NGHE, RANG_BUOC_DAC_THU): nền tảng, ngôn ngữ, hệ quản trị dữ liệu, chuẩn bắt buộc, luật. Dòng RANG_BUOC_DAC_THU chỉ giới hạn phạm vi (việc làm ngoài phần mềm) không thành NFR; mục 1 Giới thiệu nêu lại giới hạn đó và dẫn mục Ngoài phạm vi của P00. Mỗi ràng buộc ghi lý do nếu nguồn có. Nhóm: "+ Ràng buộc thiết kế". Hồ sơ ghi "Chưa chốt" thì không tạo ràng buộc từ trường đó của hồ sơ; REQ loại Ràng buộc của P00 (ví dụ nguồn yêu cầu có ứng dụng di động cho khách) vẫn thành NFR như mọi REQ khác. REQ loại Ràng buộc nêu đặc tính bảo mật hay dữ liệu (không lưu X) mà không nêu công nghệ thì xếp mục 3, nhóm "F - Functionality / Security". Mục 2 chỉ chứa chức năng dùng chung có REQ loại Chức năng.
   - Đúng: | NFR-12 | + Ràng buộc thiết kế | Ứng dụng khách chạy trên trình duyệt web, không yêu cầu cài đặt. | Kiểm tra triển khai: truy cập đủ chức năng từ trình duyệt mà không cài thêm phần mềm | Toàn hệ thống | REQ-02 |
   - Sai: "Dùng kiến trúc microservices" khi nguồn không yêu cầu (đây là quyết định thiết kế của bước kiến trúc).
 - Giao tiếp ngoài (mục 5): mỗi hệ thống, thiết bị ngoài một hoặc vài NFR, nhóm "+ Giao tiếp / Compatibility". Phát biểu nêu: hệ thống ngoài nào (dẫn mã ACT nếu là tác nhân), dữ liệu trao đổi, chiều trao đổi, giao thức hoặc tài liệu API nếu nguồn có, hành vi khi hệ thống ngoài không phản hồi. Nguồn không nêu hành vi đó thì dẫn Q, ASM đã có ở P00, P04 về đúng tình huống này; chưa có thì tạo Q-nn (CO_NHAN thêm ASM-nn) cho mỗi hệ thống ngoài mà kết quả trả về ảnh hưởng luồng nghiệp vụ. Thiết bị chỉ nhận dữ liệu (máy in) không cần Q này. Không thiết kế chi tiết operation (đó là bước thiết kế giao tiếp hệ thống).
@@ -154,7 +154,7 @@ F5. Ràng buộc thiết kế và giao tiếp ngoài
 
 F6. Quy tắc nghiệp vụ hợp nhất (mục 6)
 Bảng: | BR | Quy tắc | Loại | Áp dụng cho UC | REQ | Trạng thái | Ghi chú |
-- Bảng này là danh sách chính thức. Cột BR, Quy tắc, Loại, REQ giữ nguyên nội dung từ sổ BR. Cột Áp dụng cho UC là hợp của ba nguồn: UC trong sổ BR, UC có đặc tả P04 dẫn BR đó, và UC chưa có đặc tả P04 mà ma trận REQ --> UC của P02 gắn với REQ của BR. Sổ BR xuất lại dùng đúng cột này. Thêm Trạng thái và Ghi chú.
+- Bảng này là danh sách chính thức. Cột BR, Quy tắc, Loại, REQ giữ nguyên nội dung từ sổ BR. Cột Áp dụng cho UC là hợp của ba nguồn: UC trong sổ BR, UC có đặc tả P04 dẫn BR đó, và UC chưa có đặc tả P04 mà ma trận REQ --> UC của P02 gắn với REQ nêu quy tắc của BR (REQ ghi "(phụ)" không làm thêm UC). Sổ BR xuất lại dùng đúng cột này. Thêm Trạng thái và Ghi chú.
 - Loại: Sự kiện / Ràng buộc / Kích hoạt hành động / Suy luận / Tính toán.
   - Sự kiện: "Mỗi phiếu mượn thuộc về đúng một bạn đọc."
   - Ràng buộc: "Khách hàng chỉ được huỷ đơn khi nhà hàng chưa xác nhận đơn."

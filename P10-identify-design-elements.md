@@ -26,7 +26,7 @@ Bước này chuyển mô hình phân tích thành các phần tử của mô h�
 | Artifact | Phần cần dùng |
 |---|---|
 | P08-analysis-model.md | F3 (bảng lớp hợp nhất), F4 (bảng quan hệ), Câu hỏi mở, Giả định |
-| P09-architecture.md | F4, F5, F6, F7, Câu hỏi mở, Giả định |
+| P09-architecture.md | F3 (mẫu kiến trúc, mẫu phía giao diện), F4, F5, F6, F7, F8 (cột Vấn đề), F11 và dòng Q-nn dưới khối, Câu hỏi mở, Giả định |
 | P01-actors.md, P02-usecases.md | Bảng tác nhân; Mục 4 (UC, nhóm chức năng) |
 | P06-supplementary-spec.md | NFR về khả năng thay thế, bảo mật, giao tiếp ngoài |
 | P03-usecase-model.md | Bảng quan hệ (dòng extend) và điều kiện extend, để xác định lớp tuỳ chọn (A3); không cần P04 |
@@ -79,7 +79,7 @@ A2. Ánh xạ từng lớp phân tích.
 A3. Nhóm lớp thiết kế vào package.
 - Mỗi package nằm trong một layer của P09 (con của PKG layer hoặc PKG cấp cao ở P09). Cấp mã PKG tiếp theo số lớn nhất của P09.
 - Hai lớp gắn kết chức năng (nên cùng package) khi có ít nhất một dấu hiệu: thay đổi hành vi hoặc cấu trúc của lớp này buộc thay đổi lớp kia; bỏ lớp này ảnh hưởng lớp kia; hai đối tượng trao đổi nhiều message hoặc giao tiếp phức tạp (đối chiếu sequence P07); boundary có chức năng trình bày một entity cụ thể; hai lớp cùng tương tác với, hoặc cùng chịu ảnh hưởng khi thay đổi, một tác nhân; hai lớp có quan hệ với nhau; lớp này tạo đối tượng của lớp kia.
-- Hai lớp không được cùng package khi: chúng là boundary giao diện người dùng phục vụ hai tác nhân khác nhau (control, entity dùng chung bởi nhiều tác nhân không bị tách vì lý do này; quy tắc tác nhân chỉ áp dụng cho phần tử ở layer giao diện như View, Presenter, Store, ViewModel; phần tiếp nhận yêu cầu ở layer Application nhóm theo nhóm chức năng); một lớp là tuỳ chọn (thuộc tính năng tuỳ chọn, ví dụ use case extend được bán hoặc bật riêng) và lớp kia bắt buộc.
+- Hai lớp không được cùng package khi: chúng là boundary giao diện người dùng phục vụ hai tác nhân khác nhau (control, entity dùng chung bởi nhiều tác nhân không bị tách vì lý do này; quy tắc tác nhân chỉ áp dụng cho phần tử ở layer giao diện như View, Presenter, Store, ViewModel; phần tiếp nhận yêu cầu (controller của MVC, REST controller) đặt ở layer và package mà P09 F5, F4 chỉ định, theo loại client hoặc nhóm chức năng; quy tắc tác nhân không áp dụng cho phần này); một lớp là tuỳ chọn (thuộc tính năng tuỳ chọn, ví dụ use case extend được bán hoặc bật riêng) và lớp kia bắt buộc.
 - Package của P09 vi phạm quy tắc tác nhân ở trên thì giữ mã PKG đó làm package cha không chứa phần tử, cấp package con cho từng tác nhân và ghi Đề xuất sửa P09.
 - Boundary: nếu giao diện (người dùng hoặc hệ thống) có khả năng thay đổi đáng kể, đặt boundary vào package riêng, tách khỏi lớp nghiệp vụ; nếu giao diện ổn định, có thể đặt boundary cùng package với các lớp gắn kết chức năng với nó. Dùng KHA_NANG_THAY_DOI_GIAO_DIEN; không có thông tin thì coi là dễ thay đổi và tách.
 - Kiểu giá trị (tiền, định danh, mã tham chiếu) được interface ở layer dưới dùng trong chữ ký: đặt ở package cùng layer với interface hoặc thấp hơn (ví dụ một package kiểu dữ liệu dùng chung ở layer thấp nhất), để chữ ký interface không kéo layer dưới phụ thuộc layer trên.
@@ -157,7 +157,7 @@ F9. Mục kiểm soát theo C5.
 2. Mọi ánh xạ khác 1-1 có lý do.
 3. Mọi boundary giao diện hệ thống ngoài và thiết bị là subsystem có interface, hoặc có lý do ghi rõ.
 4. Mỗi subsystem có ít nhất một interface nó hiện thực; subsystem thiết bị mà phần mềm phải chủ động nối hoặc bật và chỉ đẩy sự kiện vào thì interface hiện thực gồm việc bật, tắt và đăng ký bộ nhận, còn sự kiện đi qua interface gọi ngược (bảng dưới F2); thiết bị tự gọi điểm vào của phần mềm qua API (P09 F5) thì subsystem, nếu tạo, nằm trong package điểm vào, chỉ có interface tiếp nhận thông điệp thiết bị và gọi thẳng interface ở Application. Tên interface bắt đầu bằng I và phản ánh vai trò.
-5. Mỗi package thuộc đúng một layer của P09; không có hai boundary giao diện người dùng của hai tác nhân khác nhau trong cùng package; không trộn lớp tuỳ chọn với lớp bắt buộc.
+5. Mỗi package thuộc đúng một layer của P09; không có hai phần tử trình bày (View, Presenter, ViewModel) của hai tác nhân khác nhau trong cùng package; không trộn lớp tuỳ chọn với lớp bắt buộc.
 6. Không có package cross-coupled, không vòng phụ thuộc, không phụ thuộc hoặc realization từ layer dưới lên trên, không nhảy layer (khi layered nghiêm ngặt).
 7. Mọi phụ thuộc tới subsystem đi qua interface; không lớp bên trong subsystem nào public.
 8. Không thiết kế thuộc tính, phương thức chi tiết ở bước này.

@@ -50,7 +50,7 @@ Bạn là người review mô hình use case có kinh nghiệm, nắm vững UML
 [Action]
 Bước 1. Kiểm kê đối tượng review.
 1.1. Đọc mọi thứ được đính kèm. Với ảnh sơ đồ: liệt kê mọi tác nhân, use case, đường nối và nhãn nhìn thấy. Với file .drawio: đọc XML, lấy vertex (tác nhân theo style umlActor, use case theo style ellipse, boundary) và edge (source, target, value, style dashed, endArrow).
-1.2. Lập bảng kiểm kê nội bộ: tác nhân, use case, quan hệ. Gán mã tạm nếu đối tượng chưa có mã (A1, A2... cho tác nhân; U1, U2... cho use case; L1, L2... cho quan hệ) và dùng mã đó trong cột Phần tử. Nếu đối tượng đã có mã RL-nn theo Conventions thì dùng RL-nn.
+1.2. Lập bảng kiểm kê nội bộ: tác nhân, use case, quan hệ. Gán mã tạm nếu đối tượng chưa có mã (A1, A2... cho tác nhân; U1, U2... cho use case; L1, L2... cho quan hệ) và dùng mã đó trong cột Phần tử. Đối tượng đã có mã theo Conventions (ACT-nn, UC-nnn, RL-nn) thì dùng mã đó.
 1.3. Phần nào không đọc được (ảnh mờ, nhãn bị che), ghi vào mục "Giới hạn của review" và không suy đoán nội dung.
 
 Bước 2. Nếu có tài liệu nguồn, lập danh sách yêu cầu chức năng tóm tắt (mỗi yêu cầu một dòng, đánh số YC1, YC2... hoặc dùng REQ nếu đã có). Nếu không có tài liệu nguồn, các tiêu chí cần nguồn (A-T6, U-T10, U-AP13, U-AP14, U-R16) được ghi "Không kiểm được" trong mục "Giới hạn của review"; chỉ nêu phát hiện dạng "cần xác nhận với nguồn" khi dấu hiệu rất rõ.
@@ -187,7 +187,7 @@ Mục 1. Tóm tắt
 - Kết luận: "Đạt" khi không có phát hiện Nghiêm trọng và không quá 3 phát hiện Trung bình; "Đạt có điều kiện" khi không có phát hiện Nghiêm trọng nhưng có trên 3 phát hiện Trung bình; "Không đạt" khi có ít nhất một phát hiện Nghiêm trọng.
 - Tối đa 3 điểm làm tốt, mỗi điểm một câu, có dẫn phần tử cụ thể (giúp người viết biết điều nên giữ).
 
-Mục 2. Bảng kiểm kê: | Mã tạm | Loại | Tên như trong bản gốc |. Đối tượng đã có mã thì ghi "Không có, dùng mã gốc".
+Mục 2. Bảng kiểm kê: | Mã tạm | Loại | Tên như trong bản gốc |. Đối tượng đã có mã theo Conventions: thay bảng bằng một dòng "Không có mã tạm, dùng mã gốc: <số> tác nhân, <số> use case, <số> quan hệ".
 
 Mục 3. Bảng phát hiện
 | Mã | Phần tử | Vấn đề | Quy tắc vi phạm | Mức độ (Nghiêm trọng / Trung bình / Thấp) | Đề xuất sửa |
@@ -207,7 +207,7 @@ Mục 4. Danh sách use case đề xuất sau sửa (khi phạm vi có DANH_SACH
 - Nếu đối tượng có mã UC-nnn theo Conventions thì giữ mã cũ cho use case còn giữ, use case mới dùng mã tiếp theo.
 
 Mục 4b. Danh sách tác nhân sau sửa (khi phạm vi có TAC_NHAN)
-| ACT | Tên | Loại | Tính chất | Thay đổi | Mã phát hiện |
+| ACT | Tên (VI) | Tên (EN) | Loại | Tính chất | Thay đổi | Mã phát hiện |
 - Thay đổi: Giữ / Đổi tên / Sửa loại / Sửa tính chất / Gộp từ <mã gốc> / Tách từ <mã gốc> / Mới / Loại. Mọi dòng khác "Giữ" phải có mã phát hiện.
 
 Mục 5. Quan hệ đề xuất sau sửa (khi phạm vi có SO_DO)

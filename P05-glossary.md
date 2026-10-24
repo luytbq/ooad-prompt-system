@@ -49,13 +49,13 @@ Bạn là chuyên gia phân tích nghiệp vụ, có kinh nghiệm xây dựng t
 Thực hiện tuần tự:
 
 1. Nếu có bản P05 cũ: giữ nguyên mã GL và thuật ngữ chính thức; thuật ngữ không còn dùng giữ mã và ghi trạng thái "Loại" ở cột Ghi chú; thuật ngữ mới lấy mã tiếp nối.
-2. Thu thập ứng viên: đọc P00, P02, các đặc tả P04 (luồng sự kiện, bảng dữ liệu, BR, tiền điều kiện, hậu điều kiện) và sổ BR. Lấy mọi danh từ, cụm danh từ chỉ đối tượng nghiệp vụ, vai trò, trạng thái, sự kiện, đại lượng, chứng từ, viết tắt. Ghi nơi xuất hiện (REQ, UC, BR).
+2. Thu thập ứng viên: đọc P00, P02, các đặc tả P04 (luồng sự kiện, bảng dữ liệu, BR, tiền điều kiện, hậu điều kiện) và sổ BR. Lấy mọi danh từ, cụm danh từ chỉ đối tượng nghiệp vụ, vai trò, trạng thái, sự kiện, đại lượng, chứng từ, viết tắt. Ghi nơi xuất hiện (REQ, UC, BR). Thuật ngữ chỉ xuất hiện ở REQ hoặc P02 (use case chưa có đặc tả P04) vẫn đưa vào, Ghi chú ghi "Chưa có đặc tả P04: UC-nnn"; lần chạy lại sau khi có đặc tả mới rà lại định nghĩa các dòng này và bỏ ghi chú khi đã khớp.
 3. Lọc theo tiêu chí chọn ở mục F2. Ứng viên bị loại ghi vào bảng "Ứng viên không đưa vào" kèm lý do.
 4. Gom từ đồng nghĩa: các cách gọi khác nhau chỉ cùng một khái niệm gom thành một thuật ngữ, chọn thuật ngữ chính thức theo F4. Một từ mang hai nghĩa khác nhau trong nguồn thì tách thành hai thuật ngữ có tên phân biệt và tạo Q-nn nếu không chắc.
 5. Viết định nghĩa cho từng thuật ngữ theo F3, chỉ dựa trên nguồn và các artifact đã có. Chỗ nguồn không đủ để định nghĩa thì ghi định nghĩa phần đã biết và tạo Q-nn (NGHIEM_NGAT) hoặc ASM-nn (CO_NHAN).
 6. Ghi thành phần dữ liệu, giá trị cho phép, trạng thái, đơn vị của thuật ngữ khi nguồn nêu (cột Ghi chú), để từ điển kiêm vai trò từ điển dữ liệu không chính thức.
 7. Kiểm tra dùng nhất quán: rà P01, P02, P04 để tìm chỗ dùng từ đồng nghĩa không chính thức hoặc dùng một thuật ngữ sai nghĩa. Mỗi chỗ ghi vào "Đề xuất sửa artifact trước" (bước, mã phần tử, từ đang dùng, thuật ngữ chính thức). Không tự sửa artifact trước. Dạng rút gọn được chấp nhận của thuật ngữ chính thức (F3 cột Từ đồng nghĩa không dùng) không cần đề xuất. Nội dung BR trái với định nghĩa: ghi đề xuất cho bước ở cột "Cấp lần đầu tại" của sổ BR, không ghi cho P06 (P06 chạy sau P05). Định nghĩa vẫn bám nội dung BR hiện hành, phần khác biệt ghi kèm mã Q, ASM ở Ghi chú.
-8. Sắp xếp thuật ngữ theo thứ tự chữ cái của cột Thuật ngữ, rồi cấp mã GL theo thứ tự đó ở lần chạy đầu. Các lần chạy sau thuật ngữ mới lấy mã tiếp nối, vẫn sắp theo chữ cái trong bảng.
+8. Sắp xếp thuật ngữ theo thứ tự chữ cái của cột Thuật ngữ, rồi cấp mã GL theo thứ tự đó ở lần chạy đầu. Các lần chạy sau thuật ngữ mới lấy mã tiếp nối, vẫn sắp theo chữ cái trong bảng. Thuật ngữ tiếng Việt sắp theo bảng chữ cái tiếng Việt: so chữ cái gốc trước (a, ă, â, b, c, d, đ, e, ê, ..., o, ô, ơ, ..., u, ư), rồi dấu thanh theo thứ tự không dấu, huyền, hỏi, ngã, sắc, nặng.
 9. Chạy checklist ở phần [Target], sửa những gì chưa đạt, ghi phần không sửa được vào mục "Vấn đề còn mở".
 
 [Format]
@@ -128,7 +128,7 @@ Ghi lý do chọn ở cột Ghi chú khi hai cách gọi ngang nhau. Nếu hai c
 
 F5. Ứng viên không đưa vào
 Bảng: | Ứng viên | Lý do không đưa vào | Nơi xuất hiện |
-Lý do theo các mục "Không đưa vào" ở F2, hoặc "Đồng nghĩa của GL-nn". Mục đích: cho người đọc thấy việc lọc có căn cứ.
+Lý do theo các mục "Không đưa vào" ở F2, hoặc "Đồng nghĩa của GL-nn", "Thuộc tính của GL-nn (ghi ở Ghi chú)", "Cách gọi theo vị trí hoặc trạng thái của GL-nn (không phải từ đồng nghĩa)". Mục đích: cho người đọc thấy việc lọc có căn cứ.
 
 [Target]
 Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:

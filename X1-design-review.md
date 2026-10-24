@@ -16,7 +16,7 @@ Bước này đánh giá chéo thiết kế (kiến trúc, phần tử thiết k
 | Đầu vào | P07-uc-analysis/*.md, P08-analysis-model.md | Không | Kiểm tra truy vết message --> operation. Phần cần đọc: bảng message (F5 c) của UC có lớp trong phạm vi; P08 F3, F4 |
 | Đầu vào | P05-glossary.md | Không (nên có) | Kiểm tiêu chí CNS tên dùng đúng glossary |
 | Đầu vào | Mục Câu hỏi mở, Giả định, Đề xuất sửa artifact trước của mọi artifact P00 đến P13 đã có; P04-uc-specs/*.md, P04-uc-specs/_BR-register.md | Có | Đọc nội dung Q, ASM, BR mà thiết kế trích; tìm Q trùng trước khi cấp Q mới (Bước 7); biết đề xuất sửa còn treo liên quan tới phần tử trong phạm vi |
-| Đầu vào | P06-supplementary-spec.md | Không | NFR (khả năng bảo trì, mở rộng, hiệu năng) làm căn cứ mức độ |
+| Đầu vào | P06-supplementary-spec.md | Không | NFR (khả năng bảo trì, mở rộng, hiệu năng) làm căn cứ mức độ; chỉ cần mục NFR liên quan tới phần tử trong phạm vi |
 | Đầu vào | Thiết kế hoặc mã nguồn do người dùng cung cấp | Có khi review độc lập | Đối tượng review khi không chạy pipeline |
 | Đầu ra | X1-design-review.md | Có | Bảng phát hiện và các bảng đánh giá |
 
@@ -107,7 +107,7 @@ Cột thêm: | Nhóm (MOD / CPL / COH / SOLID / GRASP / PRN / PKP / SML / CNS / 
   - Cao: vi phạm gây thay đổi lan rộng hoặc cản trở thay thế thành phần: common coupling, god class, lớp nghiệp vụ phụ thuộc lớp hiện thực của hệ thống ngoài (DIP), phụ thuộc ngược layer.
   - Trung bình: ảnh hưởng khả năng bảo trì cục bộ: control coupling, stamp coupling không cần thiết, cohesion logical/temporal/procedural, interface quá lớn, điều hướng hai chiều không cần.
   - Thấp: đặt tên, mô tả thiếu, trình bày sơ đồ, vi phạm nhỏ không ảnh hưởng hành vi.
-  Có thể nâng một mức khi phần tử nằm trên đường thay đổi mà NFR hoặc BR cho biết là dễ đổi; ghi lý do nâng.
+  Có thể nâng một mức khi phần tử nằm trên đường thay đổi mà NFR hoặc BR cho biết là dễ đổi; ghi lý do nâng. Phát hiện chỉ là nguy cơ (Độ tin cậy Cần xác nhận vì chưa có hiện thực của bên dùng) thì hạ một mức, ghi lý do và điều kiện nâng lại.
 - Đề xuất sửa: hành động cụ thể: tên refactoring (Extract Class, Move Method, Replace Conditional with Polymorphism, Introduce Parameter Object, Extract Interface, Replace Inheritance with Delegation, Hide Delegate...) kèm phần tử đích; hoặc thay đổi mô hình (đổi loại quan hệ, tách bảng).
 - Bước cần sửa: mã bước sớm nhất chứa nguyên nhân gốc (P04 khi thiếu luồng, tiền điều kiện hoặc BR của use case; P06 khi thiếu BR, NFR; P07, P08 khi thiếu trách nhiệm, quan hệ; P09, P10, P11a, P11b, P12, P13 cho quyết định thiết kế), rồi các bước phải chạy lại sau đó theo bảng phụ thuộc ở README mục 5, cách nhau bằng dấu chấm phẩy, theo thứ tự pipeline. Thiết kế làm đúng theo artifact trước (P12 theo đúng P04) thì ghi bước của artifact đó, không ghi P12; với review độc lập ghi "Thiết kế đầu vào" hoặc "Mã nguồn".
 - Mức hợp lý: một dòng một nguyên nhân gốc; không tách một god class thành năm dòng SRP, cohesion, coupling giống nhau (ghi một dòng, liệt kê các tiêu chí liên quan ở cột Nguyên lý).
@@ -125,7 +125,7 @@ Thang mức coupling (từ chặt, xấu nhất tới lỏng, tốt nhất):
 3. Control coupling: một module điều khiển việc module khác làm bằng tham số điều khiển (cờ, mã hành động, mã loại) khiến bên nhận làm những việc khác nhau. Cách sửa: tách thành các operation riêng; dùng đa hình (kế thừa hoặc interface) cho các loại; dùng pattern (Strategy, State, Command) khi phù hợp.
 4. Stamp coupling: truyền cấu trúc dữ liệu phức hợp (đối tượng, bản ghi) mà bên nhận chỉ dùng một phần. Hệ quả: bên nhận phải biết cấu trúc, thay đổi cấu trúc ảnh hưởng mọi bên dùng, lộ dữ liệu không cần. Có thể chấp nhận vì hiệu năng hoặc khi đối tượng là một khái niệm trọn vẹn mà bên nhận dùng phần lớn. Cách sửa: chỉ truyền dữ liệu nguyên tố cần thiết.
 5. Data coupling: mọi tham số là dữ liệu nguyên tố cần thiết, hoặc cấu trúc dữ liệu mà mọi phần tử đều được dùng; giao tiếp chỉ qua tham số, không qua biến toàn cục. Là mức mong muốn.
-Ngoài thang: không có phụ thuộc (tốt nhất khi có thể). External coupling (hai module dùng chung một định dạng hoặc giao thức áp đặt từ bên ngoài, xếp giữa common và control theo Myers) ghi khi phát hiện, đề xuất cô lập bằng adapter.
+Ngoài thang: không có phụ thuộc (tốt nhất khi có thể). Phụ thuộc ngầm không qua chữ ký (ngữ cảnh dùng chung, cấu hình toàn cục) ghi "Ngoài thang: phụ thuộc ngầm", xếp nhóm Hidden dependencies ở F5. External coupling (hai module dùng chung một định dạng hoặc giao thức áp đặt từ bên ngoài, xếp giữa common và control theo Myers) ghi khi phát hiện, đề xuất cô lập bằng adapter.
 Law of Demeter ("chỉ nói chuyện với bạn trực tiếp"): trong một method, đối tượng chỉ gửi message tới: chính nó; thuộc tính của nó; tham số của method; đối tượng nó tạo ra; đối tượng trả về từ operation của chính nó; phần tử của tập hợp thuộc các loại trên. Không gửi message tới đối tượng được trả về từ message gửi cho đối tượng khác. Dấu hiệu vi phạm: chuỗi a.getB().getC().doX() trong đặc tả method hoặc sequence diagram. Cách sửa: thêm operation ủy quyền ở bên trực tiếp (Hide Delegate) nêu ý định, ví dụ reservation.getRoom().getRoomType().getBaseRate() --> reservation.quoteBaseRate().
 Về getter/setter cho mọi thuộc tính private: không phải content coupling theo nghĩa hẹp (truy cập qua operation), nhưng làm lộ biểu diễn nội bộ và dễ dẫn tới feature envy; ghi thành phát hiện PRN Encapsulation khi bên ngoài dùng getter để tự ra quyết định thay cho đối tượng sở hữu dữ liệu.
 Lỗi thường gặp khi đánh giá: coi mọi tham số đối tượng là stamp coupling (chỉ là stamp khi bên nhận dùng một phần nhỏ); không phát hiện common coupling qua singleton hoặc bảng CSDL dùng chung; nhầm control coupling với tham số dữ liệu dạng enumeration mang nghĩa nghiệp vụ (ví dụ paymentMethod được lưu lại, không dùng để rẽ nhánh hành vi của bên nhận thì là data).
@@ -224,7 +224,7 @@ F7. Tổng hợp
 
 [Target]
 Trả lời Đạt/Không đạt cho từng câu, sửa trước khi trả kết quả; mục không đạt còn lại ghi vào "Vấn đề còn mở".
-1. Mọi phần tử trong phạm vi đã được xét ở ít nhất một bảng F3, F4 hoặc F5. Đầu vào chỉ đọc mẫu hoặc không đọc được ghi ở F1 kèm tiêu chí bị ảnh hưởng; tiêu chí đó ghi "Chưa xét đủ" ở F5, không ghi Đạt.
+1. Mọi phần tử trong phạm vi đã được xét ở ít nhất một bảng F3, F4 hoặc F5. Đầu vào chỉ đọc mẫu hoặc không đọc được ghi ở F1 kèm tiêu chí bị ảnh hưởng; tiêu chí đó ghi "Chưa xét đủ" ở F5, không ghi Đạt. Tiêu chí cần chỉ số F6.3 (SDP, SAP) khi MUC_CHI_TIET không là DAY_DU ghi "Không xét: MUC_CHI_TIET GON" ở F5 và F1.
 2. Mọi cặp phần tử có quan hệ trong phạm vi có mặt ở F3 với mức coupling: cặp có mức khác Data có dòng riêng; cặp Data coupling có thể gộp theo phần tử A và kênh. Cặp gồm association, aggregation, composition, dependency có lời gọi operation; realization và dependency chỉ do kiểu tham số gộp vào dòng Data của phần tử A.
 3. Mọi lớp trong phạm vi có dòng ở F4 với mức cohesion. Enumeration, value object, ngoại lệ không có hành vi gộp một dòng cho mỗi package, mức Functional, liệt kê mã ở cột Phần tử.
 4. Mọi phát hiện có bằng chứng trích từ đầu vào kèm vị trí; không có phát hiện chung chung.

@@ -75,13 +75,13 @@ Với CSDL tài liệu (NoSQL):
 Với kết hợp: ghi rõ dữ liệu nào nằm ở loại CSDL nào và lý do.
 
 Bước 3. Chuẩn hoá (CSDL quan hệ).
-- Với mỗi bảng: liệt kê phụ thuộc hàm (FD) dựa trên BR và ngữ nghĩa dữ liệu, không dựa trên dữ liệu mẫu.
+- Với mỗi bảng: liệt kê phụ thuộc hàm (FD) dựa trên BR và ngữ nghĩa dữ liệu, không dựa trên dữ liệu mẫu. FD có căn cứ BR nhưng phạm vi hoặc ý nghĩa còn chờ Q-nn vẫn liệt kê, đánh dấu "chờ Q-nn"; bảng vi phạm 3NF chỉ vì FD đó giữ nguyên cấu trúc, ghi phương án tách khi Q có trả lời, Target 6 coi là đạt có điều kiện.
 - Kiểm tra lần lượt 1NF, 2NF, 3NF; kiểm tra BCNF khi bảng có nhiều khoá ứng viên chồng lấn. Tách bảng khi vi phạm, ghi quá trình tách.
 - Phi chuẩn hoá chỉ khi có lý do đo được (NFR hiệu năng với khối lượng dữ liệu cụ thể) hoặc lý do ngữ nghĩa (giữ giá trị lịch sử); mỗi chỗ phi chuẩn hoá ghi cơ chế giữ nhất quán.
 
 Bước 4. Mô hình vật lý.
 - Chọn kiểu cột theo hệ quản trị (F6.2), độ dài lấy từ điều kiện hợp lệ ở P04 hoặc BR. Thiếu căn cứ thì độ dài cột là quyết định thiết kế theo Conventions C1 mục 7: chọn giá trị và ghi "Thiết kế: <lý do>" ở cột CHECK / mô tả (chuẩn như RFC 5321 cho email, E.164 cho số điện thoại, mặc định của nền tảng, độ dài dự phòng cho tên người), không cần Q hay ASM. Chỉ khi độ dài hoặc định dạng mang nghĩa nghiệp vụ (mã phiếu đúng 10 ký tự theo quy định của tổ chức, số lẻ thập phân của đơn giá) mà nguồn không nêu mới ghi Q (NGHIEM_NGAT) hoặc ASM (CO_NHAN).
-- NULL/NOT NULL theo multiplicity (1 --> NOT NULL; 0..1 --> NULL); DEFAULT theo giá trị mặc định ở P12. Khi lớp chỉ được lưu từ một trạng thái trở đi (P12 hoặc ASM nêu), xét NULL/NOT NULL và DEFAULT theo các trạng thái được lưu: thuộc tính luôn có giá trị ở các trạng thái đó là NOT NULL; giá trị trạng thái không được lưu không đưa vào CHECK và không làm DEFAULT; ghi căn cứ ở cột CHECK hoặc mô tả. CHECK theo ràng buộc P12, BR và tập giá trị enumeration; UNIQUE cho khoá ứng viên; FK với hành vi ON DELETE/ON UPDATE theo loại quan hệ.
+- NULL/NOT NULL theo multiplicity (1 --> NOT NULL; 0..1 --> NULL); cột định danh luôn NOT NULL, kể cả khi P12 ghi định danh gán khi lưu; DEFAULT theo giá trị mặc định ở P12. Khi lớp chỉ được lưu từ một trạng thái trở đi (P12 hoặc ASM nêu), xét NULL/NOT NULL và DEFAULT theo các trạng thái được lưu: thuộc tính luôn có giá trị ở các trạng thái đó là NOT NULL; giá trị trạng thái không được lưu không đưa vào CHECK và không làm DEFAULT; ghi căn cứ ở cột CHECK hoặc mô tả. CHECK theo ràng buộc P12, BR và tập giá trị enumeration; UNIQUE cho khoá ứng viên; FK với hành vi ON DELETE/ON UPDATE theo loại quan hệ.
 - Index theo truy vấn thực tế trong UC và NFR (F6.3).
 - Nếu SINH_DDL là "Có", sinh script theo hệ quản trị đã chốt, thứ tự tạo bảng cha trước bảng con.
 

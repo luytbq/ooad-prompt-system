@@ -86,7 +86,7 @@ A3. Định nghĩa operation.
 A4. Thiết kế bên trong subsystem.
 - Phân bổ hành vi cho phần tử bên trong: một lớp điều phối (subsystem manager hoặc lớp hiện thực interface) nhận lời gọi; lớp giao tiếp (proxy, adapter) nói chuyện với hệ thống ngoài hoặc thiết bị; lớp chuyển đổi dữ liệu giữa kiểu mô hình và định dạng ngoài khi cần. Dùng lại phần tử có sẵn nếu hợp.
 - Tích hợp các cơ chế kiến trúc mà P09 F7 nêu (bảo mật dữ liệu, giao dịch). Cơ chế P09 không nêu (ghi nhật ký, cấu hình địa chỉ và thông tin xác thực của hệ thống ngoài) thì chọn theo Conventions C1 mục 7 và ghi "Thiết kế: <lý do>" ở F5.
-- Vẽ sequence diagram hộp đen: control của use case --> interface (lifeline là interface), cho từng operation được dùng, kèm luồng lỗi.
+- Vẽ sequence diagram hộp đen: control của use case --> interface (lifeline là interface), cho từng operation được dùng, kèm luồng lỗi. TAI_LIEU_GIAO_TIEP là "Không có": lời gọi tới hệ thống ngoài trong sơ đồ hộp trắng đặt tên chung theo vai trò (ví dụ submitInvoiceData), Ghi chú của message ghi "chưa kiểm chứng với tài liệu"; khi có tài liệu, chạy lại chỉ thay tên và tham số của các message đó, không đổi chữ ký interface.
 - Vẽ sequence diagram hộp trắng: bên trong subsystem, bắt đầu từ gate nhận message tới lớp điều phối, qua các phần tử bên trong, tới tác nhân hệ thống ngoài hoặc thiết bị. Mỗi operation của interface có ít nhất một sơ đồ, trừ khi operation được hiện thực 1-1 bởi một lớp đơn giản (ghi rõ).
 - Tài liệu hoá phần tử: class diagram các phần tử bên trong, quan hệ, lớp nào hiện thực interface.
 
@@ -107,7 +107,7 @@ A7. Tự kiểm tra theo [Target], xuất kết quả.
 
 [Format]
 Xuất file P11b-system-interfaces.md theo khung C5, tiêu đề "# P11b - Giao diện hệ thống và thiết bị - <Tên hệ thống>". Mỗi subsystem một mục cấp 2 "## SS-nn <Tên>", trong đó có các mục F1-F7. Mục tổng hợp F8 ở cuối.
-Khi đầu ra dự kiến dài hơn khoảng 100 KB (thường từ 5 subsystem có sơ đồ hộp trắng trở lên), tách mỗi subsystem một file P11b-system-interfaces/SS-nn-<slug>.md theo khung C5 (tiêu đề "# P11b - SS-nn <Tên> - <Tên hệ thống>"), chứa F1-F7 của subsystem đó. File chung P11b-system-interfaces.md vẫn có, gồm bảng "Danh sách file subsystem" (| SS | File | Phiên bản |), F8 và các mục kiểm soát; Câu hỏi mở, Giả định của mọi subsystem ghi ở file chung để bước sau tìm mã ở một chỗ. Chạy lặp theo PHAM_VI_SUBSYSTEM thì chỉ ghi file của subsystem đó và cập nhật file chung. Bước sau (P12, X1) đọc file chung rồi file của các SS mà phạm vi dùng.
+Khi đầu ra dự kiến dài hơn khoảng 100 KB (thường từ 5 subsystem có sơ đồ hộp trắng trở lên), tách mỗi subsystem một file P11b-system-interfaces/SS-nn-<slug>.md theo khung C5 (tiêu đề "# P11b - SS-nn <Tên> - <Tên hệ thống>"), chứa F1-F7 của subsystem đó. File chung P11b-system-interfaces.md vẫn có, gồm bảng "Danh sách file subsystem" (| SS | File | Phiên bản |), F8 và các mục kiểm soát; Câu hỏi mở, Giả định của mọi subsystem ghi ở file chung để bước sau tìm mã ở một chỗ; file subsystem giữ đủ bốn mục kiểm soát của C5, mỗi mục ghi "Ghi ở file chung". Chạy lặp theo PHAM_VI_SUBSYSTEM thì chỉ ghi file của subsystem đó và cập nhật file chung. Bước sau (P12, X1) đọc file chung rồi file của các SS mà phạm vi dùng.
 
 F1. Bối cảnh sử dụng
 Bảng: | UC | Control gọi (AC hoặc DC) | Message trong P07 (STT, tên) | Dữ liệu truyền | Luồng lỗi trong P04 |
@@ -157,7 +157,7 @@ a) Bảng lỗi: | Operation | Tình huống lỗi | Loại | Phát hiện bằn
 b) Điểm kiểm tra (trả lời Đạt / Không đạt / Không áp dụng cho từng subsystem; Không áp dụng ghi lý do, ví dụ subsystem không dùng interface nào): mỗi interface subsystem cung cấp có quan hệ realization; mỗi interface subsystem dùng có quan hệ phụ thuộc; không phần tử bên trong subsystem nào public, trừ kiểu dữ liệu và ngoại lệ thuộc chữ ký interface; mỗi operation có sơ đồ hộp trắng, hoặc được hiện thực bởi một lớp duy nhất theo ánh xạ 1-1 dễ thấy.
 
 F8. Tổng hợp toàn hệ thống (cuối file)
-- Bảng: | SS | IF | Số operation | UC dùng | Rủi ro chính |.
+- Bảng: | SS | IF | Số operation | UC dùng | Rủi ro chính |, mỗi IF một dòng.
 - Mục kiểm soát theo C5.
 
 [Target]

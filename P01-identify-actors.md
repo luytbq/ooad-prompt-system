@@ -107,7 +107,7 @@ Một câu nêu hệ thống cần xây dựng. Sau đó là bảng:
 | Thành phần | Trong / Ngoài / Chờ Q-nn | Căn cứ (REQ hoặc trích nguồn, Q, ASM) | Hệ quả |
 - Thành phần: mọi phần mềm, thiết bị, hệ thống, kho dữ liệu được nguồn nhắc tới.
 - Trong / Ngoài / Chờ Q-nn: "Chờ Q-nn" chỉ dùng ở chế độ NGHIEM_NGAT khi Bước 1.2 chưa quyết định được, kèm Hệ quả "Chờ trả lời Q-nn"; ở chế độ CO_NHAN ghi Trong hoặc Ngoài và nêu ASM-nn ở cột Căn cứ.
-- Hệ quả: "Là tác nhân ACT-nn", "Là thành phần nội bộ, không phải tác nhân", "Ngoài, không phải tác nhân (<đường truyền / nền tảng chạy thành phần nội bộ / cách làm cũ được thay thế>)" kèm dòng tương ứng ở Mục 4, hoặc "Chờ trả lời Q-nn".
+- Hệ quả: "Là tác nhân ACT-nn", "Là thành phần nội bộ, không phải tác nhân", "Ngoài, không phải tác nhân (<đường truyền / nền tảng chạy thành phần nội bộ / cách làm cũ được thay thế / không kết nối, dữ liệu do ACT-nn nhập tay>)" kèm dòng tương ứng ở Mục 4, hoặc "Chờ trả lời Q-nn".
 - Lỗi thường gặp: coi cơ sở dữ liệu, máy chủ, mô-đun, ứng dụng di động của chính hệ thống là tác nhân; bỏ sót thành phần mà nguồn chỉ nhắc thoáng qua (ví dụ "gửi tin nhắn cho khách" ngụ ý một cổng tin nhắn ngoài; ở chế độ NGHIEM_NGAT chỉ ghi nhận khi nguồn nêu rõ đó là hệ thống bên ngoài, ngược lại thành câu hỏi mở).
 - Ví dụ đúng: "Cổng thanh toán của ngân hàng | Ngoài | REQ-12 | Là tác nhân ACT-05". "Cơ sở dữ liệu đơn hàng | Trong | REQ-03 | Là thành phần nội bộ, không phải tác nhân".
 - Ví dụ sai: "Hệ quản trị CSDL | Ngoài | ... | Là tác nhân" (sai vì CSDL của chính hệ thống là thành phần nội bộ, dù phần mềm quản trị CSDL do hãng khác làm ra).

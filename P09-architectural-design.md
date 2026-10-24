@@ -29,7 +29,7 @@ Bước này quyết định cấu trúc mức cao nhất của phần mềm: ch
 | P02-usecases.md | Mục 4 (danh sách UC, nhóm chức năng) |
 | P03-usecase-model.md | Không cần, trừ khi kiểm tra nhóm chức năng |
 | P05-glossary.md | Cột Thuật ngữ, Tiếng Anh |
-| P06-supplementary-spec.md | NFR, ràng buộc thiết kế, giao tiếp ngoài (mục 2 đến 5), Câu hỏi mở, Giả định |
+| P06-supplementary-spec.md | NFR, ràng buộc thiết kế, giao tiếp ngoài (mục 2 đến 5), mục 6 quy tắc nghiệp vụ (cột BR, Quy tắc, Loại, Áp dụng cho UC) để tìm quy tắc về xử lý đồng thời, toàn vẹn trên nhiều đối tượng, thời hạn, Câu hỏi mở, Giả định |
 | P08-analysis-model.md | F1, F3 (cột AC, Stereotype, Tên, Loại boundary, Trạng thái), F4, Câu hỏi mở, Giả định |
 
 - Chạy một lần cho toàn hệ thống. Chạy lại khi NFR hoặc bối cảnh kỹ thuật thay đổi.
@@ -54,7 +54,7 @@ Ràng buộc kiến trúc đã có:
 {{PH:RANG_BUOC_KIEN_TRUC | Hướng dẫn: [TUỲ CHỌN] quyết định đã chốt từ bên ngoài bước này (quy chuẩn tổ chức, hạ tầng sẵn có); chưa có thì thay cả khối bằng "Không có" | Ví dụ: "Bắt buộc tách front-end và back-end, back-end phân lớp 3 tầng." (giao đồ ăn); "Ứng dụng desktop một máy, không có máy chủ riêng." (quản lý bãi đỗ xe); "Không dùng kiến trúc microservices."}}
 
 Thứ tự ưu tiên thuộc tính chất lượng:
-{{PH:TIEU_CHI_UU_TIEN | Hướng dẫn: [TUỲ CHỌN] dùng khi P06 không xếp hạng NFR; liệt kê từ quan trọng nhất | Ví dụ: "Bảo trì, Bảo mật, Hiệu năng, Khả chuyển" (phòng khám); "Sẵn sàng, Hiệu năng, Khả mở rộng" (giao đồ ăn)}}
+{{PH:TIEU_CHI_UU_TIEN | Hướng dẫn: [TUỲ CHỌN] dùng khi P06 không xếp hạng NFR; liệt kê từ quan trọng nhất; chỉ xếp hạng thuộc tính chất lượng, không thay cho NFR | Ví dụ: "Bảo trì, Bảo mật, Hiệu năng, Khả chuyển" (phòng khám); "Sẵn sàng, Hiệu năng, Khả mở rộng" (giao đồ ăn)}}
 
 Phương án công nghệ đã chốt:
 {{PH:PHUONG_AN_DA_CHON | Hướng dẫn: [TUỲ CHỌN] chỉ dùng khi NEN_TANG hoặc CONG_NGHE là "Chưa chốt"; ghi mã phương án trong bảng so sánh công nghệ của lần chạy trước (ví dụ "CN2") hoặc mô tả phương án; để "Không có" thì AI dùng phương án khuyến nghị và ghi là khuyến nghị chờ xác nhận | Ví dụ: "CN2: web render phía máy chủ, Java 17, Spring Boot, PostgreSQL" (phòng khám); "Ứng dụng desktop C#, .NET 8, SQLite" (quản lý bãi đỗ xe)}}
@@ -209,7 +209,7 @@ Dưới khối ghi trạng thái ("Đã chốt bởi người dùng" hoặc "Khu
 F12. Mục kiểm soát theo C5.
 
 [Target]
-1. Mọi yêu cầu có ý nghĩa kiến trúc truy được về NFR, ràng buộc hoặc tác nhân; không có ngưỡng tự đặt ngoài P06 (trừ khi có ASM).
+1. Mọi yêu cầu có ý nghĩa kiến trúc truy được về NFR, ràng buộc, tác nhân, hoặc TIEU_CHI_UU_TIEN khi P06 không có NFR cho thuộc tính đó (thước đo "Chưa quy định (Q-nn)"); không có ngưỡng tự đặt ngoài P06 (trừ khi có ASM).
 2. Có bảng so sánh phương án khi NEN_TANG hoặc CONG_NGHE là "Chưa chốt" hoặc có từ 2 phương án khả thi.
 3. Quyết định kiến trúc nêu rõ NFR được đáp ứng, phương án bị loại và hệ quả tiêu cực.
 4. Mỗi PKG có một trách nhiệm một câu và thuộc đúng một layer.

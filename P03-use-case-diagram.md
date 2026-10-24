@@ -23,7 +23,7 @@ Sơ đồ use case là bản cam kết giữa khách hàng và đội phát tri�
 
 ## 3. Cách chạy
 
-- Đính kèm: 00-Conventions.md, project-profile.md, P00-problem-brief.md, P01-actors.md, P02-usecases.md, tài liệu nguồn, P02R-review.md (nếu có).
+- Đính kèm: 00-Conventions.md, project-profile.md, P00-problem-brief.md (chỉ cần bảng REQ và mục Câu hỏi mở), P01-actors.md (chỉ cần bảng tác nhân), P02-usecases.md (chỉ cần Mục 4, Mục 5 và Mục 7), tài liệu nguồn, P02R-review.md (nếu có).
 - Chạy một lần cho toàn hệ thống. Chạy lại khi P01 hoặc P02 thay đổi; giữ nguyên mã quan hệ đã cấp.
 - Sau P02R mà không áp dụng UCR nào (P02 không chạy lại): ghi vào YEU_CAU_BO_SUNG "Đã review P02R <phiên bản>, không áp dụng UCR-xx, UCR-yy (lý do)" và các Q-nn, ASM-nn mới của P02R; P03 chép dòng này vào mục Vấn đề còn mở, chép các Q-nn, ASM-nn vào mục Câu hỏi mở, Giả định.
 - Khi chạy bằng chat (không có quyền ghi file), AI trả nội dung P03-usecase-model.md và nội dung từng file .drawio trong các code block riêng (Mục 6); người dùng lưu thành file theo tên đã ghi. Khi chạy bằng agent có quyền ghi file, XML chỉ nằm trong file .drawio, Mục 6 chỉ ghi đường dẫn.
@@ -46,7 +46,7 @@ Kiểu đường association:
 {{PH:KIEU_DUONG_ASSOCIATION | Hướng dẫn: [TUỲ CHỌN] chọn một. KHONG_MUI_TEN (mặc định theo Conventions C7): đường liền, không đầu mũi tên. MUI_TEN_KHOI_XUONG: đường liền, đuôi ở bên khởi xướng, đầu mũi tên mở ở bên nhận (tác nhân chính --> use case; use case --> tác nhân phụ). Dùng mặc định thì thay cả khối bằng "Không có" | Ví dụ: "KHONG_MUI_TEN" ; "MUI_TEN_KHOI_XUONG"}}
 
 Cách phân rã sơ đồ khi cần nhiều sơ đồ:
-{{PH:CACH_PHAN_RA_SO_DO | Hướng dẫn: [TUỲ CHỌN] chọn một. THEO_NHOM (mặc định): mỗi nhóm chức năng của P02 một sơ đồ. THEO_TAC_NHAN: mỗi tác nhân chính người một sơ đồ, gồm mọi use case của tác nhân đó. Dùng mặc định thì thay cả khối bằng "Không có" | Ví dụ: "THEO_NHOM" (hệ thống kho có các nhóm Nhập kho, Xuất kho, Kiểm kê, Danh mục) ; "THEO_TAC_NHAN" (hệ thống phòng khám cần một sơ đồ riêng cho Bệnh nhân, Lễ tân, Bác sĩ)}}
+{{PH:CACH_PHAN_RA_SO_DO | Hướng dẫn: [TUỲ CHỌN] chọn một. chỉ có tác dụng khi Bước 8 cần sơ đồ phân rã; Bước 8 không cần thì không tạo thêm sơ đồ, Vấn đề còn mở ghi lý do. THEO_NHOM (mặc định): sơ đồ phân rã lập theo nhóm chức năng của P02. THEO_TAC_NHAN: sơ đồ phân rã lập theo tác nhân chính người, gồm các use case có quan hệ giữa UC mà tác nhân đó dùng. Dùng mặc định thì thay cả khối bằng "Không có" | Ví dụ: "THEO_NHOM" (hệ thống kho có các nhóm Nhập kho, Xuất kho, Kiểm kê, Danh mục) ; "THEO_TAC_NHAN" (hệ thống phòng khám cần một sơ đồ riêng cho Bệnh nhân, Lễ tân, Bác sĩ)}}
 
 [Role]
 Bạn là chuyên gia mô hình hoá UML, nắm vững ngữ nghĩa chương 18 Use Cases của UML 2.5.1 (subject, actor, association, include, extend, extension point, generalization) và các quy tắc trình bày sơ đồ use case của Ambler. Bạn dùng quan hệ giữa use case một cách tiết kiệm: chỉ khi có lý do rõ ràng, không dùng để vẽ trình tự hay phân rã chức năng. Bạn thành thạo định dạng XML của draw.io.
@@ -88,7 +88,7 @@ Bước 5. Xác định generalization.
 Bước 6. Kiểm tra tổng thể quan hệ theo bảng lỗi D-AP ở [Format]. Nguyên tắc tiết kiệm: nếu có thể che mọi UC được include và UC mở rộng mà người đọc vẫn hiểu mục đích chính của hệ thống, mô hình có cấu trúc tốt; nếu che đi thì mất các mục tiêu chính, quan hệ đang bị dùng để phân rã chức năng. Tỷ lệ UC Subfunction trên khoảng 20% tổng số UC là dấu hiệu dùng quan hệ quá mức.
 
 Bước 7. Xử lý use case mới phát sinh.
-Nếu phát hiện một hành vi dùng chung hoặc tuỳ chọn cần tách mà P02 chưa có UC tương ứng: không tự thêm vào sơ đồ. Ghi vào bảng "UC đề xuất bổ sung" (mã tạm UC-nnn tiếp theo số lớn nhất của P02, trạng thái "Chờ cập nhật P02") và vào "Đề xuất sửa artifact trước". Chỉ vẽ UC này khi YEU_CAU_BO_SUNG cho phép vẽ UC đề xuất; khi đó ghi chú "(đề xuất)" trong nhãn.
+Nếu phát hiện một hành vi dùng chung hoặc tuỳ chọn cần tách mà P02 chưa có UC tương ứng: không tự thêm vào sơ đồ. Ứng viên mà P02 đã xét theo Q4 và kết luận "Là bước của" không thuộc trường hợp này; thấy kết luận đó sai thì chỉ ghi "Đề xuất sửa artifact trước" cho P02. Ghi vào bảng "UC đề xuất bổ sung" (mã tạm UC-nnn tiếp theo số lớn nhất của P02, trạng thái "Chờ cập nhật P02") và vào "Đề xuất sửa artifact trước". Chỉ vẽ UC này khi YEU_CAU_BO_SUNG cho phép vẽ UC đề xuất; khi đó ghi chú "(đề xuất)" trong nhãn.
 
 Bước 8. Lập kế hoạch sơ đồ.
 Đếm N là tổng số UC sẽ vẽ trên sơ đồ, kể cả UC mức Subfunction và UC Đăng nhập, và M là số tác nhân. Chọn phương án:
@@ -115,7 +115,7 @@ Xuất file P03-usecase-model.md theo khung Conventions C5, và nội dung các 
 | Subject (boundary) | Hình chữ nhật, tên hệ thống ở trên cùng | - | Chứa mọi use case; không chứa tác nhân |
 | Tác nhân | Hình người que, tên bên dưới | - | Luôn bên ngoài boundary. Tác nhân hệ thống ngoài có thể ghi thêm «system» trên tên; tác nhân thiết bị có thể ghi «device» |
 | Use case | Hình elip, tên bên trong | - | Luôn bên trong boundary. UC trừu tượng tên in nghiêng |
-| Association | Đường liền | Không chiều; hoặc đuôi ở bên khởi xướng, đầu mũi tên mở ở bên nhận (tác nhân chính --> use case; use case --> tác nhân phụ) khi KIEU_DUONG_ASSOCIATION = MUI_TEN_KHOI_XUONG | Chỉ nối tác nhân với use case. Không nét đứt, không tam giác, không nhãn stereotype |
+| Association | Đường liền | Không chiều; hoặc đuôi ở bên khởi xướng, đầu mũi tên mở ở bên nhận (tác nhân chính --> use case; use case --> tác nhân phụ) khi KIEU_DUONG_ASSOCIATION = MUI_TEN_KHOI_XUONG; chiều theo vai chính, phụ của tác nhân trong use case, kể cả tác nhân phụ tự gửi dữ liệu vào hệ thống | Chỉ nối tác nhân với use case. Không nét đứt, không tam giác, không nhãn stereotype |
 | «include» | Đường nét đứt, đầu mũi tên mở, nhãn «include» | Từ UC gốc tới UC được include | Bắt buộc, UC gốc không hoàn chỉnh nếu thiếu |
 | «extend» | Đường nét đứt, đầu mũi tên mở, nhãn «extend» | Từ UC mở rộng tới UC gốc | Tuỳ chọn, có điều kiện, tại điểm mở rộng có tên |
 | Điểm mở rộng | Ngăn "extension points" bên trong elip của UC gốc | - | Mỗi điểm mở rộng một dòng |
@@ -162,7 +162,7 @@ Ví dụ đúng và sai về quan hệ (các miền khác nhau):
 Mục 1. Bảng quan hệ
 | ID | Nguồn | Đích | Loại | Điều kiện extend / điểm mở rộng | Lý do | REQ | Sơ đồ |
 - ID: RL-nn, đánh số theo thứ tự: association (theo thứ tự UC), include, extend, generalization.
-- Nguồn, Đích: mã ACT hoặc UC. Association ghi nguồn là tác nhân, đích là use case. Include: nguồn là UC gốc. Extend: nguồn là UC mở rộng. Generalization: nguồn là con.
+- Nguồn, Đích: mã ACT hoặc UC. Association ở bảng này luôn ghi nguồn là tác nhân, đích là use case, bất kể KIEU_DUONG_ASSOCIATION; chiều vẽ use case --> tác nhân phụ chỉ thể hiện ở bảng Edge và .drawio. Include: nguồn là UC gốc. Extend: nguồn là UC mở rộng. Generalization: nguồn là con.
 - Loại: Association / Include / Extend / Generalization.
 - Điều kiện extend / điểm mở rộng: chỉ với Extend, dạng "{điều kiện} tại <tên điểm mở rộng>"; loại khác ghi "-".
 - Lý do: với Association ghi "Tác nhân chính" hoặc "Tác nhân phụ: <dịch vụ cung cấp>"; với Include, Extend, Generalization ghi điều kiện ở Bước 3, 4, 5 đã thoả (ví dụ "Dùng chung cho UC-003, UC-004 (Bước 3a)").
