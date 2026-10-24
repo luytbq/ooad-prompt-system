@@ -61,13 +61,13 @@ Các nhánh viết song song phải giữ đúng các bảng lõi dưới đây,
 ## P11a - P11a-gui/ (nhánh C)
 - screen-list.md: | SCR | Tên | Boundary AC nguồn | UC | Tác nhân | Loại (chính / pop-up / dependent...) |; danh sách boundary lấy từ P10 F3 (layer giao diện); bảng phụ "Boundary không có màn hình".
 - screen-transition.md + diagrams/P11a-screen-transition.drawio
-- SCR-nn-<slug>.md: screen spec theo slide (mục điều khiển, thao tác, chức năng).
+- SCR-nn-<slug>.md: screen spec theo slide (mục điều khiển, thao tác, chức năng); mục h) thông điệp mới và mục i) ngoại lệ của quy định chuẩn được lần chạy giai đoạn 2 cuối nối vào ui-standards.md.
 
 ## P11b - P11b-system-interfaces.md (nhánh C)
 - | IF | Tên | Hệ thống/thiết bị | Operation | Tham số vào | Kết quả | Lỗi / ngoại lệ | UC |
 - Mã IF-nn do P10, P11b cấp; P12 được cấp IF-nn mới nối tiếp cho interface do cơ chế thiết kế.
 - Đầu ra dài thì tách F1-F7 của từng subsystem sang P11b-system-interfaces/SS-nn-<slug>.md; file chung P11b-system-interfaces.md luôn có, giữ danh sách file, F8 và mục kiểm soát. Bảng lõi giữ nguyên cột.
-- P10 có thêm bảng Interface gọi ngược ngay dưới bảng subsystem F2; P11b F2 cột "Bên hiện thực" ghi SS hoặc DC (interface gọi ngược).
+- P10 có thêm bảng Interface gọi ngược ngay dưới bảng subsystem F2, chỉ gồm interface mà bên gọi ở layer thấp hơn bên hiện thực; interface kho dữ liệu nằm ở bảng phần tử thiết kế mới do cơ chế kiến trúc (P10 F3, cột "DC, SS hoặc IF"). P11b F2 cột "Bên hiện thực" ghi SS hoặc DC (interface gọi ngược).
 
 ## P12 - P12-class-design.md (nhánh D)
 - Lớp: | DC | Tên | Stereotype | PKG | Trách nhiệm | Nguồn AC |

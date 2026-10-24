@@ -58,7 +58,7 @@ Bạn là kiến trúc sư phần mềm và nhà thiết kế hướng đối t�
 [Action]
 A0. Kiểm tra đầu vào.
 - Kiểm tra placeholder theo Conventions C6.
-- Đối chiếu mẫu kiến trúc và mẫu cho phía giao diện ở P09 mục F3 với NEN_TANG, CONG_NGHE hiện tại của hồ sơ dự án. Hồ sơ vẫn ghi "Chưa chốt": dùng công nghệ ở P09 mục F11 và ghi vào Vấn đề còn mở "Hồ sơ chưa cập nhật theo P09". Mẫu lệch công nghệ (ví dụ P09 chọn MVC passive cho web render phía máy chủ, hồ sơ chốt SPA): ghi Đề xuất sửa P09 và Q-nn, tiếp tục theo công nghệ trong hồ sơ. Hồ sơ đã ghi đúng giá trị khối F11 của P09: các Q-nn liệt kê dưới khối F11 coi là đã trả lời theo ASM tương ứng, ghi một dòng ở Vấn đề còn mở "Q-nn (danh sách) đóng theo hồ sơ đã cập nhật sau P09", không dẫn chúng như câu hỏi còn mở.
+- Đối chiếu mẫu kiến trúc và mẫu cho phía giao diện ở P09 mục F3 với NEN_TANG, CONG_NGHE hiện tại của hồ sơ dự án. Hồ sơ vẫn ghi "Chưa chốt": dùng công nghệ ở P09 mục F11 và ghi vào Vấn đề còn mở "Hồ sơ chưa cập nhật theo P09". Mẫu lệch công nghệ (ví dụ P09 chọn MVC passive cho web render phía máy chủ, hồ sơ chốt SPA): ghi Đề xuất sửa P09 và Q-nn, tiếp tục theo công nghệ trong hồ sơ. Hồ sơ đã ghi đúng giá trị khối F11 của P09: ở CO_NHAN, các Q-nn liệt kê dưới khối F11 coi là đã trả lời theo ASM tương ứng, ghi một dòng ở Vấn đề còn mở "Q-nn (danh sách) đóng theo hồ sơ đã cập nhật sau P09", không dẫn chúng như câu hỏi còn mở; ở NGHIEM_NGAT, các Q đó vẫn mở, Vấn đề còn mở ghi "Q-nn (danh sách) không còn chặn việc chọn công nghệ (hồ sơ đã cập nhật sau P09)". Q do bước khác cấp (P06) giữ nguyên trạng thái.
 
 A1. Xác định subsystem ứng viên.
 - Xét mọi lớp phân tích hoạt động trong P08. Một lớp (hoặc nhóm lớp) là ứng viên subsystem khi thoả ít nhất một tiêu chí: là boundary giao diện hệ thống ngoài; là boundary giao diện thiết bị; cung cấp dịch vụ phức tạp hoặc tiện ích dùng ở nhiều use case và che giấu được bên trong; có khả năng bị thay thế bằng biến thể khác (đổi nhà cung cấp, đổi thiết bị) theo NFR hoặc KHA_NANG_THAY_DOI_GIAO_DIEN; cần giới hạn truy cập vì lý do bảo mật; đại diện cho sản phẩm có sẵn được dùng lại (thư viện giao tiếp, hỗ trợ truy cập dữ liệu, tiện ích chung).
@@ -111,7 +111,7 @@ Bảng: | Lớp phân tích (AC) | Tiêu chí thoả (Hệ thống ngoài / Thi�
 F2. Bảng subsystem (bảng lõi, P11b đọc bảng này)
 | SS | Tên | Interface (IF) | Trách nhiệm | Che giấu phần tử nào | AC nguồn | ACT liên quan | PKG chứa |
 - SS: mã SS-nn; IF: mã IF-nn kèm tên, ví dụ "IF-01 IPaymentGateway". Một subsystem có thể hiện thực nhiều interface khi phục vụ các vai trò khác nhau.
-- Ngay dưới F2 lập bảng Interface gọi ngược: | IF | Tên | Định nghĩa tại PKG | Subsystem gọi | Lớp hiện thực (DC, PKG) | Trách nhiệm | Nguồn (P09 A5, UC) |. Mỗi chỗ P09 ghi cơ chế gọi ngược và mỗi boundary thiết bị hoặc hệ thống ngoài chỉ đẩy sự kiện vào hệ thống có ít nhất một dòng. Mã IF dùng chung dãy với F2. P11b, P12 đọc cả hai bảng.
+- Ngay dưới F2 lập bảng Interface gọi ngược: | IF | Tên | Định nghĩa tại PKG | Subsystem gọi | Lớp hiện thực (DC, PKG) | Trách nhiệm | Nguồn (P09 A5, UC) |. Bảng chỉ ghi interface mà bên gọi ở layer thấp hơn bên hiện thực (subsystem ở Services báo kết quả lên Application, bộ định thời báo mốc); mỗi chỗ như vậy mà P09 ghi cơ chế gọi ngược, và mỗi subsystem thiết bị hoặc hệ thống ngoài chỉ đẩy sự kiện vào hệ thống, có ít nhất một dòng. Interface kho dữ liệu ghi ở bảng phần tử thiết kế mới do cơ chế kiến trúc (F3), không ghi ở bảng này. Mã IF dùng chung dãy với F2. P11b, P12 đọc cả hai bảng.
 - Trách nhiệm: liệt kê theo trách nhiệm của lớp phân tích nguồn, dạng "// tênTráchNhiệm".
 - Che giấu phần tử nào: mô tả các lớp bên trong dự kiến (giao thức, chuyển đổi dữ liệu, quản lý kết nối), chưa cần tên cuối cùng.
 - Tên interface: phản ánh vai trò trong hệ thống, không phản ánh nhà cung cấp cụ thể (IPaymentGateway, không phải IAcmePayApi), trừ khi YEU_CAU_BO_SUNG yêu cầu.
@@ -124,7 +124,7 @@ F3. Bảng ánh xạ lớp phân tích sang phần tử thiết kế (bảng lõ
 Mức hợp lý: phần lớn lớp ánh xạ 1-1; tỷ lệ tách cao bất thường (hơn một nửa) cần kiểm tra lại mô hình phân tích hoặc bảng ánh xạ của P09.
 Lỗi thường gặp: thêm lớp thiết kế không truy được về lớp phân tích hay cơ chế kiến trúc (lớp mồ côi); tách entity thành DTO, DAO, Entity, Mapper cho mọi lớp dù P09 không yêu cầu (quá lớn); giữ nguyên boundary người dùng thành một lớp trong khi P09 chọn MVP (bỏ sót vai trò).
 Ví dụ đúng (thư viện, P09 chọn layered với MVC passive): AC-B-BorrowBookForm --> Tách thành nhiều lớp: DC-BorrowBookView, DC-BorrowBookRequestHandler, PKG-11 LoanUI, lý do: bảng ánh xạ P09 tách View và phần tiếp nhận yêu cầu. AC-E-Loan --> DC-Loan, PKG-12 Loan, lý do: lớp đơn giản.
-Ngoài ra, liệt kê bảng phần tử thiết kế mới do cơ chế kiến trúc (không từ lớp phân tích): | DC hoặc SS | Tên | PKG | Cơ chế (Persistence, Logging, Bảo mật...) | Nguồn (P09 mục, NFR) |.
+Ngoài ra, liệt kê bảng phần tử thiết kế mới do cơ chế kiến trúc (không từ lớp phân tích): | DC, SS hoặc IF | Tên | PKG | Cơ chế (Persistence, Logging, Bảo mật...) | Nguồn (P09 mục, NFR) |.
 
 F4. Bảng package (tiếp nối bảng của P09)
 | PKG | Tên | Layer (PKG) | Trách nhiệm | Phần tử chứa (DC, SS, IF) | Tiêu chí nhóm | Phụ thuộc vào (PKG) |
@@ -156,7 +156,7 @@ F9. Mục kiểm soát theo C5.
 1. Mọi lớp phân tích hoạt động trong P08 có đúng một dòng ánh xạ; mọi phần tử thiết kế truy được về lớp phân tích hoặc cơ chế kiến trúc.
 2. Mọi ánh xạ khác 1-1 có lý do.
 3. Mọi boundary giao diện hệ thống ngoài và thiết bị là subsystem có interface, hoặc có lý do ghi rõ.
-4. Mỗi subsystem có ít nhất một interface nó hiện thực; subsystem thiết bị chỉ đẩy sự kiện vào thì interface hiện thực gồm việc bật, tắt và đăng ký bộ nhận, còn sự kiện đi qua interface gọi ngược (bảng dưới F2). Tên interface bắt đầu bằng I và phản ánh vai trò.
+4. Mỗi subsystem có ít nhất một interface nó hiện thực; subsystem thiết bị mà phần mềm phải chủ động nối hoặc bật và chỉ đẩy sự kiện vào thì interface hiện thực gồm việc bật, tắt và đăng ký bộ nhận, còn sự kiện đi qua interface gọi ngược (bảng dưới F2); thiết bị tự gọi điểm vào của phần mềm qua API (P09 F5) thì subsystem, nếu tạo, nằm trong package điểm vào, chỉ có interface tiếp nhận thông điệp thiết bị và gọi thẳng interface ở Application. Tên interface bắt đầu bằng I và phản ánh vai trò.
 5. Mỗi package thuộc đúng một layer của P09; không có hai boundary giao diện người dùng của hai tác nhân khác nhau trong cùng package; không trộn lớp tuỳ chọn với lớp bắt buộc.
 6. Không có package cross-coupled, không vòng phụ thuộc, không phụ thuộc hoặc realization từ layer dưới lên trên, không nhảy layer (khi layered nghiêm ngặt).
 7. Mọi phụ thuộc tới subsystem đi qua interface; không lớp bên trong subsystem nào public.

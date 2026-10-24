@@ -34,7 +34,7 @@ Bước này quyết định cấu trúc mức cao nhất của phần mềm: ch
 
 - Chạy một lần cho toàn hệ thống. Chạy lại khi NFR hoặc bối cảnh kỹ thuật thay đổi.
 - Nếu NEN_TANG hoặc CONG_NGHE trong hồ sơ dự án là "Chưa chốt", AI lập bảng so sánh 2-3 phương án công nghệ, nêu khuyến nghị có lý do, rồi mới chọn mẫu cho phía giao diện. Người dùng chốt bằng placeholder PHUONG_AN_DA_CHON (điền trước khi chạy, hoặc chạy lại sau khi đọc khuyến nghị); để trống thì AI dùng phương án khuyến nghị và ghi rõ là khuyến nghị chờ xác nhận.
-- Sau khi chạy: thay hai dòng NEN_TANG, CONG_NGHE trong bảng ở project-profile.md mục 3 bằng hai dòng của khối "Cập nhật hồ sơ dự án" (F11), trước khi chạy P10. Chấp nhận khuyến nghị thì không cần chạy lại P09; P10 coi giá trị trong hồ sơ là đã chốt, không xét trạng thái "chờ xác nhận" ở P09, và coi các Q-nn liệt kê dưới khối F11 là đã trả lời theo ASM tương ứng.
+- Sau khi chạy: thay hai dòng NEN_TANG, CONG_NGHE trong bảng ở project-profile.md mục 3 bằng hai dòng của khối "Cập nhật hồ sơ dự án" (F11), trước khi chạy P10. Chấp nhận khuyến nghị thì không cần chạy lại P09; P10 coi giá trị trong hồ sơ là đã chốt, không xét trạng thái "chờ xác nhận" ở P09; ở CO_NHAN coi các Q-nn liệt kê dưới khối F11 là đã trả lời theo ASM tương ứng, ở NGHIEM_NGAT các Q đó vẫn mở nhưng không còn chặn việc chọn công nghệ.
 
 | Placeholder | Bắt buộc | Ý nghĩa |
 |---|---|---|
@@ -127,7 +127,7 @@ Bảng: | STT | Nguồn (NFR, ràng buộc, ACT) | Kịch bản thuộc tính ch
 F2. Phương án và so sánh
 F2.1. Mẫu kiến trúc (bắt buộc khi NEN_TANG hoặc CONG_NGHE là "Chưa chốt", hoặc có từ 2 phương án khả thi)
 Bảng mô tả phương án: | PA | Mẫu kiến trúc (và kết hợp) | Mô tả ngắn | Điều kiện phù hợp |
-Bảng so sánh: | Tiêu chí (từ F1) | Trọng số | PA1 | PA2 | PA3 |, ô ghi mức đáp ứng (Tốt / Trung bình / Kém) kèm lý do một câu; dòng cuối là kết luận.
+Bảng so sánh: | Tiêu chí (từ F1) | Trọng số | PA1 | PA2 | PA3 |, Trọng số là Cao / Trung bình / Thấp theo Mức ưu tiên ở F1, ô ghi mức đáp ứng (Tốt / Trung bình / Kém) kèm lý do một câu, không cộng thành điểm tổng; dòng cuối là kết luận nêu tiêu chí quyết định.
 Hướng dẫn chọn mẫu (để suy luận, không chép máy móc):
 - Multi-layer: hợp khi cần tách giao diện khỏi nghiệp vụ và dữ liệu, dễ bảo trì, dễ thay giao diện; chi phí: thêm lớp trung gian, có thể chậm nếu mỗi yêu cầu đi qua nhiều layer.
 - Client-server: hợp khi nhiều client dùng chung dữ liệu và dịch vụ tập trung; cần xét mạng, bảo mật, sẵn sàng của server.
@@ -143,8 +143,8 @@ Lỗi thường gặp: chọn mẫu theo xu hướng mà không gắn NFR; chọ
 
 F2.2. Chốt công nghệ (bắt buộc khi NEN_TANG hoặc CONG_NGHE là "Chưa chốt"; hồ sơ đã chốt thì ghi "Không áp dụng, hồ sơ đã chốt")
 Bảng phương án: | CN | Nền tảng | Phía máy chủ (ngôn ngữ, framework) | Phía giao diện | CSDL | Giao tiếp ngoài |
-Bảng so sánh: | Tiêu chí (F1, ràng buộc P06, HE_THONG_NGOAI) | CN1 | CN2 | CN3 |, ô ghi mức đáp ứng (Tốt / Trung bình / Kém) kèm lý do một câu.
-Kết luận: phương án khuyến nghị và lý do; phương án được dùng (PHUONG_AN_DA_CHON hoặc khuyến nghị); trạng thái ("Đã chốt bởi người dùng" hoặc "Khuyến nghị - chờ người dùng xác nhận").
+Bảng so sánh: | Tiêu chí (F1, ràng buộc P06, HE_THONG_NGOAI) | Trọng số | CN1 | CN2 | CN3 |, Trọng số và ô theo cách của F2.1, không cộng thành điểm tổng. Mỗi đặc điểm của phương án (số mã nguồn, số ngôn ngữ, mô hình xử lý đồng thời) chỉ chấm ở một tiêu chí; tiêu chí phù hợp quy mô dự án (A3a) chỉ xét số UC, số nhóm chức năng, số loại client.
+Kết luận: phương án khuyến nghị và tiêu chí quyết định; hai phương án chỉ khác nhau ở tiêu chí Thấp hoặc ở ô dựa vào Q-nn chưa có câu trả lời thì ghi "Hai phương án tương đương; khuyến nghị <CN> vì <tiêu chí>, chọn <CN khác> nếu Q-nn trả lời <...>" và đưa Q-nn đó vào dòng dưới khối F11; phương án được dùng (PHUONG_AN_DA_CHON hoặc khuyến nghị); trạng thái ("Đã chốt bởi người dùng" hoặc "Khuyến nghị - chờ người dùng xác nhận").
 - Mức hợp lý: 2-3 phương án khác nhau thật sự (khác nền tảng hoặc khác cách dựng giao diện), không phải ba phiên bản của cùng một framework.
 - Ví dụ đúng (quản lý bãi đỗ xe, một máy tính tại cổng, không có máy chủ riêng): CN1 desktop C#, .NET, SQLite; CN2 web chạy cục bộ, Node.js, SQLite; khuyến nghị CN1 vì RANG_BUOC_KIEN_TRUC yêu cầu ứng dụng một máy và thư viện điều khiển thanh chắn của nhà cung cấp chỉ có cho .NET (HE_THONG_NGOAI).
 - Ví dụ sai: "Dùng React, Spring Boot, PostgreSQL vì phổ biến" (không có phương án so sánh, không gắn tiêu chí).
@@ -169,6 +169,7 @@ Bảng: | Stereotype hoặc loại lớp phân tích | Layer hoặc vai trò tro
 - Tối thiểu có dòng cho: boundary giao diện người dùng; boundary có Loại boundary "Kênh thông báo" ở P08 F3 (tác nhân người chỉ nhận email, SMS, thông báo đẩy) khi P08 có, còn boundary tới cổng SMS, máy chủ email thuộc dòng boundary giao diện hệ thống; boundary giao diện hệ thống; boundary giao diện thiết bị; control; entity (phần hành vi nghiệp vụ); entity (phần lưu trữ).
 - Ví dụ (layered kết hợp MVC passive ở web): boundary người dùng --> View và phần tiếp nhận yêu cầu (Controller của MVC) ở Presentation; control --> lớp dịch vụ ứng dụng ở Application; entity --> lớp miền ở Domain (layer thấp nhất), interface kho dữ liệu ở Domain, phần hiện thực lưu trữ ở Persistence thuộc Services; boundary hệ thống --> subsystem ở Services.
 - Ví dụ (desktop MVP): boundary người dùng --> View và Presenter; control --> Application service; entity --> Model.
+- Thiết bị tự gọi vào phần mềm qua API (máy quét gửi mã đọc được tới máy chủ): boundary thiết bị --> điểm vào ở Presentation phía máy chủ, không phải subsystem gọi ra; P10 có thể đặt subsystem che định dạng thông điệp thiết bị trong package điểm vào đó.
 - Lưu ý: "controller" của MVC là thành phần giao diện, khác lớp control của phân tích; ghi rõ trong bảng để tránh nhầm.
 
 F6. Quy tắc phụ thuộc
@@ -177,7 +178,7 @@ Liệt kê dạng câu, mỗi câu kiểm tra được:
 - Layer dưới không phụ thuộc layer trên; không có mũi tên dependency hoặc realization đi lên.
 - Không có vòng phụ thuộc giữa các package (kể cả vòng qua nhiều package).
 - Nếu layered nghiêm ngặt: không nhảy layer (Presentation không phụ thuộc trực tiếp Services).
-- Cách truyền thông tin ngược lên nếu có: interface do layer dưới định nghĩa, layer trên hiện thực (A5).
+- Cách truyền thông tin ngược lên nếu có: interface do layer dưới định nghĩa, layer trên hiện thực (A5). Interface kho dữ liệu do Domain định nghĩa không thuộc mục này.
 - Package phụ thuộc vào interface của subsystem, không phụ thuộc vào lớp bên trong subsystem.
 - Lời gọi qua mạng giữa hai node không là phụ thuộc package (A4).
 Kèm bảng kiểm tra: | Phụ thuộc (PKG --> PKG) | Hợp lệ | Quy tắc áp dụng |, một dòng cho mỗi phụ thuộc trong F4.
@@ -203,7 +204,7 @@ F11. Cập nhật hồ sơ dự án
 Khối chỉ gồm hai dòng bảng (không có dòng tiêu đề), để người dùng thay hai dòng NEN_TANG, CONG_NGHE hiện có trong bảng ở project-profile.md mục 3, đặt trong code block text:
 | NEN_TANG | <giá trị đã chốt> |
 | CONG_NGHE | <ngôn ngữ, framework phía máy chủ, công nghệ phía giao diện, hệ quản trị CSDL> |
-Dưới khối ghi trạng thái ("Đã chốt bởi người dùng" hoặc "Khuyến nghị - chờ người dùng xác nhận"), dòng "Q-nn mà giá trị trên phụ thuộc: <danh sách>. Chấp nhận khối này là chấp nhận phương án đã dùng cho các Q đó.", và nhắc: cập nhật hồ sơ trước khi chạy P10. Hồ sơ đã chốt cả hai trường thì ghi "Không cần cập nhật".
+Dưới khối ghi trạng thái ("Đã chốt bởi người dùng" hoặc "Khuyến nghị - chờ người dùng xác nhận"), dòng "Q-nn mà lựa chọn công nghệ phụ thuộc: <danh sách>" (chỉ Q mà câu trả lời có thể đổi phương án được dùng; không liệt kê Q về ngưỡng, cách đo, quy tắc mà phương án nào cũng phải đáp ứng), tiếp theo "Chấp nhận khối này là chấp nhận các ASM-nn tương ứng" (CO_NHAN) hoặc "Chấp nhận khối này là chọn phương án khi các Q trên chưa có câu trả lời; các Q vẫn mở" (NGHIEM_NGAT), và nhắc: cập nhật hồ sơ trước khi chạy P10. Hồ sơ đã chốt cả hai trường thì ghi "Không cần cập nhật".
 
 F12. Mục kiểm soát theo C5.
 

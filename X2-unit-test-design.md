@@ -20,7 +20,7 @@ Bước này thiết kế bộ test case mức đơn vị (unit: phương thức
 ## 3. Cách chạy
 
 - Đính kèm: 00-Conventions.md, project-profile.md và các file đầu vào ở bảng trên.
-- Chạy theo nhóm lớp (một package hoặc vài lớp liên quan) để kết quả không quá dài; lần chạy sau đính kèm X2 đã có để tiếp tục đánh số TC. Mỗi lần chạy tối đa khoảng 10 operation được chọn hoặc 60 TC; vượt ngưỡng thì tách theo lớp và dùng MA_TC_BAT_DAU cho lần sau.
+- Chạy theo nhóm lớp (một package hoặc vài lớp liên quan) để kết quả không quá dài; lần chạy sau đính kèm X2 đã có để tiếp tục đánh số TC. Mỗi lần chạy tối đa khoảng 10 operation được chọn hoặc 60 TC, không tính TC ghi "Chưa xác định"; vượt ngưỡng thì tách theo lớp và dùng MA_TC_BAT_DAU cho lần sau. Khi phải bớt trong một lần chạy, bớt operation ưu tiên Thấp hoặc Trung bình trước, không bỏ quy tắc bảng quyết định của operation ưu tiên Cao.
 - Placeholder cần điền trong prompt:
 
 | Placeholder | Bắt buộc | Ý nghĩa |
@@ -65,7 +65,7 @@ Bước 2. Thu thập cơ sở kiểm thử cho từng phương thức: chữ k�
 Bước 3. Kỹ thuật hộp đen (luôn làm trước).
 3.1. Phân vùng tương đương: với mỗi điều kiện đầu vào (tham số, trạng thái đối tượng, dữ liệu liên quan), chia miền thành các lớp mà mọi giá trị trong một lớp được kỳ vọng cho cùng kết quả. Luôn có cả lớp hợp lệ và lớp không hợp lệ (sai kiểu, ngoài miền, rỗng, null). Xét cả phân vùng theo đầu ra (mỗi kết quả khác nhau là một vùng).
 3.2. Phân tích giá trị biên: với mỗi lớp có thứ tự, lấy giá trị ngay tại biên và ngay ngoài biên (min-1, min, max, max+1; thêm giá trị ngay trong biên min+1, max-1 khi phương thức có rủi ro cao). Biên có thể là biên của đầu vào, của đầu ra, của kích thước tập hợp, của thời gian.
-3.3. Bảng quyết định: khi kết quả phụ thuộc tổ hợp của nhiều điều kiện. Liệt kê điều kiện (hàng), mọi tổ hợp (cột quy tắc, 2^n với n điều kiện nhị phân), hành động (hàng). Đánh dấu tổ hợp không thể xảy ra là N/A; gộp quy tắc có hành động giống nhau bằng giá trị "-" (không quan tâm) chỉ khi đặc tả cho biết thứ tự kiểm tra. Đặc tả gồm P12 F2 (tiền, hậu điều kiện, ngoại lệ), BR ở P06 và luồng P04; thứ tự bước trong P12 F3 (thiết kế method) chỉ dùng làm căn cứ gộp khi F2 hoặc P04 không mâu thuẫn, ghi rõ căn cứ dưới bảng. Mỗi quy tắc còn lại ít nhất một test case.
+3.3. Bảng quyết định: khi kết quả phụ thuộc tổ hợp của nhiều điều kiện. Liệt kê điều kiện (hàng), mọi tổ hợp (cột quy tắc, 2^n với n điều kiện nhị phân), hành động (hàng). Đánh dấu tổ hợp không thể xảy ra là N/A; gộp quy tắc có hành động giống nhau bằng giá trị "-" (không quan tâm) chỉ khi đặc tả cho biết thứ tự kiểm tra. Đặc tả gồm P12 F2 (tiền, hậu điều kiện, ngoại lệ), BR ở P06 và luồng P04; thứ tự bước trong P12 F3 (thiết kế method) chỉ dùng làm căn cứ gộp khi F2 hoặc P04 không mâu thuẫn, ghi rõ căn cứ dưới bảng. P04 ghi nguồn không nêu thứ tự kiểm tra thì không mâu thuẫn với F3 nhưng thứ tự của F3 chưa có nguồn: quy tắc vi phạm từ hai điều kiện trở lên mà kết quả phụ thuộc thứ tự ghi một Q chung theo 3.6, không gộp bằng "-". Mỗi quy tắc còn lại ít nhất một test case, trừ nhóm quy tắc có kết quả chờ cùng một Q: nhóm chọn một đến hai quy tắc đại diện có TC, nhóm ghi ở F4 kèm Q.
 3.4. Chuyển trạng thái (khi phương thức là sự kiện của state machine): mỗi chuyển hợp lệ một test case; với các cặp (trạng thái, sự kiện) không có chuyển, thiết kế test case kiểm tra phương thức từ chối đúng như đặc tả; mỗi guard xét cả đúng và sai, kèm giá trị biên của guard.
 3.5. Theo use case (với phương thức điều phối của lớp control): một kịch bản cho luồng chính, một kịch bản cho mỗi luồng thay thế/ngoại lệ, và các tổ hợp luồng thay thế hợp lý; nếu luồng có vòng lặp (nhập lại khi sai), thêm kịch bản lặp. Đặc tả P04 có mục 8a Kịch bản chính thì lấy danh sách đó làm điểm xuất phát, rồi bổ sung các luồng còn thiếu.
 3.6. Kết quả mong đợi (oracle): suy ra từ đặc tả; ghi giá trị cụ thể (giá trị trả về, ngoại lệ, trạng thái đối tượng sau, tương tác với phụ thuộc). Với trường hợp lỗi, kiểm tra cả việc trạng thái không bị thay đổi. Khi đặc tả không nói kết quả cho một tổ hợp (ví dụ hai điều kiện cùng sai thì báo lỗi nào), không tự quyết: ghi Q/ASM.
@@ -200,7 +200,7 @@ Trả lời Đạt/Không đạt cho từng câu, sửa trước khi trả kết
 1. Mọi phương thức trong phạm vi có dòng ở F1 với quyết định chọn và lý do.
 2. Mọi phương thức được chọn có phân vùng tương đương gồm cả lớp hợp lệ và không hợp lệ, lớp rời nhau và phủ hết miền.
 3. Mọi lớp có thứ tự có giá trị biên tại và ngay ngoài biên, đúng phía với phép so sánh của BR.
-4. Mọi tổ hợp điều kiện ảnh hưởng kết quả có bảng quyết định; quy tắc N/A và quy tắc gộp có căn cứ.
+4. Mọi tổ hợp điều kiện ảnh hưởng kết quả có bảng quyết định; quy tắc N/A, quy tắc gộp và nhóm quy tắc chờ cùng một Q có căn cứ.
 5. Mọi phương thức là sự kiện của state machine có test cho chuyển hợp lệ, guard đúng/sai và sự kiện ở trạng thái không cho phép.
 6. Mọi BR và luồng thay thế P04 liên quan có test case hoặc lý do ở F4.
 7. Mọi test case có điều kiện đầu, dữ liệu vào cụ thể, kết quả mong đợi cụ thể (gồm trạng thái sau), nguồn; trừ TC ghi "Chưa xác định: chờ Q-nn" (F3).

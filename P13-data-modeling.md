@@ -21,7 +21,7 @@ Bước này thiết kế cơ sở dữ liệu cho các lớp persistent đã ch
 ## 3. Cách chạy
 
 - Đính kèm: 00-Conventions.md, project-profile.md, P12 và các file đầu vào ở bảng trên.
-- Chạy một lần cho toàn hệ thống (mô hình dữ liệu cần nhìn tổng thể để tránh trùng bảng). Khi hệ thống rất lớn, có thể chạy theo nhóm package có dữ liệu liên quan, lần sau đính kèm P13 đã có.
+- Chạy một lần cho toàn hệ thống (mô hình dữ liệu cần nhìn tổng thể để tránh trùng bảng). Khi hệ thống rất lớn, có thể chạy theo nhóm package có dữ liệu liên quan, lần sau đính kèm P13 đã có. Khi chạy theo nhóm package, FK tới bảng của package chưa có P13 ghi "EXT:<tên bảng dự kiến>.<cột khoá>" ở cột Tham chiếu FK của F6.1, kiểu cột khoá lấy theo kiểu định danh của P12; ERD vẽ node ID EXT-<tên bảng> chỉ có cột khoá, ghi chú "ngoài phạm vi"; F9 đặt FK đó trong khối ALTER TABLE cuối script kèm chú thích bảng phải tồn tại trước. Lần chạy P13 của package chứa bảng đó cấp TBL-nn và đối chiếu. Target 3, 12, 13 coi tham chiếu EXT theo cách này là đạt.
 - Placeholder cần điền trong prompt:
 
 | Placeholder | Bắt buộc | Ý nghĩa |
@@ -119,6 +119,7 @@ F3.2. Mối quan hệ: | ER | Tên mối quan hệ (động từ) | Thực thể
 - Định nghĩa: mô hình khái niệm biểu diễn cấu trúc thông tin của thế giới thực một cách tự nhiên, không chịu ràng buộc của hệ quản trị CSDL. Ba thành phần: thực thể, mối quan hệ, thuộc tính.
 - Quy tắc: tên thực thể là danh từ số ít; tên mối quan hệ là động từ đọc được theo chiều A - B ("Độc giả mượn Bản sách"); không có khoá ngoại, không có kiểu dữ liệu vật lý ở mức này.
 - Mức hợp lý: mỗi lớp persistent (không phải value object) tương ứng một thực thể; mọi association giữa lớp persistent có một mối quan hệ; M:N có thuộc tính thì thuộc tính nằm ở mối quan hệ.
+- Multiplicity ở P12 còn "?" kèm Q-nn: Bản số và Tham gia ghi "Chờ Q-nn"; không suy bản số từ phía "?".
 - Lỗi thường gặp: đưa cột khoá ngoại vào thực thể ở mức khái niệm; biến mọi quan hệ M:N thành thực thể ngay ở mức khái niệm khi chưa có thuộc tính riêng (được phép, nhưng làm mất ý nghĩa khái niệm); mối quan hệ đặt tên danh từ.
 - Ví dụ đúng (thư viện): | ER-02 | mượn | E-Reader | E-BookCopy | M:N | Reader tuỳ chọn, BookCopy tuỳ chọn | loanDate, dueDate, returnDate | R-04 |
 - Ví dụ sai: | ER-02 | Loan | E-Reader | E-BookCopy | 1:N | | reader_id | Sai: tên danh từ, bản số sai (một bản sách qua thời gian được nhiều độc giả mượn), có cột khoá ngoại ở mức khái niệm.
@@ -131,7 +132,8 @@ F4.2. Ánh xạ quan hệ giữa lớp: | R (P12) | Loại | Multiplicity | Các
 Quy tắc ánh xạ:
 - Association 1 - N (kể cả 0..1 - N): khoá ngoại đặt ở bảng phía N, tham chiếu khoá chính bảng phía 1. Khoá ngoại không thuộc khoá chính --> quan hệ độc lập (non-identifying, nét đứt trong ERD). Phía 1 bắt buộc --> FK NOT NULL; tuỳ chọn (0..1) --> FK cho phép NULL. ON DELETE mặc định RESTRICT (không xoá cha khi còn con); SET NULL chỉ khi phía cha tuỳ chọn và BR cho phép.
 - Association 1 - 1: khoá ngoại đặt ở bảng phía tuỳ chọn (hoặc phía phụ thuộc) và có UNIQUE; nếu hai phía bắt buộc và luôn được đọc cùng nhau, cân nhắc gộp thành một bảng; nếu một phía ít dùng và lớn, giữ bảng riêng dùng chung khoá chính (PK của bảng phụ đồng thời là FK).
-- Lớp có định danh do hai lớp cha xác định (P12 ghi "từ association class", ví dụ tồn của một mặt hàng tại một kho): ánh xạ như bảng trung gian, khoá chính là cặp khoá ngoại (quan hệ phụ thuộc, nét liền), ON DELETE RESTRICT nếu dữ liệu có giá trị nghiệp vụ cần giữ.
+- Lớp có định danh do hai lớp cha xác định (P12 ghi "từ association class, định danh bởi <LớpX> + <LớpY>", ví dụ tồn của một mặt hàng tại một kho): ánh xạ như bảng trung gian, khoá chính là cặp khoá ngoại (quan hệ phụ thuộc, nét liền), ON DELETE RESTRICT nếu dữ liệu có giá trị nghiệp vụ cần giữ. P12 chỉ ghi "từ association class" hoặc ghi "định danh bởi cặp: Chờ Q-nn": khoá thay thế kèm index không UNIQUE trên cặp khoá ngoại, UNIQUE thêm khi Q có trả lời.
+- Multiplicity còn "?" (Chờ Q-nn): chọn cấu trúc chịu được mọi đáp án (bảng trung gian khi cả hai phía "?"; FK cho phép NULL, không UNIQUE khi một phía "?") và ghi ở cột Cách ánh xạ ràng buộc nào (khoá chính, UNIQUE, NOT NULL) sẽ đổi khi Q có trả lời.
 - Association M - N: thêm bảng trung gian chứa hai khoá ngoại tham chiếu hai bảng; khoá chính là cặp hai khoá ngoại (hoặc khoá thay thế kèm UNIQUE trên cặp khoá ngoại khi cùng một cặp được xuất hiện nhiều lần theo thời gian); thuộc tính của association class hoặc của mối quan hệ đặt ở bảng trung gian.
 - Composition: bộ phận phụ thuộc toàn thể; khoá ngoại tới bảng toàn thể nằm trong khoá chính của bảng bộ phận --> quan hệ phụ thuộc (identifying, nét liền trong ERD); ON DELETE CASCADE để hiện thực việc xoá toàn thể kéo theo bộ phận.
 - Aggregation: ánh xạ bằng khoá ngoại; có thể là quan hệ phụ thuộc (FK trong PK) như composition nhưng không CASCADE khi bộ phận dùng chung; được phép ánh xạ thành quan hệ độc lập (FK ngoài PK) để khoá chính đơn giản khi bộ phận có định danh riêng.

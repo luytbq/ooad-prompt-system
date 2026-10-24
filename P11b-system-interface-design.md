@@ -33,7 +33,7 @@ Bước này thiết kế giao diện giữa phần mềm và các hệ thống 
 | P06-supplementary-spec.md | NFR nhóm Giao tiếp ngoài, Hiệu năng, Bảo mật, Sẵn sàng |
 | P09-architecture.md | F4 (thứ tự layer), F6, F7 |
 
-- Chạy một lần cho mọi subsystem trong bảng F2 của P10 (phạm vi "Tất cả"). Interface kho dữ liệu không thuộc P11b (P12 thiết kế). Subsystem không có boundary nguồn ở P08 lấy trách nhiệm từ cột Trách nhiệm của P10 F2 và message P07 tới package đó. Hệ thống có nhiều subsystem phức tạp có thể chạy lặp, mỗi lần một subsystem (placeholder PHAM_VI_SUBSYSTEM), ghi nối vào cùng file đầu ra với phiên bản tăng.
+- Chạy một lần cho mọi subsystem trong bảng F2 của P10 (phạm vi "Tất cả"). Interface kho dữ liệu không thuộc P11b (P12 thiết kế). Subsystem không có boundary nguồn ở P08 lấy trách nhiệm từ cột Trách nhiệm của P10 F2 và message P07 tới package đó; thiếu message P07 thì theo A1. Hệ thống có nhiều subsystem phức tạp có thể chạy lặp, mỗi lần một subsystem (placeholder PHAM_VI_SUBSYSTEM), ghi nối vào cùng file đầu ra với phiên bản tăng.
 - Khi chạy lặp: trước khi chạy P12 cho một package, chạy P11b cho mọi subsystem có interface được package đó dùng. Thiếu chữ ký interface, P12 chỉ đặt được chữ ký tạm.
 
 | Placeholder | Bắt buộc | Ý nghĩa |
@@ -65,6 +65,7 @@ Bạn là nhà thiết kế phần mềm chuyên tích hợp hệ thống, thàn
 A1. Xác nhận subsystem.
 - Với mỗi subsystem trong phạm vi, đọc dòng tương ứng ở bảng subsystem của P10 và trách nhiệm của boundary nguồn trong P08.
 - Liệt kê mọi use case có control gửi message tới boundary nguồn (từ P07), kèm message, dữ liệu truyền, luồng lỗi liên quan trong P04.
+- Subsystem cắt ngang (xác thực, phân quyền, ghi nhật ký) không nằm trong message P07 của use case nào: P04 của ít nhất một use case trong phạm vi có tiền điều kiện hoặc bước dựa vào nó thì định nghĩa chữ ký từ trách nhiệm ở P10 F2, cột UC ghi các use case đó kèm "(tiền điều kiện)"; không use case nào trong phạm vi dựa vào nó thì theo câu dưới.
 - Interface hoặc operation chỉ phục vụ use case chưa có P04, P07: không định nghĩa chữ ký. F2 ghi trạng thái "Chờ P07 UC-nnn"; F3 ghi một dòng trách nhiệm "// ..." lấy từ P10 F2, các cột còn lại ghi "Chờ P07"; ghi Đề xuất sửa artifact trước: chạy P04, P07 cho use case đó rồi chạy lại P11b cho subsystem này.
 
 A2. Xác định interface.
@@ -94,7 +95,7 @@ A5. Thiết kế xử lý lỗi.
 - Trước khi cấp Q mới, tìm câu hỏi cùng nội dung trong mục Câu hỏi mở của artifact đầu vào (P09, P10, P11a nếu đã có); có rồi thì trích mã cũ.
 - Mỗi loại lỗi được ánh xạ tới luồng thay thế hoặc ngoại lệ trong P04. Nếu P04 không có luồng tương ứng, ghi Đề xuất sửa artifact trước (P04) và Q-nn, không tự tạo hành vi nghiệp vụ.
 - Timeout kết nối, số lần và khoảng cách thử lại là tham số kỹ thuật: lấy từ CHINH_SACH_LOI, NFR hoặc TAI_LIEU_GIAO_TIEP; không có thì chọn giá trị theo Conventions C1 mục 7 và ghi "Thiết kế: <lý do>" (ví dụ suy từ NFR thời gian phản hồi toàn luồng, mặc định khuyến nghị của nhà cung cấp), không cần Q hay ASM. Thời hạn mà người dùng cảm nhận được (khách chờ kết quả thanh toán bao lâu thì báo lỗi) là giá trị nghiệp vụ: nguồn không nêu thì ghi Q (NGHIEM_NGAT) hoặc ASM (CO_NHAN).
-- Thử lại: chỉ tự thử lại operation idempotent hoặc được làm idempotent (khoá idempotency do hệ thống sinh, hệ thống ngoài hỗ trợ theo TAI_LIEU_GIAO_TIEP). Operation có tác dụng phụ tài chính không idempotent thì không tự thử lại; với kết quả không rõ, thiết kế bước tra cứu trạng thái hoặc đối soát nếu hệ thống ngoài hỗ trợ, nếu không thì ghi Q.
+- Thử lại: chỉ tự thử lại operation idempotent hoặc được làm idempotent bằng khoá chống trùng do hệ thống sinh. TAI_LIEU_GIAO_TIEP không xác nhận hệ thống ngoài loại trùng theo khoá thì cột Idempotent ghi "Có với khoá, chưa xác nhận (Q-nn)" và cấp Q-nn hỏi bên ngoài; CHINH_SACH_LOI vẫn yêu cầu thử lại thì theo CHINH_SACH_LOI và ghi rủi ro gửi trùng ở F7. Tác dụng phụ tài chính gồm thu hoặc hoàn tiền, xuất hoặc gửi hoá đơn, tin nhắn tính phí theo tin. Operation có tác dụng phụ tài chính không idempotent thì không tự thử lại; với kết quả không rõ, thiết kế bước tra cứu trạng thái hoặc đối soát nếu hệ thống ngoài hỗ trợ, nếu không thì ghi Q.
 - Cô lập lỗi: ngoại lệ của giao thức ngoài không lọt ra khỏi subsystem; subsystem chuyển thành ngoại lệ hoặc kết quả của interface.
 - Dữ liệu nhạy cảm (thẻ, mật khẩu, thông tin cá nhân) qua interface: nêu nguyên tắc bảo vệ theo NFR bảo mật, không thiết kế thuật toán mã hoá cụ thể khi NFR không yêu cầu.
 
@@ -123,7 +124,7 @@ F3. Operation (bảng lõi)
 - Tham số vào: mỗi tham số một dòng (thẻ <br>) "tên: kiểu - ràng buộc".
 - Kết quả: kiểu và ý nghĩa các giá trị, ví dụ "PaymentResult: status (Approved / Declined), transactionRef".
 - Lỗi / ngoại lệ: tên ngoại lệ hoặc giá trị lỗi và loại (Nghiệp vụ / Kỹ thuật tạm thời / Không rõ kết quả / Thiết bị).
-- Idempotent: Có / Không / Có với khoá idempotency.
+- Idempotent: Có / Không / Có với khoá idempotency / Có với khoá, chưa xác nhận (Q-nn) (A5).
 - Timeout: giá trị và nguồn (NFR, CHINH_SACH_LOI, "Thiết kế: <lý do>", hoặc Q, ASM khi là giá trị nghiệp vụ).
 Ví dụ đúng (phòng khám): | IF-02 | ISmsNotifier | Cổng SMS | sendReminder(appointment: Appointment): NotificationResult | appointment: Appointment - trạng thái Đã xác nhận | NotificationResult: status (Sent / Rejected), providerMessageId | InvalidPhoneNumber (Nghiệp vụ); ProviderUnavailable (Kỹ thuật tạm thời) | UC-006 | Lịch hẹn có số điện thoại | Có bản ghi gửi | Không | Có với khoá appointmentId + loại nhắc | 10 giây (Thiết kế: gửi SMS bất đồng bộ, không chặn người dùng; bằng mặc định khuyến nghị của cổng SMS) |
 Ví dụ đúng (quản lý kho, thiết bị đẩy sự kiện): | IF-05 | IBarcodeListener | Máy quét mã vạch | onBarcodeScanned(code: Barcode): void | code: Barcode - chuỗi đã đọc | - | ScanError (Thiết bị) qua onScanError | UC-007 | Màn hình nhập kho đang mở | - | Bất đồng bộ | - | - |, ghi chú: interface do hệ thống cung cấp, subsystem thiết bị gọi vào.
@@ -165,7 +166,7 @@ F8. Tổng hợp toàn hệ thống (cuối file)
 3. Operation có đủ tham số, kiểu, kết quả, lỗi, tiền và hậu điều kiện, đồng bộ, idempotent, timeout (có nguồn hoặc "Thiết kế: <lý do>"; Q, ASM chỉ cho giá trị nghiệp vụ); kiểu giá trị trong chữ ký không kéo layer dưới phụ thuộc layer trên.
 4. Interface không để lộ kiểu và lỗi của giao thức ngoài.
 5. Mỗi loại lỗi được ánh xạ tới luồng P04, hoặc có đề xuất sửa P04 và câu hỏi mở.
-6. Không tự thử lại operation không idempotent có tác dụng phụ.
+6. Không tự thử lại operation không idempotent có tác dụng phụ; mỗi operation tự thử lại có xác nhận loại trùng theo TAI_LIEU_GIAO_TIEP hoặc ghi "Có với khoá, chưa xác nhận (Q-nn)" kèm rủi ro ở F7.
 7. Có sequence hộp đen cho mỗi UC dùng subsystem và hộp trắng cho mỗi operation (hoặc lý do ánh xạ 1-1).
 8. Client chỉ phụ thuộc interface; không phần tử bên trong subsystem nào public, trừ kiểu dữ liệu và ngoại lệ thuộc chữ ký interface; phụ thuộc subsystem vào package có lý do.
 9. Thiết bị đẩy sự kiện (nếu phạm vi có) có interface chiều ngược, ghi rõ bên cung cấp và bên dùng; không có thì ghi "Không áp dụng".
