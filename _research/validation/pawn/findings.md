@@ -16,6 +16,7 @@ Ngoài phạm vi: bố cục, định tuyến cạnh và độ dễ đọc của
 
 | Bước | Model | Placeholder đã điền | Đầu ra | Ghi chú |
 |---|---|---|---|---|
+| P00 | Sonnet | TRONG_TAM_PHAN_TICH = "Bỏ nghiệp vụ chốt ca và cảnh báo định mức tiền mặt trong két (mục 8 của yeu-cau-cam-do.md)"; YEU_CAU_BO_SUNG = Không có | P00-problem-brief.md | 105 REQ, 20 SH, Q-01..Q-35, ASM-01..ASM-08; mục 8 vào Ngoài phạm vi với lý do "Ngoài trọng tâm phân tích"; khoảng 9 phút |
 
 ## 2. Nhật ký phát hiện
 
