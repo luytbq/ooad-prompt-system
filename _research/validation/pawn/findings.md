@@ -17,6 +17,8 @@ Ngoài phạm vi: bố cục, định tuyến cạnh và độ dễ đọc của
 | Bước | Model | Placeholder đã điền | Đầu ra | Ghi chú |
 |---|---|---|---|---|
 | P00 | Sonnet | TRONG_TAM_PHAN_TICH = "Bỏ nghiệp vụ chốt ca và cảnh báo định mức tiền mặt trong két (mục 8 của yeu-cau-cam-do.md)"; YEU_CAU_BO_SUNG = Không có | P00-problem-brief.md | 105 REQ, 20 SH, Q-01..Q-35, ASM-01..ASM-08; mục 8 vào Ngoài phạm vi với lý do "Ngoài trọng tâm phân tích"; khoảng 9 phút |
+| P01 | Sonnet | QUYET_DINH_RANH_GIOI = "Ứng dụng di động cho khách: Trong. Máy in nhãn mã vạch: Ngoài."; YEU_CAU_BO_SUNG = Không có | P01-actors.md | 18 ACT (8 người, 5 hệ thống ngoài, 3 thiết bị, 2 thời gian), 30 ứng viên loại, Q-36, ASM-09..ASM-11; khoảng 3 phút |
+| Xem đề xuất sau P01 | Không áp dụng (thao tác của người dùng) | - | - | Theo README mục 3 bước 4, người điều phối (vai người dùng) đọc mục Đề xuất sửa artifact trước của P01 (REQ-94 đổi chủ thể sau khi Q-31 được trả lời): chờ Q, không đổi luồng, BR, tiền điều kiện hay trạng thái, không chạy lại P00 |
 
 ## 2. Nhật ký phát hiện
 
