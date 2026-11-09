@@ -2,22 +2,24 @@
 
 File này là luật chung cho mọi bước trong pipeline. Luôn đính kèm file này cùng với prompt của bước đang chạy. Các prompt chỉ ghi phần riêng của bước, phần chung nằm ở đây và không được chép lại.
 
-Người đọc file này gồm hai đối tượng: người dùng (để hiểu cách tổ chức) và AI thực thi prompt (để tuân thủ). Mọi câu trong mục C1 đến C9 là quy tắc bắt buộc với AI.
+Người đọc file này gồm hai đối tượng: người dùng (để hiểu cách tổ chức) và AI thực thi prompt (để tuân thủ). Mọi câu trong mục C1 đến C10 là quy tắc bắt buộc với AI.
 
 ---
 
 ## C1. Nguyên tắc làm việc
 
-1. Nguồn sự thật là tài liệu đầu vào: tài liệu nguồn của dự án (ghi trong hồ sơ dự án), trường HE_THONG_NGOAI của hồ sơ dự án (xếp sau mọi tài liệu nguồn), và các artifact đã chốt của các bước trước. Không dùng hiểu biết chung về một loại hệ thống để thêm chức năng, tác nhân, quy tắc mà nguồn không nêu.
+1. Nguồn sự thật là tài liệu đầu vào: tài liệu nguồn của dự án (ghi trong hồ sơ dự án), hai trường HE_THONG_NGOAI, RANG_BUOC_TICH_HOP của hồ sơ dự án (xếp sau mọi tài liệu nguồn), và các artifact đã chốt của các bước trước. Không dùng hiểu biết chung về một loại hệ thống để thêm chức năng, tác nhân, quy tắc mà nguồn không nêu.
 2. Chế độ giả định đọc từ hồ sơ dự án, trường CHE_DO_GIA_DINH:
    - NGHIEM_NGAT: không giả định. Chỗ nào nguồn thiếu hoặc mơ hồ thì ghi vào mục "Câu hỏi mở" (mã Q-nn), không tự điền nội dung.
    - CO_NHAN: được phép giả định khi nguồn thiếu, nhưng mỗi giả định phải có mã ASM-nn, ghi rõ nội dung, lý do, và được liệt kê trong mục "Giả định". Nội dung dựa trên giả định phải trích mã ASM tương ứng. Giả định phải sinh ra nội dung: một ASM-nn đã ghi thì phần tử nó nêu (REQ, tác nhân, use case, quan hệ, luồng) phải có mặt trong artifact, không ghi ASM rồi vẫn xử lý như NGHIEM_NGAT. ASM-nn có thể làm đổi luồng, dữ liệu, quy tắc hoặc tác nhân thì đi kèm Q-nn để người dùng xác nhận (dẫn Q có sẵn hoặc tạo Q mới), cột Lý do của ASM ghi "Chờ Q-nn". ASM chỉ chọn cách trình bày hoặc thứ tự phản hồi mặc định thì không cần Q.
    - CO_NHAN, chỗ thiếu bắt buộc có ASM-nn: chỗ thiếu làm thay đổi danh sách chức năng, tác nhân hoặc use case phải có ASM-nn chọn một phương án của Q-nn tương ứng, và Q-nn vẫn được giữ để người dùng xác nhận. Hai dạng hay gặp: một chức năng nguồn nêu cần dữ liệu mà nguồn không nói ai tạo (lập lịch cần danh mục phòng khám, bác sĩ); một quy tắc nguồn chỉ nêu cho một nhánh (hoàn tiền khi khách huỷ đơn, không nói khi nhà hàng huỷ đơn). Chức năng suy ra trực tiếp từ một chức năng nguồn nêu (danh mục mà chức năng đó phải chọn) và dựa trên ASM-nn không vi phạm mục 1.
-3. Nhất quán với artifact trước: không đổi tên, không đổi mã, không bỏ phần tử đã chốt ở bước trước. Nếu phát hiện bước trước sai, không tự sửa trong artifact của bước này; ghi vào mục "Đề xuất sửa artifact trước" (bước, mã phần tử, lý do, nội dung đề nghị).
+3. Nhất quán với artifact trước: không đổi tên, không đổi mã, không bỏ phần tử đã chốt ở bước trước. Nếu phát hiện bước trước sai, không tự sửa trong artifact của bước này; ghi vào mục "Đề xuất sửa artifact trước" (bước, mã phần tử, lý do, nội dung đề nghị). Chỉ bước X3 được áp các đề xuất này.
 4. Truy vết hai chiều: mọi phần tử tạo ra đều trỏ tới nguồn của nó (mã REQ, UC, BR, NFR... hoặc câu trích tài liệu nguồn). Không có phần tử "mồ côi".
 5. Mức trừu tượng đúng bước: phân tích không chứa chi tiết công nghệ (framework, tên bảng, kiểu dữ liệu vật lý, tên màn hình cụ thể); chi tiết đó chỉ xuất hiện từ bước thiết kế trở đi.
-6. Tự kiểm tra trước khi trả lời: chạy checklist của bước; mục nào chưa đạt mà không sửa được thì ghi vào mục "Vấn đề còn mở" của artifact, không im lặng bỏ qua.
+6. Tự kiểm tra trước khi trả lời: chạy checklist của bước; mục nào chưa đạt mà không sửa được thì ghi vào mục "Vấn đề còn mở" của artifact, không im lặng bỏ qua. Khi có quyền chạy lệnh, chạy thêm tools/check_artifacts.py trên THU_MUC_DAU_RA trước khi kết thúc và sửa mọi LOI thuộc artifact vừa sinh. Script kiểm tra phần hình thức; phần tự kiểm tra của LLM tập trung vào ý nghĩa.
 7. Quyết định thiết kế kỹ thuật: từ P09 trở đi, tham số kỹ thuật không bắt nguồn từ yêu cầu (độ dài cột, timeout kết nối, số lần thử lại, khoảng cách giữa hai lần thử, kích thước pool, kích thước lô, kiểu định danh) là quyết định thiết kế, không phải giả định. AI được chọn giá trị ở cả hai chế độ NGHIEM_NGAT và CO_NHAN, ghi lý do tại chỗ dùng dạng "Thiết kế: <lý do>" (chuẩn, RFC, mặc định của nền tảng, suy từ NFR), không cần Q-nn hay ASM-nn. Chỉ giá trị mang nghĩa nghiệp vụ (hạn mức, thời hạn, giá, phí, ngưỡng mà người dùng cảm nhận được hoặc được nêu trong hợp đồng, quy định) mới theo mục 2: nguồn không nêu thì ghi Q-nn (NGHIEM_NGAT) hoặc ASM-nn (CO_NHAN). Ví dụ: VARCHAR(254) cho email (Thiết kế: độ dài tối đa của địa chỉ theo RFC 5321) là quyết định thiết kế; thời hạn khách phải lấy tiền ở máy ATM là giá trị nghiệp vụ.
+8. Lọc trước khi tạo câu hỏi. Chỉ tạo Q-nn khi cả ba điều sau đều đúng: nguồn và artifact đã chốt thật sự chưa trả lời; câu trả lời làm đổi luồng, quy tắc, dữ liệu, tác nhân hoặc phạm vi; câu chỉ hỏi một vấn đề (hai vấn đề thì tách hai mã). Việc đặt tên, cách mô hình hoá, cách trình bày không phải câu hỏi: ở cả hai chế độ, AI chọn một cách và ghi tại chỗ dùng dạng "Mô hình: <lý do>", tương tự "Thiết kế: <lý do>" ở mục 7. Mỗi Q-nn ghi cột Người quyết là "Bên nghiệp vụ" (chỉ khách hàng, người ra quy định trả lời được) hoặc "Nhóm dự án" (nhóm tự chốt được, ví dụ chọn nhà cung cấp, mức đạt để đo), và cột Đề xuất nêu phương án nên chọn. Ở NGHIEM_NGAT, cột Đề xuất chỉ giúp trả lời nhanh, nội dung artifact không được dựa vào đề xuất chưa được xác nhận. Ví dụ: "Trạng thái của phiếu mượn gọi là Đang mượn hay Chưa trả?" không phải Q-nn; "Phí trễ hạn tính theo ngày lịch hay ngày làm việc?" là Q-nn, Người quyết là Bên nghiệp vụ.
+9. Mô-đun đồng thời: trường TRANH_CHAP_TAI_NGUYEN của hồ sơ khác "Không" thì bước đang chạy áp dụng các mục ghi tên bước đó trong 00-Concurrency.md. Trường đã bật mà file chưa được đính kèm thì dừng và yêu cầu đính kèm. Trường không có trong hồ sơ được hiểu là "Không".
 
 ## C2. Ngôn ngữ và văn phong
 
@@ -61,8 +63,10 @@ Phần số trong mã ("nn", "nnn") là số thứ tự có tối thiểu số c
 | TBL-nn | Bảng / collection dữ liệu | P13 | TBL-04 |
 | TC-nnn | Test case | X2 | TC-015 |
 | RV-nn | Phát hiện review | X1 | RV-08 |
+| EX-nn / X-nn | Đơn vị loại trừ / cặp loại trừ (khi bật 00-Concurrency.md) | P08 | EX-03, X-05 |
+| SY-nn | Mục xử lý trong nhật ký đồng bộ | X3 | SY-07 |
 
-Mã Q-nn và ASM-nn đánh số liên tục trong toàn dự án, không đánh lại từ 01 ở mỗi artifact. Lần chạy nào cũng đọc các artifact đầu vào đã có, tìm mã Q và ASM lớn nhất đã thấy, rồi cấp tiếp từ số đó. Chỉ tính mã ở cột Mã của mục Câu hỏi mở, Giả định; khi tìm bằng công cụ, mẫu tìm phải có ranh giới từ phía trước (ví dụ \bQ-[0-9]+, không khớp phần đuôi của REQ-68). Mã mới đúng bằng số lớn nhất cộng 1; nếu buộc tạo khoảng trống thì ghi lý do ở Vấn đề còn mở. Mã lớn nhất tìm trong mục Câu hỏi mở và Giả định của mọi artifact đã có trong THU_MUC_DAU_RA, kể cả file không thuộc đầu vào của bước (chỉ quét mã, không cần đọc nội dung); khi chạy bằng chat không đính kèm được các file đó, người dùng ghi mã Q, ASM lớn nhất hiện có vào YEU_CAU_BO_SUNG. Không chạy song song hai phiên cùng cấp Q, ASM; khi buộc phải chạy song song, người dùng ghi trong YEU_CAU_BO_SUNG của mỗi phiên một dải mã riêng, ví dụ "Q-48 đến Q-59, ASM-37 đến ASM-46". Dải mã do YEU_CAU_BO_SUNG cấp được dùng thay cho quy tắc cấp tiếp; ghi dải đã dùng ở hàng Đầu vào đã dùng của khối thông tin đầu artifact. Quy tắc này áp dụng cho mọi dãy mã nhiều bước hoặc nhiều lần chạy cùng cấp (Q, ASM, BR, MSG, IF). Bước chạy lặp nhiều lần (P04 cho từng use case, P07 cho từng use case, P12 theo package) đọc thêm mục "Câu hỏi mở" và "Giả định" của các file cùng bước đã có trong thư mục đầu ra và cấp tiếp từ số lớn nhất trong đó. Nhờ vậy khi bước sau trích "Q-07", mã chỉ trỏ tới một câu hỏi duy nhất.
+Mã Q-nn và ASM-nn đánh số liên tục trong toàn dự án, không đánh lại từ 01 ở mỗi artifact. Lần chạy nào cũng đọc các artifact đầu vào đã có, tìm mã Q và ASM lớn nhất đã thấy, rồi cấp tiếp từ số đó. Chỉ tính mã ở cột Mã của mục Câu hỏi mở, Giả định; khi tìm bằng công cụ, mẫu tìm phải có ranh giới từ phía trước (ví dụ \bQ-[0-9]+, không khớp phần đuôi của REQ-68). Mã mới đúng bằng số lớn nhất cộng 1; nếu buộc tạo khoảng trống thì ghi lý do ở Vấn đề còn mở. Mã lớn nhất tìm trong mục Câu hỏi mở và Giả định của mọi artifact đã có trong THU_MUC_DAU_RA, kể cả file không thuộc đầu vào của bước (chỉ quét mã, không cần đọc nội dung); khi chạy bằng chat không đính kèm được các file đó, người dùng ghi mã Q, ASM lớn nhất hiện có vào YEU_CAU_BO_SUNG. Không chạy song song hai phiên cùng cấp Q, ASM; khi buộc phải chạy song song, người dùng ghi trong YEU_CAU_BO_SUNG của mỗi phiên một dải mã riêng, ví dụ "Q-48 đến Q-59, ASM-37 đến ASM-46", theo quy trình ở C10. Dải mã do YEU_CAU_BO_SUNG cấp được dùng thay cho quy tắc cấp tiếp; ghi dải đã dùng ở hàng Đầu vào đã dùng của khối thông tin đầu artifact. Quy tắc này áp dụng cho mọi dãy mã nhiều bước hoặc nhiều lần chạy cùng cấp (Q, ASM, BR, MSG, IF). Bước chạy lặp nhiều lần (P04 cho từng use case, P07 cho từng use case, P12 theo package) đọc thêm mục "Câu hỏi mở" và "Giả định" của các file cùng bước đã có trong thư mục đầu ra và cấp tiếp từ số lớn nhất trong đó. Nhờ vậy khi bước sau trích "Q-07", mã chỉ trỏ tới một câu hỏi duy nhất.
 
 Quy ước tham chiếu trong văn bản: ghi mã kèm tên ở lần đầu trong mỗi mục, ví dụ "UC-004 Hủy lịch hẹn", sau đó có thể chỉ ghi mã.
 
@@ -83,6 +87,7 @@ Gốc thư mục là THU_MUC_DAU_RA trong hồ sơ dự án. Tên file cố đ�
   P05-glossary.md
   P06-supplementary-spec.md
   P07-uc-analysis/UC-nnn-<slug>-analysis.md
+  P07-uc-analysis/_AC-register.md  (sổ trách nhiệm dùng chung, mỗi lần chạy P07 đọc và cập nhật)
   P08-analysis-model.md
   P09-architecture.md
   P10-design-elements.md
@@ -92,6 +97,8 @@ Gốc thư mục là THU_MUC_DAU_RA trong hồ sơ dự án. Tên file cố đ�
   P13-data-model.md
   X1-design-review.md
   X2-unit-tests.md
+  _sync-log.md  (nhật ký của bước X3)
+  <sổ>.<phạm vi>.pending.md  (phần mới của sổ dùng chung khi chạy song song, cạnh sổ tương ứng, X3 gộp rồi xoá)
   diagrams/  (mọi file .drawio, tên theo mục C7)
 ```
 
@@ -115,7 +122,7 @@ Mỗi artifact là file Markdown, mở đầu bằng khối thông tin và kết
 ... nội dung chính theo đặc tả của bước ...
 
 ## Câu hỏi mở
-| Mã | Câu hỏi | Ảnh hưởng tới | Nguồn gây mơ hồ |
+| Mã | Câu hỏi | Ảnh hưởng tới | Nguồn gây mơ hồ | Người quyết | Đề xuất |
 
 ## Giả định            (chỉ khi CHE_DO_GIA_DINH = CO_NHAN)
 | Mã | Giả định | Lý do | Phần tử phụ thuộc |
@@ -129,7 +136,7 @@ Các mục trong checklist của bước chưa đạt và lý do.
 
 Mục nào không có nội dung thì ghi "Không có", không xoá mục.
 
-Không in lại checklist đã đạt vào artifact. Artifact chỉ chứa kết quả, không chứa lời dẫn kiểu "Dưới đây là...".
+Không in lại checklist đã đạt vào artifact. Artifact chỉ chứa kết quả, không chứa lời dẫn kiểu "Dưới đây là...". Artifact cũng không ghi quá trình chạy: tên công cụ sinh sơ đồ, thao tác của phiên, tình trạng tạm thời của bước khác (đang chạy song song, sổ đang được sửa). Người đọc sau này chỉ cần trạng thái cuối của sản phẩm.
 
 ## C6. Placeholder trong prompt
 
@@ -265,6 +272,17 @@ diagrams/<Mã bước>-<loại>-<phạm vi>.drawio. Danh sách tên chuẩn:
 2. Yêu cầu bổ sung (YEU_CAU_BO_SUNG) của người dùng trong prompt đang chạy.
 3. Ràng buộc đặc thù trong hồ sơ dự án.
 4. Quy tắc riêng của bước (trong prompt).
-5. Quy ước chung trong file này (C2 đến C8).
+5. Quy ước chung trong file này (C2 đến C8, C10).
 
 Khi phải chọn giữa hai quy tắc, ghi lại lựa chọn và lý do trong mục "Vấn đề còn mở".
+
+## C10. Chạy song song theo lô
+
+Áp dụng cho các lần lặp của P04, P07, P11a giai đoạn 2 và các cặp bước cùng cấp mã (P11a với P11b, X1 với X2).
+
+1. Trước lô: tìm mã lớn nhất hiện có theo C3, rồi cấp cho mỗi phiên một dải riêng của từng dãy mã mà phiên có thể cấp (Q, ASM, BR, MSG, IF) qua YEU_CAU_BO_SUNG. Dải được cấp dư; số không dùng tới để trống và X3 ghi lại.
+2. Mã trong dải là mã chính thức. Không có khái niệm mã tạm, không dùng dạng mã riêng theo phiên như Q-U005-01.
+3. Trong lô, mỗi phiên đọc sổ dùng chung ở trạng thái đầu lô và không ghi vào sổ. Phần mới của phiên xuất ra file <sổ>.<phạm vi>.pending.md cùng cấu trúc với sổ, chỉ gồm dòng mới hoặc dòng được bổ sung, ví dụ _BR-register.UC-005.pending.md. Trong đặc tả, cột Trong sổ BR vẫn ghi "Mới" hoặc "Đã có".
+4. Hàng Đầu vào đã dùng ghi "<sổ> (đầu lô)" và dải mã đã được cấp.
+5. Sau lô: chạy X3 trước khi chạy review hoặc bước kế tiếp. X3 gộp file pending vào sổ, xử lý các phần tử cùng nghĩa do hai phiên cấp hai mã, rồi làm mới phiên bản và tham chiếu.
+6. Hai use case có quan hệ include, extend, hoặc là đối thủ của nhau theo 00-Concurrency.md, nên chạy ở hai lô kế tiếp thay vì cùng lô, để phiên sau đọc được đặc tả của phiên trước.

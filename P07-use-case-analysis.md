@@ -17,11 +17,14 @@ Bước này hiện thực hoá (realize) một use case bằng các lớp phân
 | Đầu vào | P06-supplementary-spec.md | Nên có | BR và NFR áp dụng cho use case |
 | Đầu vào | P04-uc-specs của use case được include hoặc extend | Khi có quan hệ | Biết phần hành vi nào thuộc use case khác |
 | Đầu vào | P07-uc-analysis/*.md của các use case đã phân tích trước | Khi đã có | Tái dùng mã AC và tên lớp cho cùng khái niệm |
+| Đầu vào | P07-uc-analysis/_AC-register.md | Có nếu đã tồn tại | Sổ trách nhiệm: lớp, trách nhiệm, điều kiện và sự kiện dùng chung |
+| Đầu vào | 00-Concurrency.md | Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN | Quy tắc mục M3 |
 | Đầu vào | P02-usecases.md | Nên có | Mục tiêu và tác nhân của use case để đối chiếu; tìm use case do tác nhân thời gian kích hoạt trên đối tượng mà use case này tạo hoặc thay đổi (A2) |
 | Đầu ra | P07-uc-analysis/UC-nnn-slug-analysis.md | Có | Artifact chính của bước |
 | Đầu ra | diagrams/P07-sequence-UC-nnn.drawio | Có | Sequence diagram phân tích (SD1 cho luồng chính và các luồng thay thế gộp được; luồng không gộp được vẽ ở trang riêng) |
 | Đầu ra | diagrams/P07-communication-UC-nnn.drawio | Có | Communication diagram |
 | Đầu ra | diagrams/P07-class-UC-nnn.drawio | Có | VOPC |
+| Đầu ra | P07-uc-analysis/_AC-register.md | Có | Sổ trách nhiệm đã cập nhật; khi chạy theo lô là file pending theo Conventions C10 |
 
 ## 3. Cách chạy
 
@@ -36,11 +39,13 @@ Bước này hiện thực hoá (realize) một use case bằng các lớp phân
 | P05-glossary.md | Các thuật ngữ mà đặc tả dùng |
 | P06-supplementary-spec.md | Các BR, NFR có UC_ID ở cột áp dụng |
 | Đặc tả P04 của use case được include hoặc extend | Bảng thông tin, luồng chính |
+| P07-uc-analysis/_AC-register.md | Toàn bộ |
 | Mỗi file P07 đã có | F1 (hàng sổ đăng ký AC), F3.4, F8 b), Câu hỏi mở, Giả định, Vấn đề còn mở; không cần F2, F5, F7, F9, F10 |
 | Mọi artifact trong thư mục đầu ra | Mã ở mục Câu hỏi mở, Giả định (để cấp tiếp mã theo Conventions C3) |
 
 - Khi chạy bằng agent có quyền đọc file, chỉ đọc các phần ở bảng trên (tìm theo tiêu đề mục).
 - Chạy lặp: mỗi lần một use case. Thứ tự khuyến nghị: use case được include trước use case gọi nó; use case gốc trước use case extend nó; use case có nhiều entity cốt lõi trước. Thứ tự này giúp lớp dùng chung được đặt mã một lần và tái dùng.
+- Chạy song song nhiều use case thì theo quy trình theo lô ở Conventions C10; các file P07 và sổ trách nhiệm dùng trạng thái đầu lô.
 - Sau khi mọi use case trong phạm vi đã chạy xong bước này, chuyển sang P08.
 - Chưa có P05 hoặc P06 vẫn chạy được. Hệ quả: tên entity lấy theo thuật ngữ trong P04 và tài liệu nguồn nên có thể phải đổi khi P05 xong; cột GL ghi "-"; khái niệm chưa rõ nghĩa hoặc có thể đồng nghĩa với khái niệm khác thành Q-nn. Chạy lại P07 sau P05, P06 nếu tên hoặc BR thay đổi.
 
@@ -81,7 +86,7 @@ A1. Nắm bối cảnh use case.
 - Liệt kê tác nhân chính, tác nhân phụ và loại của từng tác nhân (Người / Hệ thống ngoài / Thiết bị / Thời gian).
 - Use case có Tác nhân chính "-" (được include): lấy tác nhân từ use case gọi trong P03; boundary giao diện người dùng của phần hành vi này thuộc use case được include.
 - Liệt kê quan hệ include, extend của use case và điểm mở rộng.
-- Lập sổ đăng ký AC từ các file P07 đã có. Nếu chưa có file nào, sổ rỗng.
+- Đọc sổ trách nhiệm P07-uc-analysis/_AC-register.md. Chưa có sổ mà đã có file P07 thì lập sổ từ F3.4 của các file đó. Chưa có file nào thì sổ rỗng.
 - Use case được include hoặc extend mà chưa có file P07: đặt trước tên và mã control của nó theo quy tắc đặt tên ở F3.3, ghi trạng thái "Tạm - chờ P07 của UC-xxx". Khi chạy P07 cho use case đó phải dùng đúng mã này.
 - Entity hoặc boundary hệ thống ngoài mà khái niệm do use case khác (không include, không extend) quản lý, và use case đó chưa có P07: cấp mã theo F3.4, ghi "Mới - chủ sở hữu UC-xxx" ở cột Mới hoặc tái dùng và liệt kê trong Vấn đề còn mở; P07 của UC-xxx phải dùng lại mã này.
 
@@ -123,6 +128,8 @@ A6. Phân bổ hành vi cho lớp và mô hình hoá tương tác.
 
 A7. Mô tả trách nhiệm và thuộc tính.
 - Gom mọi message mà một lớp nhận thành danh sách trách nhiệm của lớp đó. Message giống nhau về ý nghĩa gộp thành một trách nhiệm.
+- Đối chiếu từng trách nhiệm, thuộc tính, điều kiện với sổ trách nhiệm theo F3.5 trước khi đặt tên mới, rồi cập nhật sổ.
+- Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: áp dụng 00-Concurrency.md mục M3.
 - Gán thuộc tính cho entity từ các danh từ bị loại vì "là thuộc tính" ở A4 và từ bảng dữ liệu vào ra của đặc tả. Boundary có thể có thuộc tính là thông tin nó hiển thị hoặc thu nhận. Control thường không có thuộc tính nghiệp vụ.
 
 A8. Lập VOPC.
@@ -197,6 +204,16 @@ Ví dụ đúng (quản lý kho, UC Nhập kho theo phiếu):
 | AC-C-ReceiveGoodsController | control | ReceiveGoodsController | // receiveGoods: điều phối nhập kho<br>// confirmReceipt: chốt phiếu nhập | - | 1-7 | - | Mới | - |
 | AC-E-GoodsReceipt | entity | GoodsReceipt | // addLine: thêm dòng hàng<br>// checkQuantityMatchesPurchaseOrder: đối chiếu số lượng với đơn mua | receiptNo, receivedDate, status | 3, 5 | - | Mới | GL-07 |
 Ví dụ sai: | AC-E-ReceiptTable | entity | ReceiptTable | lưu phiếu | id int, date varchar | 3 | ... | (sai: tên là cấu trúc cài đặt, kiểu vật lý, trách nhiệm không ở dạng // cụm động từ).
+
+F3.5 Sổ trách nhiệm P07-uc-analysis/_AC-register.md (sổ dùng chung, không theo khung C5, xuất lại toàn bộ sau mỗi lần chạy; chạy theo lô thì xuất phần mới ra file pending theo C10):
+Bảng 1: | AC | Stereotype | Tên | Trách nhiệm | Thuộc tính | UC dùng |
+Bảng 2: | Điều kiện hoặc sự kiện | Lớp chịu trách nhiệm (AC) | Trách nhiệm | Định nghĩa | UC dùng |
+- Định nghĩa: bảng 1 là danh sách hợp nhất mọi trách nhiệm đã cấp, dạng "// tênTráchNhiệm: mô tả"; bảng 2 ghi các điều kiện và sự kiện mà từ hai use case trở lên cùng dựa vào.
+- Quy tắc: (a) trách nhiệm hoặc thuộc tính cùng nghĩa với dòng đã có thì dùng lại đúng tên; (b) một sự kiện từ tác nhân có đúng một lớp nhận đầu tiên; (c) một điều kiện có đúng một lớp định nghĩa, lớp khác hỏi lớp đó, không tự tính lại; (d) cùng một nguyên tắc (Creator, Expert) áp dụng cho cùng một loại đối tượng thì chọn cùng một lớp giữa các use case, khác thì ghi lý do ở F4.
+- Mức hợp lý: bảng 2 chỉ chứa mục được dùng từ hai use case trở lên.
+- Lỗi thường gặp: cùng một thông tin gọi movieName ở use case này và title ở use case khác; hai use case mỗi nơi tự tính "phiếu mượn còn hiệu lực".
+- Đúng (thư viện): | Phiếu mượn còn hiệu lực | AC-E-Loan | // checkLoanActive | Chưa trả và chưa bị huỷ | UC-003, UC-006 |
+- Sai: | Phiếu mượn còn hiệu lực | AC-E-Loan, AC-C-ReturnBookController | // checkActive, // isLoanValid | ... | (sai: một điều kiện có hai nơi định nghĩa và hai tên).
 
 F4. Phân bổ hành vi
 Bảng: | Bước UC | Trách nhiệm | Lớp nhận (AC) | Nguyên tắc (Giao tiếp tác nhân / Information Expert / Controller / Creator / Lớp mới / Giao cho control) | Lý do khi có lựa chọn khác |
@@ -290,7 +307,7 @@ Tự kiểm tra từng mục, trả lời Đạt hoặc Không đạt; mục Kh�
 3. Mỗi tác nhân tương tác trực tiếp trong use case này (trừ tác nhân thời gian và tác nhân chỉ thuộc use case được include hoặc extend) có đúng một boundary.
 4. Có một control cho use case; chỉ không có khi YEU_CAU_BO_SUNG cho phép và lý do được ghi rõ.
 5. Mọi danh từ trong luồng sự kiện có trong bảng lọc F3.2 với kết luận và lý do.
-6. Mọi khái niệm đã có mã AC trong sổ đăng ký được dùng lại đúng mã và tên; không có hai mã cho một khái niệm.
+6. Mọi khái niệm đã có mã AC trong sổ đăng ký được dùng lại đúng mã và tên; không có hai mã cho một khái niệm. Sổ trách nhiệm đã cập nhật và đạt các quy tắc (a) đến (d) của F3.5. Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: đạt 00-Concurrency.md mục M3.
 7. Không có vi phạm quy tắc tương tác F6.
 8. Không lớp nào mang chi tiết công nghệ; không message nào là chữ ký hàm có kiểu.
 9. Không có god control (quá 10 trách nhiệm hoặc giữ quy tắc thuộc dữ liệu của entity); mỗi entity có trách nhiệm hành vi hoặc được ghi nhận lý do; không lifeline nào đại diện cho một tập đối tượng, không lớp phần tử nào giữ trách nhiệm cấp tập hợp, loop chỉ dùng cho trách nhiệm cần từng phần tử, không dùng cho tìm theo khoá và đếm (A6).

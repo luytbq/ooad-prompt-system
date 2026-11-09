@@ -236,6 +236,7 @@ Trả lời Đạt/Không đạt cho từng câu, sửa trước khi trả kết
 10. Bảng phụ thuộc package đầy đủ; vòng phụ thuộc được liệt kê hoặc khẳng định không có.
 11. Không sửa trực tiếp artifact đang review; mọi thay đổi nằm trong đề xuất.
 12. Đạt Conventions C2, C5, C6.
+13. Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: đã đối chiếu theo 00-Concurrency.md mục M9; mỗi lệch là một phát hiện.
 
 [Yêu cầu bổ sung]
 {{PH:YEU_CAU_BO_SUNG | Hướng dẫn: [TUỲ CHỌN] yêu cầu đặc thù cho lần review; có ưu tiên cao hơn quy tắc mặc định của bước (trừ Conventions C1); không có thì thay cả khối bằng "Không có" | Ví dụ: "Chỉ ghi phát hiện từ mức Trung bình trở lên."; "Bỏ qua tiêu chí DIP với lớp truy cập dữ liệu vì framework đã xử lý."; "Kèm mã nguồn minh hoạ trước và sau cho mỗi đề xuất mức Cao."}}

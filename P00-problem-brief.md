@@ -179,7 +179,7 @@ Bảng: | Vị trí trong nguồn | Tóm tắt nội dung | Kết luận (REQ-xx
 Mỗi đoạn hoặc mỗi câu mang ý trong nguồn có ít nhất một dòng. Mục đích: chứng minh không bỏ sót và không thêm.
 
 F9. Câu hỏi mở
-Theo Conventions C5: | Mã | Câu hỏi | Ảnh hưởng tới | Nguồn gây mơ hồ |
+Theo Conventions C5: | Mã | Câu hỏi | Ảnh hưởng tới | Nguồn gây mơ hồ | Người quyết | Đề xuất |
 - Câu hỏi đóng hoặc có phương án, trả lời được trong một câu. Đúng: "Khi số lượng sách còn 0, bạn đọc có được đặt giữ chỗ không? (Có / Không)". Sai: "Hãy mô tả thêm nghiệp vụ mượn sách."
 - Cột "Ảnh hưởng tới" ghi REQ và bước bị ảnh hưởng, ví dụ "REQ-07, luồng ngoại lệ của UC đặt món".
 - Gom câu hỏi trùng ý. Sắp theo mức ảnh hưởng: câu hỏi làm đổi phạm vi hoặc danh sách chức năng đứng trước.

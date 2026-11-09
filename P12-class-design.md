@@ -115,6 +115,8 @@ Bước 7. Áp dụng design pattern khi có lý do.
 - Chỉ áp dụng pattern khi nhận ra đúng vấn đề mà pattern giải quyết trong chính thiết kế này (xem bảng ở [Format] F10) hoặc khi MAU_THIET_KE_DA_CHOT yêu cầu. Ghi vấn đề, lý do, lớp tham gia, phương án đơn giản hơn đã cân nhắc và vì sao không đủ.
 - Không áp dụng pattern "để dự phòng" cho yêu cầu chưa có (vi phạm YAGNI).
 
+Bước 7a. Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: rà F3 và F6 theo 00-Concurrency.md mục M7.
+
 Bước 8. Tự kiểm tra theo [Target], sửa những gì sửa được, ghi phần còn lại vào "Vấn đề còn mở".
 
 [Format]
@@ -407,6 +409,7 @@ Sơ đồ và định dạng
 25. Pattern áp dụng đều có vấn đề cụ thể và lý do; không có pattern "dự phòng".
 26. Không đổi tên, mã phần tử đã chốt ở bước trước; mọi thay đổi đề nghị nằm ở "Đề xuất sửa artifact trước".
 27. Đạt Conventions C2, C5, C6.
+28. Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: đạt 3 quy tắc của 00-Concurrency.md mục M7; mỗi dòng Bảng hỏng của P09 có method tương ứng hồi phục.
 
 [Yêu cầu bổ sung]
 {{PH:YEU_CAU_BO_SUNG | Hướng dẫn: [TUỲ CHỌN] yêu cầu đặc thù cho bước thiết kế lớp; có ưu tiên cao hơn quy tắc mặc định của bước (trừ Conventions C1); không có thì thay cả khối bằng "Không có" | Ví dụ: "Mọi entity có thuộc tính createdAt, updatedAt do framework tự điền, không cần liệt kê trong bảng thuộc tính."; "Không vẽ class diagram theo UC, chỉ theo package."; "Operation trả lỗi bằng kiểu Result thay vì ngoại lệ."}}

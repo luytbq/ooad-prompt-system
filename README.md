@@ -39,6 +39,8 @@ P12 Thiết kế lớp (operation, quan hệ, state machine, thuộc tính)
 P13 Mô hình hoá dữ liệu
    |
 X1 Review thiết kế (coupling, cohesion, nguyên lý)   X2 Thiết kế unit test
+
+X3 Đồng bộ artifact: chạy sau mỗi lô song song và trước mỗi lần review toàn bộ
 ```
 
 ## 2. Danh sách file
@@ -47,7 +49,9 @@ X1 Review thiết kế (coupling, cohesion, nguyên lý)   X2 Thiết kế unit 
 |---|---|
 | 00-Conventions.md | Luật chung: nguyên tắc, mã định danh, thư mục đầu ra, placeholder, quy ước sơ đồ draw.io. Đính kèm ở mọi bước |
 | 00-ProjectProfile-Template.md | Mẫu hồ sơ dự án, điền một lần cho mỗi dự án |
-| P00 đến P13, P02R, X1, X2 | Prompt của từng bước |
+| 00-Concurrency.md | Mô-đun xử lý đồng thời, chỉ đính kèm khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN |
+| P00 đến P13, P02R, X1, X2, X3 | Prompt của từng bước |
+| tools/check_artifacts.py | Script kiểm tra hình thức các artifact, xem mục 9 |
 
 Bảng đầu vào, đầu ra của từng bước nằm ở mục 2 của mỗi file prompt. Bảng tổng hợp ở mục 5 dưới đây.
 
@@ -61,17 +65,17 @@ Thư mục _research/ không thuộc bộ prompt, chỉ là ghi chép của ngư
 | _research/slides-text/ | Tài liệu tham khảo dạng text dùng khi nghiên cứu |
 | _research/validation/ | Các lần chạy thử pipeline (đề bài, artifact, sơ đồ, nhật ký lỗi đã sửa) |
 
-Khi chia sẻ bộ prompt, chỉ cần các file ở gốc repo.
+Khi chia sẻ bộ prompt, chỉ cần các file ở gốc repo và thư mục tools/.
 
 ## 3. Bắt đầu nhanh
 
 1. Tạo thư mục dự án, sao chép 00-ProjectProfile-Template.md vào đó, đổi tên thành project-profile.md và điền.
 2. Mở P00-problem-brief.md, sao chép khối prompt ở mục 4, điền placeholder (nếu có), gửi cho AI kèm 00-Conventions.md, project-profile.md và tài liệu yêu cầu.
 3. Đọc artifact AI trả về. Trả lời các câu hỏi mở (Q-nn) bằng cách bổ sung vào tài liệu nguồn hoặc vào placeholder YEU_CAU_BO_SUNG, rồi chạy lại bước đó nếu câu trả lời làm thay đổi kết quả.
-4. Lần lượt chạy các bước tiếp theo. Mỗi bước đính kèm 00-Conventions.md, project-profile.md và các artifact đầu vào ghi ở mục 2 của prompt. Chạy P05 rồi P06, sau đó mới chạy P07. P06 đọc P05 để dùng đúng thuật ngữ và để cấp tiếp mã Q, ASM. Không chạy song song hai bước cùng cấp mã Q, ASM hoặc cùng ghi một file (P04-uc-specs/_BR-register.md), xem 00-Conventions.md mục C3. P07, P08 vẫn chạy được khi chưa có P05, P06, với hệ quả ghi ở mục 3 của hai prompt đó. Sau mỗi bước, đọc mục "Đề xuất sửa artifact trước" của artifact vừa sinh: đề xuất làm đổi luồng, BR, tiền điều kiện hoặc trạng thái ở bước trước thì chạy lại bước đó theo bảng mục 5 trước khi chạy bước kế tiếp; đề xuất chưa áp dụng được thì ghi vào YEU_CAU_BO_SUNG của các bước sau, kèm mã Q liên quan.
+4. Lần lượt chạy các bước tiếp theo. Mỗi bước đính kèm 00-Conventions.md, project-profile.md và các artifact đầu vào ghi ở mục 2 của prompt. Chạy P05 rồi P06, sau đó mới chạy P07. P06 đọc P05 để dùng đúng thuật ngữ và để cấp tiếp mã Q, ASM. Muốn chạy song song các bước cùng cấp mã Q, ASM hoặc cùng ghi một sổ (P04-uc-specs/_BR-register.md, P07-uc-analysis/_AC-register.md) thì theo quy trình theo lô ở 00-Conventions.md mục C10. P07, P08 vẫn chạy được khi chưa có P05, P06, với hệ quả ghi ở mục 3 của hai prompt đó. Sau mỗi bước, đọc mục "Đề xuất sửa artifact trước" của artifact vừa sinh: đề xuất làm đổi luồng, BR, tiền điều kiện hoặc trạng thái ở bước trước thì chạy lại bước đó theo bảng mục 5 trước khi chạy bước kế tiếp; đề xuất chưa áp dụng được thì ghi vào YEU_CAU_BO_SUNG của các bước sau, kèm mã Q liên quan. Đề xuất chỉ sửa cơ học (thay mã bị gộp, bổ sung dẫn chiếu, đồng bộ phiên bản) thì gom lại và chạy X3.
 5. Review danh sách use case (tuỳ chọn, nên làm): chạy P02R --> chọn các UCR cần áp dụng. Có ít nhất một UCR được áp dụng: chạy lại P02 kèm P02R-review.md, ghi mã UCR trong YEU_CAU_BO_SUNG (UCR không áp dụng ghi lý do vào Vấn đề còn mở của P02) --> chạy P03 từ P02 đã sửa. Không áp dụng UCR nào: không chạy lại P02, chạy P03 với YEU_CAU_BO_SUNG ghi "Đã review P02R <phiên bản>, không áp dụng UCR-xx (lý do)" kèm các Q-nn, ASM-nn mới của P02R.
 6. Chốt công nghệ sau P09 (khi hồ sơ ghi NEN_TANG hoặc CONG_NGHE là "Chưa chốt"): đọc bảng so sánh phương án công nghệ ở P09 mục F2.2. Chấp nhận khuyến nghị, hoặc chạy lại P09 với placeholder PHUONG_AN_DA_CHON. Kết luận F2.2 ghi "tương đương" thì trả lời các Q-nn được nêu, hoặc chọn bằng PHUONG_AN_DA_CHON. Sau đó thay hai dòng NEN_TANG, CONG_NGHE trong bảng ở project-profile.md mục 3 bằng hai dòng của khối "Cập nhật hồ sơ dự án" (P09 mục F11) rồi mới chạy P10, vì P10 trở đi đọc NEN_TANG, CONG_NGHE từ hồ sơ. Chấp nhận khuyến nghị thì không cần chạy lại P09; P10 coi giá trị trong hồ sơ là đã chốt và không xét trạng thái "chờ xác nhận" ở P09.
-7. X1 và X2 cùng cấp Q, ASM. Chạy tuần tự (X1 trước, X2 đọc mục Câu hỏi mở, Giả định của X1), hoặc khi chạy song song thì ghi trong YEU_CAU_BO_SUNG của mỗi bước một dải mã riêng, ví dụ X2 từ Q-<lớn nhất + 1>, X1 từ Q-<lớn nhất + 41>. Cùng cách này áp dụng cho mọi cặp bước chạy song song (P11a và P11b, các lần lặp P04, P07, P11a giai đoạn 2).
+7. X1 và X2 cùng cấp Q, ASM. Chạy tuần tự (X1 trước, X2 đọc mục Câu hỏi mở, Giả định của X1), hoặc khi chạy song song thì ghi trong YEU_CAU_BO_SUNG của mỗi bước một dải mã riêng, ví dụ X2 từ Q-<lớn nhất + 1>, X1 từ Q-<lớn nhất + 41>. Cùng cách này áp dụng cho mọi cặp bước chạy song song (P11a và P11b, các lần lặp P04, P07, P11a giai đoạn 2), đầy đủ ở 00-Conventions.md mục C10.
 
 ## 4. Ba cách chạy
 
@@ -99,6 +103,7 @@ Khi sửa một artifact, các bước phụ thuộc vào nó cần chạy lại
 | P12 | P13, X1, X2 |
 | P13 | X1, X2 |
 | X1, X2 (phát hiện cần sửa) | Chạy lại bước ở cột "Bước cần sửa" (X1 mục F7) hoặc ở mục "Đề xuất sửa artifact trước" (X2), rồi các bước phụ thuộc theo bảng này |
+| X3 (đã áp đề xuất) | Các bước được liệt kê trong _sync-log.md |
 
 ## 6. Cấu trúc một file prompt
 
@@ -121,3 +126,15 @@ Khi sửa một artifact, các bước phụ thuộc vào nó cần chạy lại
 - AI có thể sai. Mỗi artifact cần được người có chuyên môn đọc lại, đặc biệt P02 (danh sách use case) vì mọi bước sau phụ thuộc vào nó. Có thể chạy P02R để AI tự review trước. P02R xếp phát hiện theo 3 mức (Nghiêm trọng / Trung bình / Thấp); X1 dùng 4 mức (Nghiêm trọng / Cao / Trung bình / Thấp).
 - File .drawio do AI sinh thường đúng ngữ nghĩa nhưng bố cục chưa đẹp. Mở bằng draw.io để chỉnh vị trí; nếu sửa nội dung thì sửa bảng mô hình trong artifact .md trước (Conventions mục C7.1).
 - Dự án nhiều use case sinh nhiều artifact. Khi chạy bằng chat, chỉ đính kèm đúng đầu vào mà bước yêu cầu để không vượt giới hạn ngữ cảnh. Nhiều bước chỉ cần một phần của artifact trước (ví dụ P05, P06 chỉ cần Mục 4 và Mục 5 của P02), xem mục 3 của từng prompt. P04 chạy lặp cho từng use case nên dễ vượt giới hạn nhất: mỗi lần chỉ cần các dòng liên quan tới UC_ID (dòng UC trong P02 Mục 4, các dòng REQ của UC đó trong P00 và Q-nn liên quan, bảng tác nhân của P01, các dòng có UC_ID trong P03 Mục 1 và Mục 2); khi chạy bằng chat, dán các trích đoạn này thay cho cả file (bảng ở P04 mục 3).
+
+## 9. Kiểm tra tự động
+
+Lệnh dưới đây kiểm tra phần hình thức của artifact, chỉ đọc và không sửa file:
+
+```text
+python3 tools/check_artifacts.py <THU_MUC_DAU_RA>
+```
+
+Script kiểm tra: dấu vết mã tạm, ký tự cấm, ghi chú về quá trình chạy, khung C5, mã Q và ASM cấp trùng, mã được dẫn mà không có nơi định nghĩa, sổ BR, sổ trách nhiệm, phiên bản đầu vào đã cũ, bảng Node và Edge của activity diagram (join ngầm, guard), REQ thiếu ở hàng REQ, chữ "nếu" trong luồng chính, bước quay lại không tồn tại, file .drawio.
+
+LOI là sai quy định, cần sửa. CANH_BAO cần người đọc xem xét. Thêm tham số --json để xuất JSON cho agent, --strict để CANH_BAO cũng làm lệnh thất bại. Chạy bộ test của script bằng python3 -m unittest discover -s tools.

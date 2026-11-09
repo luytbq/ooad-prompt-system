@@ -68,7 +68,7 @@ Thực hiện tuần tự:
    f. Hợp nhất danh sách UC áp dụng của mỗi BR theo F6 (hợp của sổ BR, đặc tả P04 và ma trận REQ --> UC của P02). Ma trận REQ --> UC là P02 Mục 5 hiện hành; REQ ghi "(tham chiếu, UC-nnn)" ở hàng REQ của đặc tả P04 không làm thêm UC áp dụng.
    g. Rà mọi BR trong sổ theo phép thử F2. BR thực chất là chức năng dùng chung (kênh gửi thông báo nêu chung cho nhiều use case) hoặc NFR: chuyển trạng thái "Loại", Ghi chú "Chuyển thành NFR-nn", tạo phần tử ở mục 2 hoặc mục 3 với cùng REQ, và ghi "Đề xuất sửa artifact trước" cho các đặc tả P04 và P05 đang dẫn mã BR đó.
    Không sửa nội dung quy tắc đã chốt; nội dung cần sửa thì ghi đề xuất.
-9. Lập mục giao tiếp ngoài và ràng buộc thiết kế theo F5.
+9. Lập mục giao tiếp ngoài và ràng buộc thiết kế theo F5. Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: áp dụng 00-Concurrency.md mục M2 cho NFR về tải và BR là bất biến.
 10. Cập nhật sổ BR cho khớp bảng BR hợp nhất (trạng thái, UC áp dụng, BR mới) và xuất lại toàn bộ sổ. Với mỗi BR mới, nếu P05-glossary.md có Ghi chú dẫn "REQ-nn (chưa có BR)" cho REQ của BR đó, ghi "Đề xuất sửa artifact trước" cho P05: thay bằng mã BR mới.
 11. Chạy checklist ở phần [Target], sửa những gì chưa đạt, ghi phần không sửa được vào mục "Vấn đề còn mở".
 
@@ -186,6 +186,7 @@ Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 10. Sổ BR xuất lại khớp hoàn toàn với bảng BR hợp nhất (mã, nội dung, trạng thái, UC áp dụng).
 11. Mọi thay đổi cần làm ở đặc tả P04 (đổi mã do trùng, thay mã bị gộp) đã ghi ở "Đề xuất sửa artifact trước".
 12. Định dạng theo Conventions C2, C5, C8; mục trống ghi "Không có".
+13. Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: đạt 3 quy tắc của 00-Concurrency.md mục M2.
 
 [Yêu cầu bổ sung]
 {{PH:YEU_CAU_BO_SUNG | Hướng dẫn: [TUỲ CHỌN] quy định riêng của dự án cho bước này, ưu tiên cao hơn quy tắc mặc định (trừ Conventions C1). Không dùng thì thay cả khối bằng "Không có" | Ví dụ: "Thời gian phản hồi luôn đo ở phân vị 95"; "Bổ sung mục Yêu cầu pháp lý theo luật bảo vệ dữ liệu cá nhân"; "Khoá tài khoản sau nhiều lần đăng nhập sai luôn xếp vào BR, không xếp NFR"}}

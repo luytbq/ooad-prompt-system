@@ -212,6 +212,7 @@ Trả lời Đạt/Không đạt cho từng câu, sửa trước khi trả kết
 12. Test case độc lập, mỗi test case một hành vi, chỉ một giá trị không hợp lệ, trừ TC của quy tắc bảng quyết định có nhiều điều kiện sai; khi đó ghi điều kiện nào được kiểm trước và căn cứ.
 13. Khung mã (nếu có) khớp F3: cùng số test case, cùng dữ liệu, cùng kết quả mong đợi.
 14. Đạt Conventions C2, C5, C6.
+15. Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: có ca thử theo 00-Concurrency.md mục M9.
 
 [Yêu cầu bổ sung]
 {{PH:YEU_CAU_BO_SUNG | Hướng dẫn: [TUỲ CHỌN] yêu cầu đặc thù cho bước thiết kế unit test; có ưu tiên cao hơn quy tắc mặc định của bước (trừ Conventions C1); không có thì thay cả khối bằng "Không có" | Ví dụ: "Chỉ thiết kế hộp đen, chưa có mã nguồn."; "Tên phương thức test viết theo dạng should_<ketQua>_when_<dieuKien>."; "Bỏ qua lớp boundary giao diện, sẽ kiểm thử bằng công cụ UI riêng."}}

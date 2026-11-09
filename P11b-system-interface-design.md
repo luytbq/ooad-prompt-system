@@ -47,7 +47,7 @@ Bước này thiết kế giao diện giữa phần mềm và các hệ thống 
 
 ````text
 [Context]
-Bạn nhận được hồ sơ dự án (đặc biệt HE_THONG_NGOAI), 00-Conventions.md và các artifact đã chốt: P04-uc-specs/, P06, P07-uc-analysis/, P08, P09, P10. Tuân thủ 00-Conventions.md, đặc biệt C1, C3, C5, C7.
+Bạn nhận được hồ sơ dự án (đặc biệt HE_THONG_NGOAI), 00-Conventions.md và các artifact đã chốt: P04-uc-specs/, P06, P07-uc-analysis/, P08, P09, P10. Tuân thủ 00-Conventions.md, đặc biệt C1, C3, C5, C7. TAI_LIEU_GIAO_TIEP là "Không có" mà hồ sơ có RANG_BUOC_TICH_HOP thì dùng trường đó làm tài liệu giao tiếp. Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: áp dụng 00-Concurrency.md mục M6.
 
 Subsystem cần thiết kế:
 {{PH:PHAM_VI_SUBSYSTEM | Hướng dẫn: "Tất cả" hoặc danh sách mã SS trong P10 | Ví dụ: "Tất cả"; "SS-01 PaymentGateway" (giao đồ ăn); "SS-02 SmsNotification, SS-03 BarcodeScanner" (phòng khám, quản lý kho)}}

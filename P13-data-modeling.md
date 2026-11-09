@@ -90,6 +90,7 @@ Bước 5. ERD.
 
 Bước 6. Truy vết và tự kiểm tra.
 - Mọi thuộc tính persistent của P12 có cột (hoặc trường tài liệu) tương ứng hoặc lý do không lưu; mọi cột có nguồn.
+- Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: áp dụng 00-Concurrency.md mục M8.
 - Chạy [Target], sửa những gì sửa được, ghi phần còn lại vào "Vấn đề còn mở".
 - Phát hiện sai ở P12 (ví dụ multiplicity mâu thuẫn BR, thiếu thuộc tính định danh) ghi vào "Đề xuất sửa artifact trước", không tự sửa P12.
 
@@ -261,6 +262,7 @@ Trả lời Đạt/Không đạt cho từng câu, sửa trước khi trả kết
 13. Script DDL (nếu có) khớp F6.
 14. Không đổi tên, mã phần tử của P12; mọi đề nghị sửa nằm ở "Đề xuất sửa artifact trước".
 15. Đạt Conventions C2, C5, C6.
+16. Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: đạt 3 quy tắc của 00-Concurrency.md mục M8.
 
 [Yêu cầu bổ sung]
 {{PH:YEU_CAU_BO_SUNG | Hướng dẫn: [TUỲ CHỌN] yêu cầu đặc thù cho bước mô hình dữ liệu; có ưu tiên cao hơn quy tắc mặc định của bước (trừ Conventions C1); không có thì thay cả khối bằng "Không có" | Ví dụ: "Mọi bảng dùng xoá mềm bằng cột deleted_at, không dùng ON DELETE CASCADE."; "Không sinh ER khái niệm, chỉ ERD vật lý."; "Dữ liệu cá nhân bệnh nhân (số điện thoại, địa chỉ) phải đánh dấu cần mã hoá ở cột CHECK / mô tả."}}

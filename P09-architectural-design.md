@@ -104,6 +104,8 @@ A5. Đặt quy tắc phụ thuộc.
 
 A6. Định hướng mức cao cho giao tiếp ngoài và dữ liệu.
 - Với mỗi hệ thống ngoài, thiết bị ở P01 Mục 2 và mỗi thành phần nội bộ chạy trên thiết bị riêng ở P01 Mục 1 (node khác của chính hệ thống, dòng riêng ở F7): layer và package chứa phần giao tiếp, nguyên tắc cô lập (mỗi hệ thống ngoài được che sau một interface, sẽ thành subsystem ở P10).
+- Hệ thống ngoài được chọn cụ thể ở bước này mà RANG_BUOC_TICH_HOP của hồ sơ chưa có hoặc còn "Chưa rõ": điền các mục đó theo tài liệu công khai của hệ thống đã chọn, xuất ở F11, rồi đối chiếu các luồng P04 liên quan; luồng không khớp thì ghi Đề xuất sửa artifact trước.
+- Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: thiết kế đồng thời và lập Bảng hỏng theo 00-Concurrency.md mục M5.
 - Lưu trữ: loại cơ chế lưu trữ (quan hệ, tài liệu, file) và layer chứa phần truy cập dữ liệu. Nếu CONG_NGHE chưa chốt, dùng hệ quản trị của phương án công nghệ ở A3a.
 
 A7. Kiểm tra mô hình phân tích chứa được trong kiến trúc.
@@ -204,7 +206,7 @@ F11. Cập nhật hồ sơ dự án
 Khối chỉ gồm hai dòng bảng (không có dòng tiêu đề), để người dùng thay hai dòng NEN_TANG, CONG_NGHE hiện có trong bảng ở project-profile.md mục 3, đặt trong code block text:
 | NEN_TANG | <giá trị đã chốt> |
 | CONG_NGHE | <ngôn ngữ, framework phía máy chủ, công nghệ phía giao diện, hệ quản trị CSDL> |
-Dưới khối ghi trạng thái ("Đã chốt bởi người dùng" hoặc "Khuyến nghị - chờ người dùng xác nhận"), dòng "Q-nn mà lựa chọn công nghệ phụ thuộc: <danh sách>" (chỉ Q mà câu trả lời có thể đổi phương án được dùng; không liệt kê Q về ngưỡng, cách đo, quy tắc mà phương án nào cũng phải đáp ứng), tiếp theo "Chấp nhận khối này là chấp nhận các ASM-nn tương ứng" (CO_NHAN) hoặc "Chấp nhận khối này là chọn phương án khi các Q trên chưa có câu trả lời; các Q vẫn mở" (NGHIEM_NGAT), và nhắc: cập nhật hồ sơ trước khi chạy P10. Hồ sơ đã chốt cả hai trường thì ghi "Không cần cập nhật".
+Dưới khối ghi trạng thái ("Đã chốt bởi người dùng" hoặc "Khuyến nghị - chờ người dùng xác nhận"), dòng "Q-nn mà lựa chọn công nghệ phụ thuộc: <danh sách>" (chỉ Q mà câu trả lời có thể đổi phương án được dùng; không liệt kê Q về ngưỡng, cách đo, quy tắc mà phương án nào cũng phải đáp ứng), tiếp theo "Chấp nhận khối này là chấp nhận các ASM-nn tương ứng" (CO_NHAN) hoặc "Chấp nhận khối này là chọn phương án khi các Q trên chưa có câu trả lời; các Q vẫn mở" (NGHIEM_NGAT), và nhắc: cập nhật hồ sơ trước khi chạy P10. Hồ sơ đã chốt cả hai trường thì ghi "Không cần cập nhật". Khi A6 có điền RANG_BUOC_TICH_HOP, thêm một code block text riêng chứa dòng bảng | RANG_BUOC_TICH_HOP | <giá trị> | để người dùng thay vào hồ sơ.
 
 F12. Mục kiểm soát theo C5.
 
@@ -218,6 +220,8 @@ F12. Mục kiểm soát theo C5.
 7. Bảng ánh xạ stereotype sang layer đủ các loại lớp phân tích; mọi lớp hoạt động trong P08 có layer đích.
 8. Khi NEN_TANG hoặc CONG_NGHE là "Chưa chốt": F2.2 có 2-3 phương án công nghệ so sánh theo NFR, ràng buộc, hệ thống ngoài và một khuyến nghị có lý do; phương án được dùng là PHUONG_AN_DA_CHON hoặc khuyến nghị ghi "Khuyến nghị - chờ người dùng xác nhận"; mẫu cho phía giao diện được chọn sau và khớp phương án công nghệ; F11 có khối NEN_TANG, CONG_NGHE để cập nhật hồ sơ.
 9. Bảng mô hình và file .drawio khớp nhau, đạt C7.3.
+9a. Mọi hệ thống ngoài có giao dịch đã có đủ mục RANG_BUOC_TICH_HOP, và các luồng P04 liên quan đã được đối chiếu (A6).
+9b. Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: mọi EX của P08 có cơ chế; Bảng hỏng xét đủ 7 tình huống của 00-Concurrency.md mục M5.
 10. Đạt Conventions C2, C5, C6.
 
 [Yêu cầu bổ sung]

@@ -11,6 +11,8 @@ Bước này gom lớp phân tích của mọi use case đã phân tích ở P07
 | Đầu vào | project-profile.md, 00-Conventions.md | Có | Luật chung, chế độ giả định |
 | Đầu vào | P07-uc-analysis/*.md (mọi use case trong phạm vi) | Có | Chỉ cần F3.4 (bảng lớp phân tích), F6 (quy tắc tương tác), F8 b) (bảng quan hệ VOPC) và bốn mục kiểm soát: Câu hỏi mở, Giả định, Đề xuất sửa artifact trước, Vấn đề còn mở (chứa các việc P07 chuyển cho P08). Không cần F2, F4, F5, F7, F9, F10 (sequence, communication, bảng lọc danh từ) |
 | Đầu vào | P02-usecases.md | Có | Danh sách use case trong phạm vi, để phát hiện use case chưa phân tích |
+| Đầu vào | P07-uc-analysis/_AC-register.md | Có nếu đã tồn tại | Điểm xuất phát của gộp trách nhiệm; bảng 2 chỉ ra điều kiện dùng chung |
+| Đầu vào | 00-Concurrency.md, bảng Thao tác nguyên tử của P04 | Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN | Quy tắc mục M4 |
 | Đầu vào | P05-glossary.md | Nên có | Phân định đồng nghĩa và đồng âm |
 | Đầu vào | P06-supplementary-spec.md | Nên có | BR làm căn cứ multiplicity, composition, generalization |
 | Đầu vào | P01-actors.md | Có | Boundary gắn với tác nhân nào |
@@ -48,7 +50,8 @@ A1. Kiểm tra độ phủ.
 - Đối chiếu P02 với các file P07: liệt kê use case trong phạm vi chưa có artifact P07. Nếu có, ghi vào "Vấn đề còn mở" và vẫn hợp nhất phần đã có.
 
 A2. Tập hợp.
-- Gom mọi dòng của bảng lớp phân tích (F3.4 của P07) và mọi dòng của bảng quan hệ VOPC từ mọi file P07 thành danh sách thô, giữ nguyên use case nguồn.
+- Gom mọi dòng của bảng lớp phân tích (F3.4 của P07) và mọi dòng của bảng quan hệ VOPC từ mọi file P07 thành danh sách thô, giữ nguyên use case nguồn. Sổ trách nhiệm có điều kiện dùng chung nào thì dòng đó là căn cứ gộp.
+- Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: lập các bảng F4a, F4b, F4c theo 00-Concurrency.md mục M4 sau khi có bảng quan hệ.
 
 A3. Phát hiện trùng lặp và xung đột. Xét từng cặp lớp cùng stereotype (và cặp khác stereotype nhưng tên gần nhau):
 - Cùng khái niệm, khác tên (đồng nghĩa): hai lớp mô tả cùng một thứ trong miền nghiệp vụ. Phép thử: cùng định nghĩa trong glossary, hoặc một thuật ngữ là "từ đồng nghĩa không dùng" của thuật ngữ kia; cùng tập thuộc tính định danh; một đối tượng của lớp này luôn là một đối tượng của lớp kia. Kết luận: gộp vào lớp có tên theo glossary; lớp bị gộp giữ mã và ghi trạng thái "Gộp vào AC-...". Khi chưa có P05, phép thử dùng định nghĩa và câu dùng từ trong P04 và tài liệu nguồn; không chứng minh được là một khái niệm thì giữ hai lớp và tạo Q-nn hỏi hai thuật ngữ có cùng nghĩa không.
@@ -158,6 +161,7 @@ F7. Mục kiểm soát theo C5.
 8. Mỗi lớp hoạt động có ít nhất một trách nhiệm và ít nhất một use case.
 9. Trang tổng thể là trang Entity; mỗi trang sơ đồ không quá khoảng 20 lớp và 25 cạnh; bảng mô hình và file .drawio khớp nhau và đạt C7.3.
 10. Không có chi tiết công nghệ; đạt Conventions C2, C5, C6.
+11. Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: mọi dòng Thao tác nguyên tử của P04 có EX-nn; đạt 6 quy tắc của 00-Concurrency.md mục M4.
 
 [Yêu cầu bổ sung]
 {{PH:YEU_CAU_BO_SUNG | Hướng dẫn: [TUỲ CHỌN] quy định riêng của dự án cho bước này | Ví dụ: "Không vẽ boundary, control trong sơ đồ tổng thể, chỉ vẽ entity."; "Gộp mọi boundary giao diện người dùng của cùng một tác nhân thành một lớp theo quy chuẩn tổ chức."}}

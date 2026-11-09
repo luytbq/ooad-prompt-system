@@ -163,6 +163,7 @@ F9. Mục kiểm soát theo C5.
 8. Không thiết kế thuộc tính, phương thức chi tiết ở bước này.
 9. Bảng mô hình và file .drawio khớp nhau, đạt C7.3.
 10. Đạt Conventions C2, C5, C6.
+11. Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: đạt 00-Concurrency.md mục M6 phần P10.
 
 [Yêu cầu bổ sung]
 {{PH:YEU_CAU_BO_SUNG | Hướng dẫn: [TUỲ CHỌN] quy định riêng của dự án cho bước này | Ví dụ: "Mỗi package nghiệp vụ tương ứng một nhóm chức năng trong P02."; "Interface của subsystem đặt chung trong một package ExternalSystemInterfaces ở layer Services."}}

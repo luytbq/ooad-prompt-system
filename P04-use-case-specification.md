@@ -23,7 +23,8 @@ Bước này viết đặc tả chi tiết cho một use case: mô tả ngắn, 
 | Đầu vào | P05-glossary.md, P06-supplementary-spec.md | Tuỳ chọn (khi chạy lại) | Dùng đúng thuật ngữ, đúng mã BR đã hợp nhất |
 | Đầu ra | P04-uc-specs/UC-nnn-slug.md | | Đặc tả use case và bảng mô hình activity diagram |
 | Đầu ra | diagrams/P04-activity-UC-nnn.drawio | | Activity diagram |
-| Đầu ra | P04-uc-specs/_BR-register.md | | Sổ đăng ký BR đã cập nhật (toàn bộ file) |
+| Đầu vào | 00-Concurrency.md | Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN | Quy tắc mục M1 |
+| Đầu ra | P04-uc-specs/_BR-register.md | | Sổ đăng ký BR đã cập nhật (toàn bộ file); khi chạy theo lô là file pending theo Conventions C10 |
 
 ## 3. Cách chạy
 
@@ -41,7 +42,7 @@ Bước này viết đặc tả chi tiết cho một use case: mô tả ngắn, 
 | Tài liệu nguồn | Toàn bộ, hoặc các đoạn chứa câu trích của các REQ trên khi nguồn dài |
 
 - Khi chạy bằng chat với cửa sổ ngữ cảnh nhỏ, nhất là khi lặp P04 cho nhiều use case trong cùng cuộc trò chuyện: dán trích đoạn theo bảng trên thay cho cả file P00, P01, P02, P03, kèm một dòng ghi rõ "Trích đoạn liên quan UC-nnn của <file>". Khi chạy bằng agent có quyền đọc file, vẫn chỉ đọc phần ghi ở bảng trên (tìm theo tiêu đề mục và theo mã UC_ID, mã REQ), không đọc trọn P00, P02.
-- Lặp cho từng use case. Chạy tuần tự, không chạy song song hai use case cùng lúc, vì mỗi lần chạy đọc và ghi sổ BR. Sau mỗi lần chạy, lưu lại sổ BR mới trước khi chạy use case tiếp theo.
+- Lặp cho từng use case. Chạy tuần tự thì sau mỗi lần chạy lưu lại sổ BR mới trước khi chạy use case tiếp theo. Chạy song song thì theo quy trình theo lô ở Conventions C10.
 - Thứ tự gợi ý: use case cơ sở (base) trước, use case được include và use case mở rộng (extend) sau; use case cha trước use case con. Như vậy điểm gọi và điểm mở rộng đã có sẵn khi viết use case phụ thuộc.
 - Placeholder trong prompt:
 
@@ -81,11 +82,12 @@ Thực hiện tuần tự:
 2. Xác định điểm bắt đầu và điểm kết thúc thành công: sự kiện nào khởi động use case (tác nhân yêu cầu, hệ thống ngoài gửi dữ liệu, hay tới thời điểm định trước), và kết quả quan sát được nào đánh dấu mục tiêu của tác nhân chính đã đạt.
 3. Viết luồng sự kiện chính (kịch bản thành công điển hình, một mạch từ đầu tới cuối) theo quy tắc F4: liệt kê các cặp tác nhân yêu cầu, hệ thống phản hồi; thêm các bước hệ thống kiểm tra, tính toán, lưu, thông báo mà nguồn nêu. Tại điểm gọi use case được include, viết bước gọi tường minh.
 4. Rà từng bước của luồng chính và hỏi: bước này có thể diễn ra khác đi không (biến thể thông thường), có trường hợp lạ không, có thể thất bại không (dữ liệu sai, không đủ điều kiện, tài nguyên bị khoá, hệ thống ngoài không phản hồi, tác nhân huỷ, đối tượng đang ở trạng thái do use case khác đặt làm thao tác mất nghĩa như lịch làm việc của bác sĩ đã bị huỷ, món đã ngừng bán, tài khoản bị khoá). Chỉ giữ các trường hợp có căn cứ trong nguồn hoặc suy ra trực tiếp từ một quy tắc nghiệp vụ đã có (ví dụ quy tắc "tối đa 5 cuốn" suy ra trường hợp đã đủ 5 cuốn). Trạng thái của một khái niệm mà nguồn, P02 hoặc P05 nêu ở use case khác (huỷ, ngừng bán, khoá) là căn cứ trong nguồn: bước kiểm tra của use case này kiểm thêm điều kiện đó và có luồng thay thế tương ứng. Use case đưa đối tượng sang trạng thái cuối (huỷ, đóng, ngừng) nêu ở luồng chính hoặc mục 8 cách xử lý thao tác dở dang của use case khác trên đối tượng đó (chỗ đang giữ, đơn đang thanh toán); nguồn không nêu thì ghi Q-nn (NGHIEM_NGAT) hoặc ASM-nn kèm Q-nn (CO_NHAN). Trường hợp chỉ có trong hiểu biết chung thì ghi thành Q-nn (NGHIEM_NGAT) hoặc ASM-nn (CO_NHAN). Giả định hoặc luồng cần một tác nhân phụ mà P02 chưa gán cho use case: vẫn viết luồng theo ASM, ghi tác nhân đó ở cột Thực hiện bởi khi nó trả kết quả, và thêm dòng "Đề xuất sửa artifact trước" cho P02 (cột Tác nhân phụ) và P03 (association); hàng Tác nhân phụ của F1 ghi tác nhân của P02 kèm "(đề xuất thêm ACT-nn theo ASM-nn)". Trường hợp vi phạm một quy tắc nghiệp vụ đã có là suy ra trực tiếp; phản hồi mặc định của hệ thống cho trường hợp đó theo F5.7, không cần Q-nn. Hết thời hạn chờ một sự kiện mà nguồn nêu thời hạn là suy ra trực tiếp (F4.2 mục 15). Ở NGHIEM_NGAT, câu nguồn đọc được hai cách (hệ thống tự làm hay hỏi tác nhân trước): viết phần chung của hai cách đọc; bước chỉ có ở một cách đọc không viết, cột Hành động của bước liên quan dẫn Q-nn, Vấn đề còn mở nêu các bước, luồng sẽ thêm theo từng phương án.
+4a. Với mỗi bước trao đổi với hệ thống ngoài: đối chiếu RANG_BUOC_TICH_HOP của hồ sơ để luồng khớp cách hệ thống đó thật sự hoạt động ở mức nghiệp vụ (trả kết quả ngay hay báo về sau, báo về có thể trùng hoặc muộn không, có tra cứu được không). Luồng phụ thuộc vào mục ghi "Chưa rõ" hoặc trường không có thì tạo một Q-nn cho mỗi hệ thống, Người quyết là Nhóm dự án, các use case sau dẫn lại mã đó và không hỏi lại.
 5. Viết luồng thay thế và ngoại lệ theo quy tắc F5, gồm cả nhánh chèn use case mở rộng tại điểm mở rộng.
 6. Viết tiền điều kiện, hậu điều kiện theo F3.
 7. Lập bảng dữ liệu vào, dữ liệu ra theo F6 cho các bước có trao đổi thông tin.
 8. Tách quy tắc nghiệp vụ theo F7: tìm mọi chính sách, giới hạn, công thức, điều kiện nghiệp vụ nằm trong các bước và bảng dữ liệu, đưa ra bảng BR, đối chiếu sổ BR để dùng lại mã cũ hoặc cấp mã mới, rồi cập nhật sổ BR.
-9. Ghi yêu cầu đặc biệt (F8), thông tin bổ sung và kịch bản chính (F9).
+9. Ghi yêu cầu đặc biệt (F8), thông tin bổ sung và kịch bản chính (F9). Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: lập bảng Thao tác nguyên tử trong mục 8 theo 00-Concurrency.md mục M1.
 10. Dựng activity diagram theo F10: bảng Node, bảng Edge, rồi sinh file .drawio từ hai bảng đó.
 11. Đối chiếu chéo: mỗi bước luồng chính có đúng một action; mỗi luồng thay thế có một nhánh từ decision; mọi điểm quay lại khớp giữa bảng luồng và sơ đồ; mọi BR trong bảng BR có trong sổ BR.
 12. Chạy checklist ở phần [Target], sửa những gì chưa đạt, ghi phần không sửa được vào mục "Vấn đề còn mở".
@@ -279,7 +281,8 @@ F7.4 Cấp mã BR qua sổ đăng ký:
   5. Xuất lại toàn bộ sổ theo mẫu:
      # Sổ đăng ký quy tắc nghiệp vụ - <TEN_HE_THONG>
      | BR | Quy tắc | Loại | UC áp dụng | REQ | Cấp lần đầu tại | Trạng thái | Ghi chú |
-     Sổ là sổ đăng ký dùng chung của nhiều lần chạy, không theo khung C5 (không có khối thông tin và mục kiểm soát). Cột UC áp dụng chỉ chứa mã UC; điều kiện áp dụng cho từng UC ghi ở cột Ghi chú (ví dụ "UC-013 theo ASM-28"), không có thì "-". Cấp lần đầu tại: "P04 UC-nnn". Trạng thái: "Hiệu lực" (mặc định), "Gộp vào BR-xx", "Loại" (hai trạng thái sau chỉ do P06 đặt).
+     Sổ là sổ đăng ký dùng chung của nhiều lần chạy, không theo khung C5 (không có khối thông tin và mục kiểm soát). Cột UC áp dụng chỉ chứa mã UC; điều kiện áp dụng cho từng UC ghi ở cột Ghi chú (ví dụ "UC-013 theo ASM-28"), không có thì "-". Cấp lần đầu tại: "P04 UC-nnn". Trạng thái: "Hiệu lực" (mặc định), "Gộp vào BR-xx", "Loại" (hai trạng thái sau chỉ do P06 hoặc X3 đặt). BR còn chờ câu trả lời vẫn ghi "Hiệu lực", điều chờ ghi ở cột Ghi chú dạng "Chờ Q-nn".
+  6. Chạy theo lô (Conventions C10): mã mới lấy trong dải được cấp, không xuất lại sổ mà xuất các dòng mới ra P04-uc-specs/_BR-register.<UC_ID>.pending.md.
 F7.5 Lỗi thường gặp: để quy tắc nằm lẫn trong câu hành động mà không tách mã; cấp mã mới cho quy tắc đã có ở use case khác; đánh số BR lại từ BR-01 ở mỗi use case; ghi quy tắc do AI tự nghĩ ra.
 
 F8. Yêu cầu đặc biệt
@@ -375,8 +378,10 @@ Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 8. Mọi luồng thay thế đánh số Na theo bước phát sinh, có điều kiện rõ, các điều kiện cùng bước loại trừ nhau, có Quay lại / Kết thúc trỏ tới bước tồn tại (hoặc "Chờ Q-nn" với Q-nn có trong mục Câu hỏi mở); hết thời hạn chờ gắn vào bước bắt đầu chờ.
 9. Mọi bước kiểm tra của hệ thống có ít nhất một luồng thay thế, hoặc có Q-nn giải thích vì sao chưa có.
 9a. Mọi khái niệm mà use case đọc hoặc đổi có trạng thái do use case khác đặt đã được xét theo [Action] 4: có kiểm tra và luồng thay thế, hoặc có Q-nn, ASM-nn; use case đưa đối tượng sang trạng thái cuối đã nêu cách xử lý thao tác dở dang trên đối tượng đó.
+9b. Luồng trao đổi với hệ thống ngoài khớp RANG_BUOC_TICH_HOP, hoặc có Q-nn cho mục còn "Chưa rõ" ([Action] 4a).
+9c. Khi hồ sơ bật TRANH_CHAP_TAI_NGUYEN: bảng Thao tác nguyên tử đạt 7 quy tắc của 00-Concurrency.md mục M1.
 10. Mọi trường dữ liệu vào có Bắt buộc, Điều kiện hợp lệ (hoặc "Chưa quy định (Q-nn)"), Ví dụ hợp lệ và nhất quán.
-11. Mọi quy tắc nghiệp vụ đã được tách thành BR, được dẫn mã trong bước áp dụng; BR trùng nghĩa với sổ dùng lại mã cũ; BR mới có mã tiếp nối mã lớn nhất; sổ BR xuất lại đầy đủ và không mất dòng cũ.
+11. Mọi quy tắc nghiệp vụ đã được tách thành BR, được dẫn mã trong bước áp dụng; BR trùng nghĩa với sổ dùng lại mã cũ; BR mới có mã tiếp nối mã lớn nhất (hoặc nằm trong dải được cấp khi chạy theo lô); sổ BR xuất lại đầy đủ và không mất dòng cũ (khi chạy theo lô: có file pending theo F7.4 mục 6).
 12. Không có luồng, quy tắc, trường dữ liệu, ngưỡng nào do AI tự thêm ở chế độ NGHIEM_NGAT; mọi phần tử truy vết được về REQ hoặc câu trích nguồn. Bước sinh theo quy tắc của prompt (phản hồi theo F4.2 mục 4, báo kết quả theo 5a và F5.7, hẹn, huỷ mốc theo F4.2 mục 17) không tính là tự thêm; không có câu gốc thì mục 8 ghi quy tắc đã sinh bước đó.
 12a. Mọi số liệu suy ra từ BR (ngưỡng, mốc, ví dụ tính toán trong luồng, Vấn đề còn mở hay Câu hỏi mở) được tính lại từ công thức của BR và ghi kèm phép tính, ví dụ (bãi đỗ xe, BR-05: giờ đầu 10.000 đồng, mỗi giờ tiếp theo 5.000 đồng, trần 60.000 đồng mỗi lượt) "phí chạm trần khi 10.000 + 5.000 x (số giờ - 1) = 60.000, tức từ giờ thứ 11".
 13. Activity diagram: mỗi bước luồng chính đúng một action, trừ bước "Lặp lại" ánh xạ sang decision lặp; mỗi hàng hành động luồng thay thế đúng một action, trừ luồng *a (chỉ note N-*a); mỗi luồng thay thế là một nhánh từ decision có guard trong ngoặc vuông, trừ luồng *a và luồng hết thời hạn qua nhiều bước (cạnh ngắt từ T-N ra khỏi IR-N); quay lại đi qua merge node; mọi nhánh kết thúc ở final node hoặc nhập lại luồng chính.
@@ -392,7 +397,7 @@ Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 
 - Luồng chính quá dài hoặc có "nếu": yêu cầu AI chạy lại mục F4.4 (phép thử mức bước). Nếu vẫn dài, use case có thể gộp nhiều mục tiêu; quay lại P02.
 - AI bịa luồng ngoại lệ phổ biến (mất mạng, hết phiên) mà nguồn không nói: kiểm tra chế độ NGHIEM_NGAT trong hồ sơ; các trường hợp này chỉ nên nằm ở câu hỏi mở.
-- Mã BR bị trùng giữa hai use case: do chạy hai use case song song hoặc quên đính kèm sổ BR mới nhất. Sửa bằng cách chạy lại use case chạy sau cùng, kèm sổ BR đúng. Bước đặc tả bổ sung cũng phát hiện và báo trùng mã.
+- Mã BR bị trùng giữa hai use case: do chạy song song không theo Conventions C10 hoặc quên đính kèm sổ BR mới nhất. Sửa bằng cách chạy lại use case chạy sau cùng, kèm sổ BR đúng. Bước đặc tả bổ sung cũng phát hiện và báo trùng mã.
 - File .drawio bố cục chưa đẹp: mở bằng draw.io, kéo lại vị trí; nếu thay đổi nội dung (thêm, bớt node) thì sửa bảng mô hình trong đặc tả trước rồi sinh lại.
 - Use case được include hoặc use case mở rộng: chạy sau use case base và đính kèm đặc tả base, để bước quay về base khớp số bước.
 - Dùng độc lập: bước này dùng được riêng để viết một đặc tả use case khi đã có danh sách use case từ nguồn khác. Khi đó thay P01, P02, P03 bằng một đoạn mô tả ngắn trong YEU_CAU_BO_SUNG: tên use case, tác nhân, quan hệ với use case khác.
