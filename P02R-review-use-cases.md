@@ -40,7 +40,7 @@ Phạm vi review:
 {{PH:PHAM_VI_REVIEW | Hướng dẫn: chọn một hoặc nhiều trong: TAC_NHAN, DANH_SACH_UC, SO_DO. Mục không chọn thì không chấm | Ví dụ: "DANH_SACH_UC, SO_DO" ; "TAC_NHAN, DANH_SACH_UC"}}
 
 Quy ước người viết đã theo (không bắt lỗi những điểm tuân thủ quy ước này):
-{{PH:QUY_UOC_DA_CHOT | Hướng dẫn: [TUỲ CHỌN] mỗi dòng một quy ước ghi đè tiêu chí mặc định, nêu mã tiêu chí nếu biết. Không có thì thay cả khối bằng "Không có" | Ví dụ: "Đăng nhập không mô hình hoá thành use case (ghi đè U-R01)." ; "Đường nối tác nhân - use case có đầu mũi tên mở ở bên nhận."}}
+{{PH:QUY_UOC_DA_CHOT | Hướng dẫn: [TUỲ CHỌN] mỗi dòng một quy ước ghi đè tiêu chí mặc định, nêu mã tiêu chí nếu biết. Không có thì thay cả khối bằng "Không có" | Ví dụ: "Mỗi báo cáo tài chính là một use case riêng (ghi đè U-R05)." ; "Đường nối tác nhân - use case có đầu mũi tên mở ở bên nhận."}}
 
 Nếu có kèm 00-Conventions.md và project-profile.md thì tuân thủ, đặc biệt ngôn ngữ và chế độ giả định. Nếu không có: viết tiếng Việt, giữ thuật ngữ UML tiếng Anh; không dùng dấu gạch ngang dài, không dùng ký hiệu mũi tên Unicode (viết "-->").
 
@@ -87,7 +87,7 @@ Nhóm U - Use case
 Mức mục tiêu:
 - Summary (quá lớn): gom nhiều mục tiêu, nhiều phiên, nhiều tác nhân chính ("Quản lý phòng khám", "Mượn và trả sách", "Xử lý đơn giao đồ ăn từ đặt tới giao").
 - User-goal (đúng mức): một mục tiêu, một tác nhân chính, một phiên, kết quả trọn vẹn ("Đặt lịch khám", "Gia hạn sách", "Lập phiếu nhập kho", "Nhận phòng", "Rút tiền").
-- Subfunction (quá nhỏ để đứng một mình): một bước hoặc đoạn ("Nhập mã PIN", "Chọn khung giờ", "Quét mã vạch", "Tính phí gửi xe"). Chỉ hợp lệ khi thoả một trong các điều kiện (mã giống P02 để dẫn chéo): Q4a là phần dùng chung cho từ hai use case (dùng qua include); Q4b là hành vi tuỳ chọn đủ lớn (dùng qua extend); Q4c là phần rất lớn được tách ra; Q4d là mục tiêu con có kết quả riêng kiểm chứng được, được nguồn mô tả tách bạch (quy tắc, dữ liệu, tác nhân phụ hoặc luồng lỗi riêng) và thực hiện lại hoặc thất bại được mà không huỷ mục tiêu cha (dùng qua include, ví dụ "Thanh toán đơn" trong "Đặt món"; "Nhập địa chỉ giao hàng" thì không); hoặc là Đăng nhập theo U-R01. Use case Subfunction không thoả điều kiện nào vi phạm U-AP01. Use case được include (Subfunction hoặc User-goal dùng chung theo Q4a) mà tác nhân chính của use case gốc vẫn tương tác trực tiếp thì ghi tác nhân đó kèm "(qua <use case gốc>)"; chỉ để trống tác nhân chính khi phần được tách không có tác nhân nào tương tác trực tiếp.
+- Subfunction (quá nhỏ để đứng một mình): một bước hoặc đoạn ("Nhập mã PIN", "Chọn khung giờ", "Quét mã vạch", "Tính phí gửi xe"). Chỉ hợp lệ khi thoả một trong các điều kiện (mã giống P02 để dẫn chéo): Q4a là phần dùng chung cho từ hai use case (dùng qua include); Q4b là hành vi tuỳ chọn đủ lớn (dùng qua extend); Q4c là phần rất lớn được tách ra; Q4d là mục tiêu con có kết quả riêng kiểm chứng được, được nguồn mô tả tách bạch (quy tắc, dữ liệu, tác nhân phụ hoặc luồng lỗi riêng) và thực hiện lại hoặc thất bại được mà không huỷ mục tiêu cha (dùng qua include, ví dụ "Thanh toán đơn" trong "Đặt món"; "Nhập địa chỉ giao hàng" thì không). Đăng nhập không là use case ở bất kỳ mức nào (U-R01). Use case Subfunction không thoả điều kiện nào vi phạm U-AP01. Use case được include (Subfunction hoặc User-goal dùng chung theo Q4a) mà tác nhân chính của use case gốc vẫn tương tác trực tiếp thì ghi tác nhân đó kèm "(qua <use case gốc>)"; chỉ để trống tác nhân chính khi phần được tách không có tác nhân nào tương tác trực tiếp.
 Phép thử:
 - U-T1 Mức mục tiêu User-goal; phép thử nghỉ giải lao: xong việc, tác nhân có thể rời đi với kết quả có ý nghĩa.
 - U-T2 EBP: một người, một nơi, một lần, đáp ứng một sự kiện nghiệp vụ, tạo giá trị đo được, dữ liệu nhất quán.
@@ -119,7 +119,7 @@ Anti-pattern:
 - U-AP15 Biến thể thành use case riêng khi luồng chỉ khác vài bước ("Thanh toán tiền mặt", "Thanh toán thẻ").
 - U-AP16 Tác vụ kỹ thuật thành use case ("Sao lưu CSDL hằng đêm") khi nguồn chỉ nêu như ràng buộc.
 Quy tắc ca tranh cãi (tóm tắt, mặc định khi không có quy ước đã chốt):
-- U-R01 Đăng nhập: một use case riêng khi nguồn yêu cầu hoặc ngụ ý xác thực (nhắc đăng nhập, tài khoản của một vai trò), chỉ nối với các tác nhân mà nguồn nêu hoặc ngụ ý phải xác thực, tác nhân còn lại cần xác nhận với nguồn, hoặc được nối theo ASM-nn khi CO_NHAN; không include vào mọi use case (dùng tiền điều kiện).
+- U-R01 Đăng nhập: không là use case; danh sách có UC Đăng nhập là phát hiện cần sửa. Việc đã đăng nhập là tiền điều kiện của các use case cần xác thực (ghi ở P04); REQ đăng nhập được ghi ở ma trận truy vết với lý do "Tiền điều kiện của UC-xxx".
 - U-R02 Đăng xuất: không phải use case riêng.
 - U-R03 Đăng ký tài khoản là use case User-goal của người chưa có tài khoản; quên mật khẩu là use case riêng khi nguồn nêu; đổi mật khẩu và cập nhật hồ sơ gộp khi cùng tác nhân.
 - U-R04 CRUD dữ liệu danh mục cùng tác nhân gộp thành "Quản lý X"; tách khi thoả một trong: U-R04 a khác tác nhân; U-R04 b là giao dịch nghiệp vụ; U-R04 c có luồng hoặc quy tắc riêng lớn; U-R04 d khác sự kiện, thời điểm hoặc quyền.
@@ -163,7 +163,7 @@ Lỗi:
 - D-AP14 Tác nhân hoặc use case User-goal cô lập.
 - D-AP15 Mạng nhện: nhiều đường cắt, một tác nhân nối quá nhiều use case trên một sơ đồ.
 - D-AP16 Quá nhiều phần tử trên một sơ đồ: sơ đồ vẽ đủ quan hệ giữa use case có khoảng trên 20 use case hoặc trên 8 tác nhân; sơ đồ tổng quát chỉ vẽ association có khoảng trên 40 use case; sơ đồ phân rã có khoảng trên 15 use case.
-- D-AP20 Sơ đồ tổng quát thiếu use case (kể cả Đăng nhập) khi số use case còn trong ngưỡng; hoặc có sơ đồ phân rã chỉ lặp lại nội dung sơ đồ tổng quát (nhóm không có include, extend, generalization giữa use case và sơ đồ tổng quát không vượt ngưỡng).
+- D-AP20 Sơ đồ tổng quát thiếu use case khi số use case còn trong ngưỡng; hoặc có sơ đồ phân rã chỉ lặp lại nội dung sơ đồ tổng quát (nhóm không có include, extend, generalization giữa use case và sơ đồ tổng quát không vượt ngưỡng).
 - D-AP17 Quá nhiều quan hệ giữa use case: che use case được include và mở rộng thì mất mục tiêu chính.
 - D-AP18 Stereotype sai tên («uses», «includes», «extends»).
 - D-AP19 Sơ đồ thể hiện trình tự hoặc luồng màn hình.
@@ -237,7 +237,7 @@ Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 - Kết luận "Đạt" hoặc "Đạt có điều kiện" mà vẫn có phát hiện: người dùng chọn UCR cần áp dụng. Có ít nhất một UCR được áp dụng: chạy lại P02 kèm P02R-review.md trước khi chạy P03; UCR không áp dụng ghi mã và lý do vào mục Vấn đề còn mở của P02. Không áp dụng UCR nào: không chạy lại P02; khi chạy P03, ghi vào YEU_CAU_BO_SUNG "Đã review P02R <phiên bản>, không áp dụng UCR-xx, UCR-yy (lý do)", P03 chép dòng này vào mục Vấn đề còn mở của P03. Chép cả các Q-nn, ASM-nn mới của P02R (mã và nội dung) vào YEU_CAU_BO_SUNG của P03, để P03 ghi chúng vào mục Câu hỏi mở và bước sau còn thấy. P03 đọc P02, không đọc Mục 4 của P02R trực tiếp.
 - Review ngoài pipeline: chỉ cần prompt này và đối tượng review. Có tài liệu nguồn thì kết quả đáng tin hơn nhiều, vì mới kiểm được thừa và thiếu.
 - Sơ đồ dạng ảnh: nên dùng ảnh rõ nét, nhãn không bị che. Nếu có file .drawio thì đính kèm file, AI đọc được chính xác chiều mũi tên.
-- Người viết và người review bất đồng về ca tranh cãi (Đăng nhập, CRUD, báo cáo): ghi quy ước chung vào QUY_UOC_DA_CHOT rồi chạy lại, thay vì tranh luận từng phát hiện.
+- Người viết và người review bất đồng về ca tranh cãi (CRUD, báo cáo, người đại diện): ghi quy ước chung vào QUY_UOC_DA_CHOT rồi chạy lại, thay vì tranh luận từng phát hiện.
 
 ## 6. Căn cứ
 

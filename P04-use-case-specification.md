@@ -144,7 +144,7 @@ F2. Mô tả ngắn
 F3. Tiền điều kiện và hậu điều kiện
 - Tiền điều kiện: trạng thái của hệ thống phải đúng trước khi use case bắt đầu. Hệ thống không kiểm tra lại tiền điều kiện trong luồng sự kiện; điều gì cần kiểm tra trong luồng thì không phải tiền điều kiện.
   - Viết dạng mệnh đề trạng thái kiểm chứng được, mỗi điều kiện một dòng (ngăn bằng <br>).
-  - Không nhắc tới use case khác theo kiểu thứ tự thực hiện ("Đã thực hiện UC Đăng nhập"). Được nêu trạng thái mà use case khác tạo ra ("Thủ kho đã được xác thực và đang có phiên làm việc"). Tiền điều kiện đã xác thực chỉ ghi cho tác nhân được P03 nối với UC Đăng nhập. Tác nhân khác mà một ASM cho là phải xác thực: ghi tiền điều kiện kèm mã ASM và thêm dòng "Đề xuất sửa artifact trước" cho P02, P03 (nối tác nhân với UC Đăng nhập).
+  - Không nhắc tới use case khác theo kiểu thứ tự thực hiện ("Đã thực hiện UC Đăng ký tài khoản"). Được nêu trạng thái mà use case khác tạo ra. Đăng nhập không là use case (P02 U-R01): tiền điều kiện "<Tác nhân> đã đăng nhập và đang có phiên làm việc" ghi cho tác nhân mà P02 liệt kê là phải đăng nhập (dòng ứng viên đăng nhập, ma trận truy vết), kèm REQ đăng nhập và mã Q, ASM nếu có. Tác nhân khác mà một ASM cho là phải đăng nhập: ghi tiền điều kiện kèm mã ASM và thêm dòng "Đề xuất sửa artifact trước" cho P02.
   - Không có tiền điều kiện thực sự thì ghi "Không có". Không bịa để lấp chỗ trống.
   - Đúng: "Bạn đọc đã được xác thực.<br>Bạn đọc có ít nhất một phiếu mượn chưa trả."
   - Sai: "Bạn đọc muốn gia hạn sách." (đây là sự kiện kích hoạt, không phải trạng thái); "Sách chưa quá hạn." (điều này hệ thống phải kiểm tra trong luồng, vì có thể sai, nên là luồng thay thế)

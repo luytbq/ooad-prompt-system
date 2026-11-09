@@ -44,7 +44,7 @@ Phạm vi lần chạy:
 {{PH:PHAM_VI_LAN_CHAY | Hướng dẫn: [TUỲ CHỌN] chạy toàn hệ thống thì thay cả khối bằng "Không có". Nếu chỉ chạy một phân hệ, ghi tên phân hệ, các REQ thuộc phân hệ, mã UC và CAND bắt đầu | Ví dụ: "Phân hệ đặt lịch, REQ-01 đến REQ-18, bắt đầu từ UC-001 và CAND-01" ; "Phân hệ xuất kho, REQ-30 đến REQ-52, bắt đầu từ UC-021 và CAND-40"}}
 
 Các quy ước đã chốt cho ca tranh cãi (ghi đè quy tắc mặc định U-R tương ứng):
-{{PH:QUY_UOC_DA_CHOT | Hướng dẫn: [TUỲ CHỌN] mỗi dòng một quy ước, nêu mã quy tắc U-R bị ghi đè nếu biết. Dùng mặc định thì thay cả khối bằng "Không có" | Ví dụ: "U-R01: không mô hình hoá Đăng nhập thành use case, chỉ ghi là tiền điều kiện." ; "U-R04: tách riêng Thêm sách và Xoá sách vì hai thao tác do hai vai trò khác nhau thực hiện." ; "U-R05: mỗi báo cáo tài chính là một use case riêng."}}
+{{PH:QUY_UOC_DA_CHOT | Hướng dẫn: [TUỲ CHỌN] mỗi dòng một quy ước, nêu mã quy tắc U-R bị ghi đè nếu biết. Dùng mặc định thì thay cả khối bằng "Không có" | Ví dụ: "U-R04: tách riêng Thêm sách và Xoá sách vì hai thao tác do hai vai trò khác nhau thực hiện." ; "U-R05: mỗi báo cáo tài chính là một use case riêng."}}
 
 [Role]
 Bạn là chuyên gia phân tích yêu cầu, thành thạo mô hình use case theo UML 2.5.1, phương pháp mục tiêu của Cockburn (goal levels), các phép thử của Larman (EBP, Boss test, Size test) và danh mục lỗi use case của Wiegers, Lilly, Adolph và cộng sự. Bạn nhìn hệ thống từ bên ngoài, qua con mắt tác nhân: use case là việc tác nhân muốn đạt được, không phải việc phần mềm làm bên trong. Bạn chỉ dựa vào tài liệu nguồn.
@@ -174,14 +174,14 @@ Bảng anti-pattern (dấu hiệu nhận biết, phép thử không đạt, hàn
 === Phần B. Quy tắc cho ca tranh cãi ===
 
 U-R01 Đăng nhập.
-- Quy tắc: khi nguồn yêu cầu xác thực, tạo một UC "Đăng nhập" (Log In), tác nhân chính là mọi tác nhân người phải xác thực (hoặc tác nhân cha của họ nếu P01 đã có tổng quát hoá). Đăng nhập được mô hình hoá như một use case riêng vì nó là một cuộc đối thoại hoàn chỉnh với hệ thống, có luồng thay thế và ngoại lệ riêng (sai mật khẩu, khoá tài khoản).
-- Không nối Đăng nhập vào mọi UC bằng include; việc đã đăng nhập được ghi là tiền điều kiện của các UC khác ở P04.
-- Cột Mức ghi "Subfunction" và Mô tả ngắn nêu rõ đây là điều kiện để dùng các UC khác. Lý do: tự nó không qua được Boss test, nhưng việc tách riêng giúp mọi UC khác không lặp lại phần xác thực.
-- Nguồn không nói thẳng yêu cầu xác thực nhưng ngụ ý (nhắc "đăng nhập", "tài khoản", "mật khẩu" của một vai trò, hoặc nêu một chức năng "không cần đăng nhập"): vẫn tạo UC Đăng nhập, chỉ nối các tác nhân mà nguồn nhắc tài khoản hoặc đăng nhập của họ; với tác nhân người còn lại: ở NGHIEM_NGAT ghi Q-nn về việc có phải đăng nhập không, và chưa nối; ở CO_NHAN ghi ASM-nn nêu những tác nhân phải đăng nhập, nối các tác nhân đó với UC Đăng nhập (cột Tác nhân chính), và ghi mã ASM ở cột Lý do của ứng viên Đăng nhập.
-- Nếu nguồn không nêu và không ngụ ý xác thực, không tạo (U-T10).
+- Quy tắc: không tạo UC "Đăng nhập". Ứng viên đăng nhập kết luận "Loại", phép thử không đạt U-T1, U-T3, U-AP01, cột Lý do ghi "U-R01: tiền điều kiện". Lý do: đăng nhập không đem lại kết quả nghiệp vụ cho tác nhân (không qua Boss test); nó là điều kiện truy cập, giống phân quyền.
+- Việc đã đăng nhập được ghi là tiền điều kiện của các UC cần xác thực ở P04. Ma trận truy vết (Mục 5) ghi REQ đăng nhập với UC phủ "-" và Ghi chú "Tiền điều kiện của UC-xxx, UC-yyy (U-R01)", liệt kê các UC mà tác nhân phải đăng nhập mới dùng được.
+- Xác định tác nhân phải đăng nhập: tác nhân mà nguồn nhắc tài khoản, mật khẩu hoặc việc đăng nhập của họ, hoặc nguồn nêu chức năng của họ "phải đăng nhập". Với tác nhân người còn lại: ở NGHIEM_NGAT ghi Q-nn về việc có phải đăng nhập không; ở CO_NHAN ghi ASM-nn nêu những tác nhân phải đăng nhập. Ghi danh sách tác nhân phải đăng nhập (kèm Q, ASM nếu có) vào dòng của ứng viên đăng nhập, để P04 lấy làm tiền điều kiện.
+- Chức năng tài khoản có kết quả nghiệp vụ riêng (đăng ký tài khoản, khôi phục mật khẩu, đổi mật khẩu) vẫn là UC theo U-R03.
+- Nếu nguồn không nêu và không ngụ ý xác thực, không ghi tiền điều kiện đăng nhập (U-T10).
 
 U-R02 Đăng xuất.
-- Quy tắc: không tạo UC riêng. Đăng xuất chỉ có 1-2 bước, không có kết quả giá trị (U-T3, U-T4). Kết luận "Là bước của" UC Đăng nhập (kết thúc phiên) hoặc "Loại" nếu nguồn chỉ nhắc qua.
+- Quy tắc: không tạo UC riêng. Đăng xuất chỉ có 1-2 bước, không có kết quả giá trị (U-T3, U-T4). Kết luận "Loại" (cùng lý do với U-R01).
 - Ngoại lệ: nguồn yêu cầu hành vi đáng kể khi kết thúc phiên (chốt ca, bàn giao tiền) thì đó là một UC nghiệp vụ khác, đặt tên theo nghiệp vụ ("Chốt ca thu ngân"), không phải "Đăng xuất".
 
 U-R03 Đăng ký tài khoản và các chức năng tài khoản.
@@ -356,7 +356,7 @@ Cột Nhóm chức năng:
 
 Cột REQ: mọi REQ mà UC phủ.
 
-Cột Mức: User-goal hoặc Subfunction (Subfunction chỉ khi được giữ theo Q4 hoặc U-R01; ghi điều kiện a, b, c hoặc d của Q4 trong Mô tả ngắn). UC bị loại khi chạy lại vẫn giữ dòng ở bảng 4a và 4b: cột Mức ghi "Loại", các cột tác nhân ghi "-", Mô tả ngắn ghi lý do và UC nhận phần việc; Mục 6 chỉ đếm UC khác Loại.
+Cột Mức: User-goal hoặc Subfunction (Subfunction chỉ khi được giữ theo Q4; ghi điều kiện a, b, c hoặc d của Q4 trong Mô tả ngắn). UC bị loại khi chạy lại vẫn giữ dòng ở bảng 4a và 4b: cột Mức ghi "Loại", các cột tác nhân ghi "-", Mô tả ngắn ghi lý do và UC nhận phần việc; Mục 6 chỉ đếm UC khác Loại.
 
 Cột CAND nguồn: các CAND đã giữ hoặc gộp vào UC này.
 
@@ -382,7 +382,7 @@ Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 1. Mọi tác nhân chính trong P01 có ít nhất một dòng ở danh sách mục tiêu và ít nhất một UC.
 2. Mọi sự kiện ở Mục 2 có ứng viên tương ứng, và ứng viên đó có kết luận cuối.
 3. Mọi ứng viên có đúng một kết luận thuộc sáu dạng cho phép (dạng "Là bước của" được liệt kê nhiều UC); mọi kết luận "Chờ Q-nn" trỏ tới câu hỏi có trong mục Câu hỏi mở của P02 hoặc của P00, P01 (Q kế thừa không chép lại), và ở chế độ CO_NHAN không có kết luận "Chờ Q-nn" (ứng viên đó có ASM-nn); mọi tham chiếu UC-nnn, CAND-nn trỏ tới phần tử tồn tại.
-4. Mọi UC mức User-goal đạt U-T1 đến U-T12, trừ phép thử bị một quy tắc U-R hoặc QUY_UOC_DA_CHOT ghi đè (mã U-R hoặc quy ước đó được ghi ở cột Lý do); mọi UC mức Subfunction thoả Q4 hoặc U-R01.
+4. Mọi UC mức User-goal đạt U-T1 đến U-T12, trừ phép thử bị một quy tắc U-R hoặc QUY_UOC_DA_CHOT ghi đè (mã U-R hoặc quy ước đó được ghi ở cột Lý do); mọi UC mức Subfunction thoả Q4; không có UC Đăng nhập (U-R01).
 5. Không UC nào khớp một anti-pattern U-AP01 đến U-AP16.
 6. Mọi tên UC tuân thủ U-N1 đến U-N8; không có từ cấm.
 7. Không có "Quản lý X" gom giao dịch nghiệp vụ; mọi "Quản lý X" chỉ gồm thao tác mà nguồn nêu.
@@ -402,7 +402,7 @@ Tự kiểm tra, mỗi câu trả lời Đạt hoặc Không đạt:
 
 - Kết quả quá nhiều use case nhỏ (ví dụ trên 15 UC cho một tác nhân): xem cột "Phép thử không đạt" của các ứng viên đã giữ; thường cần gộp theo U-AP01, U-AP06, U-AP07. Có thể chạy P02R lên chính kết quả để có bảng phát hiện.
 - Kết quả quá ít use case, tên kiểu "Quản lý X" khắp nơi: thường là U-AP04 hoặc U-AP08. Kiểm tra lại các giao dịch nghiệp vụ theo U-R04 b.
-- Tranh cãi về Đăng nhập, CRUD, báo cáo: chốt một lần trong QUY_UOC_DA_CHOT, rồi chạy lại. Quy ước này nên giữ nguyên cho cả P02R khi review.
+- Tranh cãi về CRUD, báo cáo: chốt một lần trong QUY_UOC_DA_CHOT, rồi chạy lại. Quy ước này nên giữ nguyên cho cả P02R khi review.
 - Nguồn quá mơ hồ khiến nhiều ứng viên chờ câu hỏi mở: trả lời câu hỏi, cập nhật P00, rồi chạy lại P02.
 - Dùng độc lập: đính kèm tài liệu nguồn và một danh sách tác nhân (có thể viết tay), điền tối thiểu hồ sơ dự án. Khi không có P00, trích dẫn nguồn thay cho mã REQ.
 

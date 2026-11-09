@@ -91,11 +91,10 @@ Bước 7. Xử lý use case mới phát sinh.
 Nếu phát hiện một hành vi dùng chung hoặc tuỳ chọn cần tách mà P02 chưa có UC tương ứng: không tự thêm vào sơ đồ. Ứng viên mà P02 đã xét theo Q4 và kết luận "Là bước của" không thuộc trường hợp này; thấy kết luận đó sai thì chỉ ghi "Đề xuất sửa artifact trước" cho P02. Ghi vào bảng "UC đề xuất bổ sung" (mã tạm UC-nnn tiếp theo số lớn nhất của P02, trạng thái "Chờ cập nhật P02") và vào "Đề xuất sửa artifact trước". Chỉ vẽ UC này khi YEU_CAU_BO_SUNG cho phép vẽ UC đề xuất; khi đó ghi chú "(đề xuất)" trong nhãn.
 
 Bước 8. Lập kế hoạch sơ đồ.
-Đếm N là tổng số UC sẽ vẽ trên sơ đồ, kể cả UC mức Subfunction và UC Đăng nhập, và M là số tác nhân. Chọn phương án:
+Đếm N là tổng số UC sẽ vẽ trên sơ đồ, kể cả UC mức Subfunction, và M là số tác nhân. Đăng nhập không là UC (P02 U-R01), không vẽ trên sơ đồ. Chọn phương án:
   - N không quá 20 và M không quá 8: một sơ đồ tổng quát đầy đủ mọi phần tử và quan hệ. Thêm sơ đồ phân rã chỉ cho nhóm có từ 3 quan hệ include hoặc extend trở lên làm sơ đồ tổng quát rối.
-  - N từ 21 đến 40, hoặc M trên 8: sơ đồ tổng quát gồm mọi tác nhân, mọi UC (kể cả Subfunction và Đăng nhập) và mọi association; không vẽ quan hệ include, extend, generalization giữa UC trên sơ đồ này. Mọi UC có quan hệ như vậy (cả UC gốc lẫn UC được include, UC mở rộng) vẫn vẽ trên sơ đồ này, cột Ghi chú của bảng Node ghi "(quan hệ ở sơ đồ <tên>)". Sơ đồ phân rã chỉ tạo cho nhóm (hoặc tác nhân, theo CACH_PHAN_RA_SO_DO) có ít nhất một quan hệ include, extend hoặc generalization giữa UC, và vẽ đầy đủ quan hệ của nhóm đó. Nhóm không có quan hệ nào giữa UC không có sơ đồ phân rã, vì nội dung đã nằm đủ trên sơ đồ tổng quát.
+  - N từ 21 đến 40, hoặc M trên 8: sơ đồ tổng quát gồm mọi tác nhân, mọi UC (kể cả Subfunction) và mọi association; không vẽ quan hệ include, extend, generalization giữa UC trên sơ đồ này. Mọi UC có quan hệ như vậy (cả UC gốc lẫn UC được include, UC mở rộng) vẫn vẽ trên sơ đồ này, cột Ghi chú của bảng Node ghi "(quan hệ ở sơ đồ <tên>)". Sơ đồ phân rã chỉ tạo cho nhóm (hoặc tác nhân, theo CACH_PHAN_RA_SO_DO) có ít nhất một quan hệ include, extend hoặc generalization giữa UC, và vẽ đầy đủ quan hệ của nhóm đó. Nhóm không có quan hệ nào giữa UC không có sơ đồ phân rã, vì nội dung đã nằm đủ trên sơ đồ tổng quát.
   - N trên 40: sơ đồ tổng quát ở mức package: mỗi nhóm chức năng là một package (hình thư mục) bên trong boundary, ghi số UC trong nhãn, tác nhân đặt quanh boundary không có đường nối, kèm bảng "Tác nhân - Nhóm" trong artifact; mỗi nhóm một sơ đồ phân rã.
-  - UC Đăng nhập giữ theo U-R01 của P02 luôn vẽ trên sơ đồ tổng quát (khi sơ đồ tổng quát không ở mức package), nối mọi tác nhân mà P02 ghi ở cột Tác nhân chính của UC Đăng nhập, để người đọc thấy vai trò nào phải đăng nhập. Tác nhân được một ASM nêu là phải xác thực mà P02 chưa nối thì không nối, ghi "Đề xuất sửa artifact trước" cho P02.
   - Mỗi sơ đồ phân rã nên có không quá khoảng 15 UC; nhóm lớn hơn thì chia nhỏ tiếp.
 Các ngưỡng trên là heuristic về khả năng đọc; lệch được nếu có lý do, ghi vào "Vấn đề còn mở".
 Trong sơ đồ phân rã, tác nhân và UC thuộc nhóm khác chỉ xuất hiện khi có quan hệ trực tiếp với UC trong nhóm; UC của nhóm khác được ghi chú "(nhóm <tên>)" ở cột Ghi chú của bảng Node.
@@ -144,7 +143,7 @@ Bảng lỗi sơ đồ (dùng ở Bước 6 và checklist; P02R dùng cùng mã)
 | D-AP17 | Quá nhiều quan hệ giữa use case | Tỷ lệ UC Subfunction trên khoảng 20%; che UC được include và UC mở rộng thì mất mục tiêu chính | Gộp lại, chỉ giữ quan hệ có lý do ở Bước 3, 4 |
 | D-AP18 | Stereotype sai tên | «uses», «includes», «extends», «call» | Dùng đúng «include», «extend» |
 | D-AP19 | Sơ đồ thể hiện luồng màn hình hoặc trình tự | Mũi tên nối UC theo thứ tự thao tác, UC mang tên màn hình | Sơ đồ use case không thể hiện trình tự; trình tự thuộc đặc tả, activity diagram hoặc sơ đồ chuyển màn hình |
-| D-AP20 | Thiếu hoặc thừa sơ đồ | Sơ đồ tổng quát thiếu UC (kể cả Đăng nhập) khi N không quá 40; sơ đồ phân rã của nhóm không có include, extend, generalization giữa UC, chỉ lặp lại nội dung sơ đồ tổng quát | Lập lại kế hoạch sơ đồ theo Bước 8 |
+| D-AP20 | Thiếu hoặc thừa sơ đồ | Sơ đồ tổng quát thiếu UC khi N không quá 40; sơ đồ phân rã của nhóm không có include, extend, generalization giữa UC, chỉ lặp lại nội dung sơ đồ tổng quát | Lập lại kế hoạch sơ đồ theo Bước 8 |
 
 Ví dụ đúng và sai về quan hệ (các miền khác nhau):
 - Include đúng: "Rút tiền", "Chuyển khoản", "Xem số dư" của máy ATM cùng «include» "Xác thực khách hàng" (đưa thẻ, nhập PIN, kiểm tra, xử lý nhập sai), vì cả ba đều bắt buộc có đoạn tương tác này và đoạn này đủ lớn.
@@ -178,7 +177,7 @@ Mục 3. UC đề xuất bổ sung (chỉ khi có)
 
 Mục 4. Danh sách sơ đồ
 | Sơ đồ | Phạm vi | Tác nhân | Use case | File |
-Ví dụ: "Tổng quát | Toàn hệ thống, không vẽ quan hệ giữa UC | ACT-01..ACT-06 | 24 UC (gồm Đăng nhập) | diagrams/P03-usecase-overview.drawio". "Nhóm Đặt lịch | UC-001..UC-006, có 2 include | ACT-01, ACT-02, ACT-05 | 6 | diagrams/P03-usecase-booking.drawio".
+Ví dụ: "Tổng quát | Toàn hệ thống, không vẽ quan hệ giữa UC | ACT-01..ACT-06 | 24 UC | diagrams/P03-usecase-overview.drawio". "Nhóm Đặt lịch | UC-001..UC-006, có 2 include | ACT-01, ACT-02, ACT-05 | 6 | diagrams/P03-usecase-booking.drawio".
 Tên file theo Conventions C7.2: diagrams/P03-usecase-overview.drawio cho sơ đồ tổng quát; diagrams/P03-usecase-<slug nhóm hoặc slug tác nhân>.drawio cho sơ đồ phân rã, slug theo Conventions C4.
 Khi dùng sơ đồ tổng quát mức package, thêm bảng: | Tác nhân | Nhóm (package) có dùng |.
 
@@ -223,7 +222,7 @@ L-12 Sơ đồ có trên 12 UC: không xếp mọi UC thành một cột (sơ đ
   - Chia boundary thành các dải ngang, mỗi tác nhân chính bên trái một dải theo thứ tự L-02. Dải của một tác nhân chứa các UC mà chỉ tác nhân đó là tác nhân chính, sắp theo trình tự thời gian (L-05). Hai dải liền nhau cách nhau 80 để có hành lang cho đường đi ngang. Tác nhân đặt ngang tâm dọc dải của nó (L-09).
   - Trong một dải dùng tối đa hai cột, cột hai cách cột một 80 và lệch xuống nửa bước dòng (55) so với cột một. Nhờ vậy tâm dọc của mỗi UC cột hai rơi vào khe giữa hai UC cột một, và tâm dọc của mỗi UC cột một rơi vào khe giữa hai UC cột hai. Dải cần hơn hai cột thì tách tác nhân đó ra sơ đồ phân rã hoặc đổi CACH_PHAN_RA_SO_DO.
   - Đường từ tác nhân tới UC cột hai có một điểm uốn tại (cạnh trái boundary + 40, tâm dọc của UC đích), rồi đi ngang qua khe của cột một tới UC đích. Đường từ UC cột một sang tác nhân phụ bên phải đi ngang qua khe của cột hai.
-  - UC nối từ hai tác nhân chính trở lên (Đăng nhập, UC dùng chung của nhiều vai trò) đặt ở cột giữa, bên phải mọi dải và bên trái các UC chủ yếu nối tác nhân phụ, căn tâm dọc theo khoảng giữa các tác nhân nó nối. Đường từ mỗi tác nhân tới UC này có điểm uốn: đi xuống hoặc lên tới hành lang giữa hai dải gần nhất tại x = cạnh trái boundary + 20, đi ngang theo hành lang tới cột giữa, rồi tới UC. Riêng UC chỉ nối tác nhân của hai dải kề nhau có thể đặt ở cột một, giữa hai dải đó; khi đó hành lang giữa hai dải nới thành 150 (UC cao 70, mỗi phía cách 40).
+  - UC nối từ hai tác nhân chính trở lên (UC dùng chung của nhiều vai trò) đặt ở cột giữa, bên phải mọi dải và bên trái các UC chủ yếu nối tác nhân phụ, căn tâm dọc theo khoảng giữa các tác nhân nó nối. Đường từ mỗi tác nhân tới UC này có điểm uốn: đi xuống hoặc lên tới hành lang giữa hai dải gần nhất tại x = cạnh trái boundary + 20, đi ngang theo hành lang tới cột giữa, rồi tới UC. Riêng UC chỉ nối tác nhân của hai dải kề nhau có thể đặt ở cột một, giữa hai dải đó; khi đó hành lang giữa hai dải nới thành 150 (UC cao 70, mỗi phía cách 40).
   - Chỉ dùng cột theo nhóm chức năng (mỗi nhóm một cột) khi phần lớn UC của các nhóm được nhiều tác nhân chính dùng chung, không tách được theo dải tác nhân; khi đó vẫn áp dụng điểm uốn qua khe như trên.
   - Sau khi đặt toạ độ, kiểm từng đường: mỗi đoạn thẳng (từ nguồn tới điểm uốn đầu, giữa hai điểm uốn, từ điểm uốn cuối tới đích) không được đi qua hình chữ nhật bao của bất kỳ elip nào ngoài hai đầu mút. Đoạn nào vi phạm thì đổi hàng UC hoặc thêm điểm uốn, ghi vào cột Điểm uốn của bảng Edge (Conventions C7.1).
 
